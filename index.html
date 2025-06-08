@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주식 AI 분석 시스템</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh; 
+        }
+        .main-container { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px); 
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+        }
+        .table-header { 
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24); 
+            color: white; 
+        }
+        .table-header.valuation { 
+            background: linear-gradient(135deg, #26de81, #20bf6b); 
+        }
+        .table tbody tr:hover { 
+            background-color: rgba(0,123,255,0.1); 
+            transition: all 0.2s ease; 
+        }
+        .stock-name { 
+            cursor: pointer; 
+            color: #0066cc; 
+            text-decoration: underline; 
+        }
+        .badge-rank { 
+            background: linear-gradient(135deg, #667eea, #764ba2); 
+            color: white; 
+            font-weight: bold; 
+        }
+        
+        /* 반응형 디자인 - 화면 크기별 폰트 및 크기 조정 */
+        @media (max-width: 1200px) {
+            .display-4 { font-size: 2.5rem !important; }
+            .main-container { padding: 2rem !important; }
+            th, td { font-size: 0.9rem; }
+            .badge { font-size: 0.8rem; }
+            .btn-sm { font-size: 0.75rem; padding: 0.25rem 0.5rem; }
+        }
+        
+        @media (max-width: 992px) {
+            .display-4 { font-size: 2rem !important; }
+            .main-container { padding: 1.5rem !important; }
+            th, td { font-size: 0.85rem; }
+            .badge { font-size: 0.75rem; }
+            .progress { height: 16px !important; }
+            .btn-sm { font-size: 0.7rem; padding: 0.2rem 0.4rem; }
+            h3 { font-size: 1.5rem !important; }
+        }
+        
+        @media (max-width: 768px) {
+            .display-4 { font-size: 1.8rem !important; }
+            .main-container { padding: 1rem !important; margin: 0.5rem !important; }
+            th, td { font-size: 0.8rem; padding: 0.5rem !important; }
+            .badge { font-size: 0.7rem; padding: 0.25rem 0.5rem; }
+            .progress { height: 14px !important; }
+            .btn-sm { font-size: 0.65rem; padding: 0.15rem 0.3rem; }
+            h3 { font-size: 1.3rem !important; }
+            .lead { font-size: 1rem !important; }
+            small { font-size: 0.75rem !important; }
+        }
+        
+        @media (max-width: 576px) {
+            .display-4 { font-size: 1.5rem !important; }
+            .main-container { padding: 0.75rem !important; margin: 0.25rem !important; }
+            th, td { font-size: 0.75rem; padding: 0.3rem !important; }
+            .badge { font-size: 0.65rem; padding: 0.2rem 0.4rem; }
+            .progress { height: 12px !important; }
+            .btn-sm { font-size: 0.6rem; padding: 0.1rem 0.25rem; }
+            h3 { font-size: 1.1rem !important; }
+            .lead { font-size: 0.9rem !important; }
+            small { font-size: 0.7rem !important; }
+            .table-responsive { font-size: 0.8rem; }
+            
+            /* 모바일에서 테이블 스크롤 개선 */
+            .table-responsive { 
+                border-radius: 0.5rem;
+                border: 1px solid #dee2e6;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .display-4 { font-size: 1.3rem !important; }
+            .main-container { padding: 0.5rem !important; margin: 0.1rem !important; }
+            th, td { font-size: 0.7rem; padding: 0.2rem !important; }
+            .badge { font-size: 0.6rem; padding: 0.15rem 0.3rem; }
+            .progress { height: 10px !important; }
+            .btn-sm { font-size: 0.55rem; padding: 0.05rem 0.2rem; }
+            h3 { font-size: 1rem !important; }
+            .lead { font-size: 0.8rem !important; }
+            small { font-size: 0.65rem !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-5">
+        <div class="main-container mx-auto p-4" style="max-width: 1400px;">
+            <!-- Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold text-dark mb-3">
+                    <i class="fas fa-chart-line text-primary me-3"></i>
+                    주식 AI 분석 시스템
+                </h1>
+                <p class="lead text-muted">AI 기반 종목 분석 및 투자 추천</p>
+                <small class="text-muted">분석일: 2025-06-09 00:53:46</small>
+            </div>
+            
+            
+            <!-- 🎯 작전주 탐지 섹션 -->
+            <div class="mb-5">
+                <div class="table-header p-3 rounded-top">
+                    <h3 class="mb-0">
+                        <i class="fas fa-crosshairs me-2"></i>
+                        🎯 작전주 탐지 (TOP 3)
+                    </h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                
+                                <th>순위</th>
+                                <th>종목명</th>
+                                <th>현재가</th>
+                                <th>작전실행 D-day</th>
+                                <th>작전기간</th>
+                                <th>AI점수</th>
+                                <th>신뢰도</th>
+                                <th>네이버금융</th>
+                                <th>분석일자</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge badge-rank">1</span></td>
+                                <td>
+                                    <a href="stocks/014970.html" class="stock-name text-decoration-none">
+                                        <strong>014970</strong><br>
+                                        <small class="text-muted">014970</small>
+                                    </a>
+                                </td>
+                                <td><strong>28,000원</strong></td>
+                                <td>
+                                    <span class="badge bg-warning fs-6">
+                                        D-9
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        2-4주
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-warning" 
+                                             style="width: 78%">
+                                            78.0
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        B+
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="https://finance.naver.com/item/main.nhn?code=014970" 
+                                       target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-external-link-alt"></i> 네이버
+                                    </a>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        06-09 00:53
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-rank">2</span></td>
+                                <td>
+                                    <a href="stocks/000157.html" class="stock-name text-decoration-none">
+                                        <strong>000157</strong><br>
+                                        <small class="text-muted">000157</small>
+                                    </a>
+                                </td>
+                                <td><strong>31,000원</strong></td>
+                                <td>
+                                    <span class="badge bg-warning fs-6">
+                                        D-8
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        2-4주
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-success" 
+                                             style="width: 81%">
+                                            81.0
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        A
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="https://finance.naver.com/item/main.nhn?code=000157" 
+                                       target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-external-link-alt"></i> 네이버
+                                    </a>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        06-09 00:53
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-rank">3</span></td>
+                                <td>
+                                    <a href="stocks/043100.html" class="stock-name text-decoration-none">
+                                        <strong>043100</strong><br>
+                                        <small class="text-muted">043100</small>
+                                    </a>
+                                </td>
+                                <td><strong>34,000원</strong></td>
+                                <td>
+                                    <span class="badge bg-warning fs-6">
+                                        D-7
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        2-4주
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-success" 
+                                             style="width: 84%">
+                                            84.0
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        A
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="https://finance.naver.com/item/main.nhn?code=043100" 
+                                       target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-external-link-alt"></i> 네이버
+                                    </a>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        06-09 00:53
+                                    </small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 📈 저평가 상승주 섹션 -->
+            <div class="mb-5">
+                <div class="table-header valuation p-3 rounded-top">
+                    <h3 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>
+                        📈 저평가 상승주 (TOP 3)
+                    </h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                
+                                <th>순위</th>
+                                <th>종목명</th>
+                                <th>현재가</th>
+                                <th>목표가</th>
+                                <th>예상수익률</th>
+                                <th>투자기간</th>
+                                <th>AI점수</th>
+                                <th>투자등급</th>
+                                <th>네이버금융</th>
+                                <th>분석일자</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge badge-rank">1</span></td>
+                                <td>
+                                    <a href="stocks/017960.html" class="stock-name text-decoration-none">
+                                        <strong>한국카본</strong><br>
+                                        <small class="text-muted">017960</small>
+                                    </a>
+                                </td>
+                                <td><strong>28,000원</strong></td>
+                                <td><strong class="text-success">32,479원</strong></td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        +16.0%
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        2-4주
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-warning" 
+                                             style="width: 66%">
+                                            66.0
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        B+
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="https://finance.naver.com/item/main.nhn?code=017960" 
+                                       target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-external-link-alt"></i> 네이버
+                                    </a>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        06-09 00:53
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-rank">2</span></td>
+                                <td>
+                                    <a href="stocks/004980.html" class="stock-name text-decoration-none">
+                                        <strong>성신양회</strong><br>
+                                        <small class="text-muted">004980</small>
+                                    </a>
+                                </td>
+                                <td><strong>31,000원</strong></td>
+                                <td><strong class="text-success">36,270원</strong></td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        +17.0%
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        2-4주
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-warning" 
+                                             style="width: 67%">
+                                            67.0
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        B+
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="https://finance.naver.com/item/main.nhn?code=004980" 
+                                       target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-external-link-alt"></i> 네이버
+                                    </a>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        06-09 00:53
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-rank">3</span></td>
+                                <td>
+                                    <a href="stocks/298830.html" class="stock-name text-decoration-none">
+                                        <strong>에스더블유케이</strong><br>
+                                        <small class="text-muted">298830</small>
+                                    </a>
+                                </td>
+                                <td><strong>34,000원</strong></td>
+                                <td><strong class="text-success">40,120원</strong></td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        +18.0%
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">
+                                        2-4주
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar bg-warning" 
+                                             style="width: 68%">
+                                            68.0
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        B+
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="https://finance.naver.com/item/main.nhn?code=298830" 
+                                       target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-external-link-alt"></i> 네이버
+                                    </a>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        06-09 00:53
+                                    </small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        // 테이블 행 클릭 이벤트
+        document.addEventListener('DOMContentLoaded', function() {
+            // 종목명 클릭 시 상세 페이지로 이동 (본창에서 열기)
+            document.querySelectorAll('.stock-name').forEach(function(element) {
+                element.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    if (href) {
+                        window.location.href = href;  // 새창 대신 본창에서 열기
+                    }
+                });
+            });
+            
+            // 테이블 행 호버 효과 (커지는 효과 제거)
+            document.querySelectorAll('tbody tr').forEach(function(row) {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(0,123,255,0.1)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
