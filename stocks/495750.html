@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HANARO 코리아밸류업 (495750) - 상세 분석</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+    <style>
+        /* 🎨 현대적이고 편안한 색상 테마 */
+        :root {
+            --primary-color: #2563eb;
+            --success-color: #059669;
+            --warning-color: #d97706;
+            --danger-color: #dc2626;
+            --info-color: #0891b2;
+            --dark-color: #1f2937;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .navbar-dark {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #374151 100%) !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-bottom: 1px solid var(--border-color);
+            border-radius: 12px 12px 0 0 !important;
+            padding: 1rem 1.5rem;
+        }
+        
+        .badge {
+            font-weight: 500;
+            padding: 0.4em 0.8em;
+            border-radius: 8px;
+            font-size: 0.85em;
+        }
+        
+        .badge.bg-primary { background-color: var(--primary-color) !important; }
+        .badge.bg-success { background-color: var(--success-color) !important; }
+        .badge.bg-warning { background-color: var(--warning-color) !important; color: white !important; }
+        .badge.bg-info { background-color: var(--info-color) !important; }
+        .badge.bg-danger { background-color: var(--danger-color) !important; }
+        
+        /* 새로운 라벨 색상 시스템 - 가독성 최우선 */
+        .badge.label-color-1 { background-color: #007bff !important; color: white !important; } /* 파랑 */
+        .badge.label-color-2 { background-color: #28a745 !important; color: white !important; } /* 초록 */
+        .badge.label-color-3 { background-color: #dc3545 !important; color: white !important; } /* 빨강 */
+        .badge.label-color-4 { background-color: #fd7e14 !important; color: white !important; } /* 주황 */
+        .badge.label-color-5 { background-color: #6f42c1 !important; color: white !important; } /* 보라 */
+        .badge.label-color-6 { background-color: #e83e8c !important; color: white !important; } /* 분홍 */
+        .badge.label-color-7 { background-color: #20c997 !important; color: white !important; } /* 청록 */
+        .badge.label-color-8 { background-color: #6c757d !important; color: white !important; } /* 갈색 */
+        .badge.label-color-9 { background-color: #343a40 !important; color: white !important; } /* 네이비 */
+        .badge.label-color-10 { background-color: #795548 !important; color: white !important; } /* 올리브 */
+        
+        .alert {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .alert-warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            border-left: 4px solid var(--warning-color);
+        }
+        
+        .alert-info {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+            border-left: 4px solid var(--info-color);
+        }
+        
+        .text-primary { color: var(--primary-color) !important; }
+        .text-success { color: var(--success-color) !important; }
+        .text-warning { color: var(--warning-color) !important; }
+        .text-info { color: var(--info-color) !important; }
+        .text-danger { color: var(--danger-color) !important; }
+        
+        .btn {
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        h2, h3, h4, h5, h6 {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .text-muted {
+            color: var(--text-secondary) !important;
+        }
+        
+        /* 종목 라벨 스타일 개선 */
+        .stock-labels .badge {
+            margin-right: 0.5rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.8rem;
+            padding: 0.35em 0.7em;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-arrow-left"></i> 메인으로 돌아가기
+            </a>
+            <span class="navbar-text">GuGu AI 주식분석</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- 종목 기본 정보 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="mb-2">HANARO 코리아밸류업 <small class="text-muted">(495750)</small></h2>
+                                
+                                <h3 class="text-primary mb-0">11,345원</h3>
+                                <small class="text-muted">현재가</small>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <div class="d-flex justify-content-md-end align-items-center gap-3">
+                                    <div>
+                                        <span class="badge bg-secondary fs-6">B</span>
+                                        <div><small class="text-muted">투자등급</small></div>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-success mb-0">6.5</h4>
+                                        <div><small class="text-muted">AI 점수</small></div>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-warning mb-0">타이밍</h4>
+                                        <div><small class="text-muted">투자방식</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI 분석 결과 및 투자 전략 (2열 배치) -->
+        
+            <div class="row mb-4">
+                <!-- 왼쪽: 작전주 탐지 분석 결과 -->
+                <div class="col-md-6">
+                    <div class="alert alert-warning h-100">
+                        <h5><i class="fas fa-chart-line"></i> 작전주 탐지 분석 결과</h5>
+                        <p class="mb-2"></p>
+                        <div class="mb-3">
+                            <strong>✅ 탐지 신호:</strong>
+                            <ul class="mb-2">
+                                <li>거래량 급증</li><li>가격 변동성 증가</li>
+                            </ul>
+                        </div>
+                        <div class="mb-3">
+                            <strong>📈 상승 요인:</strong>
+                            <ul class="mb-2">
+                                <li class="text-muted">없음</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong>⚠️ 주의사항:</strong> 시장 변동성, 경제 환경 변화
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 오른쪽: 기술적 분석 전략 -->
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0"><i class="fas fa-chart-line"></i> 기술적 분석 전략</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>📈 단기 매매 전략</h6>
+                            <p>• <strong>매매 방식</strong>: <span class="text-warning">스윙 트레이딩</span> (2-4주 보유)</p>
+                            <p>• <strong>진입 타이밍</strong>: <span class="text-info">횡보 구간 돌파 시점</span></p>
+                            <p>• <strong>목표 수익률</strong>: <span class="text-success">15-25%</span> (단기간)</p>
+                            <p>• <strong>손절 기준</strong>: <span class="text-danger">-7% 이하 시 즉시 정리</span></p>
+                            <div class="mt-3 p-3 bg-light rounded">
+                                <small class="text-muted">
+                                    <i class="fas fa-info-circle"></i> 
+                                    <strong>작전주 특성:</strong> 높은 변동성과 단기 수익 추구. 기술적 지표와 거래량 분석 중심의 매매 필요.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+
+        <!-- 차트 섹션 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-candlestick"></i> 1년 차트 분석</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="stockChart" style="height: 400px;"></div>
+                        <div id="volumeChart" style="height: 150px; margin-top: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 관련 링크 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0"><i class="fas fa-external-link-alt"></i> 관련 링크</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A495750" 
+                                   target="_blank" class="btn btn-primary w-100 mb-2">
+                                    📈 FnGuide 재무제표
+                                </a>
+                                <small class="text-muted d-block">전문 재무지표, PER/PBR, 실적분석</small>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="https://finance.naver.com/item/news.nhn?code=495750" 
+                                   target="_blank" class="btn btn-secondary w-100 mb-2">
+                                    📰 네이버 종목뉴스
+                                </a>
+                                <small class="text-muted d-block">실시간 뉴스 및 공시정보</small>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="https://kr.investing.com/search/?q=495750" 
+                                   target="_blank" class="btn btn-outline-secondary w-100 mb-2">
+                                    🌏 Investing.com
+                                </a>
+                                <small class="text-muted d-block">글로벌 차트 및 기술적 분석</small>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <small class="text-info">
+                                💡 <strong>분석 우선순위:</strong> FnGuide 재무제표 → 네이버 뉴스 → 기술적 분석 순으로 참고하세요
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        // 495750 실제 데이터 전용 차트 시스템
+        console.log('🔄 실제 차트 데이터 로드:', '495750', '데이터 길이:', 113);
+        
+        let candlestickChart;
+        let volumeChart;
+        
+        // 데이터 상태 확인
+        const hasData = 113 > 0;
+        console.log('📊 데이터 상태:', hasData ? '실제 데이터 있음' : '실제 데이터 없음');
+        
+        if (!hasData) {
+            // 실제 데이터가 없으면 메시지 표시
+            document.querySelector("#stockChart").innerHTML = `
+                <div style="height: 200px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;">
+                    <div class="text-center">
+                        <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">실제 차트 데이터가 없습니다</h5>
+                        <p class="text-muted">PostgreSQL 데이터베이스에서 495750 일봉 데이터를 찾을 수 없습니다.</p>
+                    </div>
+                </div>
+            `;
+            document.querySelector("#volumeChart").innerHTML = `
+                <div style="height: 100px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;">
+                    <p class="text-muted mb-0">거래량 데이터 없음</p>
+                </div>
+            `;
+        } else {
+        
+        // 캔들스틱 차트 옵션 (실제 데이터)
+        var candlestickOptions = {
+            series: [{
+                name: 'HANARO 코리아밸류업 주가',
+                data: [{"x": "11/04", "y": [9495, 9696, 9480, 9696]}, {"x": "11/05", "y": [9608, 9677, 9608, 9657]}, {"x": "11/06", "y": [9741, 9755, 9637, 9696]}, {"x": "11/07", "y": [9672, 9716, 9672, 9701]}, {"x": "11/08", "y": [9775, 9775, 9711, 9711]}, {"x": "11/11", "y": [9578, 9583, 9505, 9549]}, {"x": "11/12", "y": [9446, 9446, 9396, 9396]}, {"x": "11/13", "y": [9303, 9303, 9298, 9303]}, {"x": "11/14", "y": [9165, 9165, 9067, 9067]}, {"x": "11/15", "y": [9067, 9092, 9067, 9092]}, {"x": "11/18", "y": [9244, 9273, 9219, 9219]}, {"x": "11/19", "y": [9249, 9249, 9249, 9249]}, {"x": "11/20", "y": [9303, 9332, 9283, 9283]}, {"x": "11/21", "y": [9288, 9318, 9249, 9249]}, {"x": "11/22", "y": [9352, 9391, 9337, 9337]}, {"x": "11/25", "y": [9406, 9406, 9406, 9406]}, {"x": "11/26", "y": [9372, 9372, 9367, 9367]}, {"x": "11/27", "y": [9328, 9328, 9298, 9298]}, {"x": "11/28", "y": [9308, 9318, 9264, 9264]}, {"x": "11/29", "y": [9146, 9239, 9146, 9170]}, {"x": "12/02", "y": [9288, 9288, 9264, 9264]}, {"x": "12/03", "y": [9308, 9308, 9308, 9308]}, {"x": "12/04", "y": [9278, 9318, 9278, 9318]}, {"x": "12/05", "y": [9318, 9318, 9313, 9313]}, {"x": "12/06", "y": [9367, 9382, 9190, 9259]}, {"x": "12/09", "y": [9101, 9101, 9003, 9008]}, {"x": "12/10", "y": [9126, 9151, 9111, 9136]}, {"x": "12/11", "y": [9101, 9185, 9101, 9185]}, {"x": "12/12", "y": [9249, 9332, 9249, 9332]}, {"x": "12/13", "y": [9323, 9387, 9318, 9377]}, {"x": "12/16", "y": [9372, 9372, 9303, 9303]}, {"x": "12/17", "y": [9288, 9303, 9264, 9264]}, {"x": "12/18", "y": [9367, 9367, 9367, 9367]}, {"x": "12/19", "y": [9234, 9259, 9214, 9259]}, {"x": "12/20", "y": [9170, 9170, 9018, 9101]}, {"x": "12/23", "y": [9195, 9278, 9180, 9254]}, {"x": "12/24", "y": [9244, 9244, 9244, 9244]}, {"x": "12/26", "y": [9244, 9244, 9234, 9234]}, {"x": "12/27", "y": [9190, 9190, 9175, 9175]}, {"x": "12/30", "y": [9136, 9180, 9136, 9180]}, {"x": "01/03", "y": [9342, 9396, 9342, 9367]}, {"x": "01/06", "y": [9534, 9534, 9534, 9534]}, {"x": "01/08", "y": [9495, 9539, 9495, 9539]}, {"x": "01/09", "y": [9613, 9682, 9598, 9677]}, {"x": "01/10", "y": [9682, 9755, 9662, 9662]}, {"x": "01/13", "y": [9657, 9657, 9637, 9637]}, {"x": "01/15", "y": [9593, 9593, 9593, 9593]}, {"x": "01/20", "y": [9711, 9711, 9711, 9711]}, {"x": "01/21", "y": [9775, 9785, 9686, 9691]}, {"x": "01/22", "y": [9795, 9839, 9795, 9829]}, {"x": "01/23", "y": [9745, 9745, 9706, 9706]}, {"x": "01/31", "y": [9647, 9647, 9632, 9632]}, {"x": "02/03", "y": [9367, 9367, 9367, 9367]}, {"x": "02/04", "y": [9544, 9544, 9544, 9544]}, {"x": "02/05", "y": [9549, 9549, 9549, 9549]}, {"x": "02/06", "y": [9603, 9627, 9603, 9623]}, {"x": "02/10", "y": [9505, 9524, 9495, 9524]}, {"x": "02/11", "y": [9613, 9613, 9613, 9613]}, {"x": "02/14", "y": [9839, 9839, 9790, 9790]}, {"x": "02/17", "y": [9859, 9859, 9859, 9859]}, {"x": "02/19", "y": [10095, 10154, 10095, 10119]}, {"x": "02/21", "y": [10036, 10060, 10036, 10060]}, {"x": "02/24", "y": [9962, 9962, 9923, 9923]}, {"x": "02/28", "y": [9608, 9618, 9608, 9618]}, {"x": "03/04", "y": [9618, 9637, 9618, 9637]}, {"x": "03/05", "y": [9652, 9652, 9637, 9637]}, {"x": "03/12", "y": [9854, 9854, 9854, 9854]}, {"x": "03/13", "y": [9952, 9952, 9952, 9952]}, {"x": "03/14", "y": [9844, 9942, 9844, 9942]}, {"x": "03/17", "y": [10080, 10114, 10080, 10114]}, {"x": "03/20", "y": [10286, 10286, 10286, 10286]}, {"x": "03/21", "y": [10222, 10237, 10222, 10237]}, {"x": "03/24", "y": [10326, 10326, 10267, 10267]}, {"x": "03/25", "y": [10360, 10360, 10257, 10267]}, {"x": "03/26", "y": [10331, 10375, 10331, 10355]}, {"x": "03/27", "y": [10203, 10203, 10203, 10203]}, {"x": "03/28", "y": [10011, 10011, 10011, 10011]}, {"x": "03/31", "y": [9760, 9760, 9716, 9716]}, {"x": "04/02", "y": [9888, 9888, 9888, 9888]}, {"x": "04/03", "y": [9691, 9691, 9662, 9662]}, {"x": "04/04", "y": [9623, 9736, 9495, 9564]}, {"x": "04/07", "y": [9239, 9239, 9234, 9234]}, {"x": "04/08", "y": [9170, 9170, 9028, 9028]}, {"x": "04/09", "y": [8959, 8959, 8959, 8959]}, {"x": "04/10", "y": [9382, 9382, 9367, 9367]}, {"x": "04/11", "y": [9273, 9367, 9273, 9367]}, {"x": "04/14", "y": [9470, 9470, 9470, 9470]}, {"x": "04/15", "y": [9514, 9514, 9514, 9514]}, {"x": "04/16", "y": [9470, 9470, 9470, 9470]}, {"x": "04/18", "y": [9568, 9568, 9568, 9568]}, {"x": "04/21", "y": [9632, 9632, 9613, 9613]}, {"x": "04/23", "y": [9711, 9741, 9711, 9741]}, {"x": "04/24", "y": [9721, 9721, 9721, 9721]}, {"x": "04/28", "y": [9775, 9775, 9775, 9775]}, {"x": "04/30", "y": [9905, 9905, 9860, 9860]}, {"x": "05/02", "y": [9855, 9970, 9855, 9935]}, {"x": "05/07", "y": [10025, 10025, 10025, 10025]}, {"x": "05/08", "y": [10095, 10130, 10095, 10130]}, {"x": "05/09", "y": [10050, 10050, 10035, 10035]}, {"x": "05/12", "y": [10160, 10175, 10160, 10175]}, {"x": "05/13", "y": [10260, 10260, 10260, 10260]}, {"x": "05/14", "y": [10435, 10440, 10435, 10440]}, {"x": "05/15", "y": [10385, 10385, 10385, 10385]}, {"x": "05/20", "y": [10395, 10400, 10380, 10380]}, {"x": "05/22", "y": [10185, 10185, 10185, 10185]}, {"x": "05/28", "y": [10500, 10570, 10465, 10465]}, {"x": "05/29", "y": [10715, 10740, 10700, 10740]}, {"x": "05/30", "y": [10670, 10670, 10530, 10545]}, {"x": "06/02", "y": [10575, 10640, 10495, 10560]}, {"x": "06/04", "y": [10705, 10880, 10705, 10865]}, {"x": "06/05", "y": [10970, 11170, 10945, 11095]}, {"x": "06/09", "y": [11255, 11320, 11165, 11225]}, {"x": "06/10", "y": [11365, 11410, 11235, 11345]}]
+            }],
+            chart: {
+                type: 'candlestick',
+                height: 400,
+                id: 'candlestick',
+                group: 'synced-charts',
+                toolbar: {
+                    show: true,
+                    tools: {
+                        download: true,
+                        selection: true,
+                        zoom: true,
+                        zoomin: true,
+                        zoomout: true,
+                        pan: true,
+                        reset: true
+                    }
+                },
+                events: {
+                    zoomed: function(chartContext, { xaxis, yaxis }) {
+                        if (window.volumeChart) {
+                            window.volumeChart.updateOptions({
+                                xaxis: {
+                                    min: xaxis.min,
+                                    max: xaxis.max
+                                }
+                            }, false, false, false);
+                        }
+                    },
+                    scrolled: function(chartContext, { xaxis }) {
+                        if (window.volumeChart) {
+                            window.volumeChart.updateOptions({
+                                xaxis: {
+                                    min: xaxis.min,
+                                    max: xaxis.max
+                                }
+                            }, false, false, false);
+                        }
+                    }
+                }
+            },
+            title: {
+                text: 'HANARO 코리아밸류업 (495750) 실제 차트 데이터 (실제 113일 데이터)',
+                align: 'left'
+            },
+            xaxis: {
+                type: 'category',  // 🔥 주말 공백 제거
+                tickAmount: 6,     // 🔥 한 달 단위로 약 6개 라벨 표시 (252일 ÷ 42일 ≈ 6개월)
+                labels: {
+                    show: true,
+                    rotate: -45,
+                    trim: true,      // 🔥 라벨 자동 트림
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        colors: '#333'
+                    },
+                    offsetY: 5,      // 🔥 라벨 위치 약간 아래로
+                    // 🔥 tickAmount로 자동 제한되므로 formatter 불필요
+                },
+                axisBorder: {
+                    show: true,
+                    color: '#d1d5db',
+                    height: 1
+                },
+                axisTicks: {
+                    show: false      // 🔥 tick 표시 제거로 깔끔하게
+                }
+            },
+            yaxis: {
+                tooltip: {
+                    enabled: true
+                },
+                labels: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + '원';
+                    }
+                }
+            },
+            plotOptions: {
+                candlestick: {
+                    colors: {
+                        upward: '#e74c3c',    // 상승 캔들 - 빨강
+                        downward: '#3498db'   // 하락 캔들 - 파랑
+                    },
+                    wick: {
+                        useFillColor: true
+                    }
+                }
+            },
+            tooltip: {
+                shared: false,
+                y: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + '원';
+                    }
+                }
+            }
+        };
+        
+        // 거래량 차트 옵션 (캔들 색상 연동, 실제 데이터)
+        var volumeOptions = {
+            series: [{
+                name: '거래량',
+                data: [{"x": "11/04", "y": 65315, "fillColor": "#e74c3c"}, {"x": "11/05", "y": 10224, "fillColor": "#e74c3c"}, {"x": "11/06", "y": 45, "fillColor": "#3498db"}, {"x": "11/07", "y": 5, "fillColor": "#e74c3c"}, {"x": "11/08", "y": 15, "fillColor": "#3498db"}, {"x": "11/11", "y": 43, "fillColor": "#3498db"}, {"x": "11/12", "y": 40, "fillColor": "#3498db"}, {"x": "11/13", "y": 13, "fillColor": "#e74c3c"}, {"x": "11/14", "y": 10209, "fillColor": "#3498db"}, {"x": "11/15", "y": 334, "fillColor": "#e74c3c"}, {"x": "11/18", "y": 1133, "fillColor": "#3498db"}, {"x": "11/19", "y": 20338, "fillColor": "#e74c3c"}, {"x": "11/20", "y": 10169, "fillColor": "#3498db"}, {"x": "11/21", "y": 10172, "fillColor": "#3498db"}, {"x": "11/22", "y": 20380, "fillColor": "#3498db"}, {"x": "11/25", "y": 5, "fillColor": "#e74c3c"}, {"x": "11/26", "y": 62, "fillColor": "#3498db"}, {"x": "11/27", "y": 103, "fillColor": "#3498db"}, {"x": "11/28", "y": 50845, "fillColor": "#3498db"}, {"x": "11/29", "y": 10176, "fillColor": "#e74c3c"}, {"x": "12/02", "y": 30511, "fillColor": "#3498db"}, {"x": "12/03", "y": 1, "fillColor": "#e74c3c"}, {"x": "12/04", "y": 73, "fillColor": "#e74c3c"}, {"x": "12/05", "y": 41, "fillColor": "#3498db"}, {"x": "12/06", "y": 132197, "fillColor": "#3498db"}, {"x": "12/09", "y": 20350, "fillColor": "#3498db"}, {"x": "12/10", "y": 30711, "fillColor": "#e74c3c"}, {"x": "12/11", "y": 30507, "fillColor": "#e74c3c"}, {"x": "12/12", "y": 16, "fillColor": "#e74c3c"}, {"x": "12/13", "y": 42, "fillColor": "#e74c3c"}, {"x": "12/16", "y": 21, "fillColor": "#3498db"}, {"x": "12/17", "y": 25626, "fillColor": "#3498db"}, {"x": "12/18", "y": 51, "fillColor": "#e74c3c"}, {"x": "12/19", "y": 25449, "fillColor": "#e74c3c"}, {"x": "12/20", "y": 589286, "fillColor": "#3498db"}, {"x": "12/23", "y": 90874, "fillColor": "#e74c3c"}, {"x": "12/24", "y": 1423638, "fillColor": "#e74c3c"}, {"x": "12/26", "y": 610, "fillColor": "#3498db"}, {"x": "12/27", "y": 3, "fillColor": "#3498db"}, {"x": "12/30", "y": 30639, "fillColor": "#e74c3c"}, {"x": "01/03", "y": 4090, "fillColor": "#e74c3c"}, {"x": "01/06", "y": 2036, "fillColor": "#e74c3c"}, {"x": "01/08", "y": 87, "fillColor": "#e74c3c"}, {"x": "01/09", "y": 15481, "fillColor": "#e74c3c"}, {"x": "01/10", "y": 76190, "fillColor": "#3498db"}, {"x": "01/13", "y": 11, "fillColor": "#3498db"}, {"x": "01/15", "y": 81, "fillColor": "#e74c3c"}, {"x": "01/20", "y": 1, "fillColor": "#e74c3c"}, {"x": "01/21", "y": 50, "fillColor": "#3498db"}, {"x": "01/22", "y": 1034, "fillColor": "#e74c3c"}, {"x": "01/23", "y": 53, "fillColor": "#3498db"}, {"x": "01/31", "y": 9, "fillColor": "#3498db"}, {"x": "02/03", "y": 2, "fillColor": "#e74c3c"}, {"x": "02/04", "y": 296, "fillColor": "#e74c3c"}, {"x": "02/05", "y": 5, "fillColor": "#e74c3c"}, {"x": "02/06", "y": 57, "fillColor": "#e74c3c"}, {"x": "02/10", "y": 3398, "fillColor": "#e74c3c"}, {"x": "02/11", "y": 2502, "fillColor": "#e74c3c"}, {"x": "02/14", "y": 13, "fillColor": "#3498db"}, {"x": "02/17", "y": 10, "fillColor": "#e74c3c"}, {"x": "02/19", "y": 139, "fillColor": "#e74c3c"}, {"x": "02/21", "y": 300, "fillColor": "#e74c3c"}, {"x": "02/24", "y": 14, "fillColor": "#3498db"}, {"x": "02/28", "y": 3246, "fillColor": "#e74c3c"}, {"x": "03/04", "y": 3, "fillColor": "#e74c3c"}, {"x": "03/05", "y": 398, "fillColor": "#3498db"}, {"x": "03/12", "y": 1, "fillColor": "#e74c3c"}, {"x": "03/13", "y": 137, "fillColor": "#e74c3c"}, {"x": "03/14", "y": 1018, "fillColor": "#e74c3c"}, {"x": "03/17", "y": 5, "fillColor": "#e74c3c"}, {"x": "03/20", "y": 4068, "fillColor": "#e74c3c"}, {"x": "03/21", "y": 916, "fillColor": "#e74c3c"}, {"x": "03/24", "y": 206, "fillColor": "#3498db"}, {"x": "03/25", "y": 45777, "fillColor": "#3498db"}, {"x": "03/26", "y": 4, "fillColor": "#e74c3c"}, {"x": "03/27", "y": 204, "fillColor": "#e74c3c"}, {"x": "03/28", "y": 508, "fillColor": "#e74c3c"}, {"x": "03/31", "y": 4, "fillColor": "#3498db"}, {"x": "04/02", "y": 26, "fillColor": "#e74c3c"}, {"x": "04/03", "y": 5, "fillColor": "#3498db"}, {"x": "04/04", "y": 51858, "fillColor": "#3498db"}, {"x": "04/07", "y": 2, "fillColor": "#3498db"}, {"x": "04/08", "y": 138, "fillColor": "#3498db"}, {"x": "04/09", "y": 2, "fillColor": "#e74c3c"}, {"x": "04/10", "y": 2, "fillColor": "#3498db"}, {"x": "04/11", "y": 2, "fillColor": "#e74c3c"}, {"x": "04/14", "y": 1, "fillColor": "#e74c3c"}, {"x": "04/15", "y": 1, "fillColor": "#e74c3c"}, {"x": "04/16", "y": 1, "fillColor": "#e74c3c"}, {"x": "04/18", "y": 1, "fillColor": "#e74c3c"}, {"x": "04/21", "y": 2, "fillColor": "#3498db"}, {"x": "04/23", "y": 526, "fillColor": "#e74c3c"}, {"x": "04/24", "y": 2, "fillColor": "#e74c3c"}, {"x": "04/28", "y": 508, "fillColor": "#e74c3c"}, {"x": "04/30", "y": 13, "fillColor": "#3498db"}, {"x": "05/02", "y": 19, "fillColor": "#e74c3c"}, {"x": "05/07", "y": 1, "fillColor": "#e74c3c"}, {"x": "05/08", "y": 208, "fillColor": "#e74c3c"}, {"x": "05/09", "y": 11, "fillColor": "#3498db"}, {"x": "05/12", "y": 2, "fillColor": "#e74c3c"}, {"x": "05/13", "y": 101, "fillColor": "#e74c3c"}, {"x": "05/14", "y": 2, "fillColor": "#e74c3c"}, {"x": "05/15", "y": 22, "fillColor": "#e74c3c"}, {"x": "05/20", "y": 3, "fillColor": "#3498db"}, {"x": "05/22", "y": 2, "fillColor": "#e74c3c"}, {"x": "05/28", "y": 36, "fillColor": "#3498db"}, {"x": "05/29", "y": 1985, "fillColor": "#e74c3c"}, {"x": "05/30", "y": 1049, "fillColor": "#3498db"}, {"x": "06/02", "y": 253, "fillColor": "#3498db"}, {"x": "06/04", "y": 103, "fillColor": "#e74c3c"}, {"x": "06/05", "y": 898, "fillColor": "#e74c3c"}, {"x": "06/09", "y": 120, "fillColor": "#3498db"}, {"x": "06/10", "y": 1222, "fillColor": "#3498db"}]
+            }],
+            chart: {
+                type: 'bar',
+                height: 150,
+                id: 'volume',
+                group: 'synced-charts',
+                toolbar: {
+                    show: false
+                },
+                events: {
+                    zoomed: function(chartContext, { xaxis }) {
+                        if (window.candlestickChart) {
+                            window.candlestickChart.updateOptions({
+                                xaxis: {
+                                    min: xaxis.min,
+                                    max: xaxis.max
+                                }
+                            }, false, false, false);
+                        }
+                    },
+                    scrolled: function(chartContext, { xaxis }) {
+                        if (window.candlestickChart) {
+                            window.candlestickChart.updateOptions({
+                                xaxis: {
+                                    min: xaxis.min,
+                                    max: xaxis.max
+                                }
+                            }, false, false, false);
+                        }
+                    }
+                }
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: '80%',
+                    distributed: true  // 🔥 각 바별로 다른 색상 적용 (캔들 연동)
+                }
+            },
+            colors: [{"x": "11/04", "y": 65315, "fillColor": "#e74c3c"}, {"x": "11/05", "y": 10224, "fillColor": "#e74c3c"}, {"x": "11/06", "y": 45, "fillColor": "#3498db"}, {"x": "11/07", "y": 5, "fillColor": "#e74c3c"}, {"x": "11/08", "y": 15, "fillColor": "#3498db"}, {"x": "11/11", "y": 43, "fillColor": "#3498db"}, {"x": "11/12", "y": 40, "fillColor": "#3498db"}, {"x": "11/13", "y": 13, "fillColor": "#e74c3c"}, {"x": "11/14", "y": 10209, "fillColor": "#3498db"}, {"x": "11/15", "y": 334, "fillColor": "#e74c3c"}, {"x": "11/18", "y": 1133, "fillColor": "#3498db"}, {"x": "11/19", "y": 20338, "fillColor": "#e74c3c"}, {"x": "11/20", "y": 10169, "fillColor": "#3498db"}, {"x": "11/21", "y": 10172, "fillColor": "#3498db"}, {"x": "11/22", "y": 20380, "fillColor": "#3498db"}, {"x": "11/25", "y": 5, "fillColor": "#e74c3c"}, {"x": "11/26", "y": 62, "fillColor": "#3498db"}, {"x": "11/27", "y": 103, "fillColor": "#3498db"}, {"x": "11/28", "y": 50845, "fillColor": "#3498db"}, {"x": "11/29", "y": 10176, "fillColor": "#e74c3c"}, {"x": "12/02", "y": 30511, "fillColor": "#3498db"}, {"x": "12/03", "y": 1, "fillColor": "#e74c3c"}, {"x": "12/04", "y": 73, "fillColor": "#e74c3c"}, {"x": "12/05", "y": 41, "fillColor": "#3498db"}, {"x": "12/06", "y": 132197, "fillColor": "#3498db"}, {"x": "12/09", "y": 20350, "fillColor": "#3498db"}, {"x": "12/10", "y": 30711, "fillColor": "#e74c3c"}, {"x": "12/11", "y": 30507, "fillColor": "#e74c3c"}, {"x": "12/12", "y": 16, "fillColor": "#e74c3c"}, {"x": "12/13", "y": 42, "fillColor": "#e74c3c"}, {"x": "12/16", "y": 21, "fillColor": "#3498db"}, {"x": "12/17", "y": 25626, "fillColor": "#3498db"}, {"x": "12/18", "y": 51, "fillColor": "#e74c3c"}, {"x": "12/19", "y": 25449, "fillColor": "#e74c3c"}, {"x": "12/20", "y": 589286, "fillColor": "#3498db"}, {"x": "12/23", "y": 90874, "fillColor": "#e74c3c"}, {"x": "12/24", "y": 1423638, "fillColor": "#e74c3c"}, {"x": "12/26", "y": 610, "fillColor": "#3498db"}, {"x": "12/27", "y": 3, "fillColor": "#3498db"}, {"x": "12/30", "y": 30639, "fillColor": "#e74c3c"}, {"x": "01/03", "y": 4090, "fillColor": "#e74c3c"}, {"x": "01/06", "y": 2036, "fillColor": "#e74c3c"}, {"x": "01/08", "y": 87, "fillColor": "#e74c3c"}, {"x": "01/09", "y": 15481, "fillColor": "#e74c3c"}, {"x": "01/10", "y": 76190, "fillColor": "#3498db"}, {"x": "01/13", "y": 11, "fillColor": "#3498db"}, {"x": "01/15", "y": 81, "fillColor": "#e74c3c"}, {"x": "01/20", "y": 1, "fillColor": "#e74c3c"}, {"x": "01/21", "y": 50, "fillColor": "#3498db"}, {"x": "01/22", "y": 1034, "fillColor": "#e74c3c"}, {"x": "01/23", "y": 53, "fillColor": "#3498db"}, {"x": "01/31", "y": 9, "fillColor": "#3498db"}, {"x": "02/03", "y": 2, "fillColor": "#e74c3c"}, {"x": "02/04", "y": 296, "fillColor": "#e74c3c"}, {"x": "02/05", "y": 5, "fillColor": "#e74c3c"}, {"x": "02/06", "y": 57, "fillColor": "#e74c3c"}, {"x": "02/10", "y": 3398, "fillColor": "#e74c3c"}, {"x": "02/11", "y": 2502, "fillColor": "#e74c3c"}, {"x": "02/14", "y": 13, "fillColor": "#3498db"}, {"x": "02/17", "y": 10, "fillColor": "#e74c3c"}, {"x": "02/19", "y": 139, "fillColor": "#e74c3c"}, {"x": "02/21", "y": 300, "fillColor": "#e74c3c"}, {"x": "02/24", "y": 14, "fillColor": "#3498db"}, {"x": "02/28", "y": 3246, "fillColor": "#e74c3c"}, {"x": "03/04", "y": 3, "fillColor": "#e74c3c"}, {"x": "03/05", "y": 398, "fillColor": "#3498db"}, {"x": "03/12", "y": 1, "fillColor": "#e74c3c"}, {"x": "03/13", "y": 137, "fillColor": "#e74c3c"}, {"x": "03/14", "y": 1018, "fillColor": "#e74c3c"}, {"x": "03/17", "y": 5, "fillColor": "#e74c3c"}, {"x": "03/20", "y": 4068, "fillColor": "#e74c3c"}, {"x": "03/21", "y": 916, "fillColor": "#e74c3c"}, {"x": "03/24", "y": 206, "fillColor": "#3498db"}, {"x": "03/25", "y": 45777, "fillColor": "#3498db"}, {"x": "03/26", "y": 4, "fillColor": "#e74c3c"}, {"x": "03/27", "y": 204, "fillColor": "#e74c3c"}, {"x": "03/28", "y": 508, "fillColor": "#e74c3c"}, {"x": "03/31", "y": 4, "fillColor": "#3498db"}, {"x": "04/02", "y": 26, "fillColor": "#e74c3c"}, {"x": "04/03", "y": 5, "fillColor": "#3498db"}, {"x": "04/04", "y": 51858, "fillColor": "#3498db"}, {"x": "04/07", "y": 2, "fillColor": "#3498db"}, {"x": "04/08", "y": 138, "fillColor": "#3498db"}, {"x": "04/09", "y": 2, "fillColor": "#e74c3c"}, {"x": "04/10", "y": 2, "fillColor": "#3498db"}, {"x": "04/11", "y": 2, "fillColor": "#e74c3c"}, {"x": "04/14", "y": 1, "fillColor": "#e74c3c"}, {"x": "04/15", "y": 1, "fillColor": "#e74c3c"}, {"x": "04/16", "y": 1, "fillColor": "#e74c3c"}, {"x": "04/18", "y": 1, "fillColor": "#e74c3c"}, {"x": "04/21", "y": 2, "fillColor": "#3498db"}, {"x": "04/23", "y": 526, "fillColor": "#e74c3c"}, {"x": "04/24", "y": 2, "fillColor": "#e74c3c"}, {"x": "04/28", "y": 508, "fillColor": "#e74c3c"}, {"x": "04/30", "y": 13, "fillColor": "#3498db"}, {"x": "05/02", "y": 19, "fillColor": "#e74c3c"}, {"x": "05/07", "y": 1, "fillColor": "#e74c3c"}, {"x": "05/08", "y": 208, "fillColor": "#e74c3c"}, {"x": "05/09", "y": 11, "fillColor": "#3498db"}, {"x": "05/12", "y": 2, "fillColor": "#e74c3c"}, {"x": "05/13", "y": 101, "fillColor": "#e74c3c"}, {"x": "05/14", "y": 2, "fillColor": "#e74c3c"}, {"x": "05/15", "y": 22, "fillColor": "#e74c3c"}, {"x": "05/20", "y": 3, "fillColor": "#3498db"}, {"x": "05/22", "y": 2, "fillColor": "#e74c3c"}, {"x": "05/28", "y": 36, "fillColor": "#3498db"}, {"x": "05/29", "y": 1985, "fillColor": "#e74c3c"}, {"x": "05/30", "y": 1049, "fillColor": "#3498db"}, {"x": "06/02", "y": 253, "fillColor": "#3498db"}, {"x": "06/04", "y": 103, "fillColor": "#e74c3c"}, {"x": "06/05", "y": 898, "fillColor": "#e74c3c"}, {"x": "06/09", "y": 120, "fillColor": "#3498db"}, {"x": "06/10", "y": 1222, "fillColor": "#3498db"}].map(item => item.fillColor),  // 🔥 캔들 색상과 정확히 연동
+            xaxis: {
+                type: 'category',  // 🔥 주말 공백 제거: datetime 대신 category 사용
+                tickAmount: 6,     // 🔥 캔들스틱 차트와 동일한 tick 개수
+                labels: {
+                    show: false      // 🔥 거래량 차트는 라벨 숨김 (캔들스틱 차트 라벨 참조)
+                },
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                }
+            },
+            yaxis: {
+                labels: {
+                    show: true,  // Y축 라벨은 유지
+                    formatter: function(value) {
+                        if (value >= 1000000) {
+                            return (value / 1000000).toFixed(1) + 'M';
+                        } else if (value >= 1000) {
+                            return (value / 1000).toFixed(0) + 'K';
+                        }
+                        return value.toString();
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: false  // 🔥 각 바 위의 숫자 라벨 완전 제거
+            },
+            legend: {
+                show: false
+            },
+            tooltip: {
+                y: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + '주';
+                    }
+                }
+            }
+        };
+        
+        // 차트 렌더링 및 동기화 설정 (실제 데이터 전용)
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 캔들스틱 차트 렌더링
+                window.candlestickChart = new ApexCharts(document.querySelector("#stockChart"), candlestickOptions);
+                window.candlestickChart.render().then(() => {
+                    console.log('✅ 실제 캔들스틱 차트 렌더링 완료');
+                });
+                
+                // 거래량 차트 렌더링  
+                window.volumeChart = new ApexCharts(document.querySelector("#volumeChart"), volumeOptions);
+                window.volumeChart.render().then(() => {
+                    console.log('✅ 실제 거래량 차트 렌더링 완료 (캔들 색상 연동)');
+                });
+                
+                // 🔥 강력한 차트 동기화 설정 - ApexCharts 내장 동기화 사용
+                // 동기화 그룹을 통한 자동 연동
+                ApexCharts.exec('candlestick', 'updateOptions', {
+                    chart: {
+                        group: 'synced-charts',
+                        events: {
+                            zoomed: function(chartContext, { xaxis }) {
+                                // 캔들스틱 차트 줌 → 거래량 차트 동기화
+                                ApexCharts.exec('volume', 'zoomX', xaxis.min, xaxis.max);
+                            },
+                            panned: function(chartContext, { xaxis }) {
+                                // 캔들스틱 차트 팬 → 거래량 차트 동기화  
+                                ApexCharts.exec('volume', 'zoomX', xaxis.min, xaxis.max);
+                            }
+                        }
+                    }
+                });
+                
+                ApexCharts.exec('volume', 'updateOptions', {
+                    chart: {
+                        group: 'synced-charts',
+                        events: {
+                            zoomed: function(chartContext, { xaxis }) {
+                                // 거래량 차트 줌 → 캔들스틱 차트 동기화
+                                ApexCharts.exec('candlestick', 'zoomX', xaxis.min, xaxis.max);
+                            },
+                            panned: function(chartContext, { xaxis }) {
+                                // 거래량 차트 팬 → 캔들스틱 차트 동기화
+                                ApexCharts.exec('candlestick', 'zoomX', xaxis.min, xaxis.max);
+                            }
+                        }
+                    }
+                });
+                
+                console.log('🔄 실제 데이터 차트 동기화 이벤트 설정 완료');
+                
+            } catch (error) {
+                console.error('❌ 실제 데이터 차트 렌더링 에러:', error);
+            }
+        });
+        }
+        
+    </script>
+</body>
+</html>
+        
