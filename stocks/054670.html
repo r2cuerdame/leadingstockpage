@@ -164,7 +164,7 @@
                                         <div><small class="text-muted">투자등급</small></div>
                                     </div>
                                     <div>
-                                        <h4 class="text-success mb-0">6.5</h4>
+                                        <h4 class="text-success mb-0">36.0</h4>
                                         <div><small class="text-muted">AI 점수</small></div>
                                     </div>
                                     <div>
@@ -190,7 +190,7 @@
                         <div class="mb-3">
                             <strong>✅ 탐지 신호:</strong>
                             <ul class="mb-2">
-                                <li>거래량 급증</li><li>가격 변동성 증가</li>
+                                <li>거래량 감소</li><li>가격 변동성 증가</li>
                             </ul>
                         </div>
                         <div class="mb-3">
@@ -200,7 +200,7 @@
                             </ul>
                         </div>
                         <div>
-                            <strong>⚠️ 주의사항:</strong> 가격 변동성, 거래량 변동성
+                            <strong>⚠️ 주의사항:</strong> 가격 변동성, 거래량 감소
                         </div>
                     </div>
                 </div>
@@ -327,8 +327,7 @@
             chart: {
                 type: 'candlestick',
                 height: 400,
-                id: 'candlestick',
-                group: 'synced-charts',
+                                        id: 'candlestick',
                 toolbar: {
                     show: true,
                     tools: {
@@ -342,25 +341,35 @@
                     }
                 },
                 events: {
-                    zoomed: function(chartContext, { xaxis, yaxis }) {
-                        if (window.volumeChart) {
-                            window.volumeChart.updateOptions({
-                                xaxis: {
-                                    min: xaxis.min,
-                                    max: xaxis.max
-                                }
-                            }, false, false, false);
-                        }
+                    zoomed: function(chartContext, { xaxis }) {
+                        console.log('🔍 캔들스틱 줌:', xaxis.min, '→', xaxis.max);
+                        setTimeout(() => {
+                            if (window.volumeChart) {
+                                window.volumeChart.updateOptions({
+                                    xaxis: { min: xaxis.min, max: xaxis.max }
+                                }, false, true, true);
+                            }
+                        }, 50);
                     },
                     scrolled: function(chartContext, { xaxis }) {
-                        if (window.volumeChart) {
-                            window.volumeChart.updateOptions({
-                                xaxis: {
-                                    min: xaxis.min,
-                                    max: xaxis.max
-                                }
-                            }, false, false, false);
-                        }
+                        console.log('📜 캔들스틱 스크롤:', xaxis.min, '→', xaxis.max);
+                        setTimeout(() => {
+                            if (window.volumeChart) {
+                                window.volumeChart.updateOptions({
+                                    xaxis: { min: xaxis.min, max: xaxis.max }
+                                }, false, true, true);
+                            }
+                        }, 50);
+                    },
+                    selection: function(chartContext, { xaxis }) {
+                        console.log('🎯 캔들스틱 선택:', xaxis.min, '→', xaxis.max);
+                        setTimeout(() => {
+                            if (window.volumeChart) {
+                                window.volumeChart.updateOptions({
+                                    xaxis: { min: xaxis.min, max: xaxis.max }
+                                }, false, true, true);
+                            }
+                        }, 50);
                     }
                 }
             },
@@ -432,31 +441,40 @@
             chart: {
                 type: 'bar',
                 height: 150,
-                id: 'volume',
-                group: 'synced-charts',
+                                        id: 'volume',
                 toolbar: {
                     show: false
                 },
                 events: {
                     zoomed: function(chartContext, { xaxis }) {
-                        if (window.candlestickChart) {
-                            window.candlestickChart.updateOptions({
-                                xaxis: {
-                                    min: xaxis.min,
-                                    max: xaxis.max
-                                }
-                            }, false, false, false);
-                        }
+                        console.log('📊 거래량 줌:', xaxis.min, '→', xaxis.max);
+                        setTimeout(() => {
+                            if (window.candlestickChart) {
+                                window.candlestickChart.updateOptions({
+                                    xaxis: { min: xaxis.min, max: xaxis.max }
+                                }, false, true, true);
+                            }
+                        }, 50);
                     },
                     scrolled: function(chartContext, { xaxis }) {
-                        if (window.candlestickChart) {
-                            window.candlestickChart.updateOptions({
-                                xaxis: {
-                                    min: xaxis.min,
-                                    max: xaxis.max
-                                }
-                            }, false, false, false);
-                        }
+                        console.log('📊 거래량 스크롤:', xaxis.min, '→', xaxis.max);
+                        setTimeout(() => {
+                            if (window.candlestickChart) {
+                                window.candlestickChart.updateOptions({
+                                    xaxis: { min: xaxis.min, max: xaxis.max }
+                                }, false, true, true);
+                            }
+                        }, 50);
+                    },
+                    selection: function(chartContext, { xaxis }) {
+                        console.log('📊 거래량 선택:', xaxis.min, '→', xaxis.max);
+                        setTimeout(() => {
+                            if (window.candlestickChart) {
+                                window.candlestickChart.updateOptions({
+                                    xaxis: { min: xaxis.min, max: xaxis.max }
+                                }, false, true, true);
+                            }
+                        }, 50);
                     }
                 }
             },
@@ -508,59 +526,69 @@
             }
         };
         
+        // 🎯 간단하고 확실한 차트 동기화 함수들
+        window.syncCharts = function() {
+            console.log('🔄 차트 동기화 확인');
+            // 별도의 동기화 함수는 이제 필요 없음 - 이벤트에서 직접 처리
+        };
+
         // 차트 렌더링 및 동기화 설정 (실제 데이터 전용)
         document.addEventListener('DOMContentLoaded', function() {
             try {
                 // 캔들스틱 차트 렌더링
                 window.candlestickChart = new ApexCharts(document.querySelector("#stockChart"), candlestickOptions);
                 window.candlestickChart.render().then(() => {
-                    console.log('✅ 실제 캔들스틱 차트 렌더링 완료');
+                    console.log('✅ 캔들스틱 차트 렌더링 완료');
                 });
                 
                 // 거래량 차트 렌더링  
                 window.volumeChart = new ApexCharts(document.querySelector("#volumeChart"), volumeOptions);
                 window.volumeChart.render().then(() => {
-                    console.log('✅ 실제 거래량 차트 렌더링 완료 (캔들 색상 연동)');
+                    console.log('✅ 거래량 차트 렌더링 완료');
                 });
                 
-                // 🔥 강력한 차트 동기화 설정 - ApexCharts 내장 동기화 사용
-                // 동기화 그룹을 통한 자동 연동
-                ApexCharts.exec('candlestick', 'updateOptions', {
-                    chart: {
-                        group: 'synced-charts',
-                        events: {
-                            zoomed: function(chartContext, { xaxis }) {
-                                // 캔들스틱 차트 줌 → 거래량 차트 동기화
-                                ApexCharts.exec('volume', 'zoomX', xaxis.min, xaxis.max);
-                            },
-                            panned: function(chartContext, { xaxis }) {
-                                // 캔들스틱 차트 팬 → 거래량 차트 동기화  
-                                ApexCharts.exec('volume', 'zoomX', xaxis.min, xaxis.max);
-                            }
-                        }
+                // 🎯 간단하고 확실한 초기화
+                setTimeout(() => {
+                    console.log('✅ 차트 동기화 시스템 준비 완료');
+                    
+                    // 툴바 클릭 시에도 동기화
+                    const toolbar1 = document.querySelector('#stockChart .apexcharts-toolbar');
+                    const toolbar2 = document.querySelector('#volumeChart .apexcharts-toolbar');
+                    
+                    if (toolbar1) {
+                        toolbar1.addEventListener('click', function(e) {
+                            console.log('🔧 캔들스틱 툴바 클릭');
+                            setTimeout(() => {
+                                const globals = window.candlestickChart.w.globals;
+                                if (window.volumeChart && globals) {
+                                    window.volumeChart.updateOptions({
+                                        xaxis: { min: globals.minX, max: globals.maxX }
+                                    }, false, true, true);
+                                }
+                            }, 100);
+                        });
                     }
-                });
-                
-                ApexCharts.exec('volume', 'updateOptions', {
-                    chart: {
-                        group: 'synced-charts',
-                        events: {
-                            zoomed: function(chartContext, { xaxis }) {
-                                // 거래량 차트 줌 → 캔들스틱 차트 동기화
-                                ApexCharts.exec('candlestick', 'zoomX', xaxis.min, xaxis.max);
-                            },
-                            panned: function(chartContext, { xaxis }) {
-                                // 거래량 차트 팬 → 캔들스틱 차트 동기화
-                                ApexCharts.exec('candlestick', 'zoomX', xaxis.min, xaxis.max);
-                            }
-                        }
+                    
+                    if (toolbar2) {
+                        toolbar2.addEventListener('click', function(e) {
+                            console.log('🔧 거래량 툴바 클릭');
+                            setTimeout(() => {
+                                const globals = window.volumeChart.w.globals;
+                                if (window.candlestickChart && globals) {
+                                    window.candlestickChart.updateOptions({
+                                        xaxis: { min: globals.minX, max: globals.maxX }
+                                    }, false, true, true);
+                                }
+                            }, 100);
+                        });
                     }
-                });
+                    
+                }, 500);  // 0.5초 지연 후 시스템 활성화
                 
-                console.log('🔄 실제 데이터 차트 동기화 이벤트 설정 완료');
+                console.log('🔄 차트 동기화 시스템 초기화 완료');
                 
             } catch (error) {
-                console.error('❌ 실제 데이터 차트 렌더링 에러:', error);
+                console.error('❌ 차트 렌더링 에러:', error);
             }
         });
         }
