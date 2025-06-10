@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종목393970 (393970) - 상세 분석</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-arrow-left"></i> 메인으로 돌아가기
+            </a>
+            <span class="navbar-text">AI 주식 분석 시스템</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- 종목 기본 정보 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="mb-2">종목393970 <small class="text-muted">(393970)</small></h2>
+                                <h3 class="text-primary mb-0">10,320원</h3>
+                                <small class="text-muted">현재가</small>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <div class="d-flex justify-content-md-end align-items-center gap-3">
+                                    <div>
+                                        <span class="badge bg-secondary fs-6">B+</span>
+                                        <div><small class="text-muted">투자등급</small></div>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-success mb-0">70.0</h4>
+                                        <div><small class="text-muted">AI 점수</small></div>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-info mb-0">+30.0%</h4>
+                                        <div><small class="text-muted">목표수익률</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI 분석 결과 -->
+        
+            <div class="alert alert-info mb-4">
+                <h5><i class="fas fa-gem"></i> 저평가 상승주 분석 결과</h5>
+                <p class="mb-2">분석 결과 로딩 중...</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>💰 가치 지표:</strong>
+                        <ul class="mb-0">
+                            <li class="text-muted">가치 지표 분석 중</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>📈 상승 요인:</strong>
+                        <ul class="mb-0">
+                            <li class="text-muted">상승 요인 분석 중</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <strong>⚠️ 투자 리스크:</strong> 리스크 분석 중
+                </div>
+            </div>
+            
+
+        <!-- 투자 전략 -->
+        
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="fas fa-chart-area"></i> 가치투자 전략</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>📊 중장기 투자 전략</h6>
+                            <p>• <strong>목표수익</strong>: <span class="text-success">30.0%</span> (목표가: <span class="text-primary">13,416원</span>)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header bg-warning text-dark">
+                            <h6 class="mb-0"><i class="fas fa-shield-alt"></i> 위험도</h6>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="text-warning">MEDIUM</h3>
+                            <p class="text-muted">중위험 중수익</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        <!-- 차트 섹션 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-candlestick"></i> 1년 차트 분석</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="stockChart" style="height: 400px;"></div>
+                        <div id="volumeChart" style="height: 150px; margin-top: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 관련 링크 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0"><i class="fas fa-external-link-alt"></i> 관련 링크</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A393970" 
+                                   target="_blank" class="btn btn-primary w-100 mb-2">
+                                    📈 FnGuide 재무제표
+                                </a>
+                                <small class="text-muted d-block">전문 재무지표, PER/PBR, 실적분석</small>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="https://finance.naver.com/item/news.nhn?code=393970" 
+                                   target="_blank" class="btn btn-secondary w-100 mb-2">
+                                    📰 네이버 종목뉴스
+                                </a>
+                                <small class="text-muted d-block">실시간 뉴스 및 공시정보</small>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="https://kr.investing.com/search/?q=393970" 
+                                   target="_blank" class="btn btn-outline-secondary w-100 mb-2">
+                                    🌏 Investing.com
+                                </a>
+                                <small class="text-muted d-block">글로벌 차트 및 기술적 분석</small>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <small class="text-info">
+                                💡 <strong>분석 우선순위:</strong> FnGuide 재무제표 → 네이버 뉴스 → 기술적 분석 순으로 참고하세요
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        // 393970 실제 데이터 전용 차트 시스템 (거래량 표시 문제 해결)
+        console.log('🔄 실제 차트 데이터 로드:', '393970', '데이터 길이:', 63);
+        
+        let candlestickChart;
+        let volumeChart;
+        
+        // 데이터 상태 확인
+        const hasData = 63 > 0;
+        console.log('📊 데이터 상태:', hasData ? '실제 데이터 있음' : '실제 데이터 없음');
+        
+        if (!hasData) {
+            // 실제 데이터가 없으면 메시지 표시
+            document.querySelector("#stockChart").innerHTML = `
+                <div style="height: 200px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;">
+                    <div class="text-center">
+                        <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">실제 차트 데이터가 없습니다</h5>
+                        <p class="text-muted">PostgreSQL 데이터베이스에서 393970 일봉 데이터를 찾을 수 없습니다.</p>
+                    </div>
+                </div>
+            `;
+            document.querySelector("#volumeChart").innerHTML = `
+                <div style="height: 100px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;">
+                    <p class="text-muted mb-0">거래량 데이터 없음</p>
+                </div>
+            `;
+        } else {
+        
+        // 🔥 차트 데이터 준비 (날짜 순차적 처리)
+        const chartData = [[1741186800000, 17830, 19390, 12110, 12110], [1741273200000, 12700, 14170, 10880, 10960], [1741532400000, 11450, 14240, 10990, 14240], [1741618800000, 15010, 15600, 13550, 13550], [1741705200000, 14300, 14470, 12980, 13240], [1741791600000, 13210, 14250, 12910, 13160], [1741878000000, 12770, 14170, 12580, 13190], [1742137200000, 13000, 13400, 12720, 12720], [1742223600000, 12820, 13490, 12590, 12740], [1742310000000, 13350, 16250, 13190, 15020], [1742396400000, 14790, 14950, 13800, 14200], [1742482800000, 14490, 15800, 13840, 13840], [1742742000000, 14600, 15060, 13980, 14050], [1742828400000, 13850, 16840, 13830, 15220], [1742914800000, 15840, 17590, 15250, 15550], [1743001200000, 15750, 17040, 14920, 16140], [1743087600000, 17330, 18780, 16350, 16900], [1743346800000, 16500, 17770, 16330, 17360], [1743433200000, 16990, 18360, 16990, 17460], [1743519600000, 17350, 17660, 16640, 17520], [1743606000000, 16800, 16830, 15580, 15700], [1743692400000, 15020, 15220, 13600, 13930], [1743951600000, 13190, 13230, 11930, 12200], [1744038000000, 12300, 13050, 11490, 11790], [1744124400000, 12700, 12890, 11800, 12010], [1744210800000, 12600, 13150, 12410, 12770], [1744297200000, 12460, 12770, 12060, 12660], [1744556400000, 12750, 13130, 12570, 12640], [1744642800000, 13280, 13800, 12910, 13390], [1744729200000, 13600, 13670, 12680, 12680], [1744815600000, 12630, 13010, 12390, 12850], [1744902000000, 13200, 15160, 13180, 14170], [1745161200000, 14010, 14170, 13510, 13650], [1745247600000, 13500, 14290, 13300, 13500], [1745334000000, 13830, 14090, 13380, 13830], [1745420400000, 13860, 14650, 13390, 13390], [1745506800000, 13620, 13760, 13020, 13040], [1745766000000, 13160, 13290, 12290, 12300], [1745852400000, 12390, 12710, 12160, 12270], [1745938800000, 12310, 12380, 11790, 11950], [1746111600000, 11960, 12380, 11570, 11860], [1746543600000, 11860, 12300, 11860, 12040], [1746630000000, 12060, 12500, 12060, 12360], [1746716400000, 12350, 12450, 11900, 11930], [1746975600000, 12050, 12430, 11670, 12020], [1747062000000, 12100, 12290, 12010, 12080], [1747148400000, 12100, 12200, 11730, 12130], [1747234800000, 12130, 12260, 11850, 11850], [1747321200000, 11860, 11900, 11280, 11300], [1747580400000, 11180, 11280, 10730, 10790], [1747666800000, 10800, 10850, 10360, 10570], [1747753200000, 10580, 10910, 10580, 10680], [1747839600000, 10580, 10590, 10120, 10210], [1747926000000, 10170, 10210, 9960, 9980], [1748185200000, 9980, 10260, 9930, 10210], [1748271600000, 10200, 10210, 9970, 10040], [1748358000000, 10150, 11020, 10130, 10550], [1748444400000, 10750, 10990, 10570, 10630], [1748530800000, 10500, 10950, 10320, 10330], [1748790000000, 10380, 10710, 10350, 10460], [1748962800000, 10460, 10710, 10410, 10480], [1749049200000, 10530, 10630, 10340, 10400], [1749394800000, 10340, 10360, 10030, 10320]];
+        const volumeData = [{"x": 1741186800000, "y": 42087185, "fillColor": "#3498db"}, {"x": 1741273200000, "y": 12113384, "fillColor": "#3498db"}, {"x": 1741532400000, "y": 18111213, "fillColor": "#e74c3c"}, {"x": 1741618800000, "y": 15931477, "fillColor": "#3498db"}, {"x": 1741705200000, "y": 3351258, "fillColor": "#3498db"}, {"x": 1741791600000, "y": 5576966, "fillColor": "#3498db"}, {"x": 1741878000000, "y": 6807844, "fillColor": "#e74c3c"}, {"x": 1742137200000, "y": 1473519, "fillColor": "#3498db"}, {"x": 1742223600000, "y": 2740089, "fillColor": "#3498db"}, {"x": 1742310000000, "y": 19357754, "fillColor": "#e74c3c"}, {"x": 1742396400000, "y": 2797158, "fillColor": "#3498db"}, {"x": 1742482800000, "y": 9716131, "fillColor": "#3498db"}, {"x": 1742742000000, "y": 3782162, "fillColor": "#3498db"}, {"x": 1742828400000, "y": 16122600, "fillColor": "#e74c3c"}, {"x": 1742914800000, "y": 17481538, "fillColor": "#3498db"}, {"x": 1743001200000, "y": 14240837, "fillColor": "#e74c3c"}, {"x": 1743087600000, "y": 18162406, "fillColor": "#3498db"}, {"x": 1743346800000, "y": 7154211, "fillColor": "#e74c3c"}, {"x": 1743433200000, "y": 8307213, "fillColor": "#e74c3c"}, {"x": 1743519600000, "y": 3787429, "fillColor": "#e74c3c"}, {"x": 1743606000000, "y": 2815491, "fillColor": "#3498db"}, {"x": 1743692400000, "y": 2253488, "fillColor": "#3498db"}, {"x": 1743951600000, "y": 2114421, "fillColor": "#3498db"}, {"x": 1744038000000, "y": 2673019, "fillColor": "#3498db"}, {"x": 1744124400000, "y": 2615704, "fillColor": "#3498db"}, {"x": 1744210800000, "y": 3104234, "fillColor": "#e74c3c"}, {"x": 1744297200000, "y": 1335509, "fillColor": "#e74c3c"}, {"x": 1744556400000, "y": 1558186, "fillColor": "#3498db"}, {"x": 1744642800000, "y": 4733971, "fillColor": "#e74c3c"}, {"x": 1744729200000, "y": 1602846, "fillColor": "#3498db"}, {"x": 1744815600000, "y": 969055, "fillColor": "#e74c3c"}, {"x": 1744902000000, "y": 15256720, "fillColor": "#e74c3c"}, {"x": 1745161200000, "y": 1474334, "fillColor": "#3498db"}, {"x": 1745247600000, "y": 2551210, "fillColor": "#e74c3c"}, {"x": 1745334000000, "y": 1857683, "fillColor": "#e74c3c"}, {"x": 1745420400000, "y": 3246590, "fillColor": "#3498db"}, {"x": 1745506800000, "y": 1059059, "fillColor": "#3498db"}, {"x": 1745766000000, "y": 846691, "fillColor": "#3498db"}, {"x": 1745852400000, "y": 722875, "fillColor": "#3498db"}, {"x": 1745938800000, "y": 523896, "fillColor": "#3498db"}, {"x": 1746111600000, "y": 475183, "fillColor": "#3498db"}, {"x": 1746543600000, "y": 419190, "fillColor": "#e74c3c"}, {"x": 1746630000000, "y": 643863, "fillColor": "#e74c3c"}, {"x": 1746716400000, "y": 393635, "fillColor": "#3498db"}, {"x": 1746975600000, "y": 590445, "fillColor": "#3498db"}, {"x": 1747062000000, "y": 441426, "fillColor": "#3498db"}, {"x": 1747148400000, "y": 448740, "fillColor": "#e74c3c"}, {"x": 1747234800000, "y": 282420, "fillColor": "#3498db"}, {"x": 1747321200000, "y": 405422, "fillColor": "#3498db"}, {"x": 1747580400000, "y": 360772, "fillColor": "#3498db"}, {"x": 1747666800000, "y": 342728, "fillColor": "#3498db"}, {"x": 1747753200000, "y": 209152, "fillColor": "#e74c3c"}, {"x": 1747839600000, "y": 278055, "fillColor": "#3498db"}, {"x": 1747926000000, "y": 251118, "fillColor": "#3498db"}, {"x": 1748185200000, "y": 175929, "fillColor": "#e74c3c"}, {"x": 1748271600000, "y": 171235, "fillColor": "#3498db"}, {"x": 1748358000000, "y": 777730, "fillColor": "#e74c3c"}, {"x": 1748444400000, "y": 439710, "fillColor": "#3498db"}, {"x": 1748530800000, "y": 250343, "fillColor": "#3498db"}, {"x": 1748790000000, "y": 147438, "fillColor": "#e74c3c"}, {"x": 1748962800000, "y": 143177, "fillColor": "#e74c3c"}, {"x": 1749049200000, "y": 181309, "fillColor": "#3498db"}, {"x": 1749394800000, "y": 229387, "fillColor": "#3498db"}];
+        const dateLabels = ["03/06", "03/07", "03/10", "03/11", "03/12", "03/13", "03/14", "03/17", "03/18", "03/19", "03/20", "03/21", "03/24", "03/25", "03/26", "03/27", "03/28", "03/31", "04/01", "04/02", "04/03", "04/04", "04/07", "04/08", "04/09", "04/10", "04/11", "04/14", "04/15", "04/16", "04/17", "04/18", "04/21", "04/22", "04/23", "04/24", "04/25", "04/28", "04/29", "04/30", "05/02", "05/07", "05/08", "05/09", "05/12", "05/13", "05/14", "05/15", "05/16", "05/19", "05/20", "05/21", "05/22", "05/23", "05/26", "05/27", "05/28", "05/29", "05/30", "06/02", "06/04", "06/05", "06/09"];
+        
+        console.log('📊 차트 데이터 준비 완료:', '캔들', chartData.length, '거래량', volumeData.length, '날짜라벨', dateLabels.length);
+        
+        // 🔥 완전 개선된 캔들스틱 차트 옵션 (휴일 공백 완전 제거)
+        var candlestickOptions = {
+            series: [{
+                name: '종목393970 주가',
+                data: chartData
+            }],
+            chart: {
+                type: 'candlestick',
+                height: 400,
+                id: 'candlestick-chart',
+                group: 'stock-charts',
+                toolbar: {
+                    show: true,
+                    tools: {
+                        download: true,
+                        selection: true,
+                        zoom: true,
+                        zoomin: true,
+                        zoomout: true,
+                        pan: true,
+                        reset: true
+                    }
+                },
+                events: {
+                    zoomed: function(chartContext, { xaxis, yaxis }) {
+                        console.log('🔍 캔들스틱 줌 이벤트:', xaxis);
+                        if (volumeChart) {
+                            volumeChart.updateOptions({
+                                xaxis: {
+                                    min: xaxis.min,
+                                    max: xaxis.max
+                                }
+                            }, false, false);
+                        }
+                    },
+                    scrolled: function(chartContext, { xaxis }) {
+                        console.log('🔄 캔들스틱 스크롤 이벤트:', xaxis);
+                        if (volumeChart) {
+                            volumeChart.updateOptions({
+                                xaxis: {
+                                    min: xaxis.min,
+                                    max: xaxis.max
+                                }
+                            }, false, false);
+                        }
+                    }
+                }
+            },
+            title: {
+                text: '종목393970 (393970) 1년 차트 (실제 63일 데이터)',
+                align: 'left',
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 'bold'
+                }
+            },
+            xaxis: {
+                type: 'category',  // 🔥 완전한 category 타입 (휴일 공백 제거)
+                categories: dateLabels,  // 🔥 실제 날짜 레이블 사용
+                labels: {
+                    show: true,
+                    rotate: 0,
+                    rotateAlways: false,
+                    hideOverlappingLabels: true,
+                    showDuplicates: false,
+                    trim: false,
+                    minHeight: undefined,
+                    maxHeight: 120,
+                    style: {
+                        fontSize: '11px',
+                        fontFamily: 'Helvetica, Arial, sans-serif',
+                        fontWeight: 400,
+                        cssClass: 'apexcharts-xaxis-label'
+                    }
+                },
+                axisBorder: {
+                    show: true,
+                    color: '#78909C',
+                    height: 1,
+                    width: '100%'
+                },
+                axisTicks: {
+                    show: true,
+                    borderType: 'solid',
+                    color: '#78909C',
+                    height: 6,
+                    offsetX: 0,
+                    offsetY: 0
+                },
+                tooltip: {
+                    enabled: false
+                }
+            },
+            yaxis: {
+                tooltip: {
+                    enabled: true
+                },
+                labels: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + '원';
+                    }
+                }
+            },
+            plotOptions: {
+                candlestick: {
+                    colors: {
+                        upward: '#e74c3c',    // 상승 캔들 - 빨강
+                        downward: '#3498db'   // 하락 캔들 - 파랑
+                    },
+                    wick: {
+                        useFillColor: true
+                    }
+                }
+            },
+            tooltip: {
+                shared: false,
+                y: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + '원';
+                    }
+                }
+            },
+            grid: {
+                show: true,
+                borderColor: '#e0e0e0',
+                strokeDashArray: 0,
+                position: 'back'
+            }
+        };
+        
+        // 🔥 완전 개선된 거래량 차트 옵션 (거래량 표시 문제 해결)
+        var volumeOptions = {
+            series: [{
+                name: '거래량',
+                data: volumeData.map(item => ({
+                    x: item.x,
+                    y: item.y,
+                    fillColor: item.fillColor
+                }))
+            }],
+            chart: {
+                type: 'bar',
+                height: 150,
+                id: 'volume-chart',
+                group: 'stock-charts',
+                toolbar: {
+                    show: false
+                },
+                events: {
+                    zoomed: function(chartContext, { xaxis }) {
+                        console.log('🔍 거래량 줌 이벤트:', xaxis);
+                        if (candlestickChart) {
+                            candlestickChart.updateOptions({
+                                xaxis: {
+                                    min: xaxis.min,
+                                    max: xaxis.max
+                                }
+                            }, false, false);
+                        }
+                    }
+                }
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: '80%',
+                    distributed: true,  // 🔥 각 바별로 다른 색상 적용 (캔들 연동)
+                    dataLabels: {
+                        position: 'top'  // 데이터 라벨 위치
+                    }
+                }
+            },
+            colors: volumeData.map(item => item.fillColor),  // 🔥 캔들 색상과 정확히 연동
+            xaxis: {
+                type: 'category',  // 🔥 완전한 category 타입 (휴일 공백 제거)
+                categories: dateLabels,  // 🔥 캔들스틱과 동일한 날짜 레이블
+                labels: {
+                    show: false  // 거래량 차트에서는 날짜 라벨 숨김
+                },
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+                tooltip: {
+                    enabled: false
+                }
+            },
+            yaxis: {
+                labels: {
+                    show: true,
+                    formatter: function(value) {
+                        if (value >= 1000000) {
+                            return (value / 1000000).toFixed(1) + 'M';
+                        } else if (value >= 1000) {
+                            return (value / 1000).toFixed(0) + 'K';
+                        }
+                        return value.toString();
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: false  // 🔥 각 바 위의 숫자 라벨 완전 제거
+            },
+            legend: {
+                show: false
+            },
+            tooltip: {
+                shared: false,
+                y: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + '주';
+                    }
+                }
+            },
+            grid: {
+                show: true,
+                borderColor: '#e0e0e0',
+                strokeDashArray: 0
+            }
+        };
+        
+        // 🔥 순차적 차트 렌더링 (거래량 표시 문제 해결)
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎨 차트 렌더링 시작 (순차적)');
+            
+            // 1단계: 캔들스틱 차트 먼저 렌더링
+            candlestickChart = new ApexCharts(document.querySelector("#stockChart"), candlestickOptions);
+            candlestickChart.render().then(() => {
+                console.log('✅ 캔들스틱 차트 렌더링 완료');
+                
+                // 2단계: 캔들스틱 완료 후 거래량 차트 렌더링
+                volumeChart = new ApexCharts(document.querySelector("#volumeChart"), volumeOptions);
+                return volumeChart.render();
+            }).then(() => {
+                console.log('✅ 거래량 차트 렌더링 완료');
+                
+                // 3단계: 동기화 이벤트 설정
+                setupChartSynchronization();
+                console.log('🔄 차트 동기화 설정 완료');
+            }).catch(error => {
+                console.error('❌ 차트 렌더링 에러:', error);
+            });
+        });
+        
+        // 🔄 차트 동기화 함수
+        function setupChartSynchronization() {
+            // 마우스 휠 스크롤 동기화
+            const stockChartElement = document.querySelector("#stockChart");
+            const volumeChartElement = document.querySelector("#volumeChart");
+            
+            if (stockChartElement) {
+                stockChartElement.addEventListener('wheel', function(e) {
+                    setTimeout(() => {
+                        if (candlestickChart && volumeChart) {
+                            const xAxisRange = candlestickChart.w.globals.minX;
+                            const xAxisMax = candlestickChart.w.globals.maxX;
+                            volumeChart.updateOptions({
+                                xaxis: {
+                                    min: xAxisRange,
+                                    max: xAxisMax
+                                }
+                            }, false, true);
+                        }
+                    }, 50);
+                });
+            }
+            
+            if (volumeChartElement) {
+                volumeChartElement.addEventListener('wheel', function(e) {
+                    setTimeout(() => {
+                        if (candlestickChart && volumeChart) {
+                            const xAxisRange = volumeChart.w.globals.minX;
+                            const xAxisMax = volumeChart.w.globals.maxX;
+                            candlestickChart.updateOptions({
+                                xaxis: {
+                                    min: xAxisRange,
+                                    max: xAxisMax
+                                }
+                            }, false, true);
+                        }
+                    }, 50);
+                });
+            }
+        }
+        }
+        
+    </script>
+</body>
+</html>
+        
