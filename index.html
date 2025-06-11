@@ -43,6 +43,39 @@
         .table-header.valuation { 
             background: linear-gradient(135deg, var(--success-color) 0%, #10b981 100%); 
         }
+        
+        /* 🔥 예상수익률 강조 스타일 */
+        .expected-return-highlight {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            color: white !important;
+            font-weight: bold !important;
+            font-size: 1.1em !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+            border-radius: 8px !important;
+            padding: 8px 12px !important;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+            animation: pulse-glow 2s infinite !important;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 4px 16px rgba(16, 185, 129, 0.5);
+                transform: scale(1.02);
+            }
+        }
+        
+        /* 모바일에서도 예상수익률 강조 */
+        @media (max-width: 768px) {
+            .expected-return-highlight {
+                font-size: 1.2em !important;
+                padding: 10px 15px !important;
+            }
+        }
+        
         .table tbody tr:hover { 
             background-color: rgba(37, 99, 235, 0.05); 
             transition: all 0.2s ease; 
@@ -114,6 +147,28 @@
             font-weight: 600;
         }
         
+        /* PC에서는 모바일용 요소들 숨기기 */
+        .mobile-row-content,
+        .mobile-left-group,
+        .mobile-right-group,
+        .mobile-rank,
+        .mobile-stock-name,
+        .mobile-naver-btn {
+            display: none;
+        }
+        
+        /* PC에서 데스크탑 순위 표시 */
+        .desktop-rank {
+            display: inline-block;
+        }
+        
+        /* 종목코드 스타일링 - 회색, 작은 크기 */
+        .stock-code {
+            color: #6b7280 !important;
+            font-size: 0.85em;
+            font-weight: normal !important;
+        }
+        
         .text-muted {
             color: var(--text-secondary) !important;
         }
@@ -167,10 +222,167 @@
             small { font-size: 0.7rem !important; }
             .table-responsive { font-size: 0.8rem; }
             
-            /* 모바일에서 테이블 스크롤 개선 */
-            .table-responsive { 
-                border-radius: 0.5rem;
-                border: 1px solid #dee2e6;
+            /* 🔥 모바일 전용 테이블 세로 배치 */
+            .table-responsive {
+                border: none;
+                overflow: visible;
+            }
+            
+            .table, .table thead, .table tbody, .table th, .table td, .table tr {
+                display: block;
+            }
+            
+            .table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            .table tbody tr {
+                border-bottom: 1px solid #e5e7eb;
+                margin-bottom: 15px;
+                padding: 0;
+                background: transparent;
+            }
+            
+            .table tbody td {
+                border: none;
+                padding: 2px 0 !important;
+                position: relative;
+                display: inline-block;
+                width: auto;
+                margin-right: 15px;
+                text-align: left;
+                white-space: nowrap;
+            }
+            
+            .table tbody td:before {
+                content: attr(data-label) ": ";
+                font-weight: 600;
+                color: #6b7280;
+                margin-right: 5px;
+            }
+            
+
+            
+            /* 모바일에서 첫 번째 열에만 모든 내용 표시 */
+            .table tbody td.mobile-combined-cell {
+                display: block !important;
+                width: 100% !important;
+                padding: 0 !important;
+                border: none !important;
+                margin-bottom: 15px;
+            }
+            
+            .table tbody td.mobile-combined-cell:before {
+                display: none;
+            }
+            
+            /* 모바일용 내용 표시 */
+            .mobile-row-content {
+                display: flex !important;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                background: white;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            .mobile-left-group {
+                display: flex !important;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .mobile-rank {
+                display: inline-block !important;
+                background: #007bff;
+                color: white;
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-size: 0.75rem;
+                font-weight: 500;
+            }
+            
+            .mobile-stock-name {
+                display: inline-block !important;
+                font-size: 1rem;
+                font-weight: bold;
+            }
+            
+            .mobile-right-group {
+                display: block !important;
+            }
+            
+            .mobile-naver-btn {
+                display: inline-block !important;
+                font-size: 0.75rem;
+                padding: 4px 8px;
+            }
+            
+            /* 모바일에서는 데스크탑 순위 숨기기 */
+            .desktop-rank {
+                display: none !important;
+            }
+            
+            /* 모바일에서 테이블 스트라이프 완전 제거 */
+            .table-striped tbody tr:nth-of-type(odd) td,
+            .table-striped tbody tr:nth-of-type(even) td,
+            .table tbody tr td,
+            .table tbody tr,
+            .table-striped > tbody > tr:nth-of-type(odd),
+            .table-striped > tbody > tr:nth-of-type(even) {
+                background-color: white !important;
+                background: white !important;
+            }
+            
+            /* 모바일 카드 배경 강제 설정 */
+            .mobile-row-content {
+                background-color: white !important;
+                background: white !important;
+            }
+            
+            /* 모바일 차트 타이틀 개선 */
+            .apexcharts-title-text {
+                font-size: 14px !important;
+                line-height: 1.2 !important;
+            }
+            
+            .stock-code {
+                display: inline-block !important;
+                font-size: 0.8em !important;
+                margin-left: 5px !important;
+            }
+            
+            /* 모바일 차트 서브타이틀 */
+            .apexcharts-subtitle-text {
+                font-size: 10px !important;
+                margin-top: 2px !important;
+            }
+            
+            /* 두 번째 열(종목명)과 마지막 열(네이버) 숨기기 */
+            .table tbody td:nth-child(2),
+            .table tbody td:last-child {
+                display: none !important;
+            }
+            
+            /* 나머지 열들은 가로 배치 */
+            .table tbody td:nth-child(n+3):not(:last-child) {
+                display: inline-block !important;
+                width: auto !important;
+                margin-right: 15px;
+                font-size: 0.8rem;
+                color: #374151;
+                margin-bottom: 2px;
+            }
+            
+            .table tbody td:nth-child(n+3):not(:last-child):before {
+                font-size: 0.7rem;
+                color: #9ca3af;
+                margin-right: 3px;
             }
         }
         
@@ -188,16 +400,16 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-2">
         <div class="main-container mx-auto p-4" style="max-width: 1400px;">
             <!-- Header -->
-            <div class="text-center mb-5">
-                <h1 class="display-4 fw-bold text-dark mb-3">
+            <div class="text-center mb-3">
+                <h1 class="display-4 fw-bold text-dark mb-1">
                     <i class="fas fa-chart-line text-primary me-3"></i>
                     GuGu AI 주식분석
                 </h1>
-                <p class="lead text-muted">AI 기반 종목 분석 및 투자 추천</p>
-                <small class="text-muted">분석일: 2025-06-11 18:55:38</small>
+                <p class="lead text-muted mb-1">AI 기반 종목 분석 및 투자 추천</p>
+                <small class="text-muted">분석일: 2025-06-12 08:34:23</small>
             </div>
             
             
@@ -255,870 +467,1260 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span class="badge badge-rank">1</span></td>
-                                <td>
-                                    <a href="stocks/108490.html" class="stock-name text-decoration-none">
-                                        <strong>로보티즈</strong><br>
-                                        <small class="text-muted">108490</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">1위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">1위</span>
+                                            <a href="stocks/452430.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                사피엔반도체 <span class="stock-code">452430</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=452430" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/452430.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        사피엔반도체 <span class="stock-code">452430</span>
                                     </a>
                                 </td>
-                                <td><strong>59,200.0원</strong></td>
-                                <td><strong class="text-success">86,000원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+45.3%</span>
+                                <td data-label="현재가">23,000원</td>
+                                <td data-label="목표가">26,800원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+16.5%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">3-6개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    75.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 780%">78.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=108490" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=452430" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">2</span></td>
-                                <td>
-                                    <a href="stocks/475150.html" class="stock-name text-decoration-none">
-                                        <strong>SK이터닉스</strong><br>
-                                        <small class="text-muted">475150</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">2위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">2위</span>
+                                            <a href="stocks/225190.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                LK삼양 <span class="stock-code">225190</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=225190" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/225190.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        LK삼양 <span class="stock-code">225190</span>
                                     </a>
                                 </td>
-                                <td><strong>22,700.0원</strong></td>
-                                <td><strong class="text-success">27,100원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+19.4%</span>
+                                <td data-label="현재가">2,780원</td>
+                                <td data-label="목표가">3,670원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+32.0%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">3-6개월</td>
+                                <td data-label="AI점수">
+                                    75.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 780%">78.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=475150" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=225190" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">3</span></td>
-                                <td>
-                                    <a href="stocks/000070.html" class="stock-name text-decoration-none">
-                                        <strong>삼양홀딩스</strong><br>
-                                        <small class="text-muted">000070</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">3위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">3위</span>
+                                            <a href="stocks/306620.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                네온테크 <span class="stock-code">306620</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=306620" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/306620.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        네온테크 <span class="stock-code">306620</span>
                                     </a>
                                 </td>
-                                <td><strong>86,500.0원</strong></td>
-                                <td><strong class="text-success">107,000원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+23.7%</span>
+                                <td data-label="현재가">2,455원</td>
+                                <td data-label="목표가">2,665원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+8.6%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    68.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 780%">78.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=000070" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=306620" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">4</span></td>
-                                <td>
-                                    <a href="stocks/036830.html" class="stock-name text-decoration-none">
-                                        <strong>솔브레인홀딩스</strong><br>
-                                        <small class="text-muted">036830</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">4위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">4위</span>
+                                            <a href="stocks/396470.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                워트 <span class="stock-code">396470</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=396470" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/396470.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        워트 <span class="stock-code">396470</span>
                                     </a>
                                 </td>
-                                <td><strong>34,800.0원</strong></td>
-                                <td><strong class="text-success">41,800원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+20.1%</span>
+                                <td data-label="현재가">8,180원</td>
+                                <td data-label="목표가">10,140원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+24.0%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">3-6개월</td>
+                                <td data-label="AI점수">
+                                    68.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 750%">75.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=036830" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=396470" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">5</span></td>
-                                <td>
-                                    <a href="stocks/086450.html" class="stock-name text-decoration-none">
-                                        <strong>동국제약</strong><br>
-                                        <small class="text-muted">086450</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">5위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">5위</span>
+                                            <a href="stocks/203650.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                드림시큐리티 <span class="stock-code">203650</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=203650" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/203650.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        드림시큐리티 <span class="stock-code">203650</span>
                                     </a>
                                 </td>
-                                <td><strong>17,310.0원</strong></td>
-                                <td><strong class="text-success">18,850원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+8.9%</span>
+                                <td data-label="현재가">3,835원</td>
+                                <td data-label="목표가">4,515원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+17.7%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    68.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 720%">72.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=086450" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=203650" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">6</span></td>
-                                <td>
-                                    <a href="stocks/353200.html" class="stock-name text-decoration-none">
-                                        <strong>대덕전자</strong><br>
-                                        <small class="text-muted">353200</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">6위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">6위</span>
+                                            <a href="stocks/264850.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                이랜시스 <span class="stock-code">264850</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=264850" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/264850.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        이랜시스 <span class="stock-code">264850</span>
                                     </a>
                                 </td>
-                                <td><strong>15,560.0원</strong></td>
-                                <td><strong class="text-success">17,100원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+9.8%</span>
+                                <td data-label="현재가">4,890원</td>
+                                <td data-label="목표가">5,620원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+14.9%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    68.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 680%">68.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=353200" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=264850" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">7</span></td>
-                                <td>
-                                    <a href="stocks/067310.html" class="stock-name text-decoration-none">
-                                        <strong>하나마이크론</strong><br>
-                                        <small class="text-muted">067310</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">7위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">7위</span>
+                                            <a href="stocks/443670.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                에스피소프트 <span class="stock-code">443670</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=443670" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/443670.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        에스피소프트 <span class="stock-code">443670</span>
                                     </a>
                                 </td>
-                                <td><strong>11,470.0원</strong></td>
-                                <td><strong class="text-success">13,050원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+13.8%</span>
+                                <td data-label="현재가">7,330원</td>
+                                <td data-label="목표가">8,160원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+11.3%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    68.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 680%">68.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=067310" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=443670" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">8</span></td>
-                                <td>
-                                    <a href="stocks/417200.html" class="stock-name text-decoration-none">
-                                        <strong>LS머트리얼즈</strong><br>
-                                        <small class="text-muted">417200</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">8위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">8위</span>
+                                            <a href="stocks/205100.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                엑셈 <span class="stock-code">205100</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=205100" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/205100.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        엑셈 <span class="stock-code">205100</span>
                                     </a>
                                 </td>
-                                <td><strong>11,180.0원</strong></td>
-                                <td><strong class="text-success">12,500원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+11.8%</span>
+                                <td data-label="현재가">2,235원</td>
+                                <td data-label="목표가">2,455원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+9.8%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    68.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 680%">68.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=417200" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=205100" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">9</span></td>
-                                <td>
-                                    <a href="stocks/323280.html" class="stock-name text-decoration-none">
-                                        <strong>태성</strong><br>
-                                        <small class="text-muted">323280</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">9위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">9위</span>
+                                            <a href="stocks/204610.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                티쓰리 <span class="stock-code">204610</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=204610" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/204610.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        티쓰리 <span class="stock-code">204610</span>
                                     </a>
                                 </td>
-                                <td><strong>24,000.0원</strong></td>
-                                <td><strong class="text-success">27,300원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+13.8%</span>
+                                <td data-label="현재가">2,020원</td>
+                                <td data-label="목표가">2,450원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+21.3%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    68.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 680%">68.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=323280" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=204610" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">10</span></td>
-                                <td>
-                                    <a href="stocks/383800.html" class="stock-name text-decoration-none">
-                                        <strong>LX홀딩스</strong><br>
-                                        <small class="text-muted">383800</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">10위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">10위</span>
+                                            <a href="stocks/064800.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                포니링크 <span class="stock-code">064800</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=064800" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/064800.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        포니링크 <span class="stock-code">064800</span>
                                     </a>
                                 </td>
-                                <td><strong>9,530.0원</strong></td>
-                                <td><strong class="text-success">11,500원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+20.7%</span>
+                                <td data-label="현재가">1,349원</td>
+                                <td data-label="목표가">1,540원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+14.2%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    68.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 680%">68.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=383800" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=064800" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">11</span></td>
-                                <td>
-                                    <a href="stocks/251970.html" class="stock-name text-decoration-none">
-                                        <strong>펌텍코리아</strong><br>
-                                        <small class="text-muted">251970</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">11위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">11위</span>
+                                            <a href="stocks/124560.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                태웅로직스 <span class="stock-code">124560</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=124560" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/124560.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        태웅로직스 <span class="stock-code">124560</span>
                                     </a>
                                 </td>
-                                <td><strong>57,100.0원</strong></td>
-                                <td><strong class="text-success">65,600원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+14.9%</span>
+                                <td data-label="현재가">2,995원</td>
+                                <td data-label="목표가">3,125원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+4.3%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">3-6개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 680%">68.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=251970" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=124560" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">12</span></td>
-                                <td>
-                                    <a href="stocks/460930.html" class="stock-name text-decoration-none">
-                                        <strong>현대힘스</strong><br>
-                                        <small class="text-muted">460930</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">12위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">12위</span>
+                                            <a href="stocks/419050.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                삼기에너지솔루션즈 <span class="stock-code">419050</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=419050" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/419050.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        삼기에너지솔루션즈 <span class="stock-code">419050</span>
                                     </a>
                                 </td>
-                                <td><strong>19,620.0원</strong></td>
-                                <td><strong class="text-success">22,600원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+15.2%</span>
+                                <td data-label="현재가">1,755원</td>
+                                <td data-label="목표가">1,925원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+9.7%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 680%">68.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=460930" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=419050" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">13</span></td>
-                                <td>
-                                    <a href="stocks/222800.html" class="stock-name text-decoration-none">
-                                        <strong>심텍</strong><br>
-                                        <small class="text-muted">222800</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">13위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">13위</span>
+                                            <a href="stocks/123410.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                코리아에프티 <span class="stock-code">123410</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=123410" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/123410.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        코리아에프티 <span class="stock-code">123410</span>
                                     </a>
                                 </td>
-                                <td><strong>21,500.0원</strong></td>
-                                <td><strong class="text-success">25,800원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+20.0%</span>
+                                <td data-label="현재가">4,975원</td>
+                                <td data-label="목표가">5,450원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+9.5%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 680%">68.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=222800" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=123410" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">14</span></td>
-                                <td>
-                                    <a href="stocks/007700.html" class="stock-name text-decoration-none">
-                                        <strong>F&F홀딩스</strong><br>
-                                        <small class="text-muted">007700</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">14위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">14위</span>
+                                            <a href="stocks/417500.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                제이아이테크 <span class="stock-code">417500</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=417500" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/417500.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        제이아이테크 <span class="stock-code">417500</span>
                                     </a>
                                 </td>
-                                <td><strong>17,250.0원</strong></td>
-                                <td><strong class="text-success">21,500원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+24.6%</span>
+                                <td data-label="현재가">3,680원</td>
+                                <td data-label="목표가">4,135원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+12.4%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 680%">68.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=007700" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=417500" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">15</span></td>
-                                <td>
-                                    <a href="stocks/084370.html" class="stock-name text-decoration-none">
-                                        <strong>유진테크</strong><br>
-                                        <small class="text-muted">084370</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">15위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">15위</span>
+                                            <a href="stocks/207760.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                미스터블루 <span class="stock-code">207760</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=207760" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/207760.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        미스터블루 <span class="stock-code">207760</span>
                                     </a>
                                 </td>
-                                <td><strong>34,550.0원</strong></td>
-                                <td><strong class="text-success">42,300원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+22.4%</span>
+                                <td data-label="현재가">1,902원</td>
+                                <td data-label="목표가">2,490원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+30.9%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=084370" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=207760" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">16</span></td>
-                                <td>
-                                    <a href="stocks/000640.html" class="stock-name text-decoration-none">
-                                        <strong>동아쏘시오홀딩스</strong><br>
-                                        <small class="text-muted">000640</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">16위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">16위</span>
+                                            <a href="stocks/302550.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                리메드 <span class="stock-code">302550</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=302550" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/302550.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        리메드 <span class="stock-code">302550</span>
                                     </a>
                                 </td>
-                                <td><strong>119,600.0원</strong></td>
-                                <td><strong class="text-success">132,000원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+10.4%</span>
+                                <td data-label="현재가">3,540원</td>
+                                <td data-label="목표가">3,915원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+10.6%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=000640" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=302550" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">17</span></td>
-                                <td>
-                                    <a href="stocks/001680.html" class="stock-name text-decoration-none">
-                                        <strong>대상</strong><br>
-                                        <small class="text-muted">001680</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">17위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">17위</span>
+                                            <a href="stocks/214680.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                디알텍 <span class="stock-code">214680</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=214680" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/214680.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        디알텍 <span class="stock-code">214680</span>
                                     </a>
                                 </td>
-                                <td><strong>22,350.0원</strong></td>
-                                <td><strong class="text-success">27,000원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+20.8%</span>
+                                <td data-label="현재가">1,978원</td>
+                                <td data-label="목표가">2,182원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+10.3%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">3-6개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=001680" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=214680" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">18</span></td>
-                                <td>
-                                    <a href="stocks/001530.html" class="stock-name text-decoration-none">
-                                        <strong>DI동일</strong><br>
-                                        <small class="text-muted">001530</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">18위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">18위</span>
+                                            <a href="stocks/461030.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                아이엠비디엑스 <span class="stock-code">461030</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=461030" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/461030.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        아이엠비디엑스 <span class="stock-code">461030</span>
                                     </a>
                                 </td>
-                                <td><strong>37,400.0원</strong></td>
-                                <td><strong class="text-success">43,400원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+16.0%</span>
+                                <td data-label="현재가">9,370원</td>
+                                <td data-label="목표가">10,300원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+9.9%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=001530" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=461030" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">19</span></td>
-                                <td>
-                                    <a href="stocks/003850.html" class="stock-name text-decoration-none">
-                                        <strong>보령</strong><br>
-                                        <small class="text-muted">003850</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">19위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">19위</span>
+                                            <a href="stocks/278650.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                HLB바이오스텝 <span class="stock-code">278650</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=278650" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/278650.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        HLB바이오스텝 <span class="stock-code">278650</span>
                                     </a>
                                 </td>
-                                <td><strong>8,860.0원</strong></td>
-                                <td><strong class="text-success">9,500원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+7.2%</span>
+                                <td data-label="현재가">1,617원</td>
+                                <td data-label="목표가">1,766원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+9.2%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=003850" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=278650" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">20</span></td>
-                                <td>
-                                    <a href="stocks/214320.html" class="stock-name text-decoration-none">
-                                        <strong>이노션</strong><br>
-                                        <small class="text-muted">214320</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">20위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">20위</span>
+                                            <a href="stocks/417790.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                트루엔 <span class="stock-code">417790</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=417790" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/417790.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        트루엔 <span class="stock-code">417790</span>
                                     </a>
                                 </td>
-                                <td><strong>18,720.0원</strong></td>
-                                <td><strong class="text-success">19,550원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+4.4%</span>
+                                <td data-label="현재가">9,760원</td>
+                                <td data-label="목표가">10,350원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+6.0%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    65.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=214320" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=417790" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">21</span></td>
-                                <td>
-                                    <a href="stocks/145720.html" class="stock-name text-decoration-none">
-                                        <strong>덴티움</strong><br>
-                                        <small class="text-muted">145720</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">21위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">21위</span>
+                                            <a href="stocks/448710.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                코츠테크놀로지 <span class="stock-code">448710</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=448710" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/448710.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        코츠테크놀로지 <span class="stock-code">448710</span>
                                     </a>
                                 </td>
-                                <td><strong>67,100.0원</strong></td>
-                                <td><strong class="text-success">71,500원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+6.5%</span>
+                                <td data-label="현재가">19,140원</td>
+                                <td data-label="목표가">22,100원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+15.5%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    62.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=145720" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=448710" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">22</span></td>
-                                <td>
-                                    <a href="stocks/010780.html" class="stock-name text-decoration-none">
-                                        <strong>아이에스동서</strong><br>
-                                        <small class="text-muted">010780</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">22위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">22위</span>
+                                            <a href="stocks/347890.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                엠투아이 <span class="stock-code">347890</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=347890" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/347890.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        엠투아이 <span class="stock-code">347890</span>
                                     </a>
                                 </td>
-                                <td><strong>24,150.0원</strong></td>
-                                <td><strong class="text-success">27,500원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+13.9%</span>
+                                <td data-label="현재가">5,980원</td>
+                                <td data-label="목표가">6,620원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+10.7%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    58.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=010780" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=347890" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">23</span></td>
-                                <td>
-                                    <a href="stocks/030520.html" class="stock-name text-decoration-none">
-                                        <strong>한글과컴퓨터</strong><br>
-                                        <small class="text-muted">030520</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">23위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">23위</span>
+                                            <a href="stocks/024060.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                흥구석유 <span class="stock-code">024060</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=024060" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/024060.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        흥구석유 <span class="stock-code">024060</span>
                                     </a>
                                 </td>
-                                <td><strong>29,100.0원</strong></td>
-                                <td><strong class="text-success">35,000원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+20.3%</span>
+                                <td data-label="현재가">11,010원</td>
+                                <td data-label="목표가">11,830원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+7.4%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    58.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=030520" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=024060" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">24</span></td>
-                                <td>
-                                    <a href="stocks/082920.html" class="stock-name text-decoration-none">
-                                        <strong>비츠로셀</strong><br>
-                                        <small class="text-muted">082920</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">24위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">24위</span>
+                                            <a href="stocks/333430.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                일승 <span class="stock-code">333430</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=333430" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/333430.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        일승 <span class="stock-code">333430</span>
                                     </a>
                                 </td>
-                                <td><strong>30,350.0원</strong></td>
-                                <td><strong class="text-success">33,800원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+11.4%</span>
+                                <td data-label="현재가">4,625원</td>
+                                <td data-label="목표가">5,180원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+12.0%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    58.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 650%">65.0</div></div>
+                                <td data-label="투자등급">
+                                    B
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=082920" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=333430" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">25</span></td>
-                                <td>
-                                    <a href="stocks/005690.html" class="stock-name text-decoration-none">
-                                        <strong>파미셀</strong><br>
-                                        <small class="text-muted">005690</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">25위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">25위</span>
+                                            <a href="stocks/382840.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                원준 <span class="stock-code">382840</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=382840" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/382840.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        원준 <span class="stock-code">382840</span>
                                     </a>
                                 </td>
-                                <td><strong>11,250.0원</strong></td>
-                                <td><strong class="text-success">14,060원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+25.0%</span>
+                                <td data-label="현재가">9,260원</td>
+                                <td data-label="목표가">10,040원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+8.4%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    58.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 620%">62.0</div></div>
+                                <td data-label="투자등급">
+                                    B
                                 </td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">B+</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=005690" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=382840" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">26</span></td>
-                                <td>
-                                    <a href="stocks/064960.html" class="stock-name text-decoration-none">
-                                        <strong>SNT모티브</strong><br>
-                                        <small class="text-muted">064960</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">26위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">26위</span>
+                                            <a href="stocks/439580.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                블루엠텍 <span class="stock-code">439580</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=439580" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/439580.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        블루엠텍 <span class="stock-code">439580</span>
                                     </a>
                                 </td>
-                                <td><strong>29,550.0원</strong></td>
-                                <td><strong class="text-success">33,000원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+11.7%</span>
+                                <td data-label="현재가">5,530원</td>
+                                <td data-label="목표가">6,900원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+24.8%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    58.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 580%">58.0</div></div>
+                                <td data-label="투자등급">
+                                    B
                                 </td>
-                                <td>
-                                    <span class="badge bg-secondary">B</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=064960" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=439580" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">27</span></td>
-                                <td>
-                                    <a href="stocks/137400.html" class="stock-name text-decoration-none">
-                                        <strong>피엔티</strong><br>
-                                        <small class="text-muted">137400</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">27위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">27위</span>
+                                            <a href="stocks/407400.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                꿈비 <span class="stock-code">407400</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=407400" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/407400.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        꿈비 <span class="stock-code">407400</span>
                                     </a>
                                 </td>
-                                <td><strong>31,750.0원</strong></td>
-                                <td><strong class="text-success">35,800원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+12.8%</span>
+                                <td data-label="현재가">8,130원</td>
+                                <td data-label="목표가">9,450원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+16.2%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    58.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 580%">58.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-secondary">B</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=137400" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=407400" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">28</span></td>
-                                <td>
-                                    <a href="stocks/031980.html" class="stock-name text-decoration-none">
-                                        <strong>피에스케이홀딩스</strong><br>
-                                        <small class="text-muted">031980</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">28위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">28위</span>
+                                            <a href="stocks/352090.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                스톰테크 <span class="stock-code">352090</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=352090" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/352090.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        스톰테크 <span class="stock-code">352090</span>
                                     </a>
                                 </td>
-                                <td><strong>33,000.0원</strong></td>
-                                <td><strong class="text-success">35,500원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+7.6%</span>
+                                <td data-label="현재가">3,790원</td>
+                                <td data-label="목표가">4,345원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+14.6%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    58.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 580%">58.0</div></div>
+                                <td data-label="투자등급">
+                                    B
                                 </td>
-                                <td>
-                                    <span class="badge bg-secondary">B</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=031980" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=352090" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">29</span></td>
-                                <td>
-                                    <a href="stocks/248070.html" class="stock-name text-decoration-none">
-                                        <strong>솔루엠</strong><br>
-                                        <small class="text-muted">248070</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">29위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">29위</span>
+                                            <a href="stocks/322180.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                LS티라유텍 <span class="stock-code">322180</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=322180" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/322180.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        LS티라유텍 <span class="stock-code">322180</span>
                                     </a>
                                 </td>
-                                <td><strong>15,260.0원</strong></td>
-                                <td><strong class="text-success">16,800원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+10.1%</span>
+                                <td data-label="현재가">5,370원</td>
+                                <td data-label="목표가">5,900원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+9.9%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    58.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 450%">45.0</div></div>
+                                <td data-label="투자등급">
+                                    B
                                 </td>
-                                <td>
-                                    <span class="badge bg-secondary">B</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=248070" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=322180" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge badge-rank">30</span></td>
-                                <td>
-                                    <a href="stocks/067630.html" class="stock-name text-decoration-none">
-                                        <strong>HLB생명과학</strong><br>
-                                        <small class="text-muted">067630</small>
+                                <td data-label="순위" class="mobile-combined-cell">
+                                    <span class="badge badge-rank desktop-rank">30위</span>
+                                    <div class="mobile-row-content">
+                                        <div class="mobile-left-group">
+                                            <span class="mobile-rank">30위</span>
+                                            <a href="stocks/322510.html" class="stock-name text-decoration-none fw-bold text-primary mobile-stock-name">
+                                                제이엘케이 <span class="stock-code">322510</span>
+                                            </a>
+                                        </div>
+                                        <div class="mobile-right-group">
+                                            <a href="https://finance.naver.com/item/main.nhn?code=322510" 
+                                               target="_blank" class="btn btn-sm btn-outline-primary mobile-naver-btn">
+                                                <i class="fas fa-external-link-alt"></i> 네이버
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="종목명">
+                                    <a href="stocks/322510.html" class="stock-name text-decoration-none fw-bold text-primary">
+                                        제이엘케이 <span class="stock-code">322510</span>
                                     </a>
                                 </td>
-                                <td><strong>5,840.0원</strong></td>
-                                <td><strong class="text-success">6,430원</strong></td>
-                                <td>
-                                    <span class="badge bg-success">+10.1%</span>
+                                <td data-label="현재가">6,500원</td>
+                                <td data-label="목표가">7,975원</td>
+                                <td data-label="예상수익률">
+                                    <span class="expected-return-highlight">+22.7%</span>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info">1-3개월</span>
+                                <td data-label="투자기간">1-3개월</td>
+                                <td data-label="AI점수">
+                                    58.0점
                                 </td>
-                                <td>
-                                    <div class="progress" style="height: 20px;"><div class="progress-bar bg-success" style="width: 450%">45.0</div></div>
+                                <td data-label="투자등급">
+                                    B+
                                 </td>
-                                <td>
-                                    <span class="badge bg-secondary">B</span>
-                                </td>
-                                <td>
-                                    <a href="https://finance.naver.com/item/main.nhn?code=067630" 
+                                <td data-label="네이버">
+                                    <a href="https://finance.naver.com/item/main.nhn?code=322510" 
                                        target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt"></i> 네이버
                                     </a>
@@ -1136,6 +1738,31 @@
         
         // 테이블 행 클릭 이벤트
         document.addEventListener('DOMContentLoaded', function() {
+            // 모바일에서 테이블 스트라이프 클래스 제거
+            function removeStripeOnMobile() {
+                if (window.innerWidth <= 576) {
+                    document.querySelectorAll('.table-striped').forEach(function(table) {
+                        table.classList.remove('table-striped');
+                        table.classList.add('table-mobile-clean');
+                    });
+                    
+                    // 모든 테이블 행의 배경색을 강제로 흰색으로 설정
+                    document.querySelectorAll('.table tbody tr').forEach(function(row) {
+                        row.style.backgroundColor = 'white';
+                        row.style.background = 'white';
+                    });
+                } else {
+                    document.querySelectorAll('.table-mobile-clean').forEach(function(table) {
+                        table.classList.remove('table-mobile-clean');
+                        table.classList.add('table-striped');
+                    });
+                }
+            }
+            
+            // 페이지 로드 시 및 화면 크기 변경 시 실행
+            removeStripeOnMobile();
+            window.addEventListener('resize', removeStripeOnMobile);
+            
             // 종목명 클릭 시 상세 페이지로 이동 (본창에서 열기)
             document.querySelectorAll('.stock-name').forEach(function(element) {
                 element.addEventListener('click', function(e) {
@@ -1150,11 +1777,17 @@
             // 테이블 행 호버 효과 (커지는 효과 제거)
             document.querySelectorAll('tbody tr').forEach(function(row) {
                 row.addEventListener('mouseenter', function() {
-                    this.style.backgroundColor = 'rgba(0,123,255,0.1)';
+                    if (window.innerWidth > 576) {  // 데스크탑에서만 호버 효과
+                        this.style.backgroundColor = 'rgba(0,123,255,0.1)';
+                    }
                 });
                 
                 row.addEventListener('mouseleave', function() {
-                    this.style.backgroundColor = '';
+                    if (window.innerWidth > 576) {  // 데스크탑에서만 호버 효과
+                        this.style.backgroundColor = '';
+                    } else {
+                        this.style.backgroundColor = 'white';  // 모바일에서는 항상 흰색
+                    }
                 });
             });
         });
