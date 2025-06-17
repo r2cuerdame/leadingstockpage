@@ -1,0 +1,1642 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼성중공업 <span class="stock-code">010140</span> - 상세 분석</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+    <style>
+        /* 🎨 GuGu AI 디자인 시스템 */
+        :root {
+            /* === 브랜드 컬러 === */
+            --brand-primary: #0d6efd;
+            --brand-primary-light: #6ea8fe;
+            --brand-primary-dark: #0a58ca;
+            --brand-secondary: #6c757d;
+            
+            /* === 상태 컬러 === */
+            --color-success: #198754;
+            --color-success-light: #75b798;
+            --color-success-bg: #d1e7dd;
+            --color-danger: #dc3545;
+            --color-danger-light: #ea868f;
+            --color-danger-bg: #f8d7da;
+            --color-warning: #ffc107;
+            --color-warning-light: #ffda6a;
+            --color-warning-bg: #fff3cd;
+            --color-info: #0dcaf0;
+            --color-info-light: #6edff6;
+            --color-info-bg: #d1ecf1;
+            
+            /* === 중성 컬러 === */
+            --color-white: #ffffff;
+            --color-gray-50: #f8f9fa;
+            --color-gray-100: #f1f3f4;
+            --color-gray-200: #e9ecef;
+            --color-gray-300: #dee2e6;
+            --color-gray-400: #ced4da;
+            --color-gray-500: #adb5bd;
+            --color-gray-600: #6c757d;
+            --color-gray-700: #495057;
+            --color-gray-800: #343a40;
+            --color-gray-900: #212529;
+            
+            /* === 배경 컬러 === */
+            --bg-primary: var(--color-white);
+            --bg-secondary: var(--color-gray-50);
+            --bg-tertiary: var(--color-gray-100);
+            --bg-overlay: rgba(0, 0, 0, 0.5);
+            
+            /* === 텍스트 컬러 === */
+            --text-primary: var(--color-gray-900);
+            --text-secondary: var(--color-gray-600);
+            --text-muted: var(--color-gray-500);
+            --text-inverse: var(--color-white);
+            
+            /* === 보더 컬러 === */
+            --border-primary: var(--color-gray-300);
+            --border-secondary: var(--color-gray-200);
+            --border-light: var(--color-gray-100);
+            
+            /* === 그라데이션 === */
+            --gradient-primary: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-light) 100%);
+            --gradient-success: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-light) 100%);
+            --gradient-danger: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%);
+            --gradient-card: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-100) 100%);
+            
+            /* === 그림자 === */
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+            --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.25);
+            
+            /* === 타이포그래피 === */
+            --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            
+            --font-size-xs: 0.75rem;      /* 12px */
+            --font-size-sm: 0.875rem;     /* 14px */
+            --font-size-base: 1rem;       /* 16px */
+            --font-size-lg: 1.125rem;     /* 18px */
+            --font-size-xl: 1.25rem;      /* 20px */
+            --font-size-2xl: 1.5rem;      /* 24px */
+            --font-size-3xl: 1.875rem;    /* 30px */
+            --font-size-4xl: 2.25rem;     /* 36px */
+            
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --font-weight-extrabold: 800;
+            
+            --line-height-tight: 1.25;
+            --line-height-snug: 1.375;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.625;
+            --line-height-loose: 2;
+            
+            /* === 간격 === */
+            --space-0: 0;
+            --space-1: 0.25rem;    /* 4px */
+            --space-2: 0.5rem;     /* 8px */
+            --space-3: 0.75rem;    /* 12px */
+            --space-4: 1rem;       /* 16px */
+            --space-5: 1.25rem;    /* 20px */
+            --space-6: 1.5rem;     /* 24px */
+            --space-8: 2rem;       /* 32px */
+            --space-10: 2.5rem;    /* 40px */
+            --space-12: 3rem;      /* 48px */
+            --space-16: 4rem;      /* 64px */
+            --space-20: 5rem;      /* 80px */
+            
+            /* === 보더 반지름 === */
+            --radius-none: 0;
+            --radius-sm: 0.125rem;   /* 2px */
+            --radius-base: 0.25rem;  /* 4px */
+            --radius-md: 0.375rem;   /* 6px */
+            --radius-lg: 0.5rem;     /* 8px */
+            --radius-xl: 0.75rem;    /* 12px */
+            --radius-2xl: 1rem;      /* 16px */
+            --radius-3xl: 1.5rem;    /* 24px */
+            --radius-full: 9999px;
+            
+            /* === 트랜지션 === */
+            --transition-fast: 0.15s ease-in-out;
+            --transition-normal: 0.3s ease-in-out;
+            --transition-slow: 0.5s ease-in-out;
+            
+            /* === Z-인덱스 === */
+            --z-dropdown: 1000;
+            --z-sticky: 1020;
+            --z-fixed: 1030;
+            --z-modal-backdrop: 1040;
+            --z-modal: 1050;
+            --z-popover: 1060;
+            --z-tooltip: 1070;
+            
+            /* === 레거시 호환성 (기존 변수명 유지) === */
+            --primary-color: var(--brand-primary);
+            --success-color: var(--color-success);
+            --warning-color: var(--color-warning);
+            --danger-color: var(--color-danger);
+            --info-color: var(--color-info);
+            --dark-color: var(--color-gray-800);
+            --light-bg: var(--color-gray-50);
+            --card-bg: var(--color-white);
+            --text-primary: var(--color-gray-900);
+            --text-secondary: var(--color-gray-600);
+            --border-color: var(--color-gray-300);
+        }
+        
+        /* === 기본 스타일 === */
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: var(--font-family-primary);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* === 네비게이션 === */
+        .navbar-dark {
+            background: var(--gradient-primary) !important;
+            box-shadow: var(--shadow-md);
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        /* === 카드 컴포넌트 === */
+        .card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        .card-header {
+            background: var(--gradient-card);
+            border-bottom: 1px solid var(--border-secondary);
+            border-radius: var(--radius-2xl) var(--radius-2xl) 0 0 !important;
+            padding: var(--space-4) var(--space-6);
+            font-weight: var(--font-weight-semibold);
+        }
+        
+        .card-body {
+            padding: var(--space-6);
+        }
+        
+        .card-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .card-subtitle {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+        
+        /* === 배지 컴포넌트 === */
+        .badge {
+            font-family: var(--font-family-primary);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-lg);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            transition: var(--transition-fast);
+        }
+        
+        .badge.bg-primary { 
+            background-color: var(--brand-primary) !important; 
+            color: var(--text-inverse) !important;
+        }
+        .badge.bg-success { 
+            background-color: var(--color-success) !important; 
+            color: var(--text-inverse) !important;
+        }
+        .badge.bg-warning { 
+            background-color: var(--color-warning) !important; 
+            color: var(--color-gray-900) !important;
+        }
+        .badge.bg-info { 
+            background-color: var(--color-info) !important; 
+            color: var(--text-inverse) !important;
+        }
+        .badge.bg-danger { 
+            background-color: var(--color-danger) !important; 
+            color: var(--text-inverse) !important;
+        }
+        
+        /* 배지 호버 효과 */
+        .badge:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* 새로운 라벨 색상 시스템 - 가독성 최우선 */
+        .badge.label-color-1 { background-color: #007bff !important; color: white !important; } /* 파랑 */
+        .badge.label-color-2 { background-color: #28a745 !important; color: white !important; } /* 초록 */
+        .badge.label-color-3 { background-color: #dc3545 !important; color: white !important; } /* 빨강 */
+        .badge.label-color-4 { background-color: #fd7e14 !important; color: white !important; } /* 주황 */
+        .badge.label-color-5 { background-color: #6f42c1 !important; color: white !important; } /* 보라 */
+        .badge.label-color-6 { background-color: #e83e8c !important; color: white !important; } /* 분홍 */
+        .badge.label-color-7 { background-color: #20c997 !important; color: white !important; } /* 청록 */
+        .badge.label-color-8 { background-color: #6c757d !important; color: white !important; } /* 갈색 */
+        .badge.label-color-9 { background-color: #343a40 !important; color: white !important; } /* 네이비 */
+        .badge.label-color-10 { background-color: #795548 !important; color: white !important; } /* 올리브 */
+        
+        /* === 알림 컴포넌트 === */
+        .alert {
+            padding: var(--space-4);
+            border-radius: var(--radius-xl);
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-4);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .alert-success {
+            background-color: var(--color-success-bg);
+            color: var(--color-success);
+            border-color: var(--color-success-light);
+            border-left: 4px solid var(--color-success);
+        }
+        
+        .alert-warning {
+            background-color: var(--color-warning-bg);
+            color: var(--color-warning);
+            border-color: var(--color-warning-light);
+            border-left: 4px solid var(--color-warning);
+        }
+        
+        .alert-danger {
+            background-color: var(--color-danger-bg);
+            color: var(--color-danger);
+            border-color: var(--color-danger-light);
+            border-left: 4px solid var(--color-danger);
+        }
+        
+        .alert-info {
+            background-color: var(--color-info-bg);
+            color: var(--color-info);
+            border-color: var(--color-info-light);
+            border-left: 4px solid var(--color-info);
+        }
+        
+        /* === 텍스트 유틸리티 === */
+        .text-primary { color: var(--brand-primary) !important; }
+        .text-success { color: var(--color-success) !important; }
+        .text-warning { color: var(--color-warning) !important; }
+        .text-info { color: var(--color-info) !important; }
+        .text-danger { color: var(--color-danger) !important; }
+        .text-muted { color: var(--text-muted) !important; }
+        .text-secondary { color: var(--text-secondary) !important; }
+        
+        /* === 타이포그래피 === */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-family-primary);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+            line-height: var(--line-height-tight);
+            margin-bottom: var(--space-4);
+        }
+        
+        h1 { font-size: var(--font-size-4xl); }
+        h2 { font-size: var(--font-size-3xl); }
+        h3 { font-size: var(--font-size-2xl); }
+        h4 { font-size: var(--font-size-xl); }
+        h5 { font-size: var(--font-size-lg); }
+        h6 { font-size: var(--font-size-base); }
+        
+        p {
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-relaxed);
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+        
+        small {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        
+        /* === 버튼 컴포넌트 === */
+        .btn {
+            font-family: var(--font-family-primary);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            text-decoration: none;
+            transition: var(--transition-normal);
+            cursor: pointer;
+            min-height: 44px; /* 터치 타겟 최소 크기 */
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn:focus {
+            outline: 2px solid var(--brand-primary);
+            outline-offset: 2px;
+        }
+        
+        /* 버튼 변형 */
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+            border-color: var(--brand-primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--brand-primary-dark);
+            border-color: var(--brand-primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: var(--brand-secondary);
+            color: var(--text-inverse);
+            border-color: var(--brand-secondary);
+        }
+        
+        .btn-outline-primary {
+            background-color: transparent;
+            color: var(--brand-primary);
+            border-color: var(--brand-primary);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--brand-primary);
+            color: var(--text-inverse);
+        }
+        
+        /* 버튼 크기 */
+        .btn-sm {
+            font-size: var(--font-size-xs);
+            padding: var(--space-1) var(--space-3);
+            min-height: 36px;
+        }
+        
+        .btn-lg {
+            font-size: var(--font-size-lg);
+            padding: var(--space-3) var(--space-6);
+            min-height: 52px;
+        }
+        
+        h2, h3, h4, h5, h6 {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .text-muted {
+            color: var(--text-secondary) !important;
+        }
+        
+        /* 종목 라벨 스타일 개선 */
+        .stock-labels .badge {
+            margin-right: 0.5rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.8rem;
+            padding: 0.35em 0.7em;
+        }
+        
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            
+            .card {
+                margin-bottom: 1rem;
+                border-radius: 8px;
+            }
+            
+            .card-body {
+                padding: 1rem;
+            }
+            
+            /* 단기 트레이딩 전략 정보 모바일 최적화 */
+            .trading-strategy-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+            
+            .trading-strategy-item {
+                text-align: center;
+                padding: 0.75rem;
+                background: var(--light-bg);
+                border-radius: 8px;
+            }
+            
+            .trading-strategy-item h6 {
+                font-size: 0.8rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .trading-strategy-item h5 {
+                font-size: 1rem;
+                margin-bottom: 0;
+            }
+            
+            /* AI 점수 카드 모바일 최적화 */
+            .ai-score-card {
+                margin-bottom: 0.75rem;
+            }
+            
+            .ai-score-card .card-body {
+                padding: 0.75rem;
+            }
+            
+            .ai-score-card h6 {
+                font-size: 0.8rem;
+            }
+            
+            .ai-score-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            /* 진입 신호 카드 모바일 최적화 */
+            .signal-card {
+                margin-bottom: 0.75rem;
+            }
+            
+            .signal-card h4 {
+                font-size: 1.2rem;
+            }
+            
+            /* 버튼 그룹 모바일 최적화 */
+            .btn-group-sm .btn {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+            
+            /* 차트 높이 모바일 최적화 */
+            #stockChart {
+                height: 300px !important;
+            }
+            
+            #volumeChart {
+                height: 120px !important;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            /* 초소형 화면 (스마트폰) 최적화 */
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            h3 {
+                font-size: 1.1rem;
+            }
+            
+            h5 {
+                font-size: 1rem;
+            }
+            
+            /* 단기 트레이딩 전략 정보 - 세로 배치 */
+            .trading-strategy-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            /* AI 점수 카드 - 세로 배치 */
+            .ai-scores-mobile {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            /* 진입 신호 - 세로 배치 */
+            .signals-mobile {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            /* 차트 버튼 그룹 - 세로 배치 */
+            .chart-controls-mobile {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            
+            .chart-controls-mobile .btn-group {
+                flex-direction: column;
+            }
+            
+            .chart-controls-mobile .btn {
+                border-radius: 6px !important;
+                margin-bottom: 0.25rem;
+            }
+            
+            /* 차트 높이 더 작게 */
+            #stockChart {
+                height: 250px !important;
+            }
+            
+            #volumeChart {
+                height: 100px !important;
+            }
+            
+            /* 차트 타이틀 개선 */
+            .apexcharts-title-text {
+                font-size: 14px !important;
+                line-height: 1.2 !important;
+            }
+            
+            .stock-code {
+                display: inline-block !important;
+                font-size: 0.8em !important;
+                margin-left: 5px !important;
+            }
+            
+            .apexcharts-subtitle-text {
+                font-size: 10px !important;
+                margin-top: 2px !important;
+            }
+            
+            /* 관련 링크 버튼 모바일 최적화 */
+            .mobile-link-btn {
+                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+        }
+        
+        /* 터치 최적화 */
+        @media (hover: none) and (pointer: coarse) {
+            .btn {
+                min-height: 44px; /* 터치 타겟 최소 크기 */
+                padding: 0.5rem 1rem;
+            }
+            
+            .card {
+                transition: none; /* 터치 디바이스에서 호버 효과 제거 */
+            }
+            
+            .card:hover {
+                transform: none;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-arrow-left"></i> 메인으로 돌아가기
+            </a>
+            <span class="navbar-text">GuGu AI 주식분석</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- 종목 기본 정보 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                        <h2 class="mb-2">삼성중공업 <small class="text-muted">(010140)</small></h2>
+                                <div class="stock-labels mb-2"><span class="badge label-color-1 px-2 py-1 me-1 mb-1" style="font-weight: 600;">백테스팅검증</span></div>
+                        <h3 class="text-primary mb-0">14,500원</h3>
+                        <small class="text-muted">현재가</small>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <div class="d-flex justify-content-md-end align-items-center gap-3">
+                                    <div>
+                                        <span class="badge bg-success fs-6">A</span>
+                                        <div><small class="text-muted">투자등급</small></div>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-success mb-0">166.0</h4>
+                                        <div><small class="text-muted">AI 점수</small></div>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-info mb-0">+10.3%</h4>
+                                        <div><small class="text-muted">목표수익률</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 1-3일 상세 매매전략 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                
+        <div class="trading-strategy-container mb-4">
+            <div class="strategy-header">
+                <h5 class="strategy-title">
+                    <i class="fas fa-chart-line me-2"></i>📋 상세 1-3일 매매전략
+                </h5>
+            </div>
+            
+            <div class="strategy-content">
+                <!-- 진입 전략 -->
+                <div class="strategy-section">
+                    <div class="section-title">
+                        <h6><i class="fas fa-arrow-up me-2"></i>🔵 진입 전략</h6>
+                    </div>
+                    <div class="strategy-grid">
+                        <div class="strategy-card buy-card">
+                            <div class="card-label">매수 가격 & 비율</div>
+                            <div class="price-info">
+                                <div class="price-item">
+                                    <span class="price-label">1차 매수 (60%)</span>
+                                    <span class="price-value primary">14,350원 (1차 매수)</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">2차 매수 (40%)</span>
+                                    <span class="price-value primary">14,100원 (2차 매수)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="strategy-card timing-card">
+                            <div class="card-label">매수 타이밍</div>
+                            <div class="timing-info">
+                                <p class="timing-text">장 초반 약세 시 1차 매수, 추가 하락 시 2차 매수</p>
+                                <p class="position-text"><strong>포지션:</strong> 분할 매수 권장</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 청산 전략 -->
+                <div class="strategy-section">
+                    <div class="section-title">
+                        <h6><i class="fas fa-arrow-down me-2"></i>🔴 청산 전략</h6>
+                    </div>
+                    <div class="strategy-grid">
+                        <div class="strategy-card sell-card">
+                            <div class="card-label">익절 가격</div>
+                            <div class="price-info">
+                                <div class="price-item">
+                                    <span class="price-label">1차 익절 (50%)</span>
+                                    <span class="price-value success">14,850원 (1차 익절)</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">2차 익절 (50%)</span>
+                                    <span class="price-value success">15,200원 (2차 익절)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="strategy-card risk-card">
+                            <div class="card-label">리스크 관리</div>
+                            <div class="risk-info">
+                                <div class="risk-item">
+                                    <span class="risk-label">손절가</span>
+                                    <span class="price-value danger">14,050원</span>
+                                </div>
+                                <p class="period-text"><strong>보유기간:</strong> 최대 3일</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 일별 TODO 리스트 -->
+                <div class="strategy-section">
+                    <div class="section-title">
+                        <h6><i class="fas fa-calendar-check me-2"></i>📅 일별 TODO 리스트</h6>
+                    </div>
+                    <div class="todo-container">
+                        <div class="todo-day">
+                            <div class="todo-header">
+                                <span class="day-number">1일차</span>
+                                <span class="day-focus">진입 타이밍</span>
+                            </div>
+                            <div class="todo-list">
+                                <div class="todo-item buy">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="todo-text">📈 14,350원 (1차 매수) 이하에서 1차 매수</span>
+                                </div>
+                                <div class="todo-item watch">
+                                    <i class="fas fa-eye"></i>
+                                    <span class="todo-text">👀 장중 강세 시 14,850원 (1차 익절) 1차 익절 시도</span>
+                                </div>
+                                <div class="todo-item warning">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span class="todo-text">⚠️ 14,050원 손절선 절대 준수</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="todo-day">
+                            <div class="todo-header">
+                                <span class="day-number">2일차</span>
+                                <span class="day-focus">추가 매수 or 익절</span>
+                            </div>
+                            <div class="todo-list">
+                                <div class="todo-item buy">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <span class="todo-text">📉 하락 시 14,100원 (2차 매수)에서 2차 매수</span>
+                                </div>
+                                <div class="todo-item sell">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span class="todo-text">📈 상승 시 15,200원 (2차 익절) 목표가 도전</span>
+                                </div>
+                                <div class="todo-item watch">
+                                    <i class="fas fa-clock"></i>
+                                    <span class="todo-text">⏰ 장 마감 1시간 전 상황 점검</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="todo-day">
+                            <div class="todo-header">
+                                <span class="day-number">3일차</span>
+                                <span class="day-focus">최종 청산</span>
+                            </div>
+                            <div class="todo-list">
+                                <div class="todo-item sell">
+                                    <i class="fas fa-flag-checkered"></i>
+                                    <span class="todo-text">🎯 목표가 달성 시 전량 매도</span>
+                                </div>
+                                <div class="todo-item sell">
+                                    <i class="fas fa-clock"></i>
+                                    <span class="todo-text">⏰ 장 마감 30분 전 무조건 청산</span>
+                                </div>
+                                <div class="todo-item check">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="todo-text">✅ 수익/손실 확정 및 다음 투자 준비</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 리스크 관리 -->
+                <div class="strategy-section">
+                    <div class="section-title">
+                        <h6><i class="fas fa-shield-alt me-2"></i>⚠️ 리스크 관리</h6>
+                    </div>
+                    <div class="risk-management">
+                        <div class="max-loss-box">
+                            <span class="max-loss-label">최대 손실 허용</span>
+                            <span class="max-loss-value">3.0%</span>
+                        </div>
+                        <div class="warning-grid">
+                            <div class="warning-box">
+                                <h6 class="warning-title">🚨 주의 신호</h6>
+                                <p class="warning-text">거래량 급감, 주요 지지선 이탈</p>
+                            </div>
+                            <div class="warning-box">
+                                <h6 class="warning-title">🛑 즉시 매도 조건</h6>
+                                <p class="warning-text">14,050원 손절선 돌파, 3일차 장 마감 30분 전</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 투자 선택 이유 -->
+                <div class="strategy-section">
+                    <div class="section-title">
+                        <h6><i class="fas fa-lightbulb me-2"></i>💡 왜 이 종목을 선택했나?</h6>
+                    </div>
+                    <div class="reason-box">
+                        <p class="reason-text">AI 종합점수 166.0점으로 단기 상승 가능성이 있으며, 기술적 분석상 현재 가격대에서 반등 시도가 예상됩니다. 철저한 리스크 관리와 함께 단기 트레이딩 전략을 실행하시기 바랍니다.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <style>
+        .trading-strategy-container {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+        
+        .strategy-header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .strategy-title {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .strategy-content {
+            padding: 2rem;
+        }
+        
+        .strategy-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f8f9fa;
+        }
+        
+        .strategy-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title h6 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #495057;
+            margin: 0;
+            padding: 0.75rem 1.25rem;
+            background: #f8f9fa;
+            border-radius: 25px;
+            border: 2px solid #dee2e6;
+            display: inline-block;
+        }
+        
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .strategy-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .strategy-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .card-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #6c757d;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .price-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+        
+        .price-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .price-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .price-value.primary { color: #007bff; }
+        .price-value.success { color: #28a745; }
+        .price-value.danger { color: #dc3545; }
+        
+        .timing-text, .position-text, .period-text {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+                 .todo-container {
+             display: grid;
+             grid-template-columns: repeat(3, 1fr);
+             gap: 1.5rem;
+         }
+         
+         .todo-day {
+             background: #fff;
+             border-radius: 15px;
+             overflow: hidden;
+             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+             border: 2px solid #e9ecef;
+             transition: all 0.3s ease;
+         }
+         
+         .todo-day:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+             border-color: #007bff;
+         }
+         
+         .todo-header {
+             background: linear-gradient(135deg, #007bff, #0056b3);
+             color: white;
+             padding: 1rem;
+             text-align: center;
+         }
+         
+         .day-number {
+             display: block;
+             font-size: 1.2rem;
+             font-weight: 700;
+             margin-bottom: 0.25rem;
+         }
+         
+         .day-focus {
+             font-size: 0.85rem;
+             opacity: 0.9;
+             font-weight: 500;
+         }
+         
+         .todo-list {
+             padding: 1.5rem;
+         }
+         
+         .todo-item {
+             display: flex;
+             align-items: center;
+             padding: 0.75rem;
+             margin-bottom: 0.75rem;
+             border-radius: 8px;
+             transition: all 0.2s ease;
+             border-left: 4px solid;
+         }
+         
+         .todo-item:last-child {
+             margin-bottom: 0;
+         }
+         
+         .todo-item i {
+             margin-right: 0.75rem;
+             font-size: 1.1rem;
+             width: 20px;
+             text-align: center;
+         }
+         
+         .todo-text {
+             font-size: 0.9rem;
+             line-height: 1.4;
+             font-weight: 500;
+         }
+         
+         .todo-item.buy {
+             background: #e8f5e8;
+             border-left-color: #28a745;
+             color: #155724;
+         }
+         
+         .todo-item.buy:hover {
+             background: #d4edda;
+             transform: translateX(5px);
+         }
+         
+         .todo-item.sell {
+             background: #fff3cd;
+             border-left-color: #ffc107;
+             color: #856404;
+         }
+         
+         .todo-item.sell:hover {
+             background: #ffeaa7;
+             transform: translateX(5px);
+         }
+         
+         .todo-item.watch {
+             background: #e2f3ff;
+             border-left-color: #007bff;
+             color: #004085;
+         }
+         
+         .todo-item.watch:hover {
+             background: #cce7ff;
+             transform: translateX(5px);
+         }
+         
+         .todo-item.warning {
+             background: #f8d7da;
+             border-left-color: #dc3545;
+             color: #721c24;
+         }
+         
+         .todo-item.warning:hover {
+             background: #f1b0b7;
+             transform: translateX(5px);
+         }
+         
+         .todo-item.check {
+             background: #d1ecf1;
+             border-left-color: #17a2b8;
+             color: #0c5460;
+         }
+         
+         .todo-item.check:hover {
+             background: #bee5eb;
+             transform: translateX(5px);
+         }
+        
+        .risk-management {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .max-loss-box {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+        }
+        
+        .max-loss-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+        
+        .max-loss-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #dc3545;
+        }
+        
+        .warning-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .warning-box {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .warning-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 0.5rem;
+        }
+        
+        .warning-text {
+            font-size: 0.85rem;
+            color: #721c24;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .technical-levels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .level-box {
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .support-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .resistance-box {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .level-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .support-box .level-title { color: #155724; }
+        .resistance-box .level-title { color: #721c24; }
+        
+        .level-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 6px;
+        }
+        
+        .level-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .level-value {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .reason-box {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .reason-text {
+            margin: 0;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            color: #0c5460;
+        }
+        
+                 @media (max-width: 768px) {
+             .strategy-grid,
+             .todo-container,
+             .warning-grid,
+             .technical-levels {
+                 grid-template-columns: 1fr;
+             }
+             
+             .strategy-content {
+                 padding: 1rem;
+             }
+             
+             .todo-day {
+                 margin-bottom: 1rem;
+             }
+         }
+        </style>
+        
+            </div>
+        </div>
+
+        <!-- 차트 섹션 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center d-none d-md-flex">
+                            <!-- 데스크톱 버전 -->
+                            <h5 class="mb-0"><i class="fas fa-chart-candlestick"></i> 차트 분석</h5>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="차트 기간 선택">
+                                <button type="button" class="btn btn-outline-primary" id="period30" onclick="changePeriod(30)">30일</button>
+                                <button type="button" class="btn btn-outline-primary" id="period60" onclick="changePeriod(60)">60일</button>
+                                <button type="button" class="btn btn-outline-primary" id="period90" onclick="changePeriod(90)">90일</button>
+                                <button type="button" class="btn btn-primary active" id="period365" onclick="changePeriod(365)">1년</button>
+                            </div>
+                        </div>
+                        <div class="d-md-none">
+                            <!-- 모바일 버전 -->
+                            <h5 class="mb-3"><i class="fas fa-chart-candlestick"></i> 차트 분석</h5>
+                            <div class="chart-controls-mobile">
+                                <div class="btn-group w-100" role="group" aria-label="차트 기간 선택">
+                                    <button type="button" class="btn btn-outline-primary" id="period30-mobile" onclick="changePeriod(30)">30일</button>
+                                    <button type="button" class="btn btn-outline-primary" id="period60-mobile" onclick="changePeriod(60)">60일</button>
+                                    <button type="button" class="btn btn-outline-primary" id="period90-mobile" onclick="changePeriod(90)">90일</button>
+                                    <button type="button" class="btn btn-primary active" id="period365-mobile" onclick="changePeriod(365)">1년</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="stockChart" style="height: 400px;"></div>
+                        <div id="volumeChart" style="height: 150px; margin-top: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+                        </div>
+                        
+        <!-- 관련 링크 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0"><i class="fas fa-external-link-alt"></i> 관련 링크</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-none d-md-block">
+                            <!-- 데스크톱 버전 -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A010140" 
+                                       target="_blank" class="btn btn-primary w-100 mb-2">
+                                        📈 FnGuide 재무제표
+                                    </a>
+                                    <small class="text-muted d-block">전문 재무지표, PER/PBR, 실적분석</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="https://finance.naver.com/item/news.nhn?code=010140" 
+                                       target="_blank" class="btn btn-secondary w-100 mb-2">
+                                        📰 네이버 종목뉴스
+                                    </a>
+                                    <small class="text-muted d-block">실시간 뉴스 및 공시정보</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="https://kr.investing.com/search/?q=010140" 
+                                       target="_blank" class="btn btn-outline-secondary w-100 mb-2">
+                                        🌏 Investing.com
+                                    </a>
+                                    <small class="text-muted d-block">글로벌 차트 및 기술적 분석</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-md-none">
+                            <!-- 모바일 버전 -->
+                            <div class="d-grid gap-2">
+                                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A010140" 
+                                   target="_blank" class="btn btn-primary mobile-link-btn">
+                                    📈 FnGuide 재무제표
+                                    <small class="d-block text-white-50">전문 재무지표, PER/PBR, 실적분석</small>
+                                </a>
+                                <a href="https://finance.naver.com/item/news.nhn?code=010140" 
+                                   target="_blank" class="btn btn-secondary mobile-link-btn">
+                                    📰 네이버 종목뉴스
+                                    <small class="d-block text-white-50">실시간 뉴스 및 공시정보</small>
+                                </a>
+                                <a href="https://kr.investing.com/search/?q=010140" 
+                                   target="_blank" class="btn btn-outline-secondary mobile-link-btn">
+                                    🌏 Investing.com
+                                    <small class="d-block text-muted">글로벌 차트 및 기술적 분석</small>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <small class="text-info">
+                                💡 <strong>분석 우선순위:</strong> FnGuide 재무제표 → 네이버 뉴스 → 기술적 분석 순으로 참고하세요
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        // 010140 실제 데이터 전용 차트 시스템
+        console.log('🔄 실제 차트 데이터 로드:', '010140', '데이터 길이:', 365);
+        
+        let candlestickChart;
+        let volumeChart;
+        
+        // 데이터 상태 확인
+        const hasData = 365 > 0;
+        console.log('📊 데이터 상태:', hasData ? '실제 데이터 있음' : '실제 데이터 없음');
+        
+        if (!hasData) {
+            // 실제 데이터가 없으면 메시지 표시
+            document.querySelector("#stockChart").innerHTML = `
+                <div style="height: 200px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;">
+                    <div class="text-center">
+                        <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">실제 차트 데이터가 없습니다</h5>
+                        <p class="text-muted">PostgreSQL 데이터베이스에서 010140 일봉 데이터를 찾을 수 없습니다.</p>
+                    </div>
+                </div>
+            `;
+            document.querySelector("#volumeChart").innerHTML = `
+                <div style="height: 100px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;">
+                    <p class="text-muted mb-0">거래량 데이터 없음</p>
+                </div>
+            `;
+        } else {
+        
+        // 캔들스틱 차트 옵션 (실제 데이터)
+        var candlestickOptions = {
+            series: [{
+                name: '삼성중공업',
+                data: [{"x": "23/12/12", "y": [7900, 8040, 7830, 8010]}, {"x": "23/12/13", "y": [7940, 7970, 7850, 7860]}, {"x": "23/12/14", "y": [7960, 8000, 7820, 7990]}, {"x": "23/12/15", "y": [8030, 8040, 7920, 7960]}, {"x": "23/12/18", "y": [7900, 7900, 7260, 7510]}, {"x": "23/12/19", "y": [7490, 7630, 7450, 7560]}, {"x": "23/12/20", "y": [7570, 7800, 7570, 7670]}, {"x": "23/12/21", "y": [7600, 7690, 7440, 7520]}, {"x": "23/12/22", "y": [7550, 7570, 7440, 7500]}, {"x": "23/12/26", "y": [7570, 7570, 7450, 7500]}, {"x": "23/12/27", "y": [7450, 7600, 7450, 7590]}, {"x": "23/12/28", "y": [7540, 7750, 7540, 7750]}, {"x": "24/01/02", "y": [7750, 7950, 7680, 7860]}, {"x": "24/01/03", "y": [7780, 7790, 7470, 7480]}, {"x": "24/01/04", "y": [7490, 7560, 7450, 7500]}, {"x": "24/01/05", "y": [7500, 7540, 7410, 7450]}, {"x": "24/01/08", "y": [7420, 7580, 7390, 7480]}, {"x": "24/01/09", "y": [7480, 7560, 7300, 7310]}, {"x": "24/01/10", "y": [7310, 7360, 7240, 7320]}, {"x": "24/01/11", "y": [7360, 7380, 7150, 7160]}, {"x": "24/01/12", "y": [7180, 7250, 7150, 7170]}, {"x": "24/01/15", "y": [7190, 7370, 7160, 7350]}, {"x": "24/01/16", "y": [7300, 7350, 7150, 7150]}, {"x": "24/01/17", "y": [7150, 7200, 7050, 7050]}, {"x": "24/01/18", "y": [7050, 7270, 6980, 7120]}, {"x": "24/01/19", "y": [7230, 7530, 7200, 7520]}, {"x": "24/01/22", "y": [7610, 7640, 7520, 7590]}, {"x": "24/01/23", "y": [7650, 7720, 7530, 7570]}, {"x": "24/01/24", "y": [7560, 7570, 7360, 7480]}, {"x": "24/01/25", "y": [7470, 7590, 7410, 7570]}, {"x": "24/01/26", "y": [7570, 7660, 7570, 7600]}, {"x": "24/01/29", "y": [7650, 7650, 7450, 7450]}, {"x": "24/01/30", "y": [7480, 7520, 7130, 7170]}, {"x": "24/01/31", "y": [7150, 7350, 7150, 7310]}, {"x": "24/02/01", "y": [7270, 7310, 7100, 7140]}, {"x": "24/02/02", "y": [7150, 7280, 7080, 7250]}, {"x": "24/02/05", "y": [7240, 7250, 7080, 7120]}, {"x": "24/02/06", "y": [7120, 7340, 7120, 7210]}, {"x": "24/02/07", "y": [7330, 7440, 7210, 7240]}, {"x": "24/02/08", "y": [7350, 7400, 7250, 7330]}, {"x": "24/02/13", "y": [7390, 7450, 7290, 7360]}, {"x": "24/02/14", "y": [7290, 7310, 7190, 7220]}, {"x": "24/02/15", "y": [7290, 7340, 7200, 7210]}, {"x": "24/02/16", "y": [7280, 7340, 7230, 7300]}, {"x": "24/02/19", "y": [7300, 7380, 7240, 7310]}, {"x": "24/02/20", "y": [7320, 7360, 7230, 7250]}, {"x": "24/02/21", "y": [7280, 7510, 7260, 7460]}, {"x": "24/02/22", "y": [7510, 7600, 7420, 7490]}, {"x": "24/02/23", "y": [7540, 7540, 7370, 7430]}, {"x": "24/02/26", "y": [7430, 7460, 7290, 7410]}, {"x": "24/02/27", "y": [7470, 7730, 7390, 7670]}, {"x": "24/02/28", "y": [7690, 8070, 7610, 8020]}, {"x": "24/02/29", "y": [8050, 8060, 7850, 7900]}, {"x": "24/03/04", "y": [7930, 7950, 7600, 7620]}, {"x": "24/03/05", "y": [7620, 7820, 7600, 7710]}, {"x": "24/03/06", "y": [7680, 7840, 7630, 7730]}, {"x": "24/03/07", "y": [7730, 7800, 7660, 7710]}, {"x": "24/03/08", "y": [7710, 7780, 7560, 7660]}, {"x": "24/03/11", "y": [7640, 8030, 7630, 8020]}, {"x": "24/03/12", "y": [8020, 8230, 7900, 8070]}, {"x": "24/03/13", "y": [8120, 8150, 7920, 7960]}, {"x": "24/03/14", "y": [7960, 9210, 7950, 9010]}, {"x": "24/03/15", "y": [9200, 9390, 8810, 8850]}, {"x": "24/03/18", "y": [9040, 9090, 8850, 9000]}, {"x": "24/03/19", "y": [8980, 8990, 8570, 8690]}, {"x": "24/03/20", "y": [8770, 8960, 8730, 8810]}, {"x": "24/03/21", "y": [8890, 8890, 8710, 8850]}, {"x": "24/03/22", "y": [8900, 9120, 8780, 9080]}, {"x": "24/03/25", "y": [9110, 9140, 8910, 8960]}, {"x": "24/03/26", "y": [9000, 9110, 8910, 9060]}, {"x": "24/03/27", "y": [8980, 9020, 8590, 8700]}, {"x": "24/03/28", "y": [8680, 8840, 8600, 8620]}, {"x": "24/03/29", "y": [8680, 8730, 8500, 8560]}, {"x": "24/04/01", "y": [8600, 8630, 8470, 8560]}, {"x": "24/04/02", "y": [8530, 8720, 8290, 8650]}, {"x": "24/04/03", "y": [8670, 8850, 8580, 8710]}, {"x": "24/04/04", "y": [8770, 8780, 8560, 8740]}, {"x": "24/04/05", "y": [8580, 8840, 8580, 8660]}, {"x": "24/04/08", "y": [8660, 8660, 8460, 8480]}, {"x": "24/04/09", "y": [8470, 8860, 8470, 8670]}, {"x": "24/04/11", "y": [8530, 8630, 8380, 8500]}, {"x": "24/04/12", "y": [8520, 9000, 8440, 8910]}, {"x": "24/04/15", "y": [8850, 9190, 8800, 9060]}, {"x": "24/04/16", "y": [8970, 9120, 8660, 8760]}, {"x": "24/04/17", "y": [8800, 8910, 8670, 8690]}, {"x": "24/04/18", "y": [8800, 9710, 8800, 9540]}, {"x": "24/04/19", "y": [9580, 9640, 9220, 9630]}, {"x": "24/04/22", "y": [9870, 10120, 9390, 9480]}, {"x": "24/04/23", "y": [9560, 9900, 9520, 9630]}, {"x": "24/04/24", "y": [9750, 9940, 9590, 9640]}, {"x": "24/04/25", "y": [9570, 9670, 9330, 9470]}, {"x": "24/04/26", "y": [9580, 9940, 9540, 9850]}, {"x": "24/04/29", "y": [9800, 9810, 9460, 9600]}, {"x": "24/04/30", "y": [9550, 9670, 9400, 9450]}, {"x": "24/05/02", "y": [9410, 9550, 9400, 9430]}, {"x": "24/05/03", "y": [9490, 9510, 9360, 9390]}, {"x": "24/05/07", "y": [9420, 9650, 9400, 9600]}, {"x": "24/05/08", "y": [9650, 9860, 9580, 9670]}, {"x": "24/05/09", "y": [9710, 9970, 9690, 9830]}, {"x": "24/05/10", "y": [9970, 10050, 9750, 9890]}, {"x": "24/05/13", "y": [9980, 10300, 9940, 10170]}, {"x": "24/05/14", "y": [10170, 10230, 10020, 10130]}, {"x": "24/05/16", "y": [10220, 10230, 10040, 10150]}, {"x": "24/05/17", "y": [10110, 10140, 9770, 9920]}, {"x": "24/05/20", "y": [9910, 10100, 9830, 9870]}, {"x": "24/05/21", "y": [9850, 9910, 9740, 9800]}, {"x": "24/05/22", "y": [9800, 9800, 9270, 9380]}, {"x": "24/05/23", "y": [9290, 9580, 9250, 9500]}, {"x": "24/05/24", "y": [9380, 9760, 9360, 9650]}, {"x": "24/05/27", "y": [9700, 9720, 9450, 9570]}, {"x": "24/05/28", "y": [9570, 9690, 9500, 9540]}, {"x": "24/05/29", "y": [9490, 9520, 9390, 9400]}, {"x": "24/05/30", "y": [9400, 9480, 9270, 9320]}, {"x": "24/05/31", "y": [9360, 9380, 9130, 9160]}, {"x": "24/06/03", "y": [9220, 10120, 9130, 9600]}, {"x": "24/06/04", "y": [9520, 9700, 9350, 9400]}, {"x": "24/06/05", "y": [9460, 9490, 9210, 9270]}, {"x": "24/06/07", "y": [9280, 9520, 9280, 9360]}, {"x": "24/06/10", "y": [9310, 9420, 9250, 9320]}, {"x": "24/06/11", "y": [9500, 9500, 9180, 9220]}, {"x": "24/06/12", "y": [9170, 9270, 8950, 9140]}, {"x": "24/06/13", "y": [8800, 9080, 8790, 8910]}, {"x": "24/06/14", "y": [8900, 9190, 8840, 9040]}, {"x": "24/06/17", "y": [9050, 9090, 8880, 8890]}, {"x": "24/06/18", "y": [8980, 8990, 8850, 8860]}, {"x": "24/06/19", "y": [8890, 9080, 8890, 9050]}, {"x": "24/06/20", "y": [9060, 9090, 8920, 8970]}, {"x": "24/06/21", "y": [9030, 9170, 8860, 8890]}, {"x": "24/06/24", "y": [8850, 9080, 8800, 8950]}, {"x": "24/06/25", "y": [9030, 9630, 8990, 9290]}, {"x": "24/06/26", "y": [9290, 9520, 9200, 9400]}, {"x": "24/06/27", "y": [9320, 9450, 9280, 9430]}, {"x": "24/06/28", "y": [9430, 9490, 9220, 9350]}, {"x": "24/07/01", "y": [9370, 9870, 9320, 9680]}, {"x": "24/07/02", "y": [9690, 9700, 9450, 9620]}, {"x": "24/07/03", "y": [9670, 9680, 9290, 9440]}, {"x": "24/07/04", "y": [9410, 9600, 9340, 9520]}, {"x": "24/07/05", "y": [9590, 9640, 9450, 9560]}, {"x": "24/07/08", "y": [9560, 9850, 9540, 9800]}, {"x": "24/07/09", "y": [9810, 9840, 9660, 9700]}, {"x": "24/07/10", "y": [9670, 9930, 9650, 9840]}, {"x": "24/07/11", "y": [9910, 9920, 9770, 9830]}, {"x": "24/07/12", "y": [9810, 9900, 9710, 9900]}, {"x": "24/07/15", "y": [9980, 10100, 9910, 9940]}, {"x": "24/07/16", "y": [9990, 10290, 9900, 10280]}, {"x": "24/07/17", "y": [10350, 11000, 10350, 10930]}, {"x": "24/07/18", "y": [10930, 11380, 10840, 11070]}, {"x": "24/07/19", "y": [11000, 11140, 10520, 10550]}, {"x": "24/07/22", "y": [10520, 10770, 10380, 10600]}, {"x": "24/07/23", "y": [10650, 11000, 10600, 11000]}, {"x": "24/07/24", "y": [10910, 11270, 10850, 11090]}, {"x": "24/07/25", "y": [10930, 11260, 10760, 10950]}, {"x": "24/07/26", "y": [11190, 12280, 11100, 11870]}, {"x": "24/07/29", "y": [11990, 12120, 11690, 11830]}, {"x": "24/07/30", "y": [11760, 11920, 11470, 11630]}, {"x": "24/07/31", "y": [11600, 11990, 11570, 11710]}, {"x": "24/08/01", "y": [11630, 11890, 11520, 11680]}, {"x": "24/08/02", "y": [11510, 11670, 11140, 11300]}, {"x": "24/08/05", "y": [10960, 11000, 9540, 10050]}, {"x": "24/08/06", "y": [10580, 11090, 10300, 10710]}, {"x": "24/08/07", "y": [10780, 10890, 10530, 10590]}, {"x": "24/08/08", "y": [10480, 11020, 10340, 10920]}, {"x": "24/08/09", "y": [11060, 11300, 10920, 10940]}, {"x": "24/08/12", "y": [11010, 11280, 10840, 11130]}, {"x": "24/08/13", "y": [11050, 11180, 10720, 10760]}, {"x": "24/08/14", "y": [10850, 10880, 10560, 10740]}, {"x": "24/08/16", "y": [10920, 11190, 10780, 10820]}, {"x": "24/08/19", "y": [10820, 11080, 10720, 10800]}, {"x": "24/08/20", "y": [10900, 11280, 10760, 11240]}, {"x": "24/08/21", "y": [11160, 11390, 11040, 11140]}, {"x": "24/08/22", "y": [11150, 11190, 10490, 10680]}, {"x": "24/08/23", "y": [10620, 10690, 10510, 10560]}, {"x": "24/08/26", "y": [10560, 10590, 10130, 10150]}, {"x": "24/08/27", "y": [10190, 10390, 10070, 10280]}, {"x": "24/08/28", "y": [10320, 10520, 10230, 10290]}, {"x": "24/08/29", "y": [10250, 10320, 10130, 10150]}, {"x": "24/08/30", "y": [10260, 10500, 10210, 10490]}, {"x": "24/09/02", "y": [10500, 10510, 10130, 10170]}, {"x": "24/09/03", "y": [10190, 10300, 10130, 10280]}, {"x": "24/09/04", "y": [9960, 10150, 9870, 10000]}, {"x": "24/09/05", "y": [10070, 10100, 9670, 9820]}, {"x": "24/09/06", "y": [9820, 9910, 9530, 9610]}, {"x": "24/09/09", "y": [9330, 9830, 9330, 9820]}, {"x": "24/09/10", "y": [9850, 10090, 9720, 9970]}, {"x": "24/09/11", "y": [10090, 10140, 9720, 9810]}, {"x": "24/09/12", "y": [9910, 10040, 9690, 10040]}, {"x": "24/09/13", "y": [10010, 10340, 10000, 10340]}, {"x": "24/09/19", "y": [10410, 10540, 10280, 10500]}, {"x": "24/09/20", "y": [10650, 10750, 10510, 10630]}, {"x": "24/09/23", "y": [10680, 11000, 10620, 10920]}, {"x": "24/09/24", "y": [10920, 10970, 10680, 10970]}, {"x": "24/09/25", "y": [11070, 11160, 10760, 10790]}, {"x": "24/09/26", "y": [10790, 10910, 10740, 10860]}, {"x": "24/09/27", "y": [10820, 10870, 10160, 10180]}, {"x": "24/09/30", "y": [10150, 10250, 9990, 10030]}, {"x": "24/10/02", "y": [9900, 10240, 9900, 10050]}, {"x": "24/10/04", "y": [10070, 10150, 10010, 10040]}, {"x": "24/10/07", "y": [9970, 10020, 9670, 10010]}, {"x": "24/10/08", "y": [9900, 10040, 9840, 9860]}, {"x": "24/10/10", "y": [9980, 10310, 9910, 10180]}, {"x": "24/10/11", "y": [10210, 10220, 9840, 9870]}, {"x": "24/10/14", "y": [9870, 9940, 9840, 9880]}, {"x": "24/10/15", "y": [9940, 10270, 9930, 10230]}, {"x": "24/10/16", "y": [10160, 10200, 10020, 10060]}, {"x": "24/10/17", "y": [10090, 10290, 9980, 10250]}, {"x": "24/10/18", "y": [10290, 10290, 10010, 10050]}, {"x": "24/10/21", "y": [10050, 10060, 9950, 10000]}, {"x": "24/10/22", "y": [9960, 10040, 9850, 9990]}, {"x": "24/10/23", "y": [10000, 10270, 9870, 10140]}, {"x": "24/10/24", "y": [10120, 10180, 10000, 10050]}, {"x": "24/10/25", "y": [10150, 10310, 9870, 9900]}, {"x": "24/10/28", "y": [9950, 9960, 9690, 9720]}, {"x": "24/10/29", "y": [9710, 9780, 9640, 9750]}, {"x": "24/10/30", "y": [9740, 9750, 9570, 9590]}, {"x": "24/10/31", "y": [9600, 9680, 9420, 9590]}, {"x": "24/11/01", "y": [9490, 9550, 9330, 9470]}, {"x": "24/11/04", "y": [9470, 9630, 9450, 9540]}, {"x": "24/11/05", "y": [9480, 9710, 9480, 9620]}, {"x": "24/11/06", "y": [9670, 10010, 9520, 9920]}, {"x": "24/11/07", "y": [9970, 10980, 9970, 10830]}, {"x": "24/11/08", "y": [11020, 11210, 10680, 11010]}, {"x": "24/11/11", "y": [11140, 11940, 11010, 11820]}, {"x": "24/11/12", "y": [11840, 11920, 11450, 11580]}, {"x": "24/11/13", "y": [11600, 11650, 11050, 11230]}, {"x": "24/11/14", "y": [11400, 11850, 11320, 11720]}, {"x": "24/11/15", "y": [11750, 11900, 11550, 11890]}, {"x": "24/11/18", "y": [11740, 11890, 11410, 11690]}, {"x": "24/11/19", "y": [11740, 12200, 11550, 11750]}, {"x": "24/11/20", "y": [11680, 11960, 11510, 11900]}, {"x": "24/11/21", "y": [11920, 12030, 11680, 11810]}, {"x": "24/11/22", "y": [11900, 12090, 11730, 12030]}, {"x": "24/11/25", "y": [12100, 12290, 11880, 11910]}, {"x": "24/11/26", "y": [11940, 11970, 11560, 11820]}, {"x": "24/11/27", "y": [11820, 12180, 11810, 11900]}, {"x": "24/11/28", "y": [11900, 12150, 11730, 11840]}, {"x": "24/11/29", "y": [11830, 11840, 11500, 11620]}, {"x": "24/12/02", "y": [11650, 11700, 10810, 10920]}, {"x": "24/12/03", "y": [10960, 11280, 10950, 11110]}, {"x": "24/12/04", "y": [10810, 11160, 10600, 11050]}, {"x": "24/12/05", "y": [11000, 11250, 10800, 10870]}, {"x": "24/12/06", "y": [10870, 10900, 10370, 10630]}, {"x": "24/12/09", "y": [10300, 10390, 9950, 9990]}, {"x": "24/12/10", "y": [10110, 10530, 10040, 10410]}, {"x": "24/12/11", "y": [10410, 11150, 10340, 11100]}, {"x": "24/12/12", "y": [11110, 11200, 10970, 11100]}, {"x": "24/12/13", "y": [11100, 11420, 11070, 11350]}, {"x": "24/12/16", "y": [11440, 11450, 11070, 11230]}, {"x": "24/12/17", "y": [11180, 11300, 11030, 11070]}, {"x": "24/12/18", "y": [11100, 11500, 11050, 11290]}, {"x": "24/12/19", "y": [11000, 11420, 10830, 11290]}, {"x": "24/12/20", "y": [11350, 11390, 11090, 11180]}, {"x": "24/12/23", "y": [11330, 11570, 11230, 11490]}, {"x": "24/12/24", "y": [11550, 11700, 11330, 11360]}, {"x": "24/12/26", "y": [11410, 11790, 11410, 11600]}, {"x": "24/12/27", "y": [11600, 11640, 11270, 11310]}, {"x": "24/12/30", "y": [11250, 11450, 11180, 11300]}, {"x": "25/01/02", "y": [11260, 11700, 11220, 11500]}, {"x": "25/01/03", "y": [11540, 11750, 11310, 11410]}, {"x": "25/01/06", "y": [11430, 11470, 11230, 11420]}, {"x": "25/01/07", "y": [11540, 11830, 11530, 11830]}, {"x": "25/01/08", "y": [11880, 12020, 11760, 12010]}, {"x": "25/01/09", "y": [12000, 12100, 11820, 12030]}, {"x": "25/01/10", "y": [12000, 12350, 11720, 12250]}, {"x": "25/01/13", "y": [12300, 12310, 11650, 11700]}, {"x": "25/01/14", "y": [11760, 12140, 11760, 11850]}, {"x": "25/01/15", "y": [11920, 13350, 11860, 13000]}, {"x": "25/01/16", "y": [13010, 13350, 12850, 13350]}, {"x": "25/01/17", "y": [13370, 13670, 13120, 13540]}, {"x": "25/01/20", "y": [13590, 13590, 13130, 13490]}, {"x": "25/01/21", "y": [13580, 13860, 13530, 13670]}, {"x": "25/01/22", "y": [13670, 13810, 13230, 13300]}, {"x": "25/01/23", "y": [13300, 13340, 12700, 12730]}, {"x": "25/01/24", "y": [12790, 13080, 12700, 12910]}, {"x": "25/01/31", "y": [13000, 13270, 12900, 13010]}, {"x": "25/02/03", "y": [12800, 13080, 12750, 12940]}, {"x": "25/02/04", "y": [13100, 13450, 12950, 13350]}, {"x": "25/02/05", "y": [13540, 13630, 13100, 13400]}, {"x": "25/02/06", "y": [13100, 13340, 12770, 12950]}, {"x": "25/02/07", "y": [12910, 12930, 12630, 12770]}, {"x": "25/02/10", "y": [12710, 13190, 12520, 12590]}, {"x": "25/02/11", "y": [12690, 12890, 12470, 12700]}, {"x": "25/02/12", "y": [12720, 13490, 12720, 13460]}, {"x": "25/02/13", "y": [13600, 13690, 13190, 13410]}, {"x": "25/02/14", "y": [13440, 13440, 12620, 12710]}, {"x": "25/02/17", "y": [12720, 12920, 12620, 12710]}, {"x": "25/02/18", "y": [12830, 12980, 12770, 12930]}, {"x": "25/02/19", "y": [12950, 15220, 12870, 14730]}, {"x": "25/02/20", "y": [14680, 14680, 13500, 13590]}, {"x": "25/02/21", "y": [13290, 13570, 13150, 13370]}, {"x": "25/02/24", "y": [13450, 14400, 13080, 13910]}, {"x": "25/02/25", "y": [13970, 15190, 13720, 15050]}, {"x": "25/02/26", "y": [15390, 15620, 14740, 14950]}, {"x": "25/02/27", "y": [14920, 15100, 14450, 15020]}, {"x": "25/02/28", "y": [14720, 15000, 13950, 13950]}, {"x": "25/03/04", "y": [14120, 14760, 14030, 14240]}, {"x": "25/03/05", "y": [14400, 15150, 14000, 15000]}, {"x": "25/03/06", "y": [14990, 15265, 14660, 14940]}, {"x": "25/03/07", "y": [14740, 15090, 14580, 14860]}, {"x": "25/03/10", "y": [15010, 15040, 14240, 14530]}, {"x": "25/03/11", "y": [14000, 14280, 13770, 14220]}, {"x": "25/03/12", "y": [14740, 15490, 14220, 14360]}, {"x": "25/03/13", "y": [14550, 14850, 14050, 14080]}, {"x": "25/03/14", "y": [14160, 14430, 14090, 14320]}, {"x": "25/03/17", "y": [14430, 15140, 14260, 14790]}, {"x": "25/03/18", "y": [14970, 15450, 14860, 15440]}, {"x": "25/03/19", "y": [15480, 15840, 15120, 15210]}, {"x": "25/03/20", "y": [15330, 15330, 14530, 14540]}, {"x": "25/03/21", "y": [14450, 14690, 14140, 14580]}, {"x": "25/03/24", "y": [14600, 14740, 14480, 14670]}, {"x": "25/03/25", "y": [14650, 14740, 13960, 14000]}, {"x": "25/03/26", "y": [13910, 14190, 13850, 14070]}, {"x": "25/03/27", "y": [14390, 14400, 13720, 13770]}, {"x": "25/03/28", "y": [13760, 13950, 13560, 13830]}, {"x": "25/03/31", "y": [13460, 13810, 13270, 13480]}, {"x": "25/04/01", "y": [13710, 14100, 13690, 14050]}, {"x": "25/04/02", "y": [14110, 14160, 13800, 13880]}, {"x": "25/04/03", "y": [13600, 14030, 13550, 14010]}, {"x": "25/04/04", "y": [13790, 14230, 13380, 13720]}, {"x": "25/04/07", "y": [13170, 13180, 12650, 12720]}, {"x": "25/04/08", "y": [13040, 13350, 12780, 13220]}, {"x": "25/04/09", "y": [13530, 13610, 12930, 13040]}, {"x": "25/04/10", "y": [13790, 13990, 13540, 13950]}, {"x": "25/04/11", "y": [14150, 14520, 14090, 14500]}, {"x": "25/04/14", "y": [14810, 14820, 14370, 14450]}, {"x": "25/04/15", "y": [14550, 14620, 14400, 14540]}, {"x": "25/04/16", "y": [14550, 14830, 14370, 14490]}, {"x": "25/04/17", "y": [14570, 14900, 14560, 14900]}, {"x": "25/04/18", "y": [15010, 15150, 14370, 14520]}, {"x": "25/04/21", "y": [14520, 14530, 13920, 13990]}, {"x": "25/04/22", "y": [13840, 14180, 13840, 14100]}, {"x": "25/04/23", "y": [14210, 14330, 14070, 14300]}, {"x": "25/04/24", "y": [14310, 14600, 14020, 14590]}, {"x": "25/04/25", "y": [14500, 14900, 14270, 14720]}, {"x": "25/04/28", "y": [14980, 15720, 14800, 15150]}, {"x": "25/04/29", "y": [15150, 15150, 14640, 14970]}, {"x": "25/04/30", "y": [15000, 15060, 14400, 14570]}, {"x": "25/05/02", "y": [14510, 14790, 14510, 14610]}, {"x": "25/05/07", "y": [14880, 14980, 14730, 14880]}, {"x": "25/05/08", "y": [14860, 14880, 14700, 14730]}, {"x": "25/05/09", "y": [14760, 15020, 14660, 14840]}, {"x": "25/05/12", "y": [14970, 15180, 14400, 14500]}, {"x": "25/05/13", "y": [14300, 14490, 14150, 14260]}, {"x": "25/05/14", "y": [14340, 14690, 14320, 14590]}, {"x": "25/05/15", "y": [14540, 14580, 14240, 14420]}, {"x": "25/05/16", "y": [14460, 14720, 14430, 14550]}, {"x": "25/05/19", "y": [14410, 14590, 14180, 14300]}, {"x": "25/05/20", "y": [14400, 14450, 14030, 14190]}, {"x": "25/05/21", "y": [14250, 14970, 14250, 14890]}, {"x": "25/05/22", "y": [14740, 14760, 14490, 14500]}, {"x": "25/05/23", "y": [14550, 14580, 14310, 14430]}, {"x": "25/05/26", "y": [14430, 15120, 14370, 15100]}, {"x": "25/05/27", "y": [15400, 16380, 15350, 16350]}, {"x": "25/05/28", "y": [16540, 16600, 15590, 15670]}, {"x": "25/05/29", "y": [15890, 16330, 15620, 16140]}, {"x": "25/05/30", "y": [16420, 17080, 16290, 16900]}, {"x": "25/06/02", "y": [17060, 17290, 16460, 16790]}, {"x": "25/06/04", "y": [16940, 16940, 16100, 16880]}, {"x": "25/06/05", "y": [16950, 17160, 16620, 16750]}, {"x": "25/06/09", "y": [16760, 16930, 16310, 16650]}, {"x": "25/06/10", "y": [16690, 17250, 16650, 17250]}, {"x": "25/06/11", "y": [17520, 17520, 16890, 17320]}, {"x": "25/06/12", "y": [17270, 17930, 17270, 17580]}, {"x": "25/06/13", "y": [17700, 17930, 17390, 17690]}, {"x": "25/06/16", "y": [17630, 18090, 17500, 18070]}, {"x": "25/06/17", "y": [18200, 18550, 17570, 17870]}]
+            }],
+            chart: {
+                type: 'candlestick',
+                height: 400,
+                id: 'candlestick-chart',
+                toolbar: {
+                    show: false  // 읽기 전용: 툴바 완전 제거
+                },
+                zoom: {
+                    enabled: false  // 읽기 전용: 줌 기능 비활성화
+                },
+                pan: {
+                    enabled: false  // 읽기 전용: 팬 기능 비활성화
+                },
+                selection: {
+                    enabled: false  // 읽기 전용: 선택 기능 비활성화
+                }
+            },
+            title: {
+                text: '삼성중공업',
+                align: 'left',
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 'bold'
+                }
+            },
+            subtitle: {
+                text: '실제 차트 데이터 (실제 365일 데이터)',
+                align: 'left',
+                style: {
+                    fontSize: '12px',
+                    color: '#666'
+                }
+            },
+            xaxis: {
+                type: 'category',  // 🔥 주말 공백 제거
+                tickAmount: 6,     // 🔥 한 달 단위로 약 6개 라벨 표시 (252일 ÷ 42일 ≈ 6개월)
+                labels: {
+                    show: true,
+                    rotate: -45,
+                    trim: true,      // 🔥 라벨 자동 트림
+                    style: {
+                        fontSize: '11px',
+                        fontWeight: 500,
+                        colors: '#333'
+                    },
+                    offsetY: 5,      // 🔥 라벨 위치 약간 아래로
+                    formatter: function(value) {
+                        // YY/MM/DD → MM/DD로 간소화 표시 (고유성은 데이터에서 보장)
+                        if (value && typeof value === 'string' && value.includes('/')) {
+                            const parts = value.split('/');
+                            if (parts.length === 3) {
+                                return parts[1] + '/' + parts[2];  // MM/DD만 표시
+                            }
+                        }
+                        return value;
+                    }
+                },
+                axisBorder: {
+                    show: true,
+                    color: '#d1d5db',
+                    height: 1
+                },
+                axisTicks: {
+                    show: false      // 🔥 tick 표시 제거로 깔끔하게
+                }
+            },
+            yaxis: {
+                tooltip: {
+                    enabled: true
+                },
+                labels: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + '원';
+                    }
+                }
+            },
+            plotOptions: {
+                candlestick: {
+                    colors: {
+                        upward: '#e74c3c',    // 상승 캔들 - 빨강
+                        downward: '#3498db'   // 하락 캔들 - 파랑
+                    },
+                    wick: {
+                        useFillColor: true
+                    }
+                }
+            },
+            tooltip: {
+                shared: false,
+                y: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + '원';
+                    }
+                }
+            }
+        };
+        
+        // 거래량 차트 옵션 (캔들 색상 연동, 실제 데이터)
+        var volumeOptions = {
+            series: [{
+                name: '거래량',
+                data: [{"x": "23/12/12", "y": 3059922, "fillColor": "#e74c3c"}, {"x": "23/12/13", "y": 2561723, "fillColor": "#3498db"}, {"x": "23/12/14", "y": 5474450, "fillColor": "#e74c3c"}, {"x": "23/12/15", "y": 3302420, "fillColor": "#3498db"}, {"x": "23/12/18", "y": 13795074, "fillColor": "#3498db"}, {"x": "23/12/19", "y": 4267795, "fillColor": "#e74c3c"}, {"x": "23/12/20", "y": 4478228, "fillColor": "#e74c3c"}, {"x": "23/12/21", "y": 4074312, "fillColor": "#3498db"}, {"x": "23/12/22", "y": 2773099, "fillColor": "#3498db"}, {"x": "23/12/26", "y": 2944403, "fillColor": "#3498db"}, {"x": "23/12/27", "y": 2453245, "fillColor": "#e74c3c"}, {"x": "23/12/28", "y": 3766471, "fillColor": "#e74c3c"}, {"x": "24/01/02", "y": 4594878, "fillColor": "#e74c3c"}, {"x": "24/01/03", "y": 6337057, "fillColor": "#3498db"}, {"x": "24/01/04", "y": 3136144, "fillColor": "#e74c3c"}, {"x": "24/01/05", "y": 2745258, "fillColor": "#3498db"}, {"x": "24/01/08", "y": 2752286, "fillColor": "#e74c3c"}, {"x": "24/01/09", "y": 4528971, "fillColor": "#3498db"}, {"x": "24/01/10", "y": 2392360, "fillColor": "#e74c3c"}, {"x": "24/01/11", "y": 4102374, "fillColor": "#3498db"}, {"x": "24/01/12", "y": 2226813, "fillColor": "#3498db"}, {"x": "24/01/15", "y": 2481415, "fillColor": "#e74c3c"}, {"x": "24/01/16", "y": 2536646, "fillColor": "#3498db"}, {"x": "24/01/17", "y": 3169094, "fillColor": "#3498db"}, {"x": "24/01/18", "y": 3068901, "fillColor": "#e74c3c"}, {"x": "24/01/19", "y": 5707748, "fillColor": "#e74c3c"}, {"x": "24/01/22", "y": 3772267, "fillColor": "#3498db"}, {"x": "24/01/23", "y": 3413165, "fillColor": "#3498db"}, {"x": "24/01/24", "y": 2441274, "fillColor": "#3498db"}, {"x": "24/01/25", "y": 2831283, "fillColor": "#e74c3c"}, {"x": "24/01/26", "y": 2813289, "fillColor": "#e74c3c"}, {"x": "24/01/29", "y": 2675457, "fillColor": "#3498db"}, {"x": "24/01/30", "y": 5291606, "fillColor": "#3498db"}, {"x": "24/01/31", "y": 3169802, "fillColor": "#e74c3c"}, {"x": "24/02/01", "y": 6361978, "fillColor": "#3498db"}, {"x": "24/02/02", "y": 3350285, "fillColor": "#e74c3c"}, {"x": "24/02/05", "y": 3876258, "fillColor": "#3498db"}, {"x": "24/02/06", "y": 3994954, "fillColor": "#e74c3c"}, {"x": "24/02/07", "y": 3371881, "fillColor": "#3498db"}, {"x": "24/02/08", "y": 4532219, "fillColor": "#3498db"}, {"x": "24/02/13", "y": 3291800, "fillColor": "#3498db"}, {"x": "24/02/14", "y": 3142516, "fillColor": "#3498db"}, {"x": "24/02/15", "y": 3624766, "fillColor": "#3498db"}, {"x": "24/02/16", "y": 2920733, "fillColor": "#e74c3c"}, {"x": "24/02/19", "y": 3467107, "fillColor": "#e74c3c"}, {"x": "24/02/20", "y": 2889239, "fillColor": "#3498db"}, {"x": "24/02/21", "y": 6155285, "fillColor": "#e74c3c"}, {"x": "24/02/22", "y": 4030870, "fillColor": "#3498db"}, {"x": "24/02/23", "y": 3004398, "fillColor": "#3498db"}, {"x": "24/02/26", "y": 3175821, "fillColor": "#3498db"}, {"x": "24/02/27", "y": 8177518, "fillColor": "#e74c3c"}, {"x": "24/02/28", "y": 12939422, "fillColor": "#e74c3c"}, {"x": "24/02/29", "y": 7120792, "fillColor": "#3498db"}, {"x": "24/03/04", "y": 7482701, "fillColor": "#3498db"}, {"x": "24/03/05", "y": 4246385, "fillColor": "#e74c3c"}, {"x": "24/03/06", "y": 3577807, "fillColor": "#e74c3c"}, {"x": "24/03/07", "y": 2848412, "fillColor": "#3498db"}, {"x": "24/03/08", "y": 4450867, "fillColor": "#3498db"}, {"x": "24/03/11", "y": 8881871, "fillColor": "#e74c3c"}, {"x": "24/03/12", "y": 6234864, "fillColor": "#e74c3c"}, {"x": "24/03/13", "y": 4729816, "fillColor": "#3498db"}, {"x": "24/03/14", "y": 59570843, "fillColor": "#e74c3c"}, {"x": "24/03/15", "y": 30802039, "fillColor": "#3498db"}, {"x": "24/03/18", "y": 13726975, "fillColor": "#3498db"}, {"x": "24/03/19", "y": 12559934, "fillColor": "#3498db"}, {"x": "24/03/20", "y": 8707754, "fillColor": "#e74c3c"}, {"x": "24/03/21", "y": 7200530, "fillColor": "#3498db"}, {"x": "24/03/22", "y": 10896492, "fillColor": "#e74c3c"}, {"x": "24/03/25", "y": 5580533, "fillColor": "#3498db"}, {"x": "24/03/26", "y": 6500262, "fillColor": "#e74c3c"}, {"x": "24/03/27", "y": 9932109, "fillColor": "#3498db"}, {"x": "24/03/28", "y": 5105794, "fillColor": "#3498db"}, {"x": "24/03/29", "y": 4174667, "fillColor": "#3498db"}, {"x": "24/04/01", "y": 4061087, "fillColor": "#3498db"}, {"x": "24/04/02", "y": 8074707, "fillColor": "#e74c3c"}, {"x": "24/04/03", "y": 7778210, "fillColor": "#e74c3c"}, {"x": "24/04/04", "y": 4825682, "fillColor": "#3498db"}, {"x": "24/04/05", "y": 3646034, "fillColor": "#e74c3c"}, {"x": "24/04/08", "y": 3865767, "fillColor": "#3498db"}, {"x": "24/04/09", "y": 6603342, "fillColor": "#e74c3c"}, {"x": "24/04/11", "y": 4276806, "fillColor": "#3498db"}, {"x": "24/04/12", "y": 10316966, "fillColor": "#e74c3c"}, {"x": "24/04/15", "y": 10496539, "fillColor": "#e74c3c"}, {"x": "24/04/16", "y": 7803410, "fillColor": "#3498db"}, {"x": "24/04/17", "y": 5218845, "fillColor": "#3498db"}, {"x": "24/04/18", "y": 39373854, "fillColor": "#e74c3c"}, {"x": "24/04/19", "y": 23296284, "fillColor": "#e74c3c"}, {"x": "24/04/22", "y": 22306091, "fillColor": "#3498db"}, {"x": "24/04/23", "y": 18586575, "fillColor": "#e74c3c"}, {"x": "24/04/24", "y": 14348406, "fillColor": "#3498db"}, {"x": "24/04/25", "y": 8137494, "fillColor": "#3498db"}, {"x": "24/04/26", "y": 17468877, "fillColor": "#e74c3c"}, {"x": "24/04/29", "y": 12204336, "fillColor": "#3498db"}, {"x": "24/04/30", "y": 9872037, "fillColor": "#3498db"}, {"x": "24/05/02", "y": 5154284, "fillColor": "#e74c3c"}, {"x": "24/05/03", "y": 4495093, "fillColor": "#3498db"}, {"x": "24/05/07", "y": 7176086, "fillColor": "#e74c3c"}, {"x": "24/05/08", "y": 8024055, "fillColor": "#e74c3c"}, {"x": "24/05/09", "y": 13759085, "fillColor": "#e74c3c"}, {"x": "24/05/10", "y": 8943032, "fillColor": "#3498db"}, {"x": "24/05/13", "y": 15617471, "fillColor": "#e74c3c"}, {"x": "24/05/14", "y": 7191374, "fillColor": "#3498db"}, {"x": "24/05/16", "y": 7611123, "fillColor": "#3498db"}, {"x": "24/05/17", "y": 8373818, "fillColor": "#3498db"}, {"x": "24/05/20", "y": 5878775, "fillColor": "#3498db"}, {"x": "24/05/21", "y": 4443642, "fillColor": "#3498db"}, {"x": "24/05/22", "y": 10965643, "fillColor": "#3498db"}, {"x": "24/05/23", "y": 5126388, "fillColor": "#e74c3c"}, {"x": "24/05/24", "y": 5020993, "fillColor": "#e74c3c"}, {"x": "24/05/27", "y": 3579749, "fillColor": "#3498db"}, {"x": "24/05/28", "y": 3041833, "fillColor": "#3498db"}, {"x": "24/05/29", "y": 3530764, "fillColor": "#3498db"}, {"x": "24/05/30", "y": 4522692, "fillColor": "#3498db"}, {"x": "24/05/31", "y": 6263725, "fillColor": "#3498db"}, {"x": "24/06/03", "y": 17818481, "fillColor": "#e74c3c"}, {"x": "24/06/04", "y": 8245620, "fillColor": "#3498db"}, {"x": "24/06/05", "y": 4979588, "fillColor": "#3498db"}, {"x": "24/06/07", "y": 4792938, "fillColor": "#e74c3c"}, {"x": "24/06/10", "y": 2704465, "fillColor": "#e74c3c"}, {"x": "24/06/11", "y": 4569574, "fillColor": "#3498db"}, {"x": "24/06/12", "y": 6272659, "fillColor": "#3498db"}, {"x": "24/06/13", "y": 12078697, "fillColor": "#e74c3c"}, {"x": "24/06/14", "y": 6984197, "fillColor": "#e74c3c"}, {"x": "24/06/17", "y": 4236357, "fillColor": "#3498db"}, {"x": "24/06/18", "y": 2922469, "fillColor": "#3498db"}, {"x": "24/06/19", "y": 5006873, "fillColor": "#e74c3c"}, {"x": "24/06/20", "y": 3859998, "fillColor": "#3498db"}, {"x": "24/06/21", "y": 6598905, "fillColor": "#3498db"}, {"x": "24/06/24", "y": 6017203, "fillColor": "#e74c3c"}, {"x": "24/06/25", "y": 17773640, "fillColor": "#e74c3c"}, {"x": "24/06/26", "y": 7311052, "fillColor": "#e74c3c"}, {"x": "24/06/27", "y": 4886765, "fillColor": "#e74c3c"}, {"x": "24/06/28", "y": 4799314, "fillColor": "#3498db"}, {"x": "24/07/01", "y": 11996745, "fillColor": "#e74c3c"}, {"x": "24/07/02", "y": 5270315, "fillColor": "#3498db"}, {"x": "24/07/03", "y": 5577928, "fillColor": "#3498db"}, {"x": "24/07/04", "y": 3899629, "fillColor": "#e74c3c"}, {"x": "24/07/05", "y": 4624967, "fillColor": "#3498db"}, {"x": "24/07/08", "y": 6538033, "fillColor": "#e74c3c"}, {"x": "24/07/09", "y": 3289800, "fillColor": "#3498db"}, {"x": "24/07/10", "y": 6564407, "fillColor": "#e74c3c"}, {"x": "24/07/11", "y": 3657611, "fillColor": "#3498db"}, {"x": "24/07/12", "y": 3775805, "fillColor": "#e74c3c"}, {"x": "24/07/15", "y": 6635356, "fillColor": "#3498db"}, {"x": "24/07/16", "y": 11737001, "fillColor": "#e74c3c"}, {"x": "24/07/17", "y": 29719406, "fillColor": "#e74c3c"}, {"x": "24/07/18", "y": 23326291, "fillColor": "#e74c3c"}, {"x": "24/07/19", "y": 9464533, "fillColor": "#3498db"}, {"x": "24/07/22", "y": 8304476, "fillColor": "#e74c3c"}, {"x": "24/07/23", "y": 9626178, "fillColor": "#e74c3c"}, {"x": "24/07/24", "y": 7271938, "fillColor": "#e74c3c"}, {"x": "24/07/25", "y": 11020100, "fillColor": "#e74c3c"}, {"x": "24/07/26", "y": 42712575, "fillColor": "#e74c3c"}, {"x": "24/07/29", "y": 11072238, "fillColor": "#3498db"}, {"x": "24/07/30", "y": 7768630, "fillColor": "#3498db"}, {"x": "24/07/31", "y": 9325409, "fillColor": "#e74c3c"}, {"x": "24/08/01", "y": 5812145, "fillColor": "#e74c3c"}, {"x": "24/08/02", "y": 9157050, "fillColor": "#3498db"}, {"x": "24/08/05", "y": 19668979, "fillColor": "#3498db"}, {"x": "24/08/06", "y": 17582157, "fillColor": "#e74c3c"}, {"x": "24/08/07", "y": 8283852, "fillColor": "#3498db"}, {"x": "24/08/08", "y": 9056376, "fillColor": "#e74c3c"}, {"x": "24/08/09", "y": 6466610, "fillColor": "#3498db"}, {"x": "24/08/12", "y": 5431821, "fillColor": "#e74c3c"}, {"x": "24/08/13", "y": 5350939, "fillColor": "#3498db"}, {"x": "24/08/14", "y": 5102175, "fillColor": "#3498db"}, {"x": "24/08/16", "y": 7671575, "fillColor": "#3498db"}, {"x": "24/08/19", "y": 4663765, "fillColor": "#3498db"}, {"x": "24/08/20", "y": 6740085, "fillColor": "#e74c3c"}, {"x": "24/08/21", "y": 4647832, "fillColor": "#3498db"}, {"x": "24/08/22", "y": 8310968, "fillColor": "#3498db"}, {"x": "24/08/23", "y": 3759018, "fillColor": "#3498db"}, {"x": "24/08/26", "y": 7180809, "fillColor": "#3498db"}, {"x": "24/08/27", "y": 4659883, "fillColor": "#e74c3c"}, {"x": "24/08/28", "y": 4389872, "fillColor": "#3498db"}, {"x": "24/08/29", "y": 2849714, "fillColor": "#3498db"}, {"x": "24/08/30", "y": 5664621, "fillColor": "#e74c3c"}, {"x": "24/09/02", "y": 4074018, "fillColor": "#3498db"}, {"x": "24/09/03", "y": 2960846, "fillColor": "#e74c3c"}, {"x": "24/09/04", "y": 5685023, "fillColor": "#e74c3c"}, {"x": "24/09/05", "y": 5636071, "fillColor": "#3498db"}, {"x": "24/09/06", "y": 5048487, "fillColor": "#3498db"}, {"x": "24/09/09", "y": 3393854, "fillColor": "#e74c3c"}, {"x": "24/09/10", "y": 3851491, "fillColor": "#e74c3c"}, {"x": "24/09/11", "y": 3478833, "fillColor": "#3498db"}, {"x": "24/09/12", "y": 3421771, "fillColor": "#e74c3c"}, {"x": "24/09/13", "y": 4359126, "fillColor": "#e74c3c"}, {"x": "24/09/19", "y": 4989167, "fillColor": "#e74c3c"}, {"x": "24/09/20", "y": 5826366, "fillColor": "#3498db"}, {"x": "24/09/23", "y": 7301358, "fillColor": "#e74c3c"}, {"x": "24/09/24", "y": 3841200, "fillColor": "#e74c3c"}, {"x": "24/09/25", "y": 4460871, "fillColor": "#3498db"}, {"x": "24/09/26", "y": 2676366, "fillColor": "#e74c3c"}, {"x": "24/09/27", "y": 9129264, "fillColor": "#3498db"}, {"x": "24/09/30", "y": 5152225, "fillColor": "#3498db"}, {"x": "24/10/02", "y": 3705826, "fillColor": "#e74c3c"}, {"x": "24/10/04", "y": 2816110, "fillColor": "#3498db"}, {"x": "24/10/07", "y": 5788466, "fillColor": "#e74c3c"}, {"x": "24/10/08", "y": 3544229, "fillColor": "#3498db"}, {"x": "24/10/10", "y": 5735546, "fillColor": "#e74c3c"}, {"x": "24/10/11", "y": 4212463, "fillColor": "#3498db"}, {"x": "24/10/14", "y": 2323172, "fillColor": "#e74c3c"}, {"x": "24/10/15", "y": 4932381, "fillColor": "#e74c3c"}, {"x": "24/10/16", "y": 2404247, "fillColor": "#3498db"}, {"x": "24/10/17", "y": 3246049, "fillColor": "#e74c3c"}, {"x": "24/10/18", "y": 2737975, "fillColor": "#3498db"}, {"x": "24/10/21", "y": 1880924, "fillColor": "#3498db"}, {"x": "24/10/22", "y": 2443596, "fillColor": "#e74c3c"}, {"x": "24/10/23", "y": 3920243, "fillColor": "#e74c3c"}, {"x": "24/10/24", "y": 2488059, "fillColor": "#3498db"}, {"x": "24/10/25", "y": 4728500, "fillColor": "#3498db"}, {"x": "24/10/28", "y": 4047598, "fillColor": "#3498db"}, {"x": "24/10/29", "y": 2735915, "fillColor": "#e74c3c"}, {"x": "24/10/30", "y": 2794366, "fillColor": "#3498db"}, {"x": "24/10/31", "y": 3789608, "fillColor": "#3498db"}, {"x": "24/11/01", "y": 2900544, "fillColor": "#3498db"}, {"x": "24/11/04", "y": 2213090, "fillColor": "#e74c3c"}, {"x": "24/11/05", "y": 2290598, "fillColor": "#e74c3c"}, {"x": "24/11/06", "y": 4675227, "fillColor": "#e74c3c"}, {"x": "24/11/07", "y": 24408089, "fillColor": "#e74c3c"}, {"x": "24/11/08", "y": 11381616, "fillColor": "#3498db"}, {"x": "24/11/11", "y": 24976740, "fillColor": "#e74c3c"}, {"x": "24/11/12", "y": 11702210, "fillColor": "#3498db"}, {"x": "24/11/13", "y": 9143856, "fillColor": "#3498db"}, {"x": "24/11/14", "y": 10977097, "fillColor": "#e74c3c"}, {"x": "24/11/15", "y": 8290149, "fillColor": "#e74c3c"}, {"x": "24/11/18", "y": 7581885, "fillColor": "#3498db"}, {"x": "24/11/19", "y": 11393023, "fillColor": "#e74c3c"}, {"x": "24/11/20", "y": 6592223, "fillColor": "#e74c3c"}, {"x": "24/11/21", "y": 4626802, "fillColor": "#3498db"}, {"x": "24/11/22", "y": 7082726, "fillColor": "#e74c3c"}, {"x": "24/11/25", "y": 11034315, "fillColor": "#3498db"}, {"x": "24/11/26", "y": 5361586, "fillColor": "#3498db"}, {"x": "24/11/27", "y": 6590705, "fillColor": "#e74c3c"}, {"x": "24/11/28", "y": 4034644, "fillColor": "#3498db"}, {"x": "24/11/29", "y": 5097128, "fillColor": "#3498db"}, {"x": "24/12/02", "y": 9914596, "fillColor": "#3498db"}, {"x": "24/12/03", "y": 4220808, "fillColor": "#e74c3c"}, {"x": "24/12/04", "y": 6956808, "fillColor": "#e74c3c"}, {"x": "24/12/05", "y": 3038570, "fillColor": "#3498db"}, {"x": "24/12/06", "y": 5739815, "fillColor": "#3498db"}, {"x": "24/12/09", "y": 9173616, "fillColor": "#3498db"}, {"x": "24/12/10", "y": 6239095, "fillColor": "#e74c3c"}, {"x": "24/12/11", "y": 6806428, "fillColor": "#e74c3c"}, {"x": "24/12/12", "y": 5740090, "fillColor": "#3498db"}, {"x": "24/12/13", "y": 4939835, "fillColor": "#e74c3c"}, {"x": "24/12/16", "y": 4311246, "fillColor": "#3498db"}, {"x": "24/12/17", "y": 2719917, "fillColor": "#3498db"}, {"x": "24/12/18", "y": 4780098, "fillColor": "#e74c3c"}, {"x": "24/12/19", "y": 4425104, "fillColor": "#e74c3c"}, {"x": "24/12/20", "y": 4154553, "fillColor": "#3498db"}, {"x": "24/12/23", "y": 6192894, "fillColor": "#e74c3c"}, {"x": "24/12/24", "y": 3839366, "fillColor": "#3498db"}, {"x": "24/12/26", "y": 7560053, "fillColor": "#e74c3c"}, {"x": "24/12/27", "y": 4341149, "fillColor": "#3498db"}, {"x": "24/12/30", "y": 3362236, "fillColor": "#e74c3c"}, {"x": "25/01/02", "y": 4162726, "fillColor": "#e74c3c"}, {"x": "25/01/03", "y": 4752240, "fillColor": "#3498db"}, {"x": "25/01/06", "y": 3183728, "fillColor": "#3498db"}, {"x": "25/01/07", "y": 8709620, "fillColor": "#e74c3c"}, {"x": "25/01/08", "y": 6610982, "fillColor": "#e74c3c"}, {"x": "25/01/09", "y": 6214840, "fillColor": "#e74c3c"}, {"x": "25/01/10", "y": 8987670, "fillColor": "#e74c3c"}, {"x": "25/01/13", "y": 10710382, "fillColor": "#3498db"}, {"x": "25/01/14", "y": 8239384, "fillColor": "#e74c3c"}, {"x": "25/01/15", "y": 39256225, "fillColor": "#e74c3c"}, {"x": "25/01/16", "y": 18099325, "fillColor": "#e74c3c"}, {"x": "25/01/17", "y": 12233920, "fillColor": "#e74c3c"}, {"x": "25/01/20", "y": 10569926, "fillColor": "#3498db"}, {"x": "25/01/21", "y": 14222288, "fillColor": "#e74c3c"}, {"x": "25/01/22", "y": 10818247, "fillColor": "#3498db"}, {"x": "25/01/23", "y": 12660592, "fillColor": "#3498db"}, {"x": "25/01/24", "y": 7043782, "fillColor": "#e74c3c"}, {"x": "25/01/31", "y": 7145165, "fillColor": "#e74c3c"}, {"x": "25/02/03", "y": 5261381, "fillColor": "#e74c3c"}, {"x": "25/02/04", "y": 9177720, "fillColor": "#e74c3c"}, {"x": "25/02/05", "y": 9529635, "fillColor": "#3498db"}, {"x": "25/02/06", "y": 16568228, "fillColor": "#3498db"}, {"x": "25/02/07", "y": 6918096, "fillColor": "#3498db"}, {"x": "25/02/10", "y": 9259813, "fillColor": "#3498db"}, {"x": "25/02/11", "y": 7522540, "fillColor": "#e74c3c"}, {"x": "25/02/12", "y": 18472865, "fillColor": "#e74c3c"}, {"x": "25/02/13", "y": 13407597, "fillColor": "#3498db"}, {"x": "25/02/14", "y": 15311815, "fillColor": "#3498db"}, {"x": "25/02/17", "y": 7181439, "fillColor": "#3498db"}, {"x": "25/02/18", "y": 10215821, "fillColor": "#e74c3c"}, {"x": "25/02/19", "y": 70378157, "fillColor": "#e74c3c"}, {"x": "25/02/20", "y": 31385870, "fillColor": "#3498db"}, {"x": "25/02/21", "y": 13079911, "fillColor": "#e74c3c"}, {"x": "25/02/24", "y": 37276349, "fillColor": "#e74c3c"}, {"x": "25/02/25", "y": 47508639, "fillColor": "#e74c3c"}, {"x": "25/02/26", "y": 27033764, "fillColor": "#3498db"}, {"x": "25/02/27", "y": 14547065, "fillColor": "#e74c3c"}, {"x": "25/02/28", "y": 21347885, "fillColor": "#3498db"}, {"x": "25/03/04", "y": 21833027, "fillColor": "#e74c3c"}, {"x": "25/03/05", "y": 33447308, "fillColor": "#e74c3c"}, {"x": "25/03/06", "y": 16372769, "fillColor": "#3498db"}, {"x": "25/03/07", "y": 11696479, "fillColor": "#e74c3c"}, {"x": "25/03/10", "y": 12163860, "fillColor": "#3498db"}, {"x": "25/03/11", "y": 13593507, "fillColor": "#e74c3c"}, {"x": "25/03/12", "y": 49016196, "fillColor": "#3498db"}, {"x": "25/03/13", "y": 19036020, "fillColor": "#3498db"}, {"x": "25/03/14", "y": 8537547, "fillColor": "#e74c3c"}, {"x": "25/03/17", "y": 20321168, "fillColor": "#e74c3c"}, {"x": "25/03/18", "y": 26324577, "fillColor": "#e74c3c"}, {"x": "25/03/19", "y": 17296217, "fillColor": "#3498db"}, {"x": "25/03/20", "y": 14987688, "fillColor": "#3498db"}, {"x": "25/03/21", "y": 10733577, "fillColor": "#e74c3c"}, {"x": "25/03/24", "y": 4698983, "fillColor": "#e74c3c"}, {"x": "25/03/25", "y": 8624345, "fillColor": "#3498db"}, {"x": "25/03/26", "y": 5526680, "fillColor": "#e74c3c"}, {"x": "25/03/27", "y": 8427365, "fillColor": "#3498db"}, {"x": "25/03/28", "y": 5394036, "fillColor": "#e74c3c"}, {"x": "25/03/31", "y": 6953048, "fillColor": "#e74c3c"}, {"x": "25/04/01", "y": 5701503, "fillColor": "#e74c3c"}, {"x": "25/04/02", "y": 4760760, "fillColor": "#3498db"}, {"x": "25/04/03", "y": 6798766, "fillColor": "#e74c3c"}, {"x": "25/04/04", "y": 9496140, "fillColor": "#3498db"}, {"x": "25/04/07", "y": 7764209, "fillColor": "#3498db"}, {"x": "25/04/08", "y": 7087137, "fillColor": "#e74c3c"}, {"x": "25/04/09", "y": 7249419, "fillColor": "#3498db"}, {"x": "25/04/10", "y": 8268063, "fillColor": "#e74c3c"}, {"x": "25/04/11", "y": 10701486, "fillColor": "#e74c3c"}, {"x": "25/04/14", "y": 6055197, "fillColor": "#3498db"}, {"x": "25/04/15", "y": 4038501, "fillColor": "#3498db"}, {"x": "25/04/16", "y": 5931178, "fillColor": "#3498db"}, {"x": "25/04/17", "y": 6465940, "fillColor": "#e74c3c"}, {"x": "25/04/18", "y": 7886520, "fillColor": "#3498db"}, {"x": "25/04/21", "y": 9035695, "fillColor": "#3498db"}, {"x": "25/04/22", "y": 4738010, "fillColor": "#e74c3c"}, {"x": "25/04/23", "y": 3820358, "fillColor": "#e74c3c"}, {"x": "25/04/24", "y": 6597321, "fillColor": "#e74c3c"}, {"x": "25/04/25", "y": 14117412, "fillColor": "#e74c3c"}, {"x": "25/04/28", "y": 24860498, "fillColor": "#e74c3c"}, {"x": "25/04/29", "y": 8316655, "fillColor": "#3498db"}, {"x": "25/04/30", "y": 7953329, "fillColor": "#3498db"}, {"x": "25/05/02", "y": 3540289, "fillColor": "#e74c3c"}, {"x": "25/05/07", "y": 4638207, "fillColor": "#e74c3c"}, {"x": "25/05/08", "y": 4469905, "fillColor": "#3498db"}, {"x": "25/05/09", "y": 4173954, "fillColor": "#e74c3c"}, {"x": "25/05/12", "y": 8029437, "fillColor": "#3498db"}, {"x": "25/05/13", "y": 6038035, "fillColor": "#3498db"}, {"x": "25/05/14", "y": 5736590, "fillColor": "#e74c3c"}, {"x": "25/05/15", "y": 4579454, "fillColor": "#3498db"}, {"x": "25/05/16", "y": 4091070, "fillColor": "#e74c3c"}, {"x": "25/05/19", "y": 4276119, "fillColor": "#3498db"}, {"x": "25/05/20", "y": 4618493, "fillColor": "#3498db"}, {"x": "25/05/21", "y": 11124325, "fillColor": "#e74c3c"}, {"x": "25/05/22", "y": 4322785, "fillColor": "#3498db"}, {"x": "25/05/23", "y": 3217358, "fillColor": "#3498db"}, {"x": "25/05/26", "y": 11213168, "fillColor": "#e74c3c"}, {"x": "25/05/27", "y": 29577904, "fillColor": "#e74c3c"}, {"x": "25/05/28", "y": 13597788, "fillColor": "#3498db"}, {"x": "25/05/29", "y": 9267571, "fillColor": "#e74c3c"}, {"x": "25/05/30", "y": 22615588, "fillColor": "#e74c3c"}, {"x": "25/06/02", "y": 8741868, "fillColor": "#3498db"}, {"x": "25/06/04", "y": 9351134, "fillColor": "#3498db"}, {"x": "25/06/05", "y": 7276443, "fillColor": "#3498db"}, {"x": "25/06/09", "y": 7235078, "fillColor": "#3498db"}, {"x": "25/06/10", "y": 10908337, "fillColor": "#e74c3c"}, {"x": "25/06/11", "y": 7526962, "fillColor": "#3498db"}, {"x": "25/06/12", "y": 10040856, "fillColor": "#e74c3c"}, {"x": "25/06/13", "y": 6763155, "fillColor": "#3498db"}, {"x": "25/06/16", "y": 7131780, "fillColor": "#e74c3c"}, {"x": "25/06/17", "y": 9767390, "fillColor": "#3498db"}]
+            }],
+            chart: {
+                type: 'bar',
+                height: 150,
+                id: 'volume-chart',
+                toolbar: {
+                    show: false
+                },
+                zoom: {
+                    enabled: false  // 읽기 전용: 줌 기능 비활성화
+                },
+                pan: {
+                    enabled: false  // 읽기 전용: 팬 기능 비활성화
+                },
+                selection: {
+                    enabled: false  // 읽기 전용: 선택 기능 비활성화
+                }
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: '80%',
+                    distributed: true  // 🔥 각 바별로 다른 색상 적용 (캔들 연동)
+                }
+            },
+            colors: [{"x": "23/12/12", "y": 3059922, "fillColor": "#e74c3c"}, {"x": "23/12/13", "y": 2561723, "fillColor": "#3498db"}, {"x": "23/12/14", "y": 5474450, "fillColor": "#e74c3c"}, {"x": "23/12/15", "y": 3302420, "fillColor": "#3498db"}, {"x": "23/12/18", "y": 13795074, "fillColor": "#3498db"}, {"x": "23/12/19", "y": 4267795, "fillColor": "#e74c3c"}, {"x": "23/12/20", "y": 4478228, "fillColor": "#e74c3c"}, {"x": "23/12/21", "y": 4074312, "fillColor": "#3498db"}, {"x": "23/12/22", "y": 2773099, "fillColor": "#3498db"}, {"x": "23/12/26", "y": 2944403, "fillColor": "#3498db"}, {"x": "23/12/27", "y": 2453245, "fillColor": "#e74c3c"}, {"x": "23/12/28", "y": 3766471, "fillColor": "#e74c3c"}, {"x": "24/01/02", "y": 4594878, "fillColor": "#e74c3c"}, {"x": "24/01/03", "y": 6337057, "fillColor": "#3498db"}, {"x": "24/01/04", "y": 3136144, "fillColor": "#e74c3c"}, {"x": "24/01/05", "y": 2745258, "fillColor": "#3498db"}, {"x": "24/01/08", "y": 2752286, "fillColor": "#e74c3c"}, {"x": "24/01/09", "y": 4528971, "fillColor": "#3498db"}, {"x": "24/01/10", "y": 2392360, "fillColor": "#e74c3c"}, {"x": "24/01/11", "y": 4102374, "fillColor": "#3498db"}, {"x": "24/01/12", "y": 2226813, "fillColor": "#3498db"}, {"x": "24/01/15", "y": 2481415, "fillColor": "#e74c3c"}, {"x": "24/01/16", "y": 2536646, "fillColor": "#3498db"}, {"x": "24/01/17", "y": 3169094, "fillColor": "#3498db"}, {"x": "24/01/18", "y": 3068901, "fillColor": "#e74c3c"}, {"x": "24/01/19", "y": 5707748, "fillColor": "#e74c3c"}, {"x": "24/01/22", "y": 3772267, "fillColor": "#3498db"}, {"x": "24/01/23", "y": 3413165, "fillColor": "#3498db"}, {"x": "24/01/24", "y": 2441274, "fillColor": "#3498db"}, {"x": "24/01/25", "y": 2831283, "fillColor": "#e74c3c"}, {"x": "24/01/26", "y": 2813289, "fillColor": "#e74c3c"}, {"x": "24/01/29", "y": 2675457, "fillColor": "#3498db"}, {"x": "24/01/30", "y": 5291606, "fillColor": "#3498db"}, {"x": "24/01/31", "y": 3169802, "fillColor": "#e74c3c"}, {"x": "24/02/01", "y": 6361978, "fillColor": "#3498db"}, {"x": "24/02/02", "y": 3350285, "fillColor": "#e74c3c"}, {"x": "24/02/05", "y": 3876258, "fillColor": "#3498db"}, {"x": "24/02/06", "y": 3994954, "fillColor": "#e74c3c"}, {"x": "24/02/07", "y": 3371881, "fillColor": "#3498db"}, {"x": "24/02/08", "y": 4532219, "fillColor": "#3498db"}, {"x": "24/02/13", "y": 3291800, "fillColor": "#3498db"}, {"x": "24/02/14", "y": 3142516, "fillColor": "#3498db"}, {"x": "24/02/15", "y": 3624766, "fillColor": "#3498db"}, {"x": "24/02/16", "y": 2920733, "fillColor": "#e74c3c"}, {"x": "24/02/19", "y": 3467107, "fillColor": "#e74c3c"}, {"x": "24/02/20", "y": 2889239, "fillColor": "#3498db"}, {"x": "24/02/21", "y": 6155285, "fillColor": "#e74c3c"}, {"x": "24/02/22", "y": 4030870, "fillColor": "#3498db"}, {"x": "24/02/23", "y": 3004398, "fillColor": "#3498db"}, {"x": "24/02/26", "y": 3175821, "fillColor": "#3498db"}, {"x": "24/02/27", "y": 8177518, "fillColor": "#e74c3c"}, {"x": "24/02/28", "y": 12939422, "fillColor": "#e74c3c"}, {"x": "24/02/29", "y": 7120792, "fillColor": "#3498db"}, {"x": "24/03/04", "y": 7482701, "fillColor": "#3498db"}, {"x": "24/03/05", "y": 4246385, "fillColor": "#e74c3c"}, {"x": "24/03/06", "y": 3577807, "fillColor": "#e74c3c"}, {"x": "24/03/07", "y": 2848412, "fillColor": "#3498db"}, {"x": "24/03/08", "y": 4450867, "fillColor": "#3498db"}, {"x": "24/03/11", "y": 8881871, "fillColor": "#e74c3c"}, {"x": "24/03/12", "y": 6234864, "fillColor": "#e74c3c"}, {"x": "24/03/13", "y": 4729816, "fillColor": "#3498db"}, {"x": "24/03/14", "y": 59570843, "fillColor": "#e74c3c"}, {"x": "24/03/15", "y": 30802039, "fillColor": "#3498db"}, {"x": "24/03/18", "y": 13726975, "fillColor": "#3498db"}, {"x": "24/03/19", "y": 12559934, "fillColor": "#3498db"}, {"x": "24/03/20", "y": 8707754, "fillColor": "#e74c3c"}, {"x": "24/03/21", "y": 7200530, "fillColor": "#3498db"}, {"x": "24/03/22", "y": 10896492, "fillColor": "#e74c3c"}, {"x": "24/03/25", "y": 5580533, "fillColor": "#3498db"}, {"x": "24/03/26", "y": 6500262, "fillColor": "#e74c3c"}, {"x": "24/03/27", "y": 9932109, "fillColor": "#3498db"}, {"x": "24/03/28", "y": 5105794, "fillColor": "#3498db"}, {"x": "24/03/29", "y": 4174667, "fillColor": "#3498db"}, {"x": "24/04/01", "y": 4061087, "fillColor": "#3498db"}, {"x": "24/04/02", "y": 8074707, "fillColor": "#e74c3c"}, {"x": "24/04/03", "y": 7778210, "fillColor": "#e74c3c"}, {"x": "24/04/04", "y": 4825682, "fillColor": "#3498db"}, {"x": "24/04/05", "y": 3646034, "fillColor": "#e74c3c"}, {"x": "24/04/08", "y": 3865767, "fillColor": "#3498db"}, {"x": "24/04/09", "y": 6603342, "fillColor": "#e74c3c"}, {"x": "24/04/11", "y": 4276806, "fillColor": "#3498db"}, {"x": "24/04/12", "y": 10316966, "fillColor": "#e74c3c"}, {"x": "24/04/15", "y": 10496539, "fillColor": "#e74c3c"}, {"x": "24/04/16", "y": 7803410, "fillColor": "#3498db"}, {"x": "24/04/17", "y": 5218845, "fillColor": "#3498db"}, {"x": "24/04/18", "y": 39373854, "fillColor": "#e74c3c"}, {"x": "24/04/19", "y": 23296284, "fillColor": "#e74c3c"}, {"x": "24/04/22", "y": 22306091, "fillColor": "#3498db"}, {"x": "24/04/23", "y": 18586575, "fillColor": "#e74c3c"}, {"x": "24/04/24", "y": 14348406, "fillColor": "#3498db"}, {"x": "24/04/25", "y": 8137494, "fillColor": "#3498db"}, {"x": "24/04/26", "y": 17468877, "fillColor": "#e74c3c"}, {"x": "24/04/29", "y": 12204336, "fillColor": "#3498db"}, {"x": "24/04/30", "y": 9872037, "fillColor": "#3498db"}, {"x": "24/05/02", "y": 5154284, "fillColor": "#e74c3c"}, {"x": "24/05/03", "y": 4495093, "fillColor": "#3498db"}, {"x": "24/05/07", "y": 7176086, "fillColor": "#e74c3c"}, {"x": "24/05/08", "y": 8024055, "fillColor": "#e74c3c"}, {"x": "24/05/09", "y": 13759085, "fillColor": "#e74c3c"}, {"x": "24/05/10", "y": 8943032, "fillColor": "#3498db"}, {"x": "24/05/13", "y": 15617471, "fillColor": "#e74c3c"}, {"x": "24/05/14", "y": 7191374, "fillColor": "#3498db"}, {"x": "24/05/16", "y": 7611123, "fillColor": "#3498db"}, {"x": "24/05/17", "y": 8373818, "fillColor": "#3498db"}, {"x": "24/05/20", "y": 5878775, "fillColor": "#3498db"}, {"x": "24/05/21", "y": 4443642, "fillColor": "#3498db"}, {"x": "24/05/22", "y": 10965643, "fillColor": "#3498db"}, {"x": "24/05/23", "y": 5126388, "fillColor": "#e74c3c"}, {"x": "24/05/24", "y": 5020993, "fillColor": "#e74c3c"}, {"x": "24/05/27", "y": 3579749, "fillColor": "#3498db"}, {"x": "24/05/28", "y": 3041833, "fillColor": "#3498db"}, {"x": "24/05/29", "y": 3530764, "fillColor": "#3498db"}, {"x": "24/05/30", "y": 4522692, "fillColor": "#3498db"}, {"x": "24/05/31", "y": 6263725, "fillColor": "#3498db"}, {"x": "24/06/03", "y": 17818481, "fillColor": "#e74c3c"}, {"x": "24/06/04", "y": 8245620, "fillColor": "#3498db"}, {"x": "24/06/05", "y": 4979588, "fillColor": "#3498db"}, {"x": "24/06/07", "y": 4792938, "fillColor": "#e74c3c"}, {"x": "24/06/10", "y": 2704465, "fillColor": "#e74c3c"}, {"x": "24/06/11", "y": 4569574, "fillColor": "#3498db"}, {"x": "24/06/12", "y": 6272659, "fillColor": "#3498db"}, {"x": "24/06/13", "y": 12078697, "fillColor": "#e74c3c"}, {"x": "24/06/14", "y": 6984197, "fillColor": "#e74c3c"}, {"x": "24/06/17", "y": 4236357, "fillColor": "#3498db"}, {"x": "24/06/18", "y": 2922469, "fillColor": "#3498db"}, {"x": "24/06/19", "y": 5006873, "fillColor": "#e74c3c"}, {"x": "24/06/20", "y": 3859998, "fillColor": "#3498db"}, {"x": "24/06/21", "y": 6598905, "fillColor": "#3498db"}, {"x": "24/06/24", "y": 6017203, "fillColor": "#e74c3c"}, {"x": "24/06/25", "y": 17773640, "fillColor": "#e74c3c"}, {"x": "24/06/26", "y": 7311052, "fillColor": "#e74c3c"}, {"x": "24/06/27", "y": 4886765, "fillColor": "#e74c3c"}, {"x": "24/06/28", "y": 4799314, "fillColor": "#3498db"}, {"x": "24/07/01", "y": 11996745, "fillColor": "#e74c3c"}, {"x": "24/07/02", "y": 5270315, "fillColor": "#3498db"}, {"x": "24/07/03", "y": 5577928, "fillColor": "#3498db"}, {"x": "24/07/04", "y": 3899629, "fillColor": "#e74c3c"}, {"x": "24/07/05", "y": 4624967, "fillColor": "#3498db"}, {"x": "24/07/08", "y": 6538033, "fillColor": "#e74c3c"}, {"x": "24/07/09", "y": 3289800, "fillColor": "#3498db"}, {"x": "24/07/10", "y": 6564407, "fillColor": "#e74c3c"}, {"x": "24/07/11", "y": 3657611, "fillColor": "#3498db"}, {"x": "24/07/12", "y": 3775805, "fillColor": "#e74c3c"}, {"x": "24/07/15", "y": 6635356, "fillColor": "#3498db"}, {"x": "24/07/16", "y": 11737001, "fillColor": "#e74c3c"}, {"x": "24/07/17", "y": 29719406, "fillColor": "#e74c3c"}, {"x": "24/07/18", "y": 23326291, "fillColor": "#e74c3c"}, {"x": "24/07/19", "y": 9464533, "fillColor": "#3498db"}, {"x": "24/07/22", "y": 8304476, "fillColor": "#e74c3c"}, {"x": "24/07/23", "y": 9626178, "fillColor": "#e74c3c"}, {"x": "24/07/24", "y": 7271938, "fillColor": "#e74c3c"}, {"x": "24/07/25", "y": 11020100, "fillColor": "#e74c3c"}, {"x": "24/07/26", "y": 42712575, "fillColor": "#e74c3c"}, {"x": "24/07/29", "y": 11072238, "fillColor": "#3498db"}, {"x": "24/07/30", "y": 7768630, "fillColor": "#3498db"}, {"x": "24/07/31", "y": 9325409, "fillColor": "#e74c3c"}, {"x": "24/08/01", "y": 5812145, "fillColor": "#e74c3c"}, {"x": "24/08/02", "y": 9157050, "fillColor": "#3498db"}, {"x": "24/08/05", "y": 19668979, "fillColor": "#3498db"}, {"x": "24/08/06", "y": 17582157, "fillColor": "#e74c3c"}, {"x": "24/08/07", "y": 8283852, "fillColor": "#3498db"}, {"x": "24/08/08", "y": 9056376, "fillColor": "#e74c3c"}, {"x": "24/08/09", "y": 6466610, "fillColor": "#3498db"}, {"x": "24/08/12", "y": 5431821, "fillColor": "#e74c3c"}, {"x": "24/08/13", "y": 5350939, "fillColor": "#3498db"}, {"x": "24/08/14", "y": 5102175, "fillColor": "#3498db"}, {"x": "24/08/16", "y": 7671575, "fillColor": "#3498db"}, {"x": "24/08/19", "y": 4663765, "fillColor": "#3498db"}, {"x": "24/08/20", "y": 6740085, "fillColor": "#e74c3c"}, {"x": "24/08/21", "y": 4647832, "fillColor": "#3498db"}, {"x": "24/08/22", "y": 8310968, "fillColor": "#3498db"}, {"x": "24/08/23", "y": 3759018, "fillColor": "#3498db"}, {"x": "24/08/26", "y": 7180809, "fillColor": "#3498db"}, {"x": "24/08/27", "y": 4659883, "fillColor": "#e74c3c"}, {"x": "24/08/28", "y": 4389872, "fillColor": "#3498db"}, {"x": "24/08/29", "y": 2849714, "fillColor": "#3498db"}, {"x": "24/08/30", "y": 5664621, "fillColor": "#e74c3c"}, {"x": "24/09/02", "y": 4074018, "fillColor": "#3498db"}, {"x": "24/09/03", "y": 2960846, "fillColor": "#e74c3c"}, {"x": "24/09/04", "y": 5685023, "fillColor": "#e74c3c"}, {"x": "24/09/05", "y": 5636071, "fillColor": "#3498db"}, {"x": "24/09/06", "y": 5048487, "fillColor": "#3498db"}, {"x": "24/09/09", "y": 3393854, "fillColor": "#e74c3c"}, {"x": "24/09/10", "y": 3851491, "fillColor": "#e74c3c"}, {"x": "24/09/11", "y": 3478833, "fillColor": "#3498db"}, {"x": "24/09/12", "y": 3421771, "fillColor": "#e74c3c"}, {"x": "24/09/13", "y": 4359126, "fillColor": "#e74c3c"}, {"x": "24/09/19", "y": 4989167, "fillColor": "#e74c3c"}, {"x": "24/09/20", "y": 5826366, "fillColor": "#3498db"}, {"x": "24/09/23", "y": 7301358, "fillColor": "#e74c3c"}, {"x": "24/09/24", "y": 3841200, "fillColor": "#e74c3c"}, {"x": "24/09/25", "y": 4460871, "fillColor": "#3498db"}, {"x": "24/09/26", "y": 2676366, "fillColor": "#e74c3c"}, {"x": "24/09/27", "y": 9129264, "fillColor": "#3498db"}, {"x": "24/09/30", "y": 5152225, "fillColor": "#3498db"}, {"x": "24/10/02", "y": 3705826, "fillColor": "#e74c3c"}, {"x": "24/10/04", "y": 2816110, "fillColor": "#3498db"}, {"x": "24/10/07", "y": 5788466, "fillColor": "#e74c3c"}, {"x": "24/10/08", "y": 3544229, "fillColor": "#3498db"}, {"x": "24/10/10", "y": 5735546, "fillColor": "#e74c3c"}, {"x": "24/10/11", "y": 4212463, "fillColor": "#3498db"}, {"x": "24/10/14", "y": 2323172, "fillColor": "#e74c3c"}, {"x": "24/10/15", "y": 4932381, "fillColor": "#e74c3c"}, {"x": "24/10/16", "y": 2404247, "fillColor": "#3498db"}, {"x": "24/10/17", "y": 3246049, "fillColor": "#e74c3c"}, {"x": "24/10/18", "y": 2737975, "fillColor": "#3498db"}, {"x": "24/10/21", "y": 1880924, "fillColor": "#3498db"}, {"x": "24/10/22", "y": 2443596, "fillColor": "#e74c3c"}, {"x": "24/10/23", "y": 3920243, "fillColor": "#e74c3c"}, {"x": "24/10/24", "y": 2488059, "fillColor": "#3498db"}, {"x": "24/10/25", "y": 4728500, "fillColor": "#3498db"}, {"x": "24/10/28", "y": 4047598, "fillColor": "#3498db"}, {"x": "24/10/29", "y": 2735915, "fillColor": "#e74c3c"}, {"x": "24/10/30", "y": 2794366, "fillColor": "#3498db"}, {"x": "24/10/31", "y": 3789608, "fillColor": "#3498db"}, {"x": "24/11/01", "y": 2900544, "fillColor": "#3498db"}, {"x": "24/11/04", "y": 2213090, "fillColor": "#e74c3c"}, {"x": "24/11/05", "y": 2290598, "fillColor": "#e74c3c"}, {"x": "24/11/06", "y": 4675227, "fillColor": "#e74c3c"}, {"x": "24/11/07", "y": 24408089, "fillColor": "#e74c3c"}, {"x": "24/11/08", "y": 11381616, "fillColor": "#3498db"}, {"x": "24/11/11", "y": 24976740, "fillColor": "#e74c3c"}, {"x": "24/11/12", "y": 11702210, "fillColor": "#3498db"}, {"x": "24/11/13", "y": 9143856, "fillColor": "#3498db"}, {"x": "24/11/14", "y": 10977097, "fillColor": "#e74c3c"}, {"x": "24/11/15", "y": 8290149, "fillColor": "#e74c3c"}, {"x": "24/11/18", "y": 7581885, "fillColor": "#3498db"}, {"x": "24/11/19", "y": 11393023, "fillColor": "#e74c3c"}, {"x": "24/11/20", "y": 6592223, "fillColor": "#e74c3c"}, {"x": "24/11/21", "y": 4626802, "fillColor": "#3498db"}, {"x": "24/11/22", "y": 7082726, "fillColor": "#e74c3c"}, {"x": "24/11/25", "y": 11034315, "fillColor": "#3498db"}, {"x": "24/11/26", "y": 5361586, "fillColor": "#3498db"}, {"x": "24/11/27", "y": 6590705, "fillColor": "#e74c3c"}, {"x": "24/11/28", "y": 4034644, "fillColor": "#3498db"}, {"x": "24/11/29", "y": 5097128, "fillColor": "#3498db"}, {"x": "24/12/02", "y": 9914596, "fillColor": "#3498db"}, {"x": "24/12/03", "y": 4220808, "fillColor": "#e74c3c"}, {"x": "24/12/04", "y": 6956808, "fillColor": "#e74c3c"}, {"x": "24/12/05", "y": 3038570, "fillColor": "#3498db"}, {"x": "24/12/06", "y": 5739815, "fillColor": "#3498db"}, {"x": "24/12/09", "y": 9173616, "fillColor": "#3498db"}, {"x": "24/12/10", "y": 6239095, "fillColor": "#e74c3c"}, {"x": "24/12/11", "y": 6806428, "fillColor": "#e74c3c"}, {"x": "24/12/12", "y": 5740090, "fillColor": "#3498db"}, {"x": "24/12/13", "y": 4939835, "fillColor": "#e74c3c"}, {"x": "24/12/16", "y": 4311246, "fillColor": "#3498db"}, {"x": "24/12/17", "y": 2719917, "fillColor": "#3498db"}, {"x": "24/12/18", "y": 4780098, "fillColor": "#e74c3c"}, {"x": "24/12/19", "y": 4425104, "fillColor": "#e74c3c"}, {"x": "24/12/20", "y": 4154553, "fillColor": "#3498db"}, {"x": "24/12/23", "y": 6192894, "fillColor": "#e74c3c"}, {"x": "24/12/24", "y": 3839366, "fillColor": "#3498db"}, {"x": "24/12/26", "y": 7560053, "fillColor": "#e74c3c"}, {"x": "24/12/27", "y": 4341149, "fillColor": "#3498db"}, {"x": "24/12/30", "y": 3362236, "fillColor": "#e74c3c"}, {"x": "25/01/02", "y": 4162726, "fillColor": "#e74c3c"}, {"x": "25/01/03", "y": 4752240, "fillColor": "#3498db"}, {"x": "25/01/06", "y": 3183728, "fillColor": "#3498db"}, {"x": "25/01/07", "y": 8709620, "fillColor": "#e74c3c"}, {"x": "25/01/08", "y": 6610982, "fillColor": "#e74c3c"}, {"x": "25/01/09", "y": 6214840, "fillColor": "#e74c3c"}, {"x": "25/01/10", "y": 8987670, "fillColor": "#e74c3c"}, {"x": "25/01/13", "y": 10710382, "fillColor": "#3498db"}, {"x": "25/01/14", "y": 8239384, "fillColor": "#e74c3c"}, {"x": "25/01/15", "y": 39256225, "fillColor": "#e74c3c"}, {"x": "25/01/16", "y": 18099325, "fillColor": "#e74c3c"}, {"x": "25/01/17", "y": 12233920, "fillColor": "#e74c3c"}, {"x": "25/01/20", "y": 10569926, "fillColor": "#3498db"}, {"x": "25/01/21", "y": 14222288, "fillColor": "#e74c3c"}, {"x": "25/01/22", "y": 10818247, "fillColor": "#3498db"}, {"x": "25/01/23", "y": 12660592, "fillColor": "#3498db"}, {"x": "25/01/24", "y": 7043782, "fillColor": "#e74c3c"}, {"x": "25/01/31", "y": 7145165, "fillColor": "#e74c3c"}, {"x": "25/02/03", "y": 5261381, "fillColor": "#e74c3c"}, {"x": "25/02/04", "y": 9177720, "fillColor": "#e74c3c"}, {"x": "25/02/05", "y": 9529635, "fillColor": "#3498db"}, {"x": "25/02/06", "y": 16568228, "fillColor": "#3498db"}, {"x": "25/02/07", "y": 6918096, "fillColor": "#3498db"}, {"x": "25/02/10", "y": 9259813, "fillColor": "#3498db"}, {"x": "25/02/11", "y": 7522540, "fillColor": "#e74c3c"}, {"x": "25/02/12", "y": 18472865, "fillColor": "#e74c3c"}, {"x": "25/02/13", "y": 13407597, "fillColor": "#3498db"}, {"x": "25/02/14", "y": 15311815, "fillColor": "#3498db"}, {"x": "25/02/17", "y": 7181439, "fillColor": "#3498db"}, {"x": "25/02/18", "y": 10215821, "fillColor": "#e74c3c"}, {"x": "25/02/19", "y": 70378157, "fillColor": "#e74c3c"}, {"x": "25/02/20", "y": 31385870, "fillColor": "#3498db"}, {"x": "25/02/21", "y": 13079911, "fillColor": "#e74c3c"}, {"x": "25/02/24", "y": 37276349, "fillColor": "#e74c3c"}, {"x": "25/02/25", "y": 47508639, "fillColor": "#e74c3c"}, {"x": "25/02/26", "y": 27033764, "fillColor": "#3498db"}, {"x": "25/02/27", "y": 14547065, "fillColor": "#e74c3c"}, {"x": "25/02/28", "y": 21347885, "fillColor": "#3498db"}, {"x": "25/03/04", "y": 21833027, "fillColor": "#e74c3c"}, {"x": "25/03/05", "y": 33447308, "fillColor": "#e74c3c"}, {"x": "25/03/06", "y": 16372769, "fillColor": "#3498db"}, {"x": "25/03/07", "y": 11696479, "fillColor": "#e74c3c"}, {"x": "25/03/10", "y": 12163860, "fillColor": "#3498db"}, {"x": "25/03/11", "y": 13593507, "fillColor": "#e74c3c"}, {"x": "25/03/12", "y": 49016196, "fillColor": "#3498db"}, {"x": "25/03/13", "y": 19036020, "fillColor": "#3498db"}, {"x": "25/03/14", "y": 8537547, "fillColor": "#e74c3c"}, {"x": "25/03/17", "y": 20321168, "fillColor": "#e74c3c"}, {"x": "25/03/18", "y": 26324577, "fillColor": "#e74c3c"}, {"x": "25/03/19", "y": 17296217, "fillColor": "#3498db"}, {"x": "25/03/20", "y": 14987688, "fillColor": "#3498db"}, {"x": "25/03/21", "y": 10733577, "fillColor": "#e74c3c"}, {"x": "25/03/24", "y": 4698983, "fillColor": "#e74c3c"}, {"x": "25/03/25", "y": 8624345, "fillColor": "#3498db"}, {"x": "25/03/26", "y": 5526680, "fillColor": "#e74c3c"}, {"x": "25/03/27", "y": 8427365, "fillColor": "#3498db"}, {"x": "25/03/28", "y": 5394036, "fillColor": "#e74c3c"}, {"x": "25/03/31", "y": 6953048, "fillColor": "#e74c3c"}, {"x": "25/04/01", "y": 5701503, "fillColor": "#e74c3c"}, {"x": "25/04/02", "y": 4760760, "fillColor": "#3498db"}, {"x": "25/04/03", "y": 6798766, "fillColor": "#e74c3c"}, {"x": "25/04/04", "y": 9496140, "fillColor": "#3498db"}, {"x": "25/04/07", "y": 7764209, "fillColor": "#3498db"}, {"x": "25/04/08", "y": 7087137, "fillColor": "#e74c3c"}, {"x": "25/04/09", "y": 7249419, "fillColor": "#3498db"}, {"x": "25/04/10", "y": 8268063, "fillColor": "#e74c3c"}, {"x": "25/04/11", "y": 10701486, "fillColor": "#e74c3c"}, {"x": "25/04/14", "y": 6055197, "fillColor": "#3498db"}, {"x": "25/04/15", "y": 4038501, "fillColor": "#3498db"}, {"x": "25/04/16", "y": 5931178, "fillColor": "#3498db"}, {"x": "25/04/17", "y": 6465940, "fillColor": "#e74c3c"}, {"x": "25/04/18", "y": 7886520, "fillColor": "#3498db"}, {"x": "25/04/21", "y": 9035695, "fillColor": "#3498db"}, {"x": "25/04/22", "y": 4738010, "fillColor": "#e74c3c"}, {"x": "25/04/23", "y": 3820358, "fillColor": "#e74c3c"}, {"x": "25/04/24", "y": 6597321, "fillColor": "#e74c3c"}, {"x": "25/04/25", "y": 14117412, "fillColor": "#e74c3c"}, {"x": "25/04/28", "y": 24860498, "fillColor": "#e74c3c"}, {"x": "25/04/29", "y": 8316655, "fillColor": "#3498db"}, {"x": "25/04/30", "y": 7953329, "fillColor": "#3498db"}, {"x": "25/05/02", "y": 3540289, "fillColor": "#e74c3c"}, {"x": "25/05/07", "y": 4638207, "fillColor": "#e74c3c"}, {"x": "25/05/08", "y": 4469905, "fillColor": "#3498db"}, {"x": "25/05/09", "y": 4173954, "fillColor": "#e74c3c"}, {"x": "25/05/12", "y": 8029437, "fillColor": "#3498db"}, {"x": "25/05/13", "y": 6038035, "fillColor": "#3498db"}, {"x": "25/05/14", "y": 5736590, "fillColor": "#e74c3c"}, {"x": "25/05/15", "y": 4579454, "fillColor": "#3498db"}, {"x": "25/05/16", "y": 4091070, "fillColor": "#e74c3c"}, {"x": "25/05/19", "y": 4276119, "fillColor": "#3498db"}, {"x": "25/05/20", "y": 4618493, "fillColor": "#3498db"}, {"x": "25/05/21", "y": 11124325, "fillColor": "#e74c3c"}, {"x": "25/05/22", "y": 4322785, "fillColor": "#3498db"}, {"x": "25/05/23", "y": 3217358, "fillColor": "#3498db"}, {"x": "25/05/26", "y": 11213168, "fillColor": "#e74c3c"}, {"x": "25/05/27", "y": 29577904, "fillColor": "#e74c3c"}, {"x": "25/05/28", "y": 13597788, "fillColor": "#3498db"}, {"x": "25/05/29", "y": 9267571, "fillColor": "#e74c3c"}, {"x": "25/05/30", "y": 22615588, "fillColor": "#e74c3c"}, {"x": "25/06/02", "y": 8741868, "fillColor": "#3498db"}, {"x": "25/06/04", "y": 9351134, "fillColor": "#3498db"}, {"x": "25/06/05", "y": 7276443, "fillColor": "#3498db"}, {"x": "25/06/09", "y": 7235078, "fillColor": "#3498db"}, {"x": "25/06/10", "y": 10908337, "fillColor": "#e74c3c"}, {"x": "25/06/11", "y": 7526962, "fillColor": "#3498db"}, {"x": "25/06/12", "y": 10040856, "fillColor": "#e74c3c"}, {"x": "25/06/13", "y": 6763155, "fillColor": "#3498db"}, {"x": "25/06/16", "y": 7131780, "fillColor": "#e74c3c"}, {"x": "25/06/17", "y": 9767390, "fillColor": "#3498db"}].map(item => item.fillColor),  // 🔥 캔들 색상과 정확히 연동
+            xaxis: {
+                type: 'category',  // 🔥 주말 공백 제거: datetime 대신 category 사용
+                tickAmount: 6,     // 🔥 캔들스틱 차트와 동일한 tick 개수
+                labels: {
+                    show: false      // 🔥 거래량 차트는 라벨 숨김 (캔들스틱 차트 라벨 참조)
+                },
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                }
+            },
+            yaxis: {
+                labels: {
+                    show: true,  // Y축 라벨은 유지
+                    formatter: function(value) {
+                        if (value >= 1000000) {
+                            return (value / 1000000).toFixed(1) + 'M';
+                        } else if (value >= 1000) {
+                            return (value / 1000).toFixed(0) + 'K';
+                        }
+                        return value.toString();
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: false  // 🔥 각 바 위의 숫자 라벨 완전 제거
+            },
+            legend: {
+                show: false
+            },
+            tooltip: {
+                y: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + '주';
+                    }
+                }
+            }
+        };
+        
+        // 🚀 읽기 전용 차트 렌더링 시스템
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                console.log('🚀 읽기 전용 차트 시스템 시작');
+                
+                // 캔들스틱 차트 렌더링
+                window.candlestickChart = new ApexCharts(document.querySelector("#stockChart"), candlestickOptions);
+                window.candlestickChart.render().then(() => {
+                    console.log('✅ 캔들스틱 차트 렌더링 완료 (읽기 전용)');
+                });
+                
+                // 거래량 차트 렌더링  
+                window.volumeChart = new ApexCharts(document.querySelector("#volumeChart"), volumeOptions);
+                window.volumeChart.render().then(() => {
+                    console.log('✅ 거래량 차트 렌더링 완료 (읽기 전용)');
+                    console.log('🎉 모든 차트 준비 완료!');
+                });
+                
+            } catch (error) {
+                console.error('❌ 차트 초기화 실패:', error);
+            }
+        });
+
+        } // hasData 끝
+        
+        // 🎯 기간 변경 함수 (읽기 전용 차트용)
+        let fullData = [{"x": "23/12/12", "y": [7900, 8040, 7830, 8010]}, {"x": "23/12/13", "y": [7940, 7970, 7850, 7860]}, {"x": "23/12/14", "y": [7960, 8000, 7820, 7990]}, {"x": "23/12/15", "y": [8030, 8040, 7920, 7960]}, {"x": "23/12/18", "y": [7900, 7900, 7260, 7510]}, {"x": "23/12/19", "y": [7490, 7630, 7450, 7560]}, {"x": "23/12/20", "y": [7570, 7800, 7570, 7670]}, {"x": "23/12/21", "y": [7600, 7690, 7440, 7520]}, {"x": "23/12/22", "y": [7550, 7570, 7440, 7500]}, {"x": "23/12/26", "y": [7570, 7570, 7450, 7500]}, {"x": "23/12/27", "y": [7450, 7600, 7450, 7590]}, {"x": "23/12/28", "y": [7540, 7750, 7540, 7750]}, {"x": "24/01/02", "y": [7750, 7950, 7680, 7860]}, {"x": "24/01/03", "y": [7780, 7790, 7470, 7480]}, {"x": "24/01/04", "y": [7490, 7560, 7450, 7500]}, {"x": "24/01/05", "y": [7500, 7540, 7410, 7450]}, {"x": "24/01/08", "y": [7420, 7580, 7390, 7480]}, {"x": "24/01/09", "y": [7480, 7560, 7300, 7310]}, {"x": "24/01/10", "y": [7310, 7360, 7240, 7320]}, {"x": "24/01/11", "y": [7360, 7380, 7150, 7160]}, {"x": "24/01/12", "y": [7180, 7250, 7150, 7170]}, {"x": "24/01/15", "y": [7190, 7370, 7160, 7350]}, {"x": "24/01/16", "y": [7300, 7350, 7150, 7150]}, {"x": "24/01/17", "y": [7150, 7200, 7050, 7050]}, {"x": "24/01/18", "y": [7050, 7270, 6980, 7120]}, {"x": "24/01/19", "y": [7230, 7530, 7200, 7520]}, {"x": "24/01/22", "y": [7610, 7640, 7520, 7590]}, {"x": "24/01/23", "y": [7650, 7720, 7530, 7570]}, {"x": "24/01/24", "y": [7560, 7570, 7360, 7480]}, {"x": "24/01/25", "y": [7470, 7590, 7410, 7570]}, {"x": "24/01/26", "y": [7570, 7660, 7570, 7600]}, {"x": "24/01/29", "y": [7650, 7650, 7450, 7450]}, {"x": "24/01/30", "y": [7480, 7520, 7130, 7170]}, {"x": "24/01/31", "y": [7150, 7350, 7150, 7310]}, {"x": "24/02/01", "y": [7270, 7310, 7100, 7140]}, {"x": "24/02/02", "y": [7150, 7280, 7080, 7250]}, {"x": "24/02/05", "y": [7240, 7250, 7080, 7120]}, {"x": "24/02/06", "y": [7120, 7340, 7120, 7210]}, {"x": "24/02/07", "y": [7330, 7440, 7210, 7240]}, {"x": "24/02/08", "y": [7350, 7400, 7250, 7330]}, {"x": "24/02/13", "y": [7390, 7450, 7290, 7360]}, {"x": "24/02/14", "y": [7290, 7310, 7190, 7220]}, {"x": "24/02/15", "y": [7290, 7340, 7200, 7210]}, {"x": "24/02/16", "y": [7280, 7340, 7230, 7300]}, {"x": "24/02/19", "y": [7300, 7380, 7240, 7310]}, {"x": "24/02/20", "y": [7320, 7360, 7230, 7250]}, {"x": "24/02/21", "y": [7280, 7510, 7260, 7460]}, {"x": "24/02/22", "y": [7510, 7600, 7420, 7490]}, {"x": "24/02/23", "y": [7540, 7540, 7370, 7430]}, {"x": "24/02/26", "y": [7430, 7460, 7290, 7410]}, {"x": "24/02/27", "y": [7470, 7730, 7390, 7670]}, {"x": "24/02/28", "y": [7690, 8070, 7610, 8020]}, {"x": "24/02/29", "y": [8050, 8060, 7850, 7900]}, {"x": "24/03/04", "y": [7930, 7950, 7600, 7620]}, {"x": "24/03/05", "y": [7620, 7820, 7600, 7710]}, {"x": "24/03/06", "y": [7680, 7840, 7630, 7730]}, {"x": "24/03/07", "y": [7730, 7800, 7660, 7710]}, {"x": "24/03/08", "y": [7710, 7780, 7560, 7660]}, {"x": "24/03/11", "y": [7640, 8030, 7630, 8020]}, {"x": "24/03/12", "y": [8020, 8230, 7900, 8070]}, {"x": "24/03/13", "y": [8120, 8150, 7920, 7960]}, {"x": "24/03/14", "y": [7960, 9210, 7950, 9010]}, {"x": "24/03/15", "y": [9200, 9390, 8810, 8850]}, {"x": "24/03/18", "y": [9040, 9090, 8850, 9000]}, {"x": "24/03/19", "y": [8980, 8990, 8570, 8690]}, {"x": "24/03/20", "y": [8770, 8960, 8730, 8810]}, {"x": "24/03/21", "y": [8890, 8890, 8710, 8850]}, {"x": "24/03/22", "y": [8900, 9120, 8780, 9080]}, {"x": "24/03/25", "y": [9110, 9140, 8910, 8960]}, {"x": "24/03/26", "y": [9000, 9110, 8910, 9060]}, {"x": "24/03/27", "y": [8980, 9020, 8590, 8700]}, {"x": "24/03/28", "y": [8680, 8840, 8600, 8620]}, {"x": "24/03/29", "y": [8680, 8730, 8500, 8560]}, {"x": "24/04/01", "y": [8600, 8630, 8470, 8560]}, {"x": "24/04/02", "y": [8530, 8720, 8290, 8650]}, {"x": "24/04/03", "y": [8670, 8850, 8580, 8710]}, {"x": "24/04/04", "y": [8770, 8780, 8560, 8740]}, {"x": "24/04/05", "y": [8580, 8840, 8580, 8660]}, {"x": "24/04/08", "y": [8660, 8660, 8460, 8480]}, {"x": "24/04/09", "y": [8470, 8860, 8470, 8670]}, {"x": "24/04/11", "y": [8530, 8630, 8380, 8500]}, {"x": "24/04/12", "y": [8520, 9000, 8440, 8910]}, {"x": "24/04/15", "y": [8850, 9190, 8800, 9060]}, {"x": "24/04/16", "y": [8970, 9120, 8660, 8760]}, {"x": "24/04/17", "y": [8800, 8910, 8670, 8690]}, {"x": "24/04/18", "y": [8800, 9710, 8800, 9540]}, {"x": "24/04/19", "y": [9580, 9640, 9220, 9630]}, {"x": "24/04/22", "y": [9870, 10120, 9390, 9480]}, {"x": "24/04/23", "y": [9560, 9900, 9520, 9630]}, {"x": "24/04/24", "y": [9750, 9940, 9590, 9640]}, {"x": "24/04/25", "y": [9570, 9670, 9330, 9470]}, {"x": "24/04/26", "y": [9580, 9940, 9540, 9850]}, {"x": "24/04/29", "y": [9800, 9810, 9460, 9600]}, {"x": "24/04/30", "y": [9550, 9670, 9400, 9450]}, {"x": "24/05/02", "y": [9410, 9550, 9400, 9430]}, {"x": "24/05/03", "y": [9490, 9510, 9360, 9390]}, {"x": "24/05/07", "y": [9420, 9650, 9400, 9600]}, {"x": "24/05/08", "y": [9650, 9860, 9580, 9670]}, {"x": "24/05/09", "y": [9710, 9970, 9690, 9830]}, {"x": "24/05/10", "y": [9970, 10050, 9750, 9890]}, {"x": "24/05/13", "y": [9980, 10300, 9940, 10170]}, {"x": "24/05/14", "y": [10170, 10230, 10020, 10130]}, {"x": "24/05/16", "y": [10220, 10230, 10040, 10150]}, {"x": "24/05/17", "y": [10110, 10140, 9770, 9920]}, {"x": "24/05/20", "y": [9910, 10100, 9830, 9870]}, {"x": "24/05/21", "y": [9850, 9910, 9740, 9800]}, {"x": "24/05/22", "y": [9800, 9800, 9270, 9380]}, {"x": "24/05/23", "y": [9290, 9580, 9250, 9500]}, {"x": "24/05/24", "y": [9380, 9760, 9360, 9650]}, {"x": "24/05/27", "y": [9700, 9720, 9450, 9570]}, {"x": "24/05/28", "y": [9570, 9690, 9500, 9540]}, {"x": "24/05/29", "y": [9490, 9520, 9390, 9400]}, {"x": "24/05/30", "y": [9400, 9480, 9270, 9320]}, {"x": "24/05/31", "y": [9360, 9380, 9130, 9160]}, {"x": "24/06/03", "y": [9220, 10120, 9130, 9600]}, {"x": "24/06/04", "y": [9520, 9700, 9350, 9400]}, {"x": "24/06/05", "y": [9460, 9490, 9210, 9270]}, {"x": "24/06/07", "y": [9280, 9520, 9280, 9360]}, {"x": "24/06/10", "y": [9310, 9420, 9250, 9320]}, {"x": "24/06/11", "y": [9500, 9500, 9180, 9220]}, {"x": "24/06/12", "y": [9170, 9270, 8950, 9140]}, {"x": "24/06/13", "y": [8800, 9080, 8790, 8910]}, {"x": "24/06/14", "y": [8900, 9190, 8840, 9040]}, {"x": "24/06/17", "y": [9050, 9090, 8880, 8890]}, {"x": "24/06/18", "y": [8980, 8990, 8850, 8860]}, {"x": "24/06/19", "y": [8890, 9080, 8890, 9050]}, {"x": "24/06/20", "y": [9060, 9090, 8920, 8970]}, {"x": "24/06/21", "y": [9030, 9170, 8860, 8890]}, {"x": "24/06/24", "y": [8850, 9080, 8800, 8950]}, {"x": "24/06/25", "y": [9030, 9630, 8990, 9290]}, {"x": "24/06/26", "y": [9290, 9520, 9200, 9400]}, {"x": "24/06/27", "y": [9320, 9450, 9280, 9430]}, {"x": "24/06/28", "y": [9430, 9490, 9220, 9350]}, {"x": "24/07/01", "y": [9370, 9870, 9320, 9680]}, {"x": "24/07/02", "y": [9690, 9700, 9450, 9620]}, {"x": "24/07/03", "y": [9670, 9680, 9290, 9440]}, {"x": "24/07/04", "y": [9410, 9600, 9340, 9520]}, {"x": "24/07/05", "y": [9590, 9640, 9450, 9560]}, {"x": "24/07/08", "y": [9560, 9850, 9540, 9800]}, {"x": "24/07/09", "y": [9810, 9840, 9660, 9700]}, {"x": "24/07/10", "y": [9670, 9930, 9650, 9840]}, {"x": "24/07/11", "y": [9910, 9920, 9770, 9830]}, {"x": "24/07/12", "y": [9810, 9900, 9710, 9900]}, {"x": "24/07/15", "y": [9980, 10100, 9910, 9940]}, {"x": "24/07/16", "y": [9990, 10290, 9900, 10280]}, {"x": "24/07/17", "y": [10350, 11000, 10350, 10930]}, {"x": "24/07/18", "y": [10930, 11380, 10840, 11070]}, {"x": "24/07/19", "y": [11000, 11140, 10520, 10550]}, {"x": "24/07/22", "y": [10520, 10770, 10380, 10600]}, {"x": "24/07/23", "y": [10650, 11000, 10600, 11000]}, {"x": "24/07/24", "y": [10910, 11270, 10850, 11090]}, {"x": "24/07/25", "y": [10930, 11260, 10760, 10950]}, {"x": "24/07/26", "y": [11190, 12280, 11100, 11870]}, {"x": "24/07/29", "y": [11990, 12120, 11690, 11830]}, {"x": "24/07/30", "y": [11760, 11920, 11470, 11630]}, {"x": "24/07/31", "y": [11600, 11990, 11570, 11710]}, {"x": "24/08/01", "y": [11630, 11890, 11520, 11680]}, {"x": "24/08/02", "y": [11510, 11670, 11140, 11300]}, {"x": "24/08/05", "y": [10960, 11000, 9540, 10050]}, {"x": "24/08/06", "y": [10580, 11090, 10300, 10710]}, {"x": "24/08/07", "y": [10780, 10890, 10530, 10590]}, {"x": "24/08/08", "y": [10480, 11020, 10340, 10920]}, {"x": "24/08/09", "y": [11060, 11300, 10920, 10940]}, {"x": "24/08/12", "y": [11010, 11280, 10840, 11130]}, {"x": "24/08/13", "y": [11050, 11180, 10720, 10760]}, {"x": "24/08/14", "y": [10850, 10880, 10560, 10740]}, {"x": "24/08/16", "y": [10920, 11190, 10780, 10820]}, {"x": "24/08/19", "y": [10820, 11080, 10720, 10800]}, {"x": "24/08/20", "y": [10900, 11280, 10760, 11240]}, {"x": "24/08/21", "y": [11160, 11390, 11040, 11140]}, {"x": "24/08/22", "y": [11150, 11190, 10490, 10680]}, {"x": "24/08/23", "y": [10620, 10690, 10510, 10560]}, {"x": "24/08/26", "y": [10560, 10590, 10130, 10150]}, {"x": "24/08/27", "y": [10190, 10390, 10070, 10280]}, {"x": "24/08/28", "y": [10320, 10520, 10230, 10290]}, {"x": "24/08/29", "y": [10250, 10320, 10130, 10150]}, {"x": "24/08/30", "y": [10260, 10500, 10210, 10490]}, {"x": "24/09/02", "y": [10500, 10510, 10130, 10170]}, {"x": "24/09/03", "y": [10190, 10300, 10130, 10280]}, {"x": "24/09/04", "y": [9960, 10150, 9870, 10000]}, {"x": "24/09/05", "y": [10070, 10100, 9670, 9820]}, {"x": "24/09/06", "y": [9820, 9910, 9530, 9610]}, {"x": "24/09/09", "y": [9330, 9830, 9330, 9820]}, {"x": "24/09/10", "y": [9850, 10090, 9720, 9970]}, {"x": "24/09/11", "y": [10090, 10140, 9720, 9810]}, {"x": "24/09/12", "y": [9910, 10040, 9690, 10040]}, {"x": "24/09/13", "y": [10010, 10340, 10000, 10340]}, {"x": "24/09/19", "y": [10410, 10540, 10280, 10500]}, {"x": "24/09/20", "y": [10650, 10750, 10510, 10630]}, {"x": "24/09/23", "y": [10680, 11000, 10620, 10920]}, {"x": "24/09/24", "y": [10920, 10970, 10680, 10970]}, {"x": "24/09/25", "y": [11070, 11160, 10760, 10790]}, {"x": "24/09/26", "y": [10790, 10910, 10740, 10860]}, {"x": "24/09/27", "y": [10820, 10870, 10160, 10180]}, {"x": "24/09/30", "y": [10150, 10250, 9990, 10030]}, {"x": "24/10/02", "y": [9900, 10240, 9900, 10050]}, {"x": "24/10/04", "y": [10070, 10150, 10010, 10040]}, {"x": "24/10/07", "y": [9970, 10020, 9670, 10010]}, {"x": "24/10/08", "y": [9900, 10040, 9840, 9860]}, {"x": "24/10/10", "y": [9980, 10310, 9910, 10180]}, {"x": "24/10/11", "y": [10210, 10220, 9840, 9870]}, {"x": "24/10/14", "y": [9870, 9940, 9840, 9880]}, {"x": "24/10/15", "y": [9940, 10270, 9930, 10230]}, {"x": "24/10/16", "y": [10160, 10200, 10020, 10060]}, {"x": "24/10/17", "y": [10090, 10290, 9980, 10250]}, {"x": "24/10/18", "y": [10290, 10290, 10010, 10050]}, {"x": "24/10/21", "y": [10050, 10060, 9950, 10000]}, {"x": "24/10/22", "y": [9960, 10040, 9850, 9990]}, {"x": "24/10/23", "y": [10000, 10270, 9870, 10140]}, {"x": "24/10/24", "y": [10120, 10180, 10000, 10050]}, {"x": "24/10/25", "y": [10150, 10310, 9870, 9900]}, {"x": "24/10/28", "y": [9950, 9960, 9690, 9720]}, {"x": "24/10/29", "y": [9710, 9780, 9640, 9750]}, {"x": "24/10/30", "y": [9740, 9750, 9570, 9590]}, {"x": "24/10/31", "y": [9600, 9680, 9420, 9590]}, {"x": "24/11/01", "y": [9490, 9550, 9330, 9470]}, {"x": "24/11/04", "y": [9470, 9630, 9450, 9540]}, {"x": "24/11/05", "y": [9480, 9710, 9480, 9620]}, {"x": "24/11/06", "y": [9670, 10010, 9520, 9920]}, {"x": "24/11/07", "y": [9970, 10980, 9970, 10830]}, {"x": "24/11/08", "y": [11020, 11210, 10680, 11010]}, {"x": "24/11/11", "y": [11140, 11940, 11010, 11820]}, {"x": "24/11/12", "y": [11840, 11920, 11450, 11580]}, {"x": "24/11/13", "y": [11600, 11650, 11050, 11230]}, {"x": "24/11/14", "y": [11400, 11850, 11320, 11720]}, {"x": "24/11/15", "y": [11750, 11900, 11550, 11890]}, {"x": "24/11/18", "y": [11740, 11890, 11410, 11690]}, {"x": "24/11/19", "y": [11740, 12200, 11550, 11750]}, {"x": "24/11/20", "y": [11680, 11960, 11510, 11900]}, {"x": "24/11/21", "y": [11920, 12030, 11680, 11810]}, {"x": "24/11/22", "y": [11900, 12090, 11730, 12030]}, {"x": "24/11/25", "y": [12100, 12290, 11880, 11910]}, {"x": "24/11/26", "y": [11940, 11970, 11560, 11820]}, {"x": "24/11/27", "y": [11820, 12180, 11810, 11900]}, {"x": "24/11/28", "y": [11900, 12150, 11730, 11840]}, {"x": "24/11/29", "y": [11830, 11840, 11500, 11620]}, {"x": "24/12/02", "y": [11650, 11700, 10810, 10920]}, {"x": "24/12/03", "y": [10960, 11280, 10950, 11110]}, {"x": "24/12/04", "y": [10810, 11160, 10600, 11050]}, {"x": "24/12/05", "y": [11000, 11250, 10800, 10870]}, {"x": "24/12/06", "y": [10870, 10900, 10370, 10630]}, {"x": "24/12/09", "y": [10300, 10390, 9950, 9990]}, {"x": "24/12/10", "y": [10110, 10530, 10040, 10410]}, {"x": "24/12/11", "y": [10410, 11150, 10340, 11100]}, {"x": "24/12/12", "y": [11110, 11200, 10970, 11100]}, {"x": "24/12/13", "y": [11100, 11420, 11070, 11350]}, {"x": "24/12/16", "y": [11440, 11450, 11070, 11230]}, {"x": "24/12/17", "y": [11180, 11300, 11030, 11070]}, {"x": "24/12/18", "y": [11100, 11500, 11050, 11290]}, {"x": "24/12/19", "y": [11000, 11420, 10830, 11290]}, {"x": "24/12/20", "y": [11350, 11390, 11090, 11180]}, {"x": "24/12/23", "y": [11330, 11570, 11230, 11490]}, {"x": "24/12/24", "y": [11550, 11700, 11330, 11360]}, {"x": "24/12/26", "y": [11410, 11790, 11410, 11600]}, {"x": "24/12/27", "y": [11600, 11640, 11270, 11310]}, {"x": "24/12/30", "y": [11250, 11450, 11180, 11300]}, {"x": "25/01/02", "y": [11260, 11700, 11220, 11500]}, {"x": "25/01/03", "y": [11540, 11750, 11310, 11410]}, {"x": "25/01/06", "y": [11430, 11470, 11230, 11420]}, {"x": "25/01/07", "y": [11540, 11830, 11530, 11830]}, {"x": "25/01/08", "y": [11880, 12020, 11760, 12010]}, {"x": "25/01/09", "y": [12000, 12100, 11820, 12030]}, {"x": "25/01/10", "y": [12000, 12350, 11720, 12250]}, {"x": "25/01/13", "y": [12300, 12310, 11650, 11700]}, {"x": "25/01/14", "y": [11760, 12140, 11760, 11850]}, {"x": "25/01/15", "y": [11920, 13350, 11860, 13000]}, {"x": "25/01/16", "y": [13010, 13350, 12850, 13350]}, {"x": "25/01/17", "y": [13370, 13670, 13120, 13540]}, {"x": "25/01/20", "y": [13590, 13590, 13130, 13490]}, {"x": "25/01/21", "y": [13580, 13860, 13530, 13670]}, {"x": "25/01/22", "y": [13670, 13810, 13230, 13300]}, {"x": "25/01/23", "y": [13300, 13340, 12700, 12730]}, {"x": "25/01/24", "y": [12790, 13080, 12700, 12910]}, {"x": "25/01/31", "y": [13000, 13270, 12900, 13010]}, {"x": "25/02/03", "y": [12800, 13080, 12750, 12940]}, {"x": "25/02/04", "y": [13100, 13450, 12950, 13350]}, {"x": "25/02/05", "y": [13540, 13630, 13100, 13400]}, {"x": "25/02/06", "y": [13100, 13340, 12770, 12950]}, {"x": "25/02/07", "y": [12910, 12930, 12630, 12770]}, {"x": "25/02/10", "y": [12710, 13190, 12520, 12590]}, {"x": "25/02/11", "y": [12690, 12890, 12470, 12700]}, {"x": "25/02/12", "y": [12720, 13490, 12720, 13460]}, {"x": "25/02/13", "y": [13600, 13690, 13190, 13410]}, {"x": "25/02/14", "y": [13440, 13440, 12620, 12710]}, {"x": "25/02/17", "y": [12720, 12920, 12620, 12710]}, {"x": "25/02/18", "y": [12830, 12980, 12770, 12930]}, {"x": "25/02/19", "y": [12950, 15220, 12870, 14730]}, {"x": "25/02/20", "y": [14680, 14680, 13500, 13590]}, {"x": "25/02/21", "y": [13290, 13570, 13150, 13370]}, {"x": "25/02/24", "y": [13450, 14400, 13080, 13910]}, {"x": "25/02/25", "y": [13970, 15190, 13720, 15050]}, {"x": "25/02/26", "y": [15390, 15620, 14740, 14950]}, {"x": "25/02/27", "y": [14920, 15100, 14450, 15020]}, {"x": "25/02/28", "y": [14720, 15000, 13950, 13950]}, {"x": "25/03/04", "y": [14120, 14760, 14030, 14240]}, {"x": "25/03/05", "y": [14400, 15150, 14000, 15000]}, {"x": "25/03/06", "y": [14990, 15265, 14660, 14940]}, {"x": "25/03/07", "y": [14740, 15090, 14580, 14860]}, {"x": "25/03/10", "y": [15010, 15040, 14240, 14530]}, {"x": "25/03/11", "y": [14000, 14280, 13770, 14220]}, {"x": "25/03/12", "y": [14740, 15490, 14220, 14360]}, {"x": "25/03/13", "y": [14550, 14850, 14050, 14080]}, {"x": "25/03/14", "y": [14160, 14430, 14090, 14320]}, {"x": "25/03/17", "y": [14430, 15140, 14260, 14790]}, {"x": "25/03/18", "y": [14970, 15450, 14860, 15440]}, {"x": "25/03/19", "y": [15480, 15840, 15120, 15210]}, {"x": "25/03/20", "y": [15330, 15330, 14530, 14540]}, {"x": "25/03/21", "y": [14450, 14690, 14140, 14580]}, {"x": "25/03/24", "y": [14600, 14740, 14480, 14670]}, {"x": "25/03/25", "y": [14650, 14740, 13960, 14000]}, {"x": "25/03/26", "y": [13910, 14190, 13850, 14070]}, {"x": "25/03/27", "y": [14390, 14400, 13720, 13770]}, {"x": "25/03/28", "y": [13760, 13950, 13560, 13830]}, {"x": "25/03/31", "y": [13460, 13810, 13270, 13480]}, {"x": "25/04/01", "y": [13710, 14100, 13690, 14050]}, {"x": "25/04/02", "y": [14110, 14160, 13800, 13880]}, {"x": "25/04/03", "y": [13600, 14030, 13550, 14010]}, {"x": "25/04/04", "y": [13790, 14230, 13380, 13720]}, {"x": "25/04/07", "y": [13170, 13180, 12650, 12720]}, {"x": "25/04/08", "y": [13040, 13350, 12780, 13220]}, {"x": "25/04/09", "y": [13530, 13610, 12930, 13040]}, {"x": "25/04/10", "y": [13790, 13990, 13540, 13950]}, {"x": "25/04/11", "y": [14150, 14520, 14090, 14500]}, {"x": "25/04/14", "y": [14810, 14820, 14370, 14450]}, {"x": "25/04/15", "y": [14550, 14620, 14400, 14540]}, {"x": "25/04/16", "y": [14550, 14830, 14370, 14490]}, {"x": "25/04/17", "y": [14570, 14900, 14560, 14900]}, {"x": "25/04/18", "y": [15010, 15150, 14370, 14520]}, {"x": "25/04/21", "y": [14520, 14530, 13920, 13990]}, {"x": "25/04/22", "y": [13840, 14180, 13840, 14100]}, {"x": "25/04/23", "y": [14210, 14330, 14070, 14300]}, {"x": "25/04/24", "y": [14310, 14600, 14020, 14590]}, {"x": "25/04/25", "y": [14500, 14900, 14270, 14720]}, {"x": "25/04/28", "y": [14980, 15720, 14800, 15150]}, {"x": "25/04/29", "y": [15150, 15150, 14640, 14970]}, {"x": "25/04/30", "y": [15000, 15060, 14400, 14570]}, {"x": "25/05/02", "y": [14510, 14790, 14510, 14610]}, {"x": "25/05/07", "y": [14880, 14980, 14730, 14880]}, {"x": "25/05/08", "y": [14860, 14880, 14700, 14730]}, {"x": "25/05/09", "y": [14760, 15020, 14660, 14840]}, {"x": "25/05/12", "y": [14970, 15180, 14400, 14500]}, {"x": "25/05/13", "y": [14300, 14490, 14150, 14260]}, {"x": "25/05/14", "y": [14340, 14690, 14320, 14590]}, {"x": "25/05/15", "y": [14540, 14580, 14240, 14420]}, {"x": "25/05/16", "y": [14460, 14720, 14430, 14550]}, {"x": "25/05/19", "y": [14410, 14590, 14180, 14300]}, {"x": "25/05/20", "y": [14400, 14450, 14030, 14190]}, {"x": "25/05/21", "y": [14250, 14970, 14250, 14890]}, {"x": "25/05/22", "y": [14740, 14760, 14490, 14500]}, {"x": "25/05/23", "y": [14550, 14580, 14310, 14430]}, {"x": "25/05/26", "y": [14430, 15120, 14370, 15100]}, {"x": "25/05/27", "y": [15400, 16380, 15350, 16350]}, {"x": "25/05/28", "y": [16540, 16600, 15590, 15670]}, {"x": "25/05/29", "y": [15890, 16330, 15620, 16140]}, {"x": "25/05/30", "y": [16420, 17080, 16290, 16900]}, {"x": "25/06/02", "y": [17060, 17290, 16460, 16790]}, {"x": "25/06/04", "y": [16940, 16940, 16100, 16880]}, {"x": "25/06/05", "y": [16950, 17160, 16620, 16750]}, {"x": "25/06/09", "y": [16760, 16930, 16310, 16650]}, {"x": "25/06/10", "y": [16690, 17250, 16650, 17250]}, {"x": "25/06/11", "y": [17520, 17520, 16890, 17320]}, {"x": "25/06/12", "y": [17270, 17930, 17270, 17580]}, {"x": "25/06/13", "y": [17700, 17930, 17390, 17690]}, {"x": "25/06/16", "y": [17630, 18090, 17500, 18070]}, {"x": "25/06/17", "y": [18200, 18550, 17570, 17870]}];  // 전체 데이터 저장
+        let fullVolumeData = [{"x": "23/12/12", "y": 3059922, "fillColor": "#e74c3c"}, {"x": "23/12/13", "y": 2561723, "fillColor": "#3498db"}, {"x": "23/12/14", "y": 5474450, "fillColor": "#e74c3c"}, {"x": "23/12/15", "y": 3302420, "fillColor": "#3498db"}, {"x": "23/12/18", "y": 13795074, "fillColor": "#3498db"}, {"x": "23/12/19", "y": 4267795, "fillColor": "#e74c3c"}, {"x": "23/12/20", "y": 4478228, "fillColor": "#e74c3c"}, {"x": "23/12/21", "y": 4074312, "fillColor": "#3498db"}, {"x": "23/12/22", "y": 2773099, "fillColor": "#3498db"}, {"x": "23/12/26", "y": 2944403, "fillColor": "#3498db"}, {"x": "23/12/27", "y": 2453245, "fillColor": "#e74c3c"}, {"x": "23/12/28", "y": 3766471, "fillColor": "#e74c3c"}, {"x": "24/01/02", "y": 4594878, "fillColor": "#e74c3c"}, {"x": "24/01/03", "y": 6337057, "fillColor": "#3498db"}, {"x": "24/01/04", "y": 3136144, "fillColor": "#e74c3c"}, {"x": "24/01/05", "y": 2745258, "fillColor": "#3498db"}, {"x": "24/01/08", "y": 2752286, "fillColor": "#e74c3c"}, {"x": "24/01/09", "y": 4528971, "fillColor": "#3498db"}, {"x": "24/01/10", "y": 2392360, "fillColor": "#e74c3c"}, {"x": "24/01/11", "y": 4102374, "fillColor": "#3498db"}, {"x": "24/01/12", "y": 2226813, "fillColor": "#3498db"}, {"x": "24/01/15", "y": 2481415, "fillColor": "#e74c3c"}, {"x": "24/01/16", "y": 2536646, "fillColor": "#3498db"}, {"x": "24/01/17", "y": 3169094, "fillColor": "#3498db"}, {"x": "24/01/18", "y": 3068901, "fillColor": "#e74c3c"}, {"x": "24/01/19", "y": 5707748, "fillColor": "#e74c3c"}, {"x": "24/01/22", "y": 3772267, "fillColor": "#3498db"}, {"x": "24/01/23", "y": 3413165, "fillColor": "#3498db"}, {"x": "24/01/24", "y": 2441274, "fillColor": "#3498db"}, {"x": "24/01/25", "y": 2831283, "fillColor": "#e74c3c"}, {"x": "24/01/26", "y": 2813289, "fillColor": "#e74c3c"}, {"x": "24/01/29", "y": 2675457, "fillColor": "#3498db"}, {"x": "24/01/30", "y": 5291606, "fillColor": "#3498db"}, {"x": "24/01/31", "y": 3169802, "fillColor": "#e74c3c"}, {"x": "24/02/01", "y": 6361978, "fillColor": "#3498db"}, {"x": "24/02/02", "y": 3350285, "fillColor": "#e74c3c"}, {"x": "24/02/05", "y": 3876258, "fillColor": "#3498db"}, {"x": "24/02/06", "y": 3994954, "fillColor": "#e74c3c"}, {"x": "24/02/07", "y": 3371881, "fillColor": "#3498db"}, {"x": "24/02/08", "y": 4532219, "fillColor": "#3498db"}, {"x": "24/02/13", "y": 3291800, "fillColor": "#3498db"}, {"x": "24/02/14", "y": 3142516, "fillColor": "#3498db"}, {"x": "24/02/15", "y": 3624766, "fillColor": "#3498db"}, {"x": "24/02/16", "y": 2920733, "fillColor": "#e74c3c"}, {"x": "24/02/19", "y": 3467107, "fillColor": "#e74c3c"}, {"x": "24/02/20", "y": 2889239, "fillColor": "#3498db"}, {"x": "24/02/21", "y": 6155285, "fillColor": "#e74c3c"}, {"x": "24/02/22", "y": 4030870, "fillColor": "#3498db"}, {"x": "24/02/23", "y": 3004398, "fillColor": "#3498db"}, {"x": "24/02/26", "y": 3175821, "fillColor": "#3498db"}, {"x": "24/02/27", "y": 8177518, "fillColor": "#e74c3c"}, {"x": "24/02/28", "y": 12939422, "fillColor": "#e74c3c"}, {"x": "24/02/29", "y": 7120792, "fillColor": "#3498db"}, {"x": "24/03/04", "y": 7482701, "fillColor": "#3498db"}, {"x": "24/03/05", "y": 4246385, "fillColor": "#e74c3c"}, {"x": "24/03/06", "y": 3577807, "fillColor": "#e74c3c"}, {"x": "24/03/07", "y": 2848412, "fillColor": "#3498db"}, {"x": "24/03/08", "y": 4450867, "fillColor": "#3498db"}, {"x": "24/03/11", "y": 8881871, "fillColor": "#e74c3c"}, {"x": "24/03/12", "y": 6234864, "fillColor": "#e74c3c"}, {"x": "24/03/13", "y": 4729816, "fillColor": "#3498db"}, {"x": "24/03/14", "y": 59570843, "fillColor": "#e74c3c"}, {"x": "24/03/15", "y": 30802039, "fillColor": "#3498db"}, {"x": "24/03/18", "y": 13726975, "fillColor": "#3498db"}, {"x": "24/03/19", "y": 12559934, "fillColor": "#3498db"}, {"x": "24/03/20", "y": 8707754, "fillColor": "#e74c3c"}, {"x": "24/03/21", "y": 7200530, "fillColor": "#3498db"}, {"x": "24/03/22", "y": 10896492, "fillColor": "#e74c3c"}, {"x": "24/03/25", "y": 5580533, "fillColor": "#3498db"}, {"x": "24/03/26", "y": 6500262, "fillColor": "#e74c3c"}, {"x": "24/03/27", "y": 9932109, "fillColor": "#3498db"}, {"x": "24/03/28", "y": 5105794, "fillColor": "#3498db"}, {"x": "24/03/29", "y": 4174667, "fillColor": "#3498db"}, {"x": "24/04/01", "y": 4061087, "fillColor": "#3498db"}, {"x": "24/04/02", "y": 8074707, "fillColor": "#e74c3c"}, {"x": "24/04/03", "y": 7778210, "fillColor": "#e74c3c"}, {"x": "24/04/04", "y": 4825682, "fillColor": "#3498db"}, {"x": "24/04/05", "y": 3646034, "fillColor": "#e74c3c"}, {"x": "24/04/08", "y": 3865767, "fillColor": "#3498db"}, {"x": "24/04/09", "y": 6603342, "fillColor": "#e74c3c"}, {"x": "24/04/11", "y": 4276806, "fillColor": "#3498db"}, {"x": "24/04/12", "y": 10316966, "fillColor": "#e74c3c"}, {"x": "24/04/15", "y": 10496539, "fillColor": "#e74c3c"}, {"x": "24/04/16", "y": 7803410, "fillColor": "#3498db"}, {"x": "24/04/17", "y": 5218845, "fillColor": "#3498db"}, {"x": "24/04/18", "y": 39373854, "fillColor": "#e74c3c"}, {"x": "24/04/19", "y": 23296284, "fillColor": "#e74c3c"}, {"x": "24/04/22", "y": 22306091, "fillColor": "#3498db"}, {"x": "24/04/23", "y": 18586575, "fillColor": "#e74c3c"}, {"x": "24/04/24", "y": 14348406, "fillColor": "#3498db"}, {"x": "24/04/25", "y": 8137494, "fillColor": "#3498db"}, {"x": "24/04/26", "y": 17468877, "fillColor": "#e74c3c"}, {"x": "24/04/29", "y": 12204336, "fillColor": "#3498db"}, {"x": "24/04/30", "y": 9872037, "fillColor": "#3498db"}, {"x": "24/05/02", "y": 5154284, "fillColor": "#e74c3c"}, {"x": "24/05/03", "y": 4495093, "fillColor": "#3498db"}, {"x": "24/05/07", "y": 7176086, "fillColor": "#e74c3c"}, {"x": "24/05/08", "y": 8024055, "fillColor": "#e74c3c"}, {"x": "24/05/09", "y": 13759085, "fillColor": "#e74c3c"}, {"x": "24/05/10", "y": 8943032, "fillColor": "#3498db"}, {"x": "24/05/13", "y": 15617471, "fillColor": "#e74c3c"}, {"x": "24/05/14", "y": 7191374, "fillColor": "#3498db"}, {"x": "24/05/16", "y": 7611123, "fillColor": "#3498db"}, {"x": "24/05/17", "y": 8373818, "fillColor": "#3498db"}, {"x": "24/05/20", "y": 5878775, "fillColor": "#3498db"}, {"x": "24/05/21", "y": 4443642, "fillColor": "#3498db"}, {"x": "24/05/22", "y": 10965643, "fillColor": "#3498db"}, {"x": "24/05/23", "y": 5126388, "fillColor": "#e74c3c"}, {"x": "24/05/24", "y": 5020993, "fillColor": "#e74c3c"}, {"x": "24/05/27", "y": 3579749, "fillColor": "#3498db"}, {"x": "24/05/28", "y": 3041833, "fillColor": "#3498db"}, {"x": "24/05/29", "y": 3530764, "fillColor": "#3498db"}, {"x": "24/05/30", "y": 4522692, "fillColor": "#3498db"}, {"x": "24/05/31", "y": 6263725, "fillColor": "#3498db"}, {"x": "24/06/03", "y": 17818481, "fillColor": "#e74c3c"}, {"x": "24/06/04", "y": 8245620, "fillColor": "#3498db"}, {"x": "24/06/05", "y": 4979588, "fillColor": "#3498db"}, {"x": "24/06/07", "y": 4792938, "fillColor": "#e74c3c"}, {"x": "24/06/10", "y": 2704465, "fillColor": "#e74c3c"}, {"x": "24/06/11", "y": 4569574, "fillColor": "#3498db"}, {"x": "24/06/12", "y": 6272659, "fillColor": "#3498db"}, {"x": "24/06/13", "y": 12078697, "fillColor": "#e74c3c"}, {"x": "24/06/14", "y": 6984197, "fillColor": "#e74c3c"}, {"x": "24/06/17", "y": 4236357, "fillColor": "#3498db"}, {"x": "24/06/18", "y": 2922469, "fillColor": "#3498db"}, {"x": "24/06/19", "y": 5006873, "fillColor": "#e74c3c"}, {"x": "24/06/20", "y": 3859998, "fillColor": "#3498db"}, {"x": "24/06/21", "y": 6598905, "fillColor": "#3498db"}, {"x": "24/06/24", "y": 6017203, "fillColor": "#e74c3c"}, {"x": "24/06/25", "y": 17773640, "fillColor": "#e74c3c"}, {"x": "24/06/26", "y": 7311052, "fillColor": "#e74c3c"}, {"x": "24/06/27", "y": 4886765, "fillColor": "#e74c3c"}, {"x": "24/06/28", "y": 4799314, "fillColor": "#3498db"}, {"x": "24/07/01", "y": 11996745, "fillColor": "#e74c3c"}, {"x": "24/07/02", "y": 5270315, "fillColor": "#3498db"}, {"x": "24/07/03", "y": 5577928, "fillColor": "#3498db"}, {"x": "24/07/04", "y": 3899629, "fillColor": "#e74c3c"}, {"x": "24/07/05", "y": 4624967, "fillColor": "#3498db"}, {"x": "24/07/08", "y": 6538033, "fillColor": "#e74c3c"}, {"x": "24/07/09", "y": 3289800, "fillColor": "#3498db"}, {"x": "24/07/10", "y": 6564407, "fillColor": "#e74c3c"}, {"x": "24/07/11", "y": 3657611, "fillColor": "#3498db"}, {"x": "24/07/12", "y": 3775805, "fillColor": "#e74c3c"}, {"x": "24/07/15", "y": 6635356, "fillColor": "#3498db"}, {"x": "24/07/16", "y": 11737001, "fillColor": "#e74c3c"}, {"x": "24/07/17", "y": 29719406, "fillColor": "#e74c3c"}, {"x": "24/07/18", "y": 23326291, "fillColor": "#e74c3c"}, {"x": "24/07/19", "y": 9464533, "fillColor": "#3498db"}, {"x": "24/07/22", "y": 8304476, "fillColor": "#e74c3c"}, {"x": "24/07/23", "y": 9626178, "fillColor": "#e74c3c"}, {"x": "24/07/24", "y": 7271938, "fillColor": "#e74c3c"}, {"x": "24/07/25", "y": 11020100, "fillColor": "#e74c3c"}, {"x": "24/07/26", "y": 42712575, "fillColor": "#e74c3c"}, {"x": "24/07/29", "y": 11072238, "fillColor": "#3498db"}, {"x": "24/07/30", "y": 7768630, "fillColor": "#3498db"}, {"x": "24/07/31", "y": 9325409, "fillColor": "#e74c3c"}, {"x": "24/08/01", "y": 5812145, "fillColor": "#e74c3c"}, {"x": "24/08/02", "y": 9157050, "fillColor": "#3498db"}, {"x": "24/08/05", "y": 19668979, "fillColor": "#3498db"}, {"x": "24/08/06", "y": 17582157, "fillColor": "#e74c3c"}, {"x": "24/08/07", "y": 8283852, "fillColor": "#3498db"}, {"x": "24/08/08", "y": 9056376, "fillColor": "#e74c3c"}, {"x": "24/08/09", "y": 6466610, "fillColor": "#3498db"}, {"x": "24/08/12", "y": 5431821, "fillColor": "#e74c3c"}, {"x": "24/08/13", "y": 5350939, "fillColor": "#3498db"}, {"x": "24/08/14", "y": 5102175, "fillColor": "#3498db"}, {"x": "24/08/16", "y": 7671575, "fillColor": "#3498db"}, {"x": "24/08/19", "y": 4663765, "fillColor": "#3498db"}, {"x": "24/08/20", "y": 6740085, "fillColor": "#e74c3c"}, {"x": "24/08/21", "y": 4647832, "fillColor": "#3498db"}, {"x": "24/08/22", "y": 8310968, "fillColor": "#3498db"}, {"x": "24/08/23", "y": 3759018, "fillColor": "#3498db"}, {"x": "24/08/26", "y": 7180809, "fillColor": "#3498db"}, {"x": "24/08/27", "y": 4659883, "fillColor": "#e74c3c"}, {"x": "24/08/28", "y": 4389872, "fillColor": "#3498db"}, {"x": "24/08/29", "y": 2849714, "fillColor": "#3498db"}, {"x": "24/08/30", "y": 5664621, "fillColor": "#e74c3c"}, {"x": "24/09/02", "y": 4074018, "fillColor": "#3498db"}, {"x": "24/09/03", "y": 2960846, "fillColor": "#e74c3c"}, {"x": "24/09/04", "y": 5685023, "fillColor": "#e74c3c"}, {"x": "24/09/05", "y": 5636071, "fillColor": "#3498db"}, {"x": "24/09/06", "y": 5048487, "fillColor": "#3498db"}, {"x": "24/09/09", "y": 3393854, "fillColor": "#e74c3c"}, {"x": "24/09/10", "y": 3851491, "fillColor": "#e74c3c"}, {"x": "24/09/11", "y": 3478833, "fillColor": "#3498db"}, {"x": "24/09/12", "y": 3421771, "fillColor": "#e74c3c"}, {"x": "24/09/13", "y": 4359126, "fillColor": "#e74c3c"}, {"x": "24/09/19", "y": 4989167, "fillColor": "#e74c3c"}, {"x": "24/09/20", "y": 5826366, "fillColor": "#3498db"}, {"x": "24/09/23", "y": 7301358, "fillColor": "#e74c3c"}, {"x": "24/09/24", "y": 3841200, "fillColor": "#e74c3c"}, {"x": "24/09/25", "y": 4460871, "fillColor": "#3498db"}, {"x": "24/09/26", "y": 2676366, "fillColor": "#e74c3c"}, {"x": "24/09/27", "y": 9129264, "fillColor": "#3498db"}, {"x": "24/09/30", "y": 5152225, "fillColor": "#3498db"}, {"x": "24/10/02", "y": 3705826, "fillColor": "#e74c3c"}, {"x": "24/10/04", "y": 2816110, "fillColor": "#3498db"}, {"x": "24/10/07", "y": 5788466, "fillColor": "#e74c3c"}, {"x": "24/10/08", "y": 3544229, "fillColor": "#3498db"}, {"x": "24/10/10", "y": 5735546, "fillColor": "#e74c3c"}, {"x": "24/10/11", "y": 4212463, "fillColor": "#3498db"}, {"x": "24/10/14", "y": 2323172, "fillColor": "#e74c3c"}, {"x": "24/10/15", "y": 4932381, "fillColor": "#e74c3c"}, {"x": "24/10/16", "y": 2404247, "fillColor": "#3498db"}, {"x": "24/10/17", "y": 3246049, "fillColor": "#e74c3c"}, {"x": "24/10/18", "y": 2737975, "fillColor": "#3498db"}, {"x": "24/10/21", "y": 1880924, "fillColor": "#3498db"}, {"x": "24/10/22", "y": 2443596, "fillColor": "#e74c3c"}, {"x": "24/10/23", "y": 3920243, "fillColor": "#e74c3c"}, {"x": "24/10/24", "y": 2488059, "fillColor": "#3498db"}, {"x": "24/10/25", "y": 4728500, "fillColor": "#3498db"}, {"x": "24/10/28", "y": 4047598, "fillColor": "#3498db"}, {"x": "24/10/29", "y": 2735915, "fillColor": "#e74c3c"}, {"x": "24/10/30", "y": 2794366, "fillColor": "#3498db"}, {"x": "24/10/31", "y": 3789608, "fillColor": "#3498db"}, {"x": "24/11/01", "y": 2900544, "fillColor": "#3498db"}, {"x": "24/11/04", "y": 2213090, "fillColor": "#e74c3c"}, {"x": "24/11/05", "y": 2290598, "fillColor": "#e74c3c"}, {"x": "24/11/06", "y": 4675227, "fillColor": "#e74c3c"}, {"x": "24/11/07", "y": 24408089, "fillColor": "#e74c3c"}, {"x": "24/11/08", "y": 11381616, "fillColor": "#3498db"}, {"x": "24/11/11", "y": 24976740, "fillColor": "#e74c3c"}, {"x": "24/11/12", "y": 11702210, "fillColor": "#3498db"}, {"x": "24/11/13", "y": 9143856, "fillColor": "#3498db"}, {"x": "24/11/14", "y": 10977097, "fillColor": "#e74c3c"}, {"x": "24/11/15", "y": 8290149, "fillColor": "#e74c3c"}, {"x": "24/11/18", "y": 7581885, "fillColor": "#3498db"}, {"x": "24/11/19", "y": 11393023, "fillColor": "#e74c3c"}, {"x": "24/11/20", "y": 6592223, "fillColor": "#e74c3c"}, {"x": "24/11/21", "y": 4626802, "fillColor": "#3498db"}, {"x": "24/11/22", "y": 7082726, "fillColor": "#e74c3c"}, {"x": "24/11/25", "y": 11034315, "fillColor": "#3498db"}, {"x": "24/11/26", "y": 5361586, "fillColor": "#3498db"}, {"x": "24/11/27", "y": 6590705, "fillColor": "#e74c3c"}, {"x": "24/11/28", "y": 4034644, "fillColor": "#3498db"}, {"x": "24/11/29", "y": 5097128, "fillColor": "#3498db"}, {"x": "24/12/02", "y": 9914596, "fillColor": "#3498db"}, {"x": "24/12/03", "y": 4220808, "fillColor": "#e74c3c"}, {"x": "24/12/04", "y": 6956808, "fillColor": "#e74c3c"}, {"x": "24/12/05", "y": 3038570, "fillColor": "#3498db"}, {"x": "24/12/06", "y": 5739815, "fillColor": "#3498db"}, {"x": "24/12/09", "y": 9173616, "fillColor": "#3498db"}, {"x": "24/12/10", "y": 6239095, "fillColor": "#e74c3c"}, {"x": "24/12/11", "y": 6806428, "fillColor": "#e74c3c"}, {"x": "24/12/12", "y": 5740090, "fillColor": "#3498db"}, {"x": "24/12/13", "y": 4939835, "fillColor": "#e74c3c"}, {"x": "24/12/16", "y": 4311246, "fillColor": "#3498db"}, {"x": "24/12/17", "y": 2719917, "fillColor": "#3498db"}, {"x": "24/12/18", "y": 4780098, "fillColor": "#e74c3c"}, {"x": "24/12/19", "y": 4425104, "fillColor": "#e74c3c"}, {"x": "24/12/20", "y": 4154553, "fillColor": "#3498db"}, {"x": "24/12/23", "y": 6192894, "fillColor": "#e74c3c"}, {"x": "24/12/24", "y": 3839366, "fillColor": "#3498db"}, {"x": "24/12/26", "y": 7560053, "fillColor": "#e74c3c"}, {"x": "24/12/27", "y": 4341149, "fillColor": "#3498db"}, {"x": "24/12/30", "y": 3362236, "fillColor": "#e74c3c"}, {"x": "25/01/02", "y": 4162726, "fillColor": "#e74c3c"}, {"x": "25/01/03", "y": 4752240, "fillColor": "#3498db"}, {"x": "25/01/06", "y": 3183728, "fillColor": "#3498db"}, {"x": "25/01/07", "y": 8709620, "fillColor": "#e74c3c"}, {"x": "25/01/08", "y": 6610982, "fillColor": "#e74c3c"}, {"x": "25/01/09", "y": 6214840, "fillColor": "#e74c3c"}, {"x": "25/01/10", "y": 8987670, "fillColor": "#e74c3c"}, {"x": "25/01/13", "y": 10710382, "fillColor": "#3498db"}, {"x": "25/01/14", "y": 8239384, "fillColor": "#e74c3c"}, {"x": "25/01/15", "y": 39256225, "fillColor": "#e74c3c"}, {"x": "25/01/16", "y": 18099325, "fillColor": "#e74c3c"}, {"x": "25/01/17", "y": 12233920, "fillColor": "#e74c3c"}, {"x": "25/01/20", "y": 10569926, "fillColor": "#3498db"}, {"x": "25/01/21", "y": 14222288, "fillColor": "#e74c3c"}, {"x": "25/01/22", "y": 10818247, "fillColor": "#3498db"}, {"x": "25/01/23", "y": 12660592, "fillColor": "#3498db"}, {"x": "25/01/24", "y": 7043782, "fillColor": "#e74c3c"}, {"x": "25/01/31", "y": 7145165, "fillColor": "#e74c3c"}, {"x": "25/02/03", "y": 5261381, "fillColor": "#e74c3c"}, {"x": "25/02/04", "y": 9177720, "fillColor": "#e74c3c"}, {"x": "25/02/05", "y": 9529635, "fillColor": "#3498db"}, {"x": "25/02/06", "y": 16568228, "fillColor": "#3498db"}, {"x": "25/02/07", "y": 6918096, "fillColor": "#3498db"}, {"x": "25/02/10", "y": 9259813, "fillColor": "#3498db"}, {"x": "25/02/11", "y": 7522540, "fillColor": "#e74c3c"}, {"x": "25/02/12", "y": 18472865, "fillColor": "#e74c3c"}, {"x": "25/02/13", "y": 13407597, "fillColor": "#3498db"}, {"x": "25/02/14", "y": 15311815, "fillColor": "#3498db"}, {"x": "25/02/17", "y": 7181439, "fillColor": "#3498db"}, {"x": "25/02/18", "y": 10215821, "fillColor": "#e74c3c"}, {"x": "25/02/19", "y": 70378157, "fillColor": "#e74c3c"}, {"x": "25/02/20", "y": 31385870, "fillColor": "#3498db"}, {"x": "25/02/21", "y": 13079911, "fillColor": "#e74c3c"}, {"x": "25/02/24", "y": 37276349, "fillColor": "#e74c3c"}, {"x": "25/02/25", "y": 47508639, "fillColor": "#e74c3c"}, {"x": "25/02/26", "y": 27033764, "fillColor": "#3498db"}, {"x": "25/02/27", "y": 14547065, "fillColor": "#e74c3c"}, {"x": "25/02/28", "y": 21347885, "fillColor": "#3498db"}, {"x": "25/03/04", "y": 21833027, "fillColor": "#e74c3c"}, {"x": "25/03/05", "y": 33447308, "fillColor": "#e74c3c"}, {"x": "25/03/06", "y": 16372769, "fillColor": "#3498db"}, {"x": "25/03/07", "y": 11696479, "fillColor": "#e74c3c"}, {"x": "25/03/10", "y": 12163860, "fillColor": "#3498db"}, {"x": "25/03/11", "y": 13593507, "fillColor": "#e74c3c"}, {"x": "25/03/12", "y": 49016196, "fillColor": "#3498db"}, {"x": "25/03/13", "y": 19036020, "fillColor": "#3498db"}, {"x": "25/03/14", "y": 8537547, "fillColor": "#e74c3c"}, {"x": "25/03/17", "y": 20321168, "fillColor": "#e74c3c"}, {"x": "25/03/18", "y": 26324577, "fillColor": "#e74c3c"}, {"x": "25/03/19", "y": 17296217, "fillColor": "#3498db"}, {"x": "25/03/20", "y": 14987688, "fillColor": "#3498db"}, {"x": "25/03/21", "y": 10733577, "fillColor": "#e74c3c"}, {"x": "25/03/24", "y": 4698983, "fillColor": "#e74c3c"}, {"x": "25/03/25", "y": 8624345, "fillColor": "#3498db"}, {"x": "25/03/26", "y": 5526680, "fillColor": "#e74c3c"}, {"x": "25/03/27", "y": 8427365, "fillColor": "#3498db"}, {"x": "25/03/28", "y": 5394036, "fillColor": "#e74c3c"}, {"x": "25/03/31", "y": 6953048, "fillColor": "#e74c3c"}, {"x": "25/04/01", "y": 5701503, "fillColor": "#e74c3c"}, {"x": "25/04/02", "y": 4760760, "fillColor": "#3498db"}, {"x": "25/04/03", "y": 6798766, "fillColor": "#e74c3c"}, {"x": "25/04/04", "y": 9496140, "fillColor": "#3498db"}, {"x": "25/04/07", "y": 7764209, "fillColor": "#3498db"}, {"x": "25/04/08", "y": 7087137, "fillColor": "#e74c3c"}, {"x": "25/04/09", "y": 7249419, "fillColor": "#3498db"}, {"x": "25/04/10", "y": 8268063, "fillColor": "#e74c3c"}, {"x": "25/04/11", "y": 10701486, "fillColor": "#e74c3c"}, {"x": "25/04/14", "y": 6055197, "fillColor": "#3498db"}, {"x": "25/04/15", "y": 4038501, "fillColor": "#3498db"}, {"x": "25/04/16", "y": 5931178, "fillColor": "#3498db"}, {"x": "25/04/17", "y": 6465940, "fillColor": "#e74c3c"}, {"x": "25/04/18", "y": 7886520, "fillColor": "#3498db"}, {"x": "25/04/21", "y": 9035695, "fillColor": "#3498db"}, {"x": "25/04/22", "y": 4738010, "fillColor": "#e74c3c"}, {"x": "25/04/23", "y": 3820358, "fillColor": "#e74c3c"}, {"x": "25/04/24", "y": 6597321, "fillColor": "#e74c3c"}, {"x": "25/04/25", "y": 14117412, "fillColor": "#e74c3c"}, {"x": "25/04/28", "y": 24860498, "fillColor": "#e74c3c"}, {"x": "25/04/29", "y": 8316655, "fillColor": "#3498db"}, {"x": "25/04/30", "y": 7953329, "fillColor": "#3498db"}, {"x": "25/05/02", "y": 3540289, "fillColor": "#e74c3c"}, {"x": "25/05/07", "y": 4638207, "fillColor": "#e74c3c"}, {"x": "25/05/08", "y": 4469905, "fillColor": "#3498db"}, {"x": "25/05/09", "y": 4173954, "fillColor": "#e74c3c"}, {"x": "25/05/12", "y": 8029437, "fillColor": "#3498db"}, {"x": "25/05/13", "y": 6038035, "fillColor": "#3498db"}, {"x": "25/05/14", "y": 5736590, "fillColor": "#e74c3c"}, {"x": "25/05/15", "y": 4579454, "fillColor": "#3498db"}, {"x": "25/05/16", "y": 4091070, "fillColor": "#e74c3c"}, {"x": "25/05/19", "y": 4276119, "fillColor": "#3498db"}, {"x": "25/05/20", "y": 4618493, "fillColor": "#3498db"}, {"x": "25/05/21", "y": 11124325, "fillColor": "#e74c3c"}, {"x": "25/05/22", "y": 4322785, "fillColor": "#3498db"}, {"x": "25/05/23", "y": 3217358, "fillColor": "#3498db"}, {"x": "25/05/26", "y": 11213168, "fillColor": "#e74c3c"}, {"x": "25/05/27", "y": 29577904, "fillColor": "#e74c3c"}, {"x": "25/05/28", "y": 13597788, "fillColor": "#3498db"}, {"x": "25/05/29", "y": 9267571, "fillColor": "#e74c3c"}, {"x": "25/05/30", "y": 22615588, "fillColor": "#e74c3c"}, {"x": "25/06/02", "y": 8741868, "fillColor": "#3498db"}, {"x": "25/06/04", "y": 9351134, "fillColor": "#3498db"}, {"x": "25/06/05", "y": 7276443, "fillColor": "#3498db"}, {"x": "25/06/09", "y": 7235078, "fillColor": "#3498db"}, {"x": "25/06/10", "y": 10908337, "fillColor": "#e74c3c"}, {"x": "25/06/11", "y": 7526962, "fillColor": "#3498db"}, {"x": "25/06/12", "y": 10040856, "fillColor": "#e74c3c"}, {"x": "25/06/13", "y": 6763155, "fillColor": "#3498db"}, {"x": "25/06/16", "y": 7131780, "fillColor": "#e74c3c"}, {"x": "25/06/17", "y": 9767390, "fillColor": "#3498db"}];  // 전체 거래량 데이터 저장
+        
+        // 기간별 데이터 필터링 함수
+        function getDataByPeriod(days) {
+            if (days >= fullData.length) {
+                return { candleData: fullData, volumeData: fullVolumeData };
+            }
+            
+            const startIndex = fullData.length - days;
+            const candleData = fullData.slice(startIndex);
+            const volumeData = fullVolumeData.slice(startIndex);
+            
+            return { candleData, volumeData };
+        }
+        
+        // 기간 변경 함수
+        window.changePeriod = function(days) {
+            console.log('📅 기간 변경:', days + '일');
+            
+            // 버튼 스타일 업데이트
+            document.querySelectorAll('.btn-group button').forEach(btn => {
+                btn.classList.remove('btn-primary', 'active');
+                btn.classList.add('btn-outline-primary');
+            });
+            document.getElementById('period' + days).classList.remove('btn-outline-primary');
+            document.getElementById('period' + days).classList.add('btn-primary', 'active');
+            
+            // 데이터 필터링
+            const { candleData, volumeData } = getDataByPeriod(days);
+            
+            // 차트 데이터 업데이트
+            if (window.candlestickChart && hasData) {
+                window.candlestickChart.updateSeries([{
+                    name: '삼성중공업',
+                    data: candleData
+                }]);
+                
+                // 차트 제목 업데이트
+                let periodText;
+                if (days === 30) periodText = '30일';
+                else if (days === 60) periodText = '60일';
+                else if (days === 90) periodText = '90일';
+                else if (days === 365) periodText = '1년';
+                else periodText = days + '일';
+                
+                window.candlestickChart.updateOptions({
+                    subtitle: {
+                        text: '실제 차트 데이터 (' + periodText + ' 기간, ' + candleData.length + '일 데이터)'
+                    }
+                });
+            }
+            
+            // 거래량 차트 데이터 업데이트  
+            if (window.volumeChart && hasData) {
+                window.volumeChart.updateSeries([{
+                    name: '거래량',
+                    data: volumeData
+                }]);
+                
+                // 거래량 차트 색상도 업데이트
+                window.volumeChart.updateOptions({
+                    colors: volumeData.map(item => item.fillColor)
+                });
+            }
+            
+            console.log('✅ ' + days + '일 차트 업데이트 완료');
+        };
+        
+        // 페이지 로드 시 1년(365일) 기본값으로 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            // 차트 렌더링이 완료된 후 1년 데이터로 설정
+            setTimeout(() => {
+                changePeriod(365);  // 1년이 기본값
+            }, 1500);  // 차트 초기화 후 1.5초 대기
+        });
+        
+    </script>
+</body>
+</html>
+        
