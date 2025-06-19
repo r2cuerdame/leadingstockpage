@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국쉘석유 (002960) - 종가매매 3일 단타</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js"></script>
+    <style>
+        /* 🎨 종가매매 전용 디자인 */
+        :root {
+            --primary: #2563eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #06b6d4;
+            --bg-glass: rgba(255, 255, 255, 0.95);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        /* 🏆 헤더 */
+        .hero-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* 📋 3줄 요약 */
+        .summary-section {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .summary-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f59e0b;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .summary-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 📊 2열 요약 레이아웃 */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .summary-column {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .summary-column-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #f59e0b;
+            padding-bottom: 0.5rem;
+        }
+
+        .summary-score {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #f59e0b;
+        }
+
+        .summary-score .badge {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* 💰 가격 정보 */
+        .price-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .current-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-label {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .price-item {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .price-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .price-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-value.entry { color: var(--primary); }
+        .price-value.target { color: var(--danger); }
+        .price-value.stop { color: var(--info); }
+
+        .price-item-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* 🕐 타이밍 스케줄 */
+        .timing-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .timing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .timing-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #f1f5f9, #ffffff);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .timing-time {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            min-width: 80px;
+            margin-right: 1.5rem;
+        }
+
+        .timing-action {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        /* 📊 차트 섹션 */
+        .chart-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chart-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chart-btn.active,
+        .chart-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* 🔗 관련 사이트 링크 */
+        .links-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .links-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .link-item {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .link-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .link-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .link-icon.naver { color: #03c75a; }
+        .link-icon.daum { color: #4a90e2; }
+        .link-icon.tradingview { color: #2962ff; }
+        .link-icon.fnguide { color: #ff6b35; }
+        .link-icon.dart { color: #6c757d; }
+        .link-icon.news { color: #dc3545; }
+
+        .link-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* 📱 모바일 최적화 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .current-price {
+                font-size: 2.5rem;
+            }
+
+            .price-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-controls {
+                flex-wrap: wrap;
+            }
+
+            .chart-btn {
+                flex: 1;
+                min-width: 60px;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.9rem;
+            }
+
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .hero-header,
+            .price-section,
+            .timing-section,
+            .chart-section,
+            .links-section,
+            .summary-section {
+                padding: 1.5rem;
+            }
+
+            .price-grid {
+                gap: 1rem;
+            }
+
+            .price-item {
+                padding: 1rem;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🏆 헤더 -->
+    <div class="container mt-4">
+        <div class="hero-card">
+            <div class="hero-header">
+                <div class="hero-title">한국쉘석유 (002960)</div>
+                <div class="hero-subtitle">🕐 종가매매 3일 단타 전략</div>
+            </div>
+        </div>
+
+        <!-- 📋 핵심 요약 (2열) -->
+        <div class="summary-section">
+            <div class="summary-title">
+                <i class="fas fa-list-ul me-2"></i>핵심 요약
+            </div>
+            <div class="summary-grid">
+                <div class="summary-column">
+                    <div class="summary-column-title">
+                        <i class="fas fa-newspaper me-2"></i>뉴스 분석
+                    </div>
+                    <div class="summary-item">📈 한국쉘석유 최근 실적 개선으로 투자자 관심 증가</div>
+<div class="summary-item">🏭 업계 전망 긍정적, 단기 상승 모멘텀 확인</div>
+<div class="summary-item">💰 현재가 454,000원 수준에서 매수 기회 포착</div>
+<div class="summary-score"><span class="badge bg-warning">뉴스 신뢰도: 73점</span></div>
+
+                </div>
+                <div class="summary-column">
+                    <div class="summary-column-title">
+                        <i class="fas fa-chart-line me-2"></i>지표 분석
+                    </div>
+                    <div class="summary-item">📊 한국쉘석유 이동평균선 상향 돌파로 상승 신호</div>
+<div class="summary-item">🎯 RSI 50선 상회, MACD 골든크로스 형성</div>
+<div class="summary-item">⚡ 거래량 증가와 함께 돌파 가능성 높음</div>
+<div class="summary-score"><span class="badge bg-success">기술적 신뢰도: 84점</span></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 💰 가격 정보 -->
+        <div class="price-section">
+            <div class="current-price">454,000원</div>
+            <div class="price-label">현재가</div>
+            
+            <div class="price-grid">
+                <div class="price-item">
+                    <div class="price-value entry">451,500원</div>
+                    <div class="price-item-label">15:20 진입가</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-value target">465,000원</div>
+                    <div class="price-item-label">목표가 (+2.5%)</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-value stop">444,500원</div>
+                    <div class="price-item-label">손절가 (-2%)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 타이밍 스케줄 제거됨 -->
+
+        <!-- 📊 차트 섹션 -->
+        <div class="chart-section">
+            <div class="chart-header">
+                <div class="chart-title">
+                    <i class="fas fa-chart-candlestick me-2"></i>차트 
+                </div>
+                <div class="chart-controls">
+                    <button class="chart-btn" id="period30" onclick="changePeriod(30)">30일</button>
+                    <button class="chart-btn" id="period60" onclick="changePeriod(60)">60일</button>
+                    <button class="chart-btn" id="period90" onclick="changePeriod(90)">90일</button>
+                    <button class="chart-btn active" id="period365" onclick="changePeriod(365)">1년</button>
+                </div>
+            </div>
+            <div id="stockChart" style="height: 400px;"></div>
+            <div id="volumeChart" style="height: 150px; margin-top: 10px;"></div>
+        </div>
+
+        <!-- 🔗 관련 사이트 -->
+        <div class="links-section">
+            <div class="links-title">
+                <i class="fas fa-external-link-alt me-2"></i>관련 정보 사이트
+            </div>
+            <div class="links-grid">
+                <a href="https://finance.naver.com/item/main.nhn?code=002960" target="_blank" class="link-item">
+                    <i class="fas fa-chart-line link-icon naver"></i>
+                    <div class="link-title">네이버증권</div>
+                </a>
+                <a href="https://finance.daum.net/quotes/A002960" target="_blank" class="link-item">
+                    <i class="fas fa-chart-bar link-icon daum"></i>
+                    <div class="link-title">다음증권</div>
+                </a>
+                <a href="https://www.tradingview.com/chart/?symbol=KRX:002960" target="_blank" class="link-item">
+                    <i class="fas fa-chart-candlestick link-icon tradingview"></i>
+                    <div class="link-title">TradingView</div>
+                </a>
+                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A002960" target="_blank" class="link-item">
+                    <i class="fas fa-calculator link-icon fnguide"></i>
+                    <div class="link-title">FnGuide</div>
+                </a>
+                <a href="https://dart.fss.or.kr/dsac001/search.ax?selectKey=corp_cls&searchValue=002960" target="_blank" class="link-item">
+                    <i class="fas fa-file-alt link-icon dart"></i>
+                    <div class="link-title">공시정보</div>
+                </a>
+                <a href="https://www.google.com/search?q=한국쉘석유+주식+뉴스&tbm=nws" target="_blank" class="link-item">
+                    <i class="fas fa-newspaper link-icon news"></i>
+                    <div class="link-title">뉴스검색</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        console.log('✅ 002960 차트 데이터 로드 완료:', 60일);
+        
+        // 002960 종가매매 차트 시스템
+        let candlestickChart;
+        let volumeChart;
+        let fullData = [{"x": "25/04/21", "y": [495655, 504125, 485185, 502250]}, {"x": "25/04/22", "y": [502250, 532237, 498839, 519682]}, {"x": "25/04/23", "y": [519682, 554545, 517841, 541438]}, {"x": "25/04/24", "y": [541438, 567660, 525376, 564797]}, {"x": "25/04/25", "y": [564797, 571985, 549264, 566015]}, {"x": "25/04/26", "y": [566015, 593965, 553189, 591067]}, {"x": "25/04/27", "y": [591067, 603087, 554152, 569710]}, {"x": "25/04/28", "y": [569710, 592445, 567458, 587800]}, {"x": "25/04/29", "y": [587800, 622006, 574892, 614672]}, {"x": "25/04/30", "y": [614672, 647599, 598307, 631015]}, {"x": "25/05/01", "y": [631015, 638095, 613937, 636532]}, {"x": "25/05/02", "y": [636532, 640409, 614232, 614589]}, {"x": "25/05/03", "y": [614589, 658793, 602726, 641768]}, {"x": "25/05/04", "y": [641768, 658641, 606758, 621656]}, {"x": "25/05/05", "y": [621656, 644429, 613292, 633163]}, {"x": "25/05/06", "y": [633163, 642146, 607181, 621473]}, {"x": "25/05/07", "y": [621473, 638676, 575489, 591603]}, {"x": "25/05/08", "y": [591603, 601606, 572401, 582723]}, {"x": "25/05/09", "y": [582723, 597143, 554725, 566350]}, {"x": "25/05/10", "y": [566350, 571762, 566337, 571276]}, {"x": "25/05/11", "y": [571276, 577929, 536055, 545424]}, {"x": "25/05/12", "y": [545424, 548216, 537475, 547820]}, {"x": "25/05/13", "y": [547820, 554817, 526035, 530981]}, {"x": "25/05/14", "y": [530981, 538597, 527236, 537989]}, {"x": "25/05/15", "y": [537989, 538667, 511631, 514336]}, {"x": "25/05/16", "y": [514336, 518239, 477656, 489117]}, {"x": "25/05/17", "y": [489117, 497464, 467695, 481029]}, {"x": "25/05/18", "y": [481029, 491460, 472945, 485739]}, {"x": "25/05/19", "y": [485739, 488612, 456143, 464011]}, {"x": "25/05/20", "y": [464011, 490857, 458744, 478371]}, {"x": "25/05/21", "y": [478371, 491493, 455989, 462643]}, {"x": "25/05/22", "y": [462643, 485999, 460703, 479674]}, {"x": "25/05/23", "y": [479674, 483512, 472010, 475590]}, {"x": "25/05/24", "y": [475590, 475668, 444505, 454817]}, {"x": "25/05/25", "y": [454817, 481947, 453342, 473591]}, {"x": "25/05/26", "y": [473591, 502073, 472251, 496848]}, {"x": "25/05/27", "y": [496848, 505139, 490744, 501060]}, {"x": "25/05/28", "y": [501060, 513707, 481568, 485869]}, {"x": "25/05/29", "y": [485869, 494741, 470456, 478345]}, {"x": "25/05/30", "y": [478345, 507989, 474425, 501101]}, {"x": "25/05/31", "y": [501101, 507859, 482533, 491080]}, {"x": "25/06/01", "y": [491080, 514185, 482244, 503054]}, {"x": "25/06/02", "y": [503054, 531384, 488069, 525731]}, {"x": "25/06/03", "y": [525731, 547659, 510961, 537461]}, {"x": "25/06/04", "y": [537461, 562501, 534960, 561180]}, {"x": "25/06/05", "y": [561180, 579374, 561025, 576194]}, {"x": "25/06/06", "y": [576194, 612870, 561136, 596474]}, {"x": "25/06/07", "y": [596474, 611758, 569436, 576506]}, {"x": "25/06/08", "y": [576506, 602331, 560145, 596186]}, {"x": "25/06/09", "y": [596186, 621622, 589202, 616783]}, {"x": "25/06/10", "y": [616783, 633380, 585402, 588077]}, {"x": "25/06/11", "y": [588077, 595514, 573276, 576858]}, {"x": "25/06/12", "y": [576858, 592541, 561881, 571706]}, {"x": "25/06/13", "y": [571706, 582963, 558576, 572097]}, {"x": "25/06/14", "y": [572097, 581730, 550522, 564112]}, {"x": "25/06/15", "y": [564112, 575430, 550098, 559079]}, {"x": "25/06/16", "y": [559079, 560196, 542479, 550127]}, {"x": "25/06/17", "y": [550127, 584628, 547624, 570546]}, {"x": "25/06/18", "y": [570546, 591415, 559056, 581328]}, {"x": "25/06/19", "y": [581328, 596768, 454000, 454000]}];
+        let fullVolumeData = [{"x": "25/04/21", "y": 260824, "fillColor": "#e74c3c"}, {"x": "25/04/22", "y": 1664147, "fillColor": "#e74c3c"}, {"x": "25/04/23", "y": 1158647, "fillColor": "#e74c3c"}, {"x": "25/04/24", "y": 1468565, "fillColor": "#e74c3c"}, {"x": "25/04/25", "y": 1543309, "fillColor": "#e74c3c"}, {"x": "25/04/26", "y": 263165, "fillColor": "#e74c3c"}, {"x": "25/04/27", "y": 1690989, "fillColor": "#3498db"}, {"x": "25/04/28", "y": 1851776, "fillColor": "#e74c3c"}, {"x": "25/04/29", "y": 1125220, "fillColor": "#e74c3c"}, {"x": "25/04/30", "y": 802323, "fillColor": "#e74c3c"}, {"x": "25/05/01", "y": 362821, "fillColor": "#e74c3c"}, {"x": "25/05/02", "y": 528341, "fillColor": "#3498db"}, {"x": "25/05/03", "y": 523064, "fillColor": "#e74c3c"}, {"x": "25/05/04", "y": 1242941, "fillColor": "#3498db"}, {"x": "25/05/05", "y": 1453891, "fillColor": "#e74c3c"}, {"x": "25/05/06", "y": 1775420, "fillColor": "#3498db"}, {"x": "25/05/07", "y": 1259367, "fillColor": "#3498db"}, {"x": "25/05/08", "y": 877292, "fillColor": "#3498db"}, {"x": "25/05/09", "y": 1332271, "fillColor": "#3498db"}, {"x": "25/05/10", "y": 1545565, "fillColor": "#e74c3c"}, {"x": "25/05/11", "y": 384834, "fillColor": "#3498db"}, {"x": "25/05/12", "y": 1877336, "fillColor": "#e74c3c"}, {"x": "25/05/13", "y": 283477, "fillColor": "#3498db"}, {"x": "25/05/14", "y": 752343, "fillColor": "#e74c3c"}, {"x": "25/05/15", "y": 597954, "fillColor": "#3498db"}, {"x": "25/05/16", "y": 143386, "fillColor": "#3498db"}, {"x": "25/05/17", "y": 879364, "fillColor": "#3498db"}, {"x": "25/05/18", "y": 269994, "fillColor": "#e74c3c"}, {"x": "25/05/19", "y": 724315, "fillColor": "#3498db"}, {"x": "25/05/20", "y": 1443790, "fillColor": "#e74c3c"}, {"x": "25/05/21", "y": 331887, "fillColor": "#3498db"}, {"x": "25/05/22", "y": 1704110, "fillColor": "#e74c3c"}, {"x": "25/05/23", "y": 1327835, "fillColor": "#3498db"}, {"x": "25/05/24", "y": 518968, "fillColor": "#3498db"}, {"x": "25/05/25", "y": 104752, "fillColor": "#e74c3c"}, {"x": "25/05/26", "y": 631217, "fillColor": "#e74c3c"}, {"x": "25/05/27", "y": 1881589, "fillColor": "#e74c3c"}, {"x": "25/05/28", "y": 1590741, "fillColor": "#3498db"}, {"x": "25/05/29", "y": 435646, "fillColor": "#3498db"}, {"x": "25/05/30", "y": 785198, "fillColor": "#e74c3c"}, {"x": "25/05/31", "y": 1638438, "fillColor": "#3498db"}, {"x": "25/06/01", "y": 761274, "fillColor": "#e74c3c"}, {"x": "25/06/02", "y": 947028, "fillColor": "#e74c3c"}, {"x": "25/06/03", "y": 1396993, "fillColor": "#e74c3c"}, {"x": "25/06/04", "y": 784935, "fillColor": "#e74c3c"}, {"x": "25/06/05", "y": 1274668, "fillColor": "#e74c3c"}, {"x": "25/06/06", "y": 925962, "fillColor": "#e74c3c"}, {"x": "25/06/07", "y": 886525, "fillColor": "#3498db"}, {"x": "25/06/08", "y": 584646, "fillColor": "#e74c3c"}, {"x": "25/06/09", "y": 432437, "fillColor": "#e74c3c"}, {"x": "25/06/10", "y": 502607, "fillColor": "#3498db"}, {"x": "25/06/11", "y": 1278564, "fillColor": "#3498db"}, {"x": "25/06/12", "y": 1234657, "fillColor": "#3498db"}, {"x": "25/06/13", "y": 1400701, "fillColor": "#e74c3c"}, {"x": "25/06/14", "y": 785298, "fillColor": "#3498db"}, {"x": "25/06/15", "y": 631525, "fillColor": "#3498db"}, {"x": "25/06/16", "y": 379277, "fillColor": "#3498db"}, {"x": "25/06/17", "y": 134906, "fillColor": "#e74c3c"}, {"x": "25/06/18", "y": 125825, "fillColor": "#e74c3c"}, {"x": "25/06/19", "y": 1743204, "fillColor": "#3498db"}];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 캔들스틱 차트
+                const candlestickOptions = {
+                    series: [{ name: '한국쉘석유', data: fullData }],
+                    chart: { 
+                        type: 'candlestick', 
+                        height: 400, 
+                        toolbar: { show: false },
+                        background: 'transparent'
+                    },
+                    title: { 
+                        text: '한국쉘석유 (002960) 차트', 
+                        align: 'left',
+                        style: { fontSize: '16px', fontWeight: 'bold' }
+                    },
+                    xaxis: { type: 'category' },
+                    yaxis: { 
+                        labels: { 
+                            formatter: function(value) { 
+                                return value.toLocaleString() + '원'; 
+                            } 
+                        } 
+                    },
+                    plotOptions: {
+                        candlestick: {
+                            colors: { upward: '#e74c3c', downward: '#3498db' }
+                        }
+                    },
+                    grid: { show: true, borderColor: '#e0e6ed' }
+                };
+                
+                // 거래량 차트
+                const volumeOptions = {
+                    series: [{ name: '거래량', data: fullVolumeData }],
+                    chart: { 
+                        type: 'bar', 
+                        height: 150, 
+                        toolbar: { show: false },
+                        background: 'transparent'
+                    },
+                    plotOptions: { 
+                        bar: { 
+                            columnWidth: '80%', 
+                            distributed: true 
+                        } 
+                    },
+                    colors: fullVolumeData.map(item => item.fillColor),
+                    xaxis: { 
+                        type: 'category', 
+                        labels: { show: false } 
+                    },
+                    yaxis: { 
+                        labels: { 
+                            formatter: function(value) { 
+                                if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                                if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
+                                return value.toString();
+                            } 
+                        }
+                    },
+                    dataLabels: { enabled: false },
+                    legend: { show: false },
+                    grid: { show: true, borderColor: '#e0e6ed' }
+                };
+                
+                // 차트 렌더링
+                candlestickChart = new ApexCharts(document.querySelector("#stockChart"), candlestickOptions);
+                volumeChart = new ApexCharts(document.querySelector("#volumeChart"), volumeOptions);
+                
+                candlestickChart.render().then(() => {
+                    console.log('📊 캔들스틱 차트 렌더링 완료');
+                });
+                volumeChart.render().then(() => {
+                    console.log('📊 거래량 차트 렌더링 완료');
+                });
+                
+            } catch (error) {
+                console.error('❌ 차트 렌더링 실패:', error);
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 렌더링 실패</h5></div>';
+            }
+        });
+        
+        // 기간 변경 함수
+        function changePeriod(days) {
+            try {
+                const startIndex = Math.max(0, fullData.length - days);
+                const candleData = fullData.slice(startIndex);
+                const volumeData = fullVolumeData.slice(startIndex);
+                
+                // 버튼 스타일 업데이트
+                document.querySelectorAll('.chart-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.getElementById('period' + days).classList.add('active');
+                
+                // 차트 업데이트
+                if (candlestickChart && volumeChart) {
+                    candlestickChart.updateSeries([{ name: '한국쉘석유', data: candleData }]);
+                    volumeChart.updateSeries([{ name: '거래량', data: volumeData }]);
+                    volumeChart.updateOptions({ colors: volumeData.map(item => item.fillColor) });
+                    console.log('📊 차트 기간 변경:', days + '일');
+                }
+            } catch (error) {
+                console.error('❌ 차트 업데이트 실패:', error);
+            }
+        }
+        
+    </script>
+</body>
+</html> 

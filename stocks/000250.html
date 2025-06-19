@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼천당제약 (000250) - 종가매매 3일 단타</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js"></script>
+    <style>
+        /* 🎨 종가매매 전용 디자인 */
+        :root {
+            --primary: #2563eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #06b6d4;
+            --bg-glass: rgba(255, 255, 255, 0.95);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        /* 🏆 헤더 */
+        .hero-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* 📋 3줄 요약 */
+        .summary-section {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .summary-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f59e0b;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .summary-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 📊 2열 요약 레이아웃 */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .summary-column {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .summary-column-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #f59e0b;
+            padding-bottom: 0.5rem;
+        }
+
+        .summary-score {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #f59e0b;
+        }
+
+        .summary-score .badge {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* 💰 가격 정보 */
+        .price-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .current-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-label {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .price-item {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .price-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .price-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-value.entry { color: var(--primary); }
+        .price-value.target { color: var(--danger); }
+        .price-value.stop { color: var(--info); }
+
+        .price-item-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* 🕐 타이밍 스케줄 */
+        .timing-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .timing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .timing-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #f1f5f9, #ffffff);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .timing-time {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            min-width: 80px;
+            margin-right: 1.5rem;
+        }
+
+        .timing-action {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        /* 📊 차트 섹션 */
+        .chart-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chart-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chart-btn.active,
+        .chart-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* 🔗 관련 사이트 링크 */
+        .links-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .links-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .link-item {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .link-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .link-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .link-icon.naver { color: #03c75a; }
+        .link-icon.daum { color: #4a90e2; }
+        .link-icon.tradingview { color: #2962ff; }
+        .link-icon.fnguide { color: #ff6b35; }
+        .link-icon.dart { color: #6c757d; }
+        .link-icon.news { color: #dc3545; }
+
+        .link-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* 📱 모바일 최적화 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .current-price {
+                font-size: 2.5rem;
+            }
+
+            .price-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-controls {
+                flex-wrap: wrap;
+            }
+
+            .chart-btn {
+                flex: 1;
+                min-width: 60px;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.9rem;
+            }
+
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .hero-header,
+            .price-section,
+            .timing-section,
+            .chart-section,
+            .links-section,
+            .summary-section {
+                padding: 1.5rem;
+            }
+
+            .price-grid {
+                gap: 1rem;
+            }
+
+            .price-item {
+                padding: 1rem;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🏆 헤더 -->
+    <div class="container mt-4">
+        <div class="hero-card">
+            <div class="hero-header">
+                <div class="hero-title">삼천당제약 (000250)</div>
+                <div class="hero-subtitle">🕐 종가매매 3일 단타 전략</div>
+            </div>
+        </div>
+
+        <!-- 📋 핵심 요약 (2열) -->
+        <div class="summary-section">
+            <div class="summary-title">
+                <i class="fas fa-list-ul me-2"></i>핵심 요약
+            </div>
+            <div class="summary-grid">
+                <div class="summary-column">
+                    <div class="summary-column-title">
+                        <i class="fas fa-newspaper me-2"></i>뉴스 분석
+                    </div>
+                    <div class="summary-item">📈 삼천당제약 최근 실적 개선으로 투자자 관심 증가</div>
+<div class="summary-item">🏭 업계 전망 긍정적, 단기 상승 모멘텀 확인</div>
+<div class="summary-item">💰 현재가 160,500원 수준에서 매수 기회 포착</div>
+<div class="summary-score"><span class="badge bg-warning">뉴스 신뢰도: 75점</span></div>
+
+                </div>
+                <div class="summary-column">
+                    <div class="summary-column-title">
+                        <i class="fas fa-chart-line me-2"></i>지표 분석
+                    </div>
+                    <div class="summary-item">📊 삼천당제약 이동평균선 상향 돌파로 상승 신호</div>
+<div class="summary-item">🎯 RSI 50선 상회, MACD 골든크로스 형성</div>
+<div class="summary-item">⚡ 거래량 증가와 함께 돌파 가능성 높음</div>
+<div class="summary-score"><span class="badge bg-warning">기술적 신뢰도: 75점</span></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 💰 가격 정보 -->
+        <div class="price-section">
+            <div class="current-price">160,500원</div>
+            <div class="price-label">현재가</div>
+            
+            <div class="price-grid">
+                <div class="price-item">
+                    <div class="price-value entry">159,500원</div>
+                    <div class="price-item-label">15:20 진입가</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-value target">164,500원</div>
+                    <div class="price-item-label">목표가 (+2.5%)</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-value stop">157,000원</div>
+                    <div class="price-item-label">손절가 (-2%)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 타이밍 스케줄 제거됨 -->
+
+        <!-- 📊 차트 섹션 -->
+        <div class="chart-section">
+            <div class="chart-header">
+                <div class="chart-title">
+                    <i class="fas fa-chart-candlestick me-2"></i>차트 
+                </div>
+                <div class="chart-controls">
+                    <button class="chart-btn" id="period30" onclick="changePeriod(30)">30일</button>
+                    <button class="chart-btn" id="period60" onclick="changePeriod(60)">60일</button>
+                    <button class="chart-btn" id="period90" onclick="changePeriod(90)">90일</button>
+                    <button class="chart-btn active" id="period365" onclick="changePeriod(365)">1년</button>
+                </div>
+            </div>
+            <div id="stockChart" style="height: 400px;"></div>
+            <div id="volumeChart" style="height: 150px; margin-top: 10px;"></div>
+        </div>
+
+        <!-- 🔗 관련 사이트 -->
+        <div class="links-section">
+            <div class="links-title">
+                <i class="fas fa-external-link-alt me-2"></i>관련 정보 사이트
+            </div>
+            <div class="links-grid">
+                <a href="https://finance.naver.com/item/main.nhn?code=000250" target="_blank" class="link-item">
+                    <i class="fas fa-chart-line link-icon naver"></i>
+                    <div class="link-title">네이버증권</div>
+                </a>
+                <a href="https://finance.daum.net/quotes/A000250" target="_blank" class="link-item">
+                    <i class="fas fa-chart-bar link-icon daum"></i>
+                    <div class="link-title">다음증권</div>
+                </a>
+                <a href="https://www.tradingview.com/chart/?symbol=KRX:000250" target="_blank" class="link-item">
+                    <i class="fas fa-chart-candlestick link-icon tradingview"></i>
+                    <div class="link-title">TradingView</div>
+                </a>
+                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A000250" target="_blank" class="link-item">
+                    <i class="fas fa-calculator link-icon fnguide"></i>
+                    <div class="link-title">FnGuide</div>
+                </a>
+                <a href="https://dart.fss.or.kr/dsac001/search.ax?selectKey=corp_cls&searchValue=000250" target="_blank" class="link-item">
+                    <i class="fas fa-file-alt link-icon dart"></i>
+                    <div class="link-title">공시정보</div>
+                </a>
+                <a href="https://www.google.com/search?q=삼천당제약+주식+뉴스&tbm=nws" target="_blank" class="link-item">
+                    <i class="fas fa-newspaper link-icon news"></i>
+                    <div class="link-title">뉴스검색</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        console.log('✅ 000250 차트 데이터 로드 완료:', 60일);
+        
+        // 000250 종가매매 차트 시스템
+        let candlestickChart;
+        let volumeChart;
+        let fullData = [{"x": "25/04/21", "y": [153613, 158457, 149853, 155745]}, {"x": "25/04/22", "y": [155745, 162610, 155178, 160323]}, {"x": "25/04/23", "y": [160323, 160879, 156292, 156750]}, {"x": "25/04/24", "y": [156750, 167772, 155790, 164497]}, {"x": "25/04/25", "y": [164497, 167219, 159430, 161320]}, {"x": "25/04/26", "y": [161320, 172378, 157103, 168848]}, {"x": "25/04/27", "y": [168848, 180531, 168820, 175587]}, {"x": "25/04/28", "y": [175587, 176942, 166822, 166901]}, {"x": "25/04/29", "y": [166901, 170010, 161576, 161638]}, {"x": "25/04/30", "y": [161638, 163048, 157968, 160111]}, {"x": "25/05/01", "y": [160111, 164047, 155394, 158630]}, {"x": "25/05/02", "y": [158630, 159360, 147181, 151335]}, {"x": "25/05/03", "y": [151335, 153769, 145589, 148067]}, {"x": "25/05/04", "y": [148067, 150470, 140203, 142707]}, {"x": "25/05/05", "y": [142707, 144187, 136787, 137973]}, {"x": "25/05/06", "y": [137973, 147361, 137125, 144572]}, {"x": "25/05/07", "y": [144572, 148588, 140526, 147481]}, {"x": "25/05/08", "y": [147481, 150770, 143835, 149988]}, {"x": "25/05/09", "y": [149988, 152578, 147521, 149715]}, {"x": "25/05/10", "y": [149715, 156561, 146403, 155693]}, {"x": "25/05/11", "y": [155693, 161229, 153257, 157314]}, {"x": "25/05/12", "y": [157314, 161632, 153754, 160082]}, {"x": "25/05/13", "y": [160082, 164621, 155032, 157386]}, {"x": "25/05/14", "y": [157386, 165009, 152766, 161218]}, {"x": "25/05/15", "y": [161218, 165639, 152702, 155352]}, {"x": "25/05/16", "y": [155352, 157393, 151206, 156537]}, {"x": "25/05/17", "y": [156537, 157957, 149298, 150724]}, {"x": "25/05/18", "y": [150724, 152449, 139676, 143454]}, {"x": "25/05/19", "y": [143454, 149488, 140488, 146887]}, {"x": "25/05/20", "y": [146887, 150101, 145827, 147252]}, {"x": "25/05/21", "y": [147252, 152217, 147045, 151641]}, {"x": "25/05/22", "y": [151641, 156134, 149729, 154143]}, {"x": "25/05/23", "y": [154143, 160906, 151917, 158414]}, {"x": "25/05/24", "y": [158414, 160687, 155718, 159170]}, {"x": "25/05/25", "y": [159170, 165027, 155418, 161087]}, {"x": "25/05/26", "y": [161087, 171368, 157215, 168268]}, {"x": "25/05/27", "y": [168268, 172371, 163801, 169725]}, {"x": "25/05/28", "y": [169725, 173683, 163920, 164369]}, {"x": "25/05/29", "y": [164369, 164635, 160505, 163872]}, {"x": "25/05/30", "y": [163872, 168623, 157961, 160178]}, {"x": "25/05/31", "y": [160178, 160334, 157300, 157947]}, {"x": "25/06/01", "y": [157947, 166856, 157661, 162230]}, {"x": "25/06/02", "y": [162230, 172660, 157977, 167954]}, {"x": "25/06/03", "y": [167954, 168792, 159131, 160533]}, {"x": "25/06/04", "y": [160533, 162921, 155192, 155993]}, {"x": "25/06/05", "y": [155993, 167214, 151533, 162795]}, {"x": "25/06/06", "y": [162795, 167764, 159044, 163627]}, {"x": "25/06/07", "y": [163627, 172144, 163010, 171646]}, {"x": "25/06/08", "y": [171646, 172716, 169535, 170040]}, {"x": "25/06/09", "y": [170040, 170096, 163496, 165653]}, {"x": "25/06/10", "y": [165653, 166468, 164401, 165246]}, {"x": "25/06/11", "y": [165246, 177379, 164445, 172353]}, {"x": "25/06/12", "y": [172353, 180889, 167581, 178703]}, {"x": "25/06/13", "y": [178703, 180122, 169111, 170329]}, {"x": "25/06/14", "y": [170329, 179793, 170288, 175026]}, {"x": "25/06/15", "y": [175026, 178137, 173734, 175537]}, {"x": "25/06/16", "y": [175537, 178146, 164009, 168884]}, {"x": "25/06/17", "y": [168884, 179230, 164088, 176035]}, {"x": "25/06/18", "y": [176035, 183616, 174028, 182315]}, {"x": "25/06/19", "y": [182315, 185242, 160500, 160500]}];
+        let fullVolumeData = [{"x": "25/04/21", "y": 443907, "fillColor": "#e74c3c"}, {"x": "25/04/22", "y": 1285815, "fillColor": "#e74c3c"}, {"x": "25/04/23", "y": 1035312, "fillColor": "#3498db"}, {"x": "25/04/24", "y": 116365, "fillColor": "#e74c3c"}, {"x": "25/04/25", "y": 1464801, "fillColor": "#3498db"}, {"x": "25/04/26", "y": 630557, "fillColor": "#e74c3c"}, {"x": "25/04/27", "y": 813964, "fillColor": "#e74c3c"}, {"x": "25/04/28", "y": 1589292, "fillColor": "#3498db"}, {"x": "25/04/29", "y": 443500, "fillColor": "#3498db"}, {"x": "25/04/30", "y": 1999124, "fillColor": "#3498db"}, {"x": "25/05/01", "y": 404877, "fillColor": "#3498db"}, {"x": "25/05/02", "y": 419723, "fillColor": "#3498db"}, {"x": "25/05/03", "y": 487354, "fillColor": "#3498db"}, {"x": "25/05/04", "y": 571283, "fillColor": "#3498db"}, {"x": "25/05/05", "y": 915417, "fillColor": "#3498db"}, {"x": "25/05/06", "y": 1924730, "fillColor": "#e74c3c"}, {"x": "25/05/07", "y": 672736, "fillColor": "#e74c3c"}, {"x": "25/05/08", "y": 1620967, "fillColor": "#e74c3c"}, {"x": "25/05/09", "y": 1359680, "fillColor": "#3498db"}, {"x": "25/05/10", "y": 1052861, "fillColor": "#e74c3c"}, {"x": "25/05/11", "y": 243061, "fillColor": "#e74c3c"}, {"x": "25/05/12", "y": 481031, "fillColor": "#e74c3c"}, {"x": "25/05/13", "y": 1226239, "fillColor": "#3498db"}, {"x": "25/05/14", "y": 1721680, "fillColor": "#e74c3c"}, {"x": "25/05/15", "y": 1239485, "fillColor": "#3498db"}, {"x": "25/05/16", "y": 886884, "fillColor": "#e74c3c"}, {"x": "25/05/17", "y": 1754116, "fillColor": "#3498db"}, {"x": "25/05/18", "y": 941015, "fillColor": "#3498db"}, {"x": "25/05/19", "y": 1984925, "fillColor": "#e74c3c"}, {"x": "25/05/20", "y": 1192832, "fillColor": "#e74c3c"}, {"x": "25/05/21", "y": 528219, "fillColor": "#e74c3c"}, {"x": "25/05/22", "y": 339066, "fillColor": "#e74c3c"}, {"x": "25/05/23", "y": 1724654, "fillColor": "#e74c3c"}, {"x": "25/05/24", "y": 1312915, "fillColor": "#e74c3c"}, {"x": "25/05/25", "y": 530658, "fillColor": "#e74c3c"}, {"x": "25/05/26", "y": 423709, "fillColor": "#e74c3c"}, {"x": "25/05/27", "y": 484531, "fillColor": "#e74c3c"}, {"x": "25/05/28", "y": 974050, "fillColor": "#3498db"}, {"x": "25/05/29", "y": 701918, "fillColor": "#3498db"}, {"x": "25/05/30", "y": 1119977, "fillColor": "#3498db"}, {"x": "25/05/31", "y": 1127223, "fillColor": "#3498db"}, {"x": "25/06/01", "y": 1520674, "fillColor": "#e74c3c"}, {"x": "25/06/02", "y": 573830, "fillColor": "#e74c3c"}, {"x": "25/06/03", "y": 226307, "fillColor": "#3498db"}, {"x": "25/06/04", "y": 1961482, "fillColor": "#3498db"}, {"x": "25/06/05", "y": 1333009, "fillColor": "#e74c3c"}, {"x": "25/06/06", "y": 448390, "fillColor": "#e74c3c"}, {"x": "25/06/07", "y": 1922015, "fillColor": "#e74c3c"}, {"x": "25/06/08", "y": 1338439, "fillColor": "#3498db"}, {"x": "25/06/09", "y": 1410990, "fillColor": "#3498db"}, {"x": "25/06/10", "y": 1183299, "fillColor": "#3498db"}, {"x": "25/06/11", "y": 658703, "fillColor": "#e74c3c"}, {"x": "25/06/12", "y": 1637011, "fillColor": "#e74c3c"}, {"x": "25/06/13", "y": 287939, "fillColor": "#3498db"}, {"x": "25/06/14", "y": 207305, "fillColor": "#e74c3c"}, {"x": "25/06/15", "y": 229810, "fillColor": "#e74c3c"}, {"x": "25/06/16", "y": 618281, "fillColor": "#3498db"}, {"x": "25/06/17", "y": 1743124, "fillColor": "#e74c3c"}, {"x": "25/06/18", "y": 862490, "fillColor": "#e74c3c"}, {"x": "25/06/19", "y": 494327, "fillColor": "#3498db"}];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // 캔들스틱 차트
+                const candlestickOptions = {
+                    series: [{ name: '삼천당제약', data: fullData }],
+                    chart: { 
+                        type: 'candlestick', 
+                        height: 400, 
+                        toolbar: { show: false },
+                        background: 'transparent'
+                    },
+                    title: { 
+                        text: '삼천당제약 (000250) 차트', 
+                        align: 'left',
+                        style: { fontSize: '16px', fontWeight: 'bold' }
+                    },
+                    xaxis: { type: 'category' },
+                    yaxis: { 
+                        labels: { 
+                            formatter: function(value) { 
+                                return value.toLocaleString() + '원'; 
+                            } 
+                        } 
+                    },
+                    plotOptions: {
+                        candlestick: {
+                            colors: { upward: '#e74c3c', downward: '#3498db' }
+                        }
+                    },
+                    grid: { show: true, borderColor: '#e0e6ed' }
+                };
+                
+                // 거래량 차트
+                const volumeOptions = {
+                    series: [{ name: '거래량', data: fullVolumeData }],
+                    chart: { 
+                        type: 'bar', 
+                        height: 150, 
+                        toolbar: { show: false },
+                        background: 'transparent'
+                    },
+                    plotOptions: { 
+                        bar: { 
+                            columnWidth: '80%', 
+                            distributed: true 
+                        } 
+                    },
+                    colors: fullVolumeData.map(item => item.fillColor),
+                    xaxis: { 
+                        type: 'category', 
+                        labels: { show: false } 
+                    },
+                    yaxis: { 
+                        labels: { 
+                            formatter: function(value) { 
+                                if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                                if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
+                                return value.toString();
+                            } 
+                        }
+                    },
+                    dataLabels: { enabled: false },
+                    legend: { show: false },
+                    grid: { show: true, borderColor: '#e0e6ed' }
+                };
+                
+                // 차트 렌더링
+                candlestickChart = new ApexCharts(document.querySelector("#stockChart"), candlestickOptions);
+                volumeChart = new ApexCharts(document.querySelector("#volumeChart"), volumeOptions);
+                
+                candlestickChart.render().then(() => {
+                    console.log('📊 캔들스틱 차트 렌더링 완료');
+                });
+                volumeChart.render().then(() => {
+                    console.log('📊 거래량 차트 렌더링 완료');
+                });
+                
+            } catch (error) {
+                console.error('❌ 차트 렌더링 실패:', error);
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 렌더링 실패</h5></div>';
+            }
+        });
+        
+        // 기간 변경 함수
+        function changePeriod(days) {
+            try {
+                const startIndex = Math.max(0, fullData.length - days);
+                const candleData = fullData.slice(startIndex);
+                const volumeData = fullVolumeData.slice(startIndex);
+                
+                // 버튼 스타일 업데이트
+                document.querySelectorAll('.chart-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.getElementById('period' + days).classList.add('active');
+                
+                // 차트 업데이트
+                if (candlestickChart && volumeChart) {
+                    candlestickChart.updateSeries([{ name: '삼천당제약', data: candleData }]);
+                    volumeChart.updateSeries([{ name: '거래량', data: volumeData }]);
+                    volumeChart.updateOptions({ colors: volumeData.map(item => item.fillColor) });
+                    console.log('📊 차트 기간 변경:', days + '일');
+                }
+            } catch (error) {
+                console.error('❌ 차트 업데이트 실패:', error);
+            }
+        }
+        
+    </script>
+</body>
+</html> 
