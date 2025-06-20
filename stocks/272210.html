@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한화시스템 (272210) - 종가매매 3일 단타</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+    <style>
+        /* 🎨 종가매매 전용 디자인 */
+        :root {
+            --primary: #2563eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #06b6d4;
+            --bg-glass: rgba(255, 255, 255, 0.95);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        /* 🏆 헤더 */
+        .hero-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* 📋 3줄 요약 */
+        .summary-section {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .summary-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f59e0b;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .summary-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 📊 2열 요약 레이아웃 */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .summary-column {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .summary-column-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #f59e0b;
+            padding-bottom: 0.5rem;
+        }
+
+        .summary-score {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #f59e0b;
+        }
+
+        .summary-score .badge {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* 💰 가격 정보 */
+        .price-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .current-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-label {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .price-item {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .price-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .price-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-value.entry { color: var(--primary); }
+        .price-value.target { color: var(--danger); }
+        .price-value.stop { color: var(--info); }
+
+        .price-item-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* 🕐 타이밍 스케줄 */
+        .timing-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .timing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .timing-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #f1f5f9, #ffffff);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .timing-time {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            min-width: 80px;
+            margin-right: 1.5rem;
+        }
+
+        .timing-action {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        /* 📊 차트 섹션 */
+        .chart-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chart-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chart-btn.active,
+        .chart-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* 🔗 관련 사이트 링크 */
+        .links-section {
+            background: var(--bg-glass);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .links-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 6열로 고정 */
+            gap: 1rem;
+        }
+
+        .link-item {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            min-height: 100px; /* 최소 높이 설정 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .link-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .link-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .link-icon.naver { color: #03c75a; }
+        .link-icon.daum { color: #4a90e2; }
+        .link-icon.tradingview { color: #2962ff; }
+        .link-icon.fnguide { color: #ff6b35; }
+        .link-icon.dart { color: #6c757d; }
+        .link-icon.news { color: #dc3545; }
+
+        .link-title {
+            font-size: 0.9rem; /* 폰트 크기 약간 줄임 */
+            font-weight: 600;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+
+        /* 📱 모바일 최적화 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .current-price {
+                font-size: 2.5rem;
+            }
+
+            .price-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-controls {
+                flex-wrap: wrap;
+            }
+
+            .chart-btn {
+                flex: 1;
+                min-width: 60px;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.9rem;
+            }
+
+            .links-grid {
+                grid-template-columns: repeat(3, 1fr); /* 태블릿에서 3열 */
+                gap: 0.8rem;
+            }
+
+            .link-item {
+                padding: 0.8rem;
+                min-height: 80px;
+            }
+
+            .link-icon {
+                font-size: 1.3rem;
+            }
+
+            .link-title {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .hero-header,
+            .price-section,
+            .timing-section,
+            .chart-section,
+            .links-section,
+            .summary-section {
+                padding: 1.5rem;
+            }
+
+            .price-grid {
+                gap: 1rem;
+            }
+
+            .price-item {
+                padding: 1rem;
+            }
+
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr); /* 모바일에서 2열 */
+                gap: 0.8rem;
+            }
+
+            .link-item {
+                padding: 0.7rem;
+                min-height: 70px;
+            }
+
+            .link-icon {
+                font-size: 1.2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .link-title {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🏆 헤더 -->
+    <div class="container mt-4">
+        <div class="hero-card">
+            <div class="hero-header">
+                <div class="hero-title">한화시스템 (272210)</div>
+                <div class="hero-subtitle">🕐 종가매매 3일 단타 전략</div>
+            </div>
+        </div>
+
+        <!-- 💰 가격 정보 -->
+        <div class="price-section">
+            <div class="current-price">65,500원</div>
+            <div class="price-label">현재가</div>
+            
+            <div class="price-grid">
+                <div class="price-item">
+                    <div class="price-value entry">65,100원</div>
+                    <div class="price-item-label">15:20 진입가</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-value target">67,900원 (+3.8%)</div>
+                    <div class="price-item-label">목표가</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-value stop">63,200원 (-2.8%)</div>
+                    <div class="price-item-label">손절가</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📋 핵심 요약 (2열) -->
+        <div class="summary-section">
+            <div class="summary-title">
+                <i class="fas fa-list-ul me-2"></i>핵심 요약
+            </div>
+            <div class="summary-grid">
+                <div class="summary-column">
+                    <div class="summary-column-title">
+                        <i class="fas fa-newspaper me-2"></i>뉴스 분석
+                    </div>
+                    <div class="summary-item">📈 - **주가 상승**: 최근 한화시스템은 역대 최고가를 기록하며, 현대로템과 LIG넥스원도 주가가 올랐습니다[2].</div>
+<div class="summary-item">📈 - **투자자 관심**: 투자자들은 한화시스템의 실적 호조와 미래 성장 가능성을 이유로 주식을 매수하고 있습니다[4].</div>
+<div class="summary-item">📈 - **주가수익비율**: 현재 주가수익비율(P/E)가 22.4배로 매우 높지만, 이는 실적 호조와 미래 성장 가능성 때문일 수 있습니다. 특히, 많은 투자자들이 실적 호조가 지속될 것으로 예상하고 있습니다[1].</div>
+<div class="summary-score"><span class="badge bg-success">뉴스 신뢰도: 80점</span></div>
+
+                </div>
+                <div class="summary-column">
+                    <div class="summary-column-title">
+                        <i class="fas fa-chart-line me-2"></i>지표 분석
+                    </div>
+                    <div class="summary-item">📊 - MACD 히스토그램 상승 전환 임박, RSI 40선 지지 확인</div>
+<div class="summary-item">📊 - 20일선(63,800원) 상향 돌파 후 지지선으로 작용 중</div>
+<div class="summary-item">📊 - 볼린저밴드 하단 반등 시도, 일봉 양봉 연속 출현</div>
+<div class="summary-score"><span class="badge bg-warning">기술적 신뢰도: 75점</span></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 타이밍 스케줄 제거됨 -->
+
+        <!-- 📊 차트 섹션 -->
+        <div class="chart-section">
+            <div class="chart-header">
+                <div class="chart-title">
+                    <i class="fas fa-chart-candlestick me-2"></i>차트 
+                </div>
+            </div>
+            <div id="stockChart" style="height: 400px; margin-bottom: 0;"></div>
+            <div id="volumeChart" style="height: 150px; margin-top: 0;"></div>
+        </div>
+
+        <!-- 🔗 관련 사이트 -->
+        <div class="links-section">
+            <div class="links-title">
+                <i class="fas fa-external-link-alt me-2"></i>관련 정보 사이트
+            </div>
+            <div class="links-grid">
+                <a href="https://finance.naver.com/item/main.nhn?code=272210" target="_blank" class="link-item">
+                    <i class="fas fa-chart-line link-icon naver"></i>
+                    <div class="link-title">네이버증권</div>
+                </a>
+                <a href="https://finance.daum.net/quotes/A272210" target="_blank" class="link-item">
+                    <i class="fas fa-chart-bar link-icon daum"></i>
+                    <div class="link-title">다음증권</div>
+                </a>
+                <a href="https://www.tradingview.com/chart/?symbol=KRX:272210" target="_blank" class="link-item">
+                    <i class="fas fa-chart-candlestick link-icon tradingview"></i>
+                    <div class="link-title">TradingView</div>
+                </a>
+                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A272210" target="_blank" class="link-item">
+                    <i class="fas fa-calculator link-icon fnguide"></i>
+                    <div class="link-title">FnGuide</div>
+                </a>
+                <a href="https://dart.fss.or.kr/dsac001/search.ax?selectKey=corp_cls&searchValue=272210" target="_blank" class="link-item">
+                    <i class="fas fa-file-alt link-icon dart"></i>
+                    <div class="link-title">공시정보</div>
+                </a>
+                <a href="https://www.google.com/search?q=한화시스템+주식+뉴스&tbm=nws" target="_blank" class="link-item">
+                    <i class="fas fa-newspaper link-icon news"></i>
+                    <div class="link-title">뉴스검색</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        console.log('✅ 272210 차트 데이터 로드 완료:', '21일');
+        
+        // 272210 종가매매 차트 시스템
+        let candlestickChart;
+        let volumeChart;
+        let fullData = [{"x":"25/05/21","y":[45400,47400,45300,46500]},{"x":"25/05/22","y":[46250,46250,44450,44550]},{"x":"25/05/23","y":[45250,45850,43900,45250]},{"x":"25/05/26","y":[44550,46650,44550,45850]},{"x":"25/05/27","y":[46450,46900,45400,46100]},{"x":"25/05/28","y":[46400,48850,44800,45700]},{"x":"25/05/29","y":[45900,46100,44950,45400]},{"x":"25/05/30","y":[45450,46700,44650,45400]},{"x":"25/06/02","y":[45500,45750,43050,43350]},{"x":"25/06/04","y":[43850,44200,43200,43900]},{"x":"25/06/05","y":[43650,44800,43400,44000]},{"x":"25/06/09","y":[44350,44350,41550,42800]},{"x":"25/06/10","y":[43750,52000,43550,51400]},{"x":"25/06/11","y":[53000,53100,50200,52400]},{"x":"25/06/12","y":[52000,54000,51900,53000]},{"x":"25/06/13","y":[53400,54800,52100,54400]},{"x":"25/06/16","y":[58100,65000,57100,64200]},{"x":"25/06/17","y":[63400,67800,62200,66200]},{"x":"25/06/18","y":[69600,70200,66800,68300]},{"x":"25/06/19","y":[67700,69300,66000,68600]},{"x":"25/06/20","y":[67000,67500,64600,65500]}];
+        let fullVolumeData = [{"x":"25/05/21","y":2664032,"fillColor":"#e74c3c"},{"x":"25/05/22","y":1792122,"fillColor":"#3498db"},{"x":"25/05/23","y":1504470,"fillColor":"#e74c3c"},{"x":"25/05/26","y":1672012,"fillColor":"#e74c3c"},{"x":"25/05/27","y":1711515,"fillColor":"#3498db"},{"x":"25/05/28","y":4895814,"fillColor":"#3498db"},{"x":"25/05/29","y":1715474,"fillColor":"#3498db"},{"x":"25/05/30","y":9085152,"fillColor":"#3498db"},{"x":"25/06/02","y":2558857,"fillColor":"#3498db"},{"x":"25/06/04","y":1800507,"fillColor":"#e74c3c"},{"x":"25/06/05","y":1750121,"fillColor":"#e74c3c"},{"x":"25/06/09","y":2457045,"fillColor":"#3498db"},{"x":"25/06/10","y":12232648,"fillColor":"#e74c3c"},{"x":"25/06/11","y":4542074,"fillColor":"#3498db"},{"x":"25/06/12","y":3495656,"fillColor":"#e74c3c"},{"x":"25/06/13","y":4903978,"fillColor":"#e74c3c"},{"x":"25/06/16","y":9410780,"fillColor":"#e74c3c"},{"x":"25/06/17","y":5372164,"fillColor":"#e74c3c"},{"x":"25/06/18","y":3608775,"fillColor":"#3498db"},{"x":"25/06/19","y":2542494,"fillColor":"#e74c3c"},{"x":"25/06/20","y":2584433,"fillColor":"#3498db"}];
+        
+        // ApexCharts 로딩 확인 후 차트 초기화
+        function initializeCharts() {
+            if (typeof ApexCharts === 'undefined') {
+                console.error('❌ ApexCharts 라이브러리가 로드되지 않았습니다');
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 라이브러리 로딩 실패</h5><p>페이지를 새로고침해주세요</p></div>';
+                return;
+            }
+            
+            try {
+                // 캔들스틱 차트
+                const candlestickOptions = {
+                    series: [{ name: '한화시스템', data: fullData }],
+                    chart: {
+                        type: 'candlestick',
+                        height: 400,
+                        toolbar: { show: false },
+                        background: 'transparent',
+                        zoom: { enabled: false },
+                        selection: { enabled: false },
+                        pan: { enabled: false },
+                        // 차트 정렬을 위한 마진 설정
+                        offsetX: 0,
+                        offsetY: 0,
+                        // 정확한 정렬을 위한 설정
+                        parentHeightOffset: 0
+                    },
+                    title: {
+                        text: '한화시스템 (272210) 차트', 
+                        align: 'left',
+                        style: { fontSize: '16px', fontWeight: 'bold' }
+                    },
+                    xaxis: { 
+                        type: 'category',
+                        labels: {
+                            show: true,
+                            rotate: -45,
+                            maxHeight: 120,
+                            hideOverlappingLabels: true,
+                            showDuplicates: false
+                        },
+                        tickAmount: 8,
+                        // x축 정렬을 위한 설정
+                        axisBorder: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 1,
+                            offsetX: 0,
+                            offsetY: 0
+                        },
+                        axisTicks: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 6,
+                            offsetX: 0,
+                            offsetY: 0
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            formatter: function(value) {
+                                return value.toLocaleString() + '원';
+                            }
+                        }
+                    },
+                    plotOptions: {
+                        candlestick: {
+                            colors: { upward: '#e74c3c', downward: '#3498db' }
+                        }
+                    },
+                    grid: { 
+                        show: true, 
+                        borderColor: '#e0e6ed',
+                        // 그리드 정렬
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }
+                };
+                
+                // 거래량 차트
+                const volumeOptions = {
+                    series: [{ name: '거래량', data: fullVolumeData }],
+                    chart: {
+                        type: 'bar',
+                        height: 150,
+                        toolbar: { show: false },
+                        background: 'transparent',
+                        zoom: { enabled: false },
+                        selection: { enabled: false },
+                        pan: { enabled: false },
+                        // 캔들스틱 차트와 동일한 마진 설정
+                        offsetX: 0,
+                        offsetY: 0,
+                        parentHeightOffset: 0
+                    },
+                    plotOptions: {
+                        bar: {
+                            columnWidth: '80%',
+                            distributed: true 
+                        }
+                    },
+                    colors: fullVolumeData.map(item => item.fillColor),
+                    xaxis: {
+                        type: 'category', 
+                        labels: { show: false },
+                        // 캔들스틱 차트와 동일한 x축 설정
+                        axisBorder: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 1,
+                            offsetX: 0,
+                            offsetY: 0
+                        },
+                        axisTicks: {
+                            show: false
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            formatter: function(value) {
+                                if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                                if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
+                                return value.toString();
+                            }
+                        }
+                    },
+                    dataLabels: { enabled: false },
+                    legend: { show: false },
+                    grid: { 
+                        show: true, 
+                        borderColor: '#e0e6ed',
+                        // 캔들스틱 차트와 동일한 그리드 설정
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }
+                };
+                
+                // 차트 렌더링
+                candlestickChart = new ApexCharts(document.querySelector("#stockChart"), candlestickOptions);
+                volumeChart = new ApexCharts(document.querySelector("#volumeChart"), volumeOptions);
+                
+                candlestickChart.render().then(() => {
+                    console.log('📊 캔들스틱 차트 렌더링 완료');
+                });
+                volumeChart.render().then(() => {
+                    console.log('📊 거래량 차트 렌더링 완료');
+                });
+                
+            } catch (error) {
+                console.error('❌ 차트 렌더링 실패:', error);
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 렌더링 실패</h5><p>' + error.message + '</p></div>';
+            }
+        }
+        
+        // DOM 로딩 완료 후 차트 초기화
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeCharts);
+        } else {
+            // 이미 로딩 완료된 경우 즉시 실행
+            setTimeout(initializeCharts, 100);
+        }
+
+
+        
+    </script>
+</body>
+</html> 
