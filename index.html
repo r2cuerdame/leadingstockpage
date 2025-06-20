@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎯 AI 주식 분석 결과 - 종가매매 3일 단타</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>🎯 AI 주식 분석 결과 - 종가매매 3일 단타 (v20250620_051655)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -45,9 +48,25 @@
             color: #007bff;
             text-decoration: underline;
         }
-        @media (max-width: 768px) {
-            .hide-on-mobile {
-                display: none !important;
+        
+        /* 반응형 테이블 */
+        @media screen and (max-width: 768px) {
+            .table {
+                font-size: 0.9rem !important;
+            }
+            
+            .table th, .table td {
+                padding: 8px 6px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .table {
+                font-size: 0.8rem !important;
+            }
+            
+            .table th, .table td {
+                padding: 6px 4px !important;
             }
         }
     
@@ -67,14 +86,6 @@
     padding: 8px !important;
 }
 
-/* 기본 컬럼 숨김 설정 */
-.stock-code,
-.ai-score,
-.investment-grade,
-.naver-btn {
-    display: none !important;
-}
-
 /* 모바일 변환 방지 */
 .mobile-row-content {
     display: none !important;
@@ -86,25 +97,17 @@
         <div class="text-center mb-4">
             <h1 class="display-4"><i class="fas fa-chart-line text-primary"></i> AI 주식 분석</h1>
             <p class="lead">🎯 종가매매 3일 단타 전략</p>
-            <small class="text-muted">분석 완료: 2025-06-19 02:05:30</small>
+            <small class="text-muted">분석 완료: 2025-06-20 05:16:55 (v20250620_051655)</small>
         </div>
         
         
-                <div class="alert alert-success mb-4" role="alert">
-                    <h5 class="alert-heading">
-                        <i class="fas fa-check-circle me-2"></i>
-                        AI 분석 완료
-                    </h5>
-                    <p class="mb-0">AI 분석 시스템이 정상적으로 작동하여 추천 종목을 선별했습니다.</p>
-                </div>
-            
         
         
             <div class="mb-4">
                 <div class="card-header bg-primary text-white">
                     <h5 class="mb-0">
                         <i class="fas fa-chart-line me-2"></i>
-                        📈 오늘의 추천주 (TOP 3)
+                        📈 오늘의 추천주 (TOP 2)
                     </h5>
                 </div>
                 <div class="table-responsive">
@@ -114,75 +117,33 @@
                                 
             <th>순위</th>
             <th>종목명</th>
-            <th class="hide-on-mobile">종목번호</th>
             <th>현재가</th>
             <th>목표가</th>
             <th>예상수익률</th>
-            <th>AI점수</th>
-            <th class="hide-on-mobile">투자등급</th>
-            <th class="hide-on-mobile">네이버</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td><span class="badge badge-rank">1위</span></td>
                             <td>
-                                <a href="stocks/002960.html" class="stock-name">
-                                    한국쉘석유
+                                <a href="stocks/053800.html" class="stock-name">
+                                    안랩
                                 </a>
                             </td>
-                            <td class="hide-on-mobile">002960</td>
-                            <td>454,000원</td>
-                            <td>468,000원</td>
+                            <td>68,700원</td>
+                            <td>70,829원</td>
                             <td>+3.1%</td>
-                            <td>69.0점</td>
-                            <td class="hide-on-mobile">B</td>
-                            <td class="hide-on-mobile">
-                                <a href="https://finance.naver.com/item/main.nhn?code=002960" 
-                                   target="_blank" class="btn btn-sm btn-outline-primary">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
                         </tr>
                         <tr>
                             <td><span class="badge badge-rank">2위</span></td>
                             <td>
-                                <a href="stocks/003010.html" class="stock-name">
-                                    혜인
+                                <a href="stocks/071970.html" class="stock-name">
+                                    HD현대마린엔진
                                 </a>
                             </td>
-                            <td class="hide-on-mobile">003010</td>
-                            <td>5,600원</td>
-                            <td>5,780원</td>
-                            <td>+3.2%</td>
-                            <td>63.0점</td>
-                            <td class="hide-on-mobile">B</td>
-                            <td class="hide-on-mobile">
-                                <a href="https://finance.naver.com/item/main.nhn?code=003010" 
-                                   target="_blank" class="btn btn-sm btn-outline-primary">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span class="badge badge-rank">3위</span></td>
-                            <td>
-                                <a href="stocks/000250.html" class="stock-name">
-                                    삼천당제약
-                                </a>
-                            </td>
-                            <td class="hide-on-mobile">000250</td>
-                            <td>160,500원</td>
-                            <td>165,500원</td>
+                            <td>54,200원</td>
+                            <td>55,880원</td>
                             <td>+3.1%</td>
-                            <td>58.0점</td>
-                            <td class="hide-on-mobile">B</td>
-                            <td class="hide-on-mobile">
-                                <a href="https://finance.naver.com/item/main.nhn?code=000250" 
-                                   target="_blank" class="btn btn-sm btn-outline-primary">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
                         </tr>
                         </tbody>
                     </table>

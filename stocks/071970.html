@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한국쉘석유 (002960) - 종가매매 3일 단타</title>
+    <title>HD현대마린엔진 (071970) - 종가매매 3일 단타</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.44.0/dist/apexcharts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
     <style>
         /* 🎨 종가매매 전용 디자인 */
         :root {
@@ -297,7 +297,7 @@
 
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(6, 1fr); /* 6열로 고정 */
             gap: 1rem;
         }
 
@@ -310,6 +310,11 @@
             transition: all 0.3s ease;
             text-decoration: none;
             color: inherit;
+            min-height: 100px; /* 최소 높이 설정 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .link-item:hover {
@@ -333,9 +338,10 @@
         .link-icon.news { color: #dc3545; }
 
         .link-title {
-            font-size: 1rem;
+            font-size: 0.9rem; /* 폰트 크기 약간 줄임 */
             font-weight: 600;
             color: #2c3e50;
+            line-height: 1.2;
         }
 
         /* 📱 모바일 최적화 */
@@ -364,7 +370,21 @@
             }
 
             .links-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr); /* 태블릿에서 3열 */
+                gap: 0.8rem;
+            }
+
+            .link-item {
+                padding: 0.8rem;
+                min-height: 80px;
+            }
+
+            .link-icon {
+                font-size: 1.3rem;
+            }
+
+            .link-title {
+                font-size: 0.8rem;
             }
         }
 
@@ -392,8 +412,22 @@
             }
 
             .links-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr); /* 모바일에서 2열 */
                 gap: 0.8rem;
+            }
+
+            .link-item {
+                padding: 0.7rem;
+                min-height: 70px;
+            }
+
+            .link-icon {
+                font-size: 1.2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .link-title {
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -404,8 +438,29 @@
     <div class="container mt-4">
         <div class="hero-card">
             <div class="hero-header">
-                <div class="hero-title">한국쉘석유 (002960)</div>
+                <div class="hero-title">HD현대마린엔진 (071970)</div>
                 <div class="hero-subtitle">🕐 종가매매 3일 단타 전략</div>
+            </div>
+        </div>
+
+        <!-- 💰 가격 정보 -->
+        <div class="price-section">
+            <div class="current-price">54,200원</div>
+            <div class="price-label">현재가</div>
+            
+            <div class="price-grid">
+                <div class="price-item">
+                    <div class="price-value entry">53,900원</div>
+                    <div class="price-item-label">15:20 진입가</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-value target">55,700원 (+2.8%)</div>
+                    <div class="price-item-label">목표가</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-value stop">52,500원 (-2.5%)</div>
+                    <div class="price-item-label">손절가</div>
+                </div>
             </div>
         </div>
 
@@ -419,42 +474,21 @@
                     <div class="summary-column-title">
                         <i class="fas fa-newspaper me-2"></i>뉴스 분석
                     </div>
-                    <div class="summary-item">📈 한국쉘석유 최근 실적 개선으로 투자자 관심 증가</div>
-<div class="summary-item">🏭 업계 전망 긍정적, 단기 상승 모멘텀 확인</div>
-<div class="summary-item">💰 현재가 454,000원 수준에서 매수 기회 포착</div>
-<div class="summary-score"><span class="badge bg-warning">뉴스 신뢰도: 73점</span></div>
+                    <div class="summary-item">📈 - **HD현대마린엔진(071970)**: 최근 52주 신고가를 경신하며, 선박엔진 공급계약 1,090.2억원에 대해 단일판매ㆍ공급계약 체결을 공시했다[1].</div>
+<div class="summary-item">📈 - **실적 전망**: 2024년부터 2026년까지 매출이 136% 성장할 것으로 전망되며, HD한국조선해양과의 부품 협력 시너지로 추가 성장 기대된다[5].</div>
+<div class="summary-item">📈 - **주가 동향**: 4거래일 연속 상승세를 보이며, 52주 신고가를 경신한 상태이다[3].</div>
+<div class="summary-score"><span class="badge bg-success">뉴스 신뢰도: 90점</span></div>
 
                 </div>
                 <div class="summary-column">
                     <div class="summary-column-title">
                         <i class="fas fa-chart-line me-2"></i>지표 분석
                     </div>
-                    <div class="summary-item">📊 한국쉘석유 이동평균선 상향 돌파로 상승 신호</div>
-<div class="summary-item">🎯 RSI 50선 상회, MACD 골든크로스 형성</div>
-<div class="summary-item">⚡ 거래량 증가와 함께 돌파 가능성 높음</div>
-<div class="summary-score"><span class="badge bg-success">기술적 신뢰도: 84점</span></div>
+                    <div class="summary-item">📊 - MACD 히스토그램 상승 전환 임박, RSI 40선 지지 확인</div>
+<div class="summary-item">📊 - 20일선(52,800원) 근처에서 반등 시도 중</div>
+<div class="summary-item">📊 - 볼린저밴드 하단 지지 후 중심선 회귀 가능성 증가</div>
+<div class="summary-score"><span class="badge bg-warning">기술적 신뢰도: 75점</span></div>
 
-                </div>
-            </div>
-        </div>
-
-        <!-- 💰 가격 정보 -->
-        <div class="price-section">
-            <div class="current-price">454,000원</div>
-            <div class="price-label">현재가</div>
-            
-            <div class="price-grid">
-                <div class="price-item">
-                    <div class="price-value entry">451,500원</div>
-                    <div class="price-item-label">15:20 진입가</div>
-                </div>
-                <div class="price-item">
-                    <div class="price-value target">465,000원</div>
-                    <div class="price-item-label">목표가 (+2.5%)</div>
-                </div>
-                <div class="price-item">
-                    <div class="price-value stop">444,500원</div>
-                    <div class="price-item-label">손절가 (-2%)</div>
                 </div>
             </div>
         </div>
@@ -467,15 +501,9 @@
                 <div class="chart-title">
                     <i class="fas fa-chart-candlestick me-2"></i>차트 
                 </div>
-                <div class="chart-controls">
-                    <button class="chart-btn" id="period30" onclick="changePeriod(30)">30일</button>
-                    <button class="chart-btn" id="period60" onclick="changePeriod(60)">60일</button>
-                    <button class="chart-btn" id="period90" onclick="changePeriod(90)">90일</button>
-                    <button class="chart-btn active" id="period365" onclick="changePeriod(365)">1년</button>
-                </div>
             </div>
-            <div id="stockChart" style="height: 400px;"></div>
-            <div id="volumeChart" style="height: 150px; margin-top: 10px;"></div>
+            <div id="stockChart" style="height: 400px; margin-bottom: 0;"></div>
+            <div id="volumeChart" style="height: 150px; margin-top: 0;"></div>
         </div>
 
         <!-- 🔗 관련 사이트 -->
@@ -484,27 +512,27 @@
                 <i class="fas fa-external-link-alt me-2"></i>관련 정보 사이트
             </div>
             <div class="links-grid">
-                <a href="https://finance.naver.com/item/main.nhn?code=002960" target="_blank" class="link-item">
+                <a href="https://finance.naver.com/item/main.nhn?code=071970" target="_blank" class="link-item">
                     <i class="fas fa-chart-line link-icon naver"></i>
                     <div class="link-title">네이버증권</div>
                 </a>
-                <a href="https://finance.daum.net/quotes/A002960" target="_blank" class="link-item">
+                <a href="https://finance.daum.net/quotes/A071970" target="_blank" class="link-item">
                     <i class="fas fa-chart-bar link-icon daum"></i>
                     <div class="link-title">다음증권</div>
                 </a>
-                <a href="https://www.tradingview.com/chart/?symbol=KRX:002960" target="_blank" class="link-item">
+                <a href="https://www.tradingview.com/chart/?symbol=KRX:071970" target="_blank" class="link-item">
                     <i class="fas fa-chart-candlestick link-icon tradingview"></i>
                     <div class="link-title">TradingView</div>
                 </a>
-                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A002960" target="_blank" class="link-item">
+                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A071970" target="_blank" class="link-item">
                     <i class="fas fa-calculator link-icon fnguide"></i>
                     <div class="link-title">FnGuide</div>
                 </a>
-                <a href="https://dart.fss.or.kr/dsac001/search.ax?selectKey=corp_cls&searchValue=002960" target="_blank" class="link-item">
+                <a href="https://dart.fss.or.kr/dsac001/search.ax?selectKey=corp_cls&searchValue=071970" target="_blank" class="link-item">
                     <i class="fas fa-file-alt link-icon dart"></i>
                     <div class="link-title">공시정보</div>
                 </a>
-                <a href="https://www.google.com/search?q=한국쉘석유+주식+뉴스&tbm=nws" target="_blank" class="link-item">
+                <a href="https://www.google.com/search?q=HD현대마린엔진+주식+뉴스&tbm=nws" target="_blank" class="link-item">
                     <i class="fas fa-newspaper link-icon news"></i>
                     <div class="link-title">뉴스검색</div>
                 </a>
@@ -516,78 +544,156 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         
-        console.log('✅ 002960 차트 데이터 로드 완료:', 60일);
+        console.log('✅ 071970 차트 데이터 로드 완료:', '20일');
         
-        // 002960 종가매매 차트 시스템
+        // 071970 종가매매 차트 시스템
         let candlestickChart;
         let volumeChart;
-        let fullData = [{"x": "25/04/21", "y": [495655, 504125, 485185, 502250]}, {"x": "25/04/22", "y": [502250, 532237, 498839, 519682]}, {"x": "25/04/23", "y": [519682, 554545, 517841, 541438]}, {"x": "25/04/24", "y": [541438, 567660, 525376, 564797]}, {"x": "25/04/25", "y": [564797, 571985, 549264, 566015]}, {"x": "25/04/26", "y": [566015, 593965, 553189, 591067]}, {"x": "25/04/27", "y": [591067, 603087, 554152, 569710]}, {"x": "25/04/28", "y": [569710, 592445, 567458, 587800]}, {"x": "25/04/29", "y": [587800, 622006, 574892, 614672]}, {"x": "25/04/30", "y": [614672, 647599, 598307, 631015]}, {"x": "25/05/01", "y": [631015, 638095, 613937, 636532]}, {"x": "25/05/02", "y": [636532, 640409, 614232, 614589]}, {"x": "25/05/03", "y": [614589, 658793, 602726, 641768]}, {"x": "25/05/04", "y": [641768, 658641, 606758, 621656]}, {"x": "25/05/05", "y": [621656, 644429, 613292, 633163]}, {"x": "25/05/06", "y": [633163, 642146, 607181, 621473]}, {"x": "25/05/07", "y": [621473, 638676, 575489, 591603]}, {"x": "25/05/08", "y": [591603, 601606, 572401, 582723]}, {"x": "25/05/09", "y": [582723, 597143, 554725, 566350]}, {"x": "25/05/10", "y": [566350, 571762, 566337, 571276]}, {"x": "25/05/11", "y": [571276, 577929, 536055, 545424]}, {"x": "25/05/12", "y": [545424, 548216, 537475, 547820]}, {"x": "25/05/13", "y": [547820, 554817, 526035, 530981]}, {"x": "25/05/14", "y": [530981, 538597, 527236, 537989]}, {"x": "25/05/15", "y": [537989, 538667, 511631, 514336]}, {"x": "25/05/16", "y": [514336, 518239, 477656, 489117]}, {"x": "25/05/17", "y": [489117, 497464, 467695, 481029]}, {"x": "25/05/18", "y": [481029, 491460, 472945, 485739]}, {"x": "25/05/19", "y": [485739, 488612, 456143, 464011]}, {"x": "25/05/20", "y": [464011, 490857, 458744, 478371]}, {"x": "25/05/21", "y": [478371, 491493, 455989, 462643]}, {"x": "25/05/22", "y": [462643, 485999, 460703, 479674]}, {"x": "25/05/23", "y": [479674, 483512, 472010, 475590]}, {"x": "25/05/24", "y": [475590, 475668, 444505, 454817]}, {"x": "25/05/25", "y": [454817, 481947, 453342, 473591]}, {"x": "25/05/26", "y": [473591, 502073, 472251, 496848]}, {"x": "25/05/27", "y": [496848, 505139, 490744, 501060]}, {"x": "25/05/28", "y": [501060, 513707, 481568, 485869]}, {"x": "25/05/29", "y": [485869, 494741, 470456, 478345]}, {"x": "25/05/30", "y": [478345, 507989, 474425, 501101]}, {"x": "25/05/31", "y": [501101, 507859, 482533, 491080]}, {"x": "25/06/01", "y": [491080, 514185, 482244, 503054]}, {"x": "25/06/02", "y": [503054, 531384, 488069, 525731]}, {"x": "25/06/03", "y": [525731, 547659, 510961, 537461]}, {"x": "25/06/04", "y": [537461, 562501, 534960, 561180]}, {"x": "25/06/05", "y": [561180, 579374, 561025, 576194]}, {"x": "25/06/06", "y": [576194, 612870, 561136, 596474]}, {"x": "25/06/07", "y": [596474, 611758, 569436, 576506]}, {"x": "25/06/08", "y": [576506, 602331, 560145, 596186]}, {"x": "25/06/09", "y": [596186, 621622, 589202, 616783]}, {"x": "25/06/10", "y": [616783, 633380, 585402, 588077]}, {"x": "25/06/11", "y": [588077, 595514, 573276, 576858]}, {"x": "25/06/12", "y": [576858, 592541, 561881, 571706]}, {"x": "25/06/13", "y": [571706, 582963, 558576, 572097]}, {"x": "25/06/14", "y": [572097, 581730, 550522, 564112]}, {"x": "25/06/15", "y": [564112, 575430, 550098, 559079]}, {"x": "25/06/16", "y": [559079, 560196, 542479, 550127]}, {"x": "25/06/17", "y": [550127, 584628, 547624, 570546]}, {"x": "25/06/18", "y": [570546, 591415, 559056, 581328]}, {"x": "25/06/19", "y": [581328, 596768, 454000, 454000]}];
-        let fullVolumeData = [{"x": "25/04/21", "y": 260824, "fillColor": "#e74c3c"}, {"x": "25/04/22", "y": 1664147, "fillColor": "#e74c3c"}, {"x": "25/04/23", "y": 1158647, "fillColor": "#e74c3c"}, {"x": "25/04/24", "y": 1468565, "fillColor": "#e74c3c"}, {"x": "25/04/25", "y": 1543309, "fillColor": "#e74c3c"}, {"x": "25/04/26", "y": 263165, "fillColor": "#e74c3c"}, {"x": "25/04/27", "y": 1690989, "fillColor": "#3498db"}, {"x": "25/04/28", "y": 1851776, "fillColor": "#e74c3c"}, {"x": "25/04/29", "y": 1125220, "fillColor": "#e74c3c"}, {"x": "25/04/30", "y": 802323, "fillColor": "#e74c3c"}, {"x": "25/05/01", "y": 362821, "fillColor": "#e74c3c"}, {"x": "25/05/02", "y": 528341, "fillColor": "#3498db"}, {"x": "25/05/03", "y": 523064, "fillColor": "#e74c3c"}, {"x": "25/05/04", "y": 1242941, "fillColor": "#3498db"}, {"x": "25/05/05", "y": 1453891, "fillColor": "#e74c3c"}, {"x": "25/05/06", "y": 1775420, "fillColor": "#3498db"}, {"x": "25/05/07", "y": 1259367, "fillColor": "#3498db"}, {"x": "25/05/08", "y": 877292, "fillColor": "#3498db"}, {"x": "25/05/09", "y": 1332271, "fillColor": "#3498db"}, {"x": "25/05/10", "y": 1545565, "fillColor": "#e74c3c"}, {"x": "25/05/11", "y": 384834, "fillColor": "#3498db"}, {"x": "25/05/12", "y": 1877336, "fillColor": "#e74c3c"}, {"x": "25/05/13", "y": 283477, "fillColor": "#3498db"}, {"x": "25/05/14", "y": 752343, "fillColor": "#e74c3c"}, {"x": "25/05/15", "y": 597954, "fillColor": "#3498db"}, {"x": "25/05/16", "y": 143386, "fillColor": "#3498db"}, {"x": "25/05/17", "y": 879364, "fillColor": "#3498db"}, {"x": "25/05/18", "y": 269994, "fillColor": "#e74c3c"}, {"x": "25/05/19", "y": 724315, "fillColor": "#3498db"}, {"x": "25/05/20", "y": 1443790, "fillColor": "#e74c3c"}, {"x": "25/05/21", "y": 331887, "fillColor": "#3498db"}, {"x": "25/05/22", "y": 1704110, "fillColor": "#e74c3c"}, {"x": "25/05/23", "y": 1327835, "fillColor": "#3498db"}, {"x": "25/05/24", "y": 518968, "fillColor": "#3498db"}, {"x": "25/05/25", "y": 104752, "fillColor": "#e74c3c"}, {"x": "25/05/26", "y": 631217, "fillColor": "#e74c3c"}, {"x": "25/05/27", "y": 1881589, "fillColor": "#e74c3c"}, {"x": "25/05/28", "y": 1590741, "fillColor": "#3498db"}, {"x": "25/05/29", "y": 435646, "fillColor": "#3498db"}, {"x": "25/05/30", "y": 785198, "fillColor": "#e74c3c"}, {"x": "25/05/31", "y": 1638438, "fillColor": "#3498db"}, {"x": "25/06/01", "y": 761274, "fillColor": "#e74c3c"}, {"x": "25/06/02", "y": 947028, "fillColor": "#e74c3c"}, {"x": "25/06/03", "y": 1396993, "fillColor": "#e74c3c"}, {"x": "25/06/04", "y": 784935, "fillColor": "#e74c3c"}, {"x": "25/06/05", "y": 1274668, "fillColor": "#e74c3c"}, {"x": "25/06/06", "y": 925962, "fillColor": "#e74c3c"}, {"x": "25/06/07", "y": 886525, "fillColor": "#3498db"}, {"x": "25/06/08", "y": 584646, "fillColor": "#e74c3c"}, {"x": "25/06/09", "y": 432437, "fillColor": "#e74c3c"}, {"x": "25/06/10", "y": 502607, "fillColor": "#3498db"}, {"x": "25/06/11", "y": 1278564, "fillColor": "#3498db"}, {"x": "25/06/12", "y": 1234657, "fillColor": "#3498db"}, {"x": "25/06/13", "y": 1400701, "fillColor": "#e74c3c"}, {"x": "25/06/14", "y": 785298, "fillColor": "#3498db"}, {"x": "25/06/15", "y": 631525, "fillColor": "#3498db"}, {"x": "25/06/16", "y": 379277, "fillColor": "#3498db"}, {"x": "25/06/17", "y": 134906, "fillColor": "#e74c3c"}, {"x": "25/06/18", "y": 125825, "fillColor": "#e74c3c"}, {"x": "25/06/19", "y": 1743204, "fillColor": "#3498db"}];
+        let fullData = [{"x":"25/05/21","y":[39400,42500,39400,41200]},{"x":"25/05/22","y":[40650,41750,39900,41250]},{"x":"25/05/23","y":[42000,42000,40500,41500]},{"x":"25/05/26","y":[40900,42900,40600,41950]},{"x":"25/05/27","y":[42600,42600,41050,41500]},{"x":"25/05/28","y":[41500,41750,39550,39850]},{"x":"25/05/29","y":[41150,44500,41100,41950]},{"x":"25/05/30","y":[41700,42750,40900,42700]},{"x":"25/06/02","y":[42950,42950,41400,42050]},{"x":"25/06/04","y":[42050,45100,41300,44600]},{"x":"25/06/05","y":[44750,45150,44000,44500]},{"x":"25/06/09","y":[44200,44500,41550,42300]},{"x":"25/06/10","y":[42300,43300,41650,43300]},{"x":"25/06/11","y":[43550,43600,42350,43350]},{"x":"25/06/12","y":[43200,44850,42950,44050]},{"x":"25/06/13","y":[44550,47350,44200,46000]},{"x":"25/06/16","y":[45500,49450,45400,49350]},{"x":"25/06/17","y":[49800,52000,48050,49950]},{"x":"25/06/18","y":[50600,53600,49900,52100]},{"x":"25/06/19","y":[53800,54500,52600,54200]}];
+        let fullVolumeData = [{"x":"25/05/21","y":838699,"fillColor":"#e74c3c"},{"x":"25/05/22","y":393636,"fillColor":"#e74c3c"},{"x":"25/05/23","y":255578,"fillColor":"#3498db"},{"x":"25/05/26","y":429336,"fillColor":"#e74c3c"},{"x":"25/05/27","y":301307,"fillColor":"#3498db"},{"x":"25/05/28","y":606554,"fillColor":"#3498db"},{"x":"25/05/29","y":1070404,"fillColor":"#e74c3c"},{"x":"25/05/30","y":953185,"fillColor":"#e74c3c"},{"x":"25/06/02","y":346933,"fillColor":"#3498db"},{"x":"25/06/04","y":709667,"fillColor":"#e74c3c"},{"x":"25/06/05","y":373574,"fillColor":"#3498db"},{"x":"25/06/09","y":749450,"fillColor":"#3498db"},{"x":"25/06/10","y":574180,"fillColor":"#e74c3c"},{"x":"25/06/11","y":263258,"fillColor":"#3498db"},{"x":"25/06/12","y":350221,"fillColor":"#e74c3c"},{"x":"25/06/13","y":1133333,"fillColor":"#e74c3c"},{"x":"25/06/16","y":597390,"fillColor":"#e74c3c"},{"x":"25/06/17","y":659561,"fillColor":"#e74c3c"},{"x":"25/06/18","y":557567,"fillColor":"#e74c3c"},{"x":"25/06/19","y":414818,"fillColor":"#e74c3c"}];
         
-        document.addEventListener('DOMContentLoaded', function() {
+        // ApexCharts 로딩 확인 후 차트 초기화
+        function initializeCharts() {
+            if (typeof ApexCharts === 'undefined') {
+                console.error('❌ ApexCharts 라이브러리가 로드되지 않았습니다');
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 라이브러리 로딩 실패</h5><p>페이지를 새로고침해주세요</p></div>';
+                return;
+            }
+            
             try {
                 // 캔들스틱 차트
                 const candlestickOptions = {
-                    series: [{ name: '한국쉘석유', data: fullData }],
-                    chart: { 
-                        type: 'candlestick', 
-                        height: 400, 
+                    series: [{ name: 'HD현대마린엔진', data: fullData }],
+                    chart: {
+                        type: 'candlestick',
+                        height: 400,
                         toolbar: { show: false },
-                        background: 'transparent'
+                        background: 'transparent',
+                        zoom: { enabled: false },
+                        selection: { enabled: false },
+                        pan: { enabled: false },
+                        // 차트 정렬을 위한 마진 설정
+                        offsetX: 0,
+                        offsetY: 0,
+                        // 정확한 정렬을 위한 설정
+                        parentHeightOffset: 0
                     },
-                    title: { 
-                        text: '한국쉘석유 (002960) 차트', 
+                    title: {
+                        text: 'HD현대마린엔진 (071970) 차트', 
                         align: 'left',
                         style: { fontSize: '16px', fontWeight: 'bold' }
                     },
-                    xaxis: { type: 'category' },
-                    yaxis: { 
-                        labels: { 
-                            formatter: function(value) { 
-                                return value.toLocaleString() + '원'; 
-                            } 
-                        } 
+                    xaxis: { 
+                        type: 'category',
+                        labels: {
+                            show: true,
+                            rotate: -45,
+                            maxHeight: 120,
+                            hideOverlappingLabels: true,
+                            showDuplicates: false
+                        },
+                        tickAmount: 8,
+                        // x축 정렬을 위한 설정
+                        axisBorder: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 1,
+                            offsetX: 0,
+                            offsetY: 0
+                        },
+                        axisTicks: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 6,
+                            offsetX: 0,
+                            offsetY: 0
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            formatter: function(value) {
+                                return value.toLocaleString() + '원';
+                            }
+                        }
                     },
                     plotOptions: {
                         candlestick: {
                             colors: { upward: '#e74c3c', downward: '#3498db' }
                         }
                     },
-                    grid: { show: true, borderColor: '#e0e6ed' }
+                    grid: { 
+                        show: true, 
+                        borderColor: '#e0e6ed',
+                        // 그리드 정렬
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }
                 };
                 
                 // 거래량 차트
                 const volumeOptions = {
                     series: [{ name: '거래량', data: fullVolumeData }],
-                    chart: { 
-                        type: 'bar', 
-                        height: 150, 
+                    chart: {
+                        type: 'bar',
+                        height: 150,
                         toolbar: { show: false },
-                        background: 'transparent'
+                        background: 'transparent',
+                        zoom: { enabled: false },
+                        selection: { enabled: false },
+                        pan: { enabled: false },
+                        // 캔들스틱 차트와 동일한 마진 설정
+                        offsetX: 0,
+                        offsetY: 0,
+                        parentHeightOffset: 0
                     },
-                    plotOptions: { 
-                        bar: { 
-                            columnWidth: '80%', 
+                    plotOptions: {
+                        bar: {
+                            columnWidth: '80%',
                             distributed: true 
-                        } 
+                        }
                     },
                     colors: fullVolumeData.map(item => item.fillColor),
-                    xaxis: { 
+                    xaxis: {
                         type: 'category', 
-                        labels: { show: false } 
+                        labels: { show: false },
+                        // 캔들스틱 차트와 동일한 x축 설정
+                        axisBorder: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 1,
+                            offsetX: 0,
+                            offsetY: 0
+                        },
+                        axisTicks: {
+                            show: false
+                        }
                     },
-                    yaxis: { 
-                        labels: { 
-                            formatter: function(value) { 
+                    yaxis: {
+                        labels: {
+                            formatter: function(value) {
                                 if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
                                 if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
                                 return value.toString();
-                            } 
+                            }
                         }
                     },
                     dataLabels: { enabled: false },
                     legend: { show: false },
-                    grid: { show: true, borderColor: '#e0e6ed' }
+                    grid: { 
+                        show: true, 
+                        borderColor: '#e0e6ed',
+                        // 캔들스틱 차트와 동일한 그리드 설정
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }
                 };
                 
                 // 차트 렌더링
@@ -603,34 +709,19 @@
                 
             } catch (error) {
                 console.error('❌ 차트 렌더링 실패:', error);
-                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 렌더링 실패</h5></div>';
-            }
-        });
-        
-        // 기간 변경 함수
-        function changePeriod(days) {
-            try {
-                const startIndex = Math.max(0, fullData.length - days);
-                const candleData = fullData.slice(startIndex);
-                const volumeData = fullVolumeData.slice(startIndex);
-                
-                // 버튼 스타일 업데이트
-                document.querySelectorAll('.chart-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                document.getElementById('period' + days).classList.add('active');
-                
-                // 차트 업데이트
-                if (candlestickChart && volumeChart) {
-                    candlestickChart.updateSeries([{ name: '한국쉘석유', data: candleData }]);
-                    volumeChart.updateSeries([{ name: '거래량', data: volumeData }]);
-                    volumeChart.updateOptions({ colors: volumeData.map(item => item.fillColor) });
-                    console.log('📊 차트 기간 변경:', days + '일');
-                }
-            } catch (error) {
-                console.error('❌ 차트 업데이트 실패:', error);
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 렌더링 실패</h5><p>' + error.message + '</p></div>';
             }
         }
+        
+        // DOM 로딩 완료 후 차트 초기화
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeCharts);
+        } else {
+            // 이미 로딩 완료된 경우 즉시 실행
+            setTimeout(initializeCharts, 100);
+        }
+
+
         
     </script>
 </body>
