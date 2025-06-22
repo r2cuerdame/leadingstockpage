@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한화시스템 (272210) - 종가매매 3일 단타</title>
+    <title>이랜시스 (264850) - 종가매매 3일 단타</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
@@ -132,6 +132,21 @@
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
+            
+            .condition-grid,
+            .decision-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .swing-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .phase-section {
+                padding: 1rem !important;
+            }
         }
 
         /* 💰 가격 정보 */
@@ -159,7 +174,7 @@
 
         .price-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1.5rem;
         }
 
@@ -184,8 +199,9 @@
         }
 
         .price-value.entry { color: var(--primary); }
-        .price-value.target { color: var(--danger); }
-        .price-value.stop { color: var(--info); }
+        .price-value.target { color: var(--success); }
+        .price-value.swing { color: var(--warning); }
+        .price-value.stop { color: var(--danger); }
 
         .price-item-label {
             font-size: 0.9rem;
@@ -438,29 +454,142 @@
     <div class="container mt-4">
         <div class="hero-card">
             <div class="hero-header">
-                <div class="hero-title">한화시스템 (272210)</div>
+                <div class="hero-title">이랜시스 (264850)</div>
                 <div class="hero-subtitle">🕐 종가매매 3일 단타 전략</div>
             </div>
         </div>
 
         <!-- 💰 가격 정보 -->
         <div class="price-section">
-            <div class="current-price">65,500원</div>
+            <div class="current-price">4,905원</div>
             <div class="price-label">현재가</div>
             
             <div class="price-grid">
                 <div class="price-item">
-                    <div class="price-value entry">65,100원</div>
+                    <div class="price-value entry">4,880원</div>
                     <div class="price-item-label">15:20 진입가</div>
                 </div>
                 <div class="price-item">
-                    <div class="price-value target">67,900원 (+3.8%)</div>
+                    <div class="price-value target">5,050원 (+3.0%)</div>
                     <div class="price-item-label">목표가</div>
                 </div>
                 <div class="price-item">
-                    <div class="price-value stop">63,200원 (-2.8%)</div>
-                    <div class="price-item-label">손절가</div>
+                    <div class="price-value swing">4,655원 (-5.1%)</div>
+                    <div class="price-item-label">스윙전환가</div>
                 </div>
+                <div class="price-item">
+                    <div class="price-value stop">4,510원 (-8.1%)</div>
+                    <div class="price-item-label">즉시손절가</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🎯 AI 기대주 종가매매 전략 -->
+        <div class="strategy-section" style="background: linear-gradient(135deg, #e8f5e8, #d4edda); border: 2px solid #28a745; border-radius: 16px; padding: 2rem; margin-bottom: 2rem;">
+            <div class="strategy-title" style="font-size: 1.5rem; font-weight: 700; color: #155724; margin-bottom: 1.5rem; text-align: center;">
+                <i class="fas fa-robot me-2"></i>AI 기대주 종가매매 → 스윙 전환 전략
+            </div>
+            
+            <!-- 1단계: 종가매수 조건 -->
+            <div class="phase-section" style="background: rgba(255, 255, 255, 0.9); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 5px solid #007bff;">
+                <div class="phase-title" style="font-size: 1.3rem; font-weight: 700; color: #0056b3; margin-bottom: 1rem;">
+                    <i class="fas fa-shopping-cart me-2"></i>1단계: 조건부 종가매수
+                </div>
+                <div class="condition-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="condition-item" style="background: #f8f9fa; padding: 0.8rem; border-radius: 8px; border-left: 3px solid #007bff;">
+                        <strong>📊 기술적 조건:</strong> RSI 25-75, 거래량 평균 1.5배 이상
+                    </div>
+                    <div class="condition-item" style="background: #f8f9fa; padding: 0.8rem; border-radius: 8px; border-left: 3px solid #007bff;">
+                        <strong>💰 가격 조건:</strong> 목표가 대비 -0.5% 이내 진입
+                    </div>
+                    <div class="condition-item" style="background: #f8f9fa; padding: 0.8rem; border-radius: 8px; border-left: 3px solid #007bff;">
+                        <strong>📰 뉴스 조건:</strong> 당일 악재 없음, AI 신뢰도 70점 이상
+                    </div>
+                    <div class="condition-item" style="background: #f8f9fa; padding: 0.8rem; border-radius: 8px; border-left: 3px solid #007bff;">
+                        <strong>⚠️ 매수 제외:</strong> 조건 미달 시 매수 포기 (무리하지 않음)
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2단계: 종가 판단 -->
+            <div class="phase-section" style="background: rgba(255, 255, 255, 0.9); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 5px solid #28a745;">
+                <div class="phase-title" style="font-size: 1.3rem; font-weight: 700; color: #155724; margin-bottom: 1rem;">
+                    <i class="fas fa-balance-scale me-2"></i>2단계: 익절/손절 판단 (다음날 종가)
+                </div>
+                <div class="decision-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="decision-column" style="background: linear-gradient(135deg, #d4edda, #c3e6cb); border-radius: 10px; padding: 1.2rem;">
+                        <div class="decision-title" style="font-weight: 700; color: #155724; margin-bottom: 0.8rem; text-align: center;">
+                            <i class="fas fa-arrow-up me-2"></i>익절 상황 (+3.0% 이상)
+                        </div>
+                        <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                            <strong>✅ 즉시 익절:</strong> 목표 달성 + 추가 상승 동력 부족
+                        </div>
+                        <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                            <strong>📈 분할 매도:</strong> 40% 익절 + 60% 스윙 전환 (추가 상승 기대)
+                        </div>
+                        <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0; font-size: 0.9rem;">
+                            <strong>🎯 스윙 조건:</strong> 거래량 증가 + 뉴스 호재 + 기술적 돌파
+                        </div>
+                    </div>
+                    <div class="decision-column" style="background: linear-gradient(135deg, #f8d7da, #f1c2c7); border-radius: 10px; padding: 1.2rem;">
+                        <div class="decision-title" style="font-weight: 700; color: #721c24; margin-bottom: 0.8rem; text-align: center;">
+                            <i class="fas fa-arrow-down me-2"></i>손절 상황 (-5% 이하)
+                        </div>
+                        <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                            <strong>❌ 즉시 손절:</strong> -8% 이하 + 추가 하락 우려
+                        </div>
+                        <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                            <strong>⚖️ 스윙 전환:</strong> -5~8% + 반등 가능성 + AI 기대주 신뢰
+                        </div>
+                        <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0; font-size: 0.9rem;">
+                            <strong>🛡️ 재수 조건:</strong> 펀더멘털 변화 없음 + 기술적 지지선 근처
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3단계: 스윙 전략 -->
+            <div class="phase-section" style="background: rgba(255, 255, 255, 0.9); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; border-left: 5px solid #6f42c1;">
+                <div class="phase-title" style="font-size: 1.3rem; font-weight: 700; color: #4c2a85; margin-bottom: 1rem;">
+                    <i class="fas fa-chart-line me-2"></i>3단계: 스윙매매 관리 (2-7일)
+                </div>
+                <div class="swing-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                    <div class="swing-item" style="background: linear-gradient(135deg, #fff3cd, #ffeaa7); border-radius: 8px; padding: 1rem; text-align: center;">
+                        <div style="font-weight: 700; color: #856404; margin-bottom: 0.5rem;">
+                            <i class="fas fa-eye me-1"></i>관찰 조건
+                        </div>
+                        <div style="font-size: 0.85rem; line-height: 1.4;">
+                            • 일일 뉴스 모니터링<br>
+                            • 기술적 지표 추적<br>
+                            • 시장 전체 분위기
+                        </div>
+                    </div>
+                    <div class="swing-item" style="background: linear-gradient(135deg, #d1ecf1, #b8daff); border-radius: 8px; padding: 1rem; text-align: center;">
+                        <div style="font-weight: 700; color: #0c5460; margin-bottom: 0.5rem;">
+                            <i class="fas fa-plus-circle me-1"></i>추매 조건
+                        </div>
+                        <div style="font-size: 0.85rem; line-height: 1.4;">
+                            • -3~5% 구간 진입<br>
+                            • 호재 뉴스 발생<br>
+                            • 거래량 급증 확인
+                        </div>
+                    </div>
+                    <div class="swing-item" style="background: linear-gradient(135deg, #f8d7da, #f1c2c7); border-radius: 8px; padding: 1rem; text-align: center;">
+                        <div style="font-weight: 700; color: #721c24; margin-bottom: 0.5rem;">
+                            <i class="fas fa-times-circle me-1"></i>포기 조건
+                        </div>
+                        <div style="font-size: 0.85rem; line-height: 1.4;">
+                            • -8.1% 돌파 시<br>
+                            • 펀더멘털 악화<br>
+                            • 7일 경과 시
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-note" style="background: rgba(255, 248, 220, 0.9); border: 1px solid #ffc107; border-radius: 8px; padding: 1rem; text-align: center;">
+                <i class="fas fa-lightbulb me-2" style="color: #856404;"></i>
+                <strong style="color: #856404;">핵심 철학:</strong> 조건 미달 시 과감히 포기, 조건 충족 시 끝까지 기다리는 선택과 집중 전략
             </div>
         </div>
 
@@ -474,9 +603,9 @@
                     <div class="summary-column-title">
                         <i class="fas fa-newspaper me-2"></i>뉴스 분석
                     </div>
-                    <div class="summary-item">📈 - **한화시스템의 최근 주가는 65,400원으로, 전일 대비 4.66% 하락하여 마감하였습니다**[2].</div>
-<div class="summary-item">📈 - **투자자들은 한화시스템의 Q2 실적 상승에 대한 기대가 커지고 있으며, 이는 긍정적인 신호로 작용할 가능성이 높습니다**[2].</div>
-<div class="summary-item">📈 - **한국은행의 금리 정책 및 글로벌 지정학적 리스크로 인해 투자심리가 위축되었으며, 외국인 투자자는 순매도했습니다**[2].</div>
+                    <div class="summary-item">📈 - **실적 성장**: 이랜시스는 2024년 4분기 매출액 192억 원을 기록하며 성장세를 유지하고 있습니다[2].</div>
+<div class="summary-item">📈 - **로봇 기술 수혜**: 삼성전자 '봇핏' 런칭 준비가 본격화되어 로봇 기술 관련 수혜 기대감이 반영되고 있습니다[3].</div>
+<div class="summary-item">📈 - **산업 전망**: 청정 가전 및 보안 솔루션 부문의 수요 증가가 예상되며, 특히 삼성전자·코웨이 등 주요 고객사의 제품 라인업 변화가 이랜시스의 실적에 직접적인 영향을 미칠 수 있습니다[2].</div>
 <div class="summary-score"><span class="badge bg-success">뉴스 신뢰도: 80점</span></div>
 
                 </div>
@@ -484,9 +613,9 @@
                     <div class="summary-column-title">
                         <i class="fas fa-chart-line me-2"></i>지표 분석
                     </div>
-                    <div class="summary-item">📊 - MACD 히스토그램 상승 전환 임박, RSI 40선 지지 확인</div>
-<div class="summary-item">📊 - 20일선(63,800원) 상향 돌파 시도 중, 볼린저밴드 하단 반등</div>
-<div class="summary-item">📊 - 최근 5일 평균거래량 대비 거래량 증가 추세</div>
+                    <div class="summary-item">📊 - RSI(14) 40.2로 과매도 구간 진입 후 반등 조짐</div>
+<div class="summary-item">📊 - MACD 히스토그램 감소세 둔화, 골든크로스 임박</div>
+<div class="summary-item">📊 - 20일 이동평균선(5,100원) 근처에서 지지력 형성 중</div>
 <div class="summary-score"><span class="badge bg-warning">기술적 신뢰도: 75점</span></div>
 
                 </div>
@@ -512,27 +641,27 @@
                 <i class="fas fa-external-link-alt me-2"></i>관련 정보 사이트
             </div>
             <div class="links-grid">
-                <a href="https://finance.naver.com/item/main.nhn?code=272210" target="_blank" class="link-item">
+                <a href="https://finance.naver.com/item/main.nhn?code=264850" target="_blank" class="link-item">
                     <i class="fas fa-chart-line link-icon naver"></i>
                     <div class="link-title">네이버증권</div>
                 </a>
-                <a href="https://finance.daum.net/quotes/A272210" target="_blank" class="link-item">
+                <a href="https://finance.daum.net/quotes/A264850" target="_blank" class="link-item">
                     <i class="fas fa-chart-bar link-icon daum"></i>
                     <div class="link-title">다음증권</div>
                 </a>
-                <a href="https://www.tradingview.com/chart/?symbol=KRX:272210" target="_blank" class="link-item">
+                <a href="https://www.tradingview.com/chart/?symbol=KRX:264850" target="_blank" class="link-item">
                     <i class="fas fa-chart-candlestick link-icon tradingview"></i>
                     <div class="link-title">TradingView</div>
                 </a>
-                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A272210" target="_blank" class="link-item">
+                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A264850" target="_blank" class="link-item">
                     <i class="fas fa-calculator link-icon fnguide"></i>
                     <div class="link-title">FnGuide</div>
                 </a>
-                <a href="https://dart.fss.or.kr/dsac001/search.ax?selectKey=corp_cls&searchValue=272210" target="_blank" class="link-item">
+                <a href="https://dart.fss.or.kr/dsac001/search.ax?selectKey=corp_cls&searchValue=264850" target="_blank" class="link-item">
                     <i class="fas fa-file-alt link-icon dart"></i>
                     <div class="link-title">공시정보</div>
                 </a>
-                <a href="https://www.google.com/search?q=한화시스템+주식+뉴스&tbm=nws" target="_blank" class="link-item">
+                <a href="https://www.google.com/search?q=이랜시스+주식+뉴스&tbm=nws" target="_blank" class="link-item">
                     <i class="fas fa-newspaper link-icon news"></i>
                     <div class="link-title">뉴스검색</div>
                 </a>
@@ -544,13 +673,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         
-        console.log('✅ 272210 차트 데이터 로드 완료:', '21일');
+        console.log('✅ 264850 차트 데이터 로드 완료:', '21일');
         
-        // 272210 종가매매 차트 시스템
+        // 264850 종가매매 차트 시스템
         let candlestickChart;
         let volumeChart;
-        let fullData = [{"x":"25/05/21","y":[45400,47400,45300,46500]},{"x":"25/05/22","y":[46250,46250,44450,44550]},{"x":"25/05/23","y":[45250,45850,43900,45250]},{"x":"25/05/26","y":[44550,46650,44550,45850]},{"x":"25/05/27","y":[46450,46900,45400,46100]},{"x":"25/05/28","y":[46400,48850,44800,45700]},{"x":"25/05/29","y":[45900,46100,44950,45400]},{"x":"25/05/30","y":[45450,46700,44650,45400]},{"x":"25/06/02","y":[45500,45750,43050,43350]},{"x":"25/06/04","y":[43850,44200,43200,43900]},{"x":"25/06/05","y":[43650,44800,43400,44000]},{"x":"25/06/09","y":[44350,44350,41550,42800]},{"x":"25/06/10","y":[43750,52000,43550,51400]},{"x":"25/06/11","y":[53000,53100,50200,52400]},{"x":"25/06/12","y":[52000,54000,51900,53000]},{"x":"25/06/13","y":[53400,54800,52100,54400]},{"x":"25/06/16","y":[58100,65000,57100,64200]},{"x":"25/06/17","y":[63400,67800,62200,66200]},{"x":"25/06/18","y":[69600,70200,66800,68300]},{"x":"25/06/19","y":[67700,69300,66000,68600]},{"x":"25/06/20","y":[67000,67500,64600,65500]}];
-        let fullVolumeData = [{"x":"25/05/21","y":2664032,"fillColor":"#e74c3c"},{"x":"25/05/22","y":1792122,"fillColor":"#3498db"},{"x":"25/05/23","y":1504470,"fillColor":"#e74c3c"},{"x":"25/05/26","y":1672012,"fillColor":"#e74c3c"},{"x":"25/05/27","y":1711515,"fillColor":"#3498db"},{"x":"25/05/28","y":4895814,"fillColor":"#3498db"},{"x":"25/05/29","y":1715474,"fillColor":"#3498db"},{"x":"25/05/30","y":9085152,"fillColor":"#3498db"},{"x":"25/06/02","y":2558857,"fillColor":"#3498db"},{"x":"25/06/04","y":1800507,"fillColor":"#e74c3c"},{"x":"25/06/05","y":1750121,"fillColor":"#e74c3c"},{"x":"25/06/09","y":2457045,"fillColor":"#3498db"},{"x":"25/06/10","y":12232648,"fillColor":"#e74c3c"},{"x":"25/06/11","y":4542074,"fillColor":"#3498db"},{"x":"25/06/12","y":3495656,"fillColor":"#e74c3c"},{"x":"25/06/13","y":4903978,"fillColor":"#e74c3c"},{"x":"25/06/16","y":9410780,"fillColor":"#e74c3c"},{"x":"25/06/17","y":5372164,"fillColor":"#e74c3c"},{"x":"25/06/18","y":3608775,"fillColor":"#3498db"},{"x":"25/06/19","y":2542494,"fillColor":"#e74c3c"},{"x":"25/06/20","y":2584433,"fillColor":"#3498db"}];
+        let fullData = [{"x":"25/05/21","y":[4920,4930,4840,4855]},{"x":"25/05/22","y":[4775,4810,4705,4715]},{"x":"25/05/23","y":[4720,4790,4665,4665]},{"x":"25/05/26","y":[4710,4880,4690,4875]},{"x":"25/05/27","y":[4905,4915,4800,4830]},{"x":"25/05/28","y":[4855,4955,4805,4840]},{"x":"25/05/29","y":[4940,4990,4830,4845]},{"x":"25/05/30","y":[4800,4830,4690,4700]},{"x":"25/06/02","y":[4700,4835,4675,4795]},{"x":"25/06/04","y":[4870,5040,4865,4985]},{"x":"25/06/05","y":[5040,5040,4890,4935]},{"x":"25/06/09","y":[4985,4995,4875,4915]},{"x":"25/06/10","y":[4920,5010,4855,4880]},{"x":"25/06/11","y":[4890,4940,4885,4890]},{"x":"25/06/12","y":[4920,4990,4860,4905]},{"x":"25/06/13","y":[4930,4955,4675,4770]},{"x":"25/06/16","y":[4740,4870,4690,4850]},{"x":"25/06/17","y":[4915,4965,4800,4880]},{"x":"25/06/18","y":[4830,4890,4810,4845]},{"x":"25/06/19","y":[4855,4920,4800,4820]},{"x":"25/06/20","y":[4830,4960,4820,4905]}];
+        let fullVolumeData = [{"x":"25/05/21","y":123261,"fillColor":"#3498db"},{"x":"25/05/22","y":157643,"fillColor":"#3498db"},{"x":"25/05/23","y":110708,"fillColor":"#3498db"},{"x":"25/05/26","y":193126,"fillColor":"#e74c3c"},{"x":"25/05/27","y":127629,"fillColor":"#3498db"},{"x":"25/05/28","y":238221,"fillColor":"#3498db"},{"x":"25/05/29","y":146639,"fillColor":"#3498db"},{"x":"25/05/30","y":117096,"fillColor":"#3498db"},{"x":"25/06/02","y":126065,"fillColor":"#e74c3c"},{"x":"25/06/04","y":297038,"fillColor":"#e74c3c"},{"x":"25/06/05","y":176295,"fillColor":"#3498db"},{"x":"25/06/09","y":135895,"fillColor":"#3498db"},{"x":"25/06/10","y":153149,"fillColor":"#3498db"},{"x":"25/06/11","y":104205,"fillColor":"#e74c3c"},{"x":"25/06/12","y":168520,"fillColor":"#3498db"},{"x":"25/06/13","y":461620,"fillColor":"#3498db"},{"x":"25/06/16","y":195156,"fillColor":"#e74c3c"},{"x":"25/06/17","y":279707,"fillColor":"#3498db"},{"x":"25/06/18","y":80051,"fillColor":"#e74c3c"},{"x":"25/06/19","y":136400,"fillColor":"#3498db"},{"x":"25/06/20","y":297245,"fillColor":"#e74c3c"}];
         
         // ApexCharts 로딩 확인 후 차트 초기화
         function initializeCharts() {
@@ -563,7 +692,7 @@
             try {
                 // 캔들스틱 차트
                 const candlestickOptions = {
-                    series: [{ name: '한화시스템', data: fullData }],
+                    series: [{ name: '이랜시스', data: fullData }],
                     chart: {
                         type: 'candlestick',
                         height: 400,
@@ -579,7 +708,7 @@
                         parentHeightOffset: 0
                     },
                     title: {
-                        text: '한화시스템 (272210) 차트', 
+                        text: '이랜시스 (264850) 차트', 
                         align: 'left',
                         style: { fontSize: '16px', fontWeight: 'bold' }
                     },
