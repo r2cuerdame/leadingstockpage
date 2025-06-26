@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아시아나IDT (267850) - 종가매매 3일 단타</title>
+    <title>파인엠텍 (441270) - 종가매매 3일 단타</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
@@ -29,6 +29,26 @@
 
         .container {
             max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        /* 🔧 모든 주요 섹션 폭 통일 */
+        .hero-card,
+        .price-section,
+        .timing-section,
+        .chart-section,
+        .links-section,
+        .summary-section,
+        .strategy-section,
+        .risk-assessment {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
         }
 
         /* 🏆 헤더 */
@@ -40,6 +60,8 @@
             box-shadow: var(--shadow);
             margin-bottom: 2rem;
             overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .hero-header {
@@ -47,6 +69,8 @@
             color: white;
             padding: 2rem;
             text-align: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .hero-title {
@@ -65,8 +89,10 @@
             background: linear-gradient(135deg, #fef3c7, #fde68a);
             border: 2px solid #f59e0b;
             border-radius: var(--radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .summary-title {
@@ -96,7 +122,7 @@
         .summary-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .summary-column {
@@ -128,9 +154,51 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+            
+            /* 🔧 모바일에서도 모든 섹션 폭 통일 */
+            .hero-card,
+            .price-section,
+            .timing-section,
+            .chart-section,
+            .links-section,
+            .summary-section,
+            .strategy-section,
+            .risk-assessment {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
             .summary-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
+            }
+            
+            .price-grid {
+                grid-template-columns: 1fr !important;
+                gap: 0.8rem !important;
+            }
+            
+            .phase-section {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem !important;
+            }
+            
+            .current-price {
+                font-size: 2rem !important;
             }
             
             .condition-grid,
@@ -143,20 +211,18 @@
                 grid-template-columns: 1fr !important;
                 gap: 1rem !important;
             }
-            
-            .phase-section {
-                padding: 1rem !important;
-            }
         }
 
         /* 💰 가격 정보 */
         .price-section {
             background: var(--bg-glass);
             border-radius: var(--radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
             text-align: center;
             box-shadow: var(--shadow);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .current-price {
@@ -174,8 +240,9 @@
 
         .price-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
+            width: 100%;
         }
 
         .price-item {
@@ -200,7 +267,6 @@
 
         .price-value.entry { color: var(--primary); }
         .price-value.target { color: var(--success); }
-        .price-value.swing { color: var(--warning); }
         .price-value.stop { color: var(--danger); }
 
         .price-item-label {
@@ -216,6 +282,8 @@
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: var(--shadow);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .timing-title {
@@ -257,6 +325,8 @@
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: var(--shadow);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .chart-header {
@@ -301,6 +371,8 @@
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: var(--shadow);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .links-title {
@@ -408,15 +480,24 @@
             .container {
                 padding-left: 10px;
                 padding-right: 10px;
+                box-sizing: border-box;
             }
 
-            .hero-header,
+            /* 🔧 작은 화면에서도 모든 섹션 폭 통일 */
+            .hero-card,
             .price-section,
             .timing-section,
             .chart-section,
             .links-section,
-            .summary-section {
-                padding: 1.5rem;
+            .summary-section,
+            .strategy-section,
+            .risk-assessment {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding: 1.5rem !important;
             }
 
             .price-grid {
@@ -446,7 +527,56 @@
                 font-size: 0.75rem;
             }
         }
-    </style>
+    
+/* 🔧 종목 상세 페이지 폭 완전 통일 */
+.container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+.hero-card,
+.price-section,
+.timing-section,
+.chart-section,
+.links-section,
+.summary-section,
+.strategy-section,
+.risk-assessment {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 모바일에서도 폭 통일 */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100% !important;
+        padding: 0 10px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .hero-card,
+    .price-section,
+    .timing-section,
+    .chart-section,
+    .links-section,
+    .summary-section,
+    .strategy-section,
+    .risk-assessment {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -454,40 +584,36 @@
     <div class="container mt-4">
         <div class="hero-card">
             <div class="hero-header">
-                <div class="hero-title">아시아나IDT (267850)</div>
+                <div class="hero-title">파인엠텍 (441270)</div>
                 <div class="hero-subtitle">🕐 종가매매 3일 단타 전략</div>
             </div>
         </div>
 
         <!-- 💰 가격 정보 -->
         <div class="price-section">
-            <div class="current-price">12,190원</div>
+            <div class="current-price">6,810원</div>
             <div class="price-label">현재가</div>
             
             <div class="price-grid">
                 <div class="price-item">
-                    <div class="price-value entry">12,100원</div>
+                    <div class="price-value entry">6,770원</div>
                     <div class="price-item-label">15:20 진입가</div>
                 </div>
                 <div class="price-item">
-                    <div class="price-value target">12,550원 (+3.0%)</div>
+                    <div class="price-value target">7,180원 (+5.4%)</div>
                     <div class="price-item-label">목표가</div>
                 </div>
                 <div class="price-item">
-                    <div class="price-value swing">11,550원 (-5.3%)</div>
-                    <div class="price-item-label">스윙전환가</div>
-                </div>
-                <div class="price-item">
-                    <div class="price-value stop">11,200원 (-8.1%)</div>
-                    <div class="price-item-label">즉시손절가</div>
+                    <div class="price-value stop">6,600원 (-3.1%)</div>
+                    <div class="price-item-label">손절가</div>
                 </div>
             </div>
         </div>
 
         <!-- 🎯 AI 기대주 종가매매 전략 -->
-        <div class="strategy-section" style="background: linear-gradient(135deg, #e8f5e8, #d4edda); border: 2px solid #28a745; border-radius: 16px; padding: 2rem; margin-bottom: 2rem;">
+        <div class="strategy-section" style="background: linear-gradient(135deg, #e8f5e8, #d4edda); border: 2px solid #28a745; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; width: 100%; box-sizing: border-box;">
             <div class="strategy-title" style="font-size: 1.5rem; font-weight: 700; color: #155724; margin-bottom: 1.5rem; text-align: center;">
-                <i class="fas fa-robot me-2"></i>AI 기대주 종가매매 → 스윙 전환 전략
+                <i class="fas fa-robot me-2"></i>AI 기반 종가매매 3일 단타 전략
             </div>
             
             <!-- 1단계: 종가매수 조건 -->
@@ -514,84 +640,43 @@
             <!-- 2단계: 종가 판단 -->
             <div class="phase-section" style="background: rgba(255, 255, 255, 0.9); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 5px solid #28a745;">
                 <div class="phase-title" style="font-size: 1.3rem; font-weight: 700; color: #155724; margin-bottom: 1rem;">
-                    <i class="fas fa-balance-scale me-2"></i>2단계: 익절/손절 판단 (다음날 종가)
+                    <i class="fas fa-sign-out-alt me-2"></i>2단계: 매도 전략 (최대 3일)
                 </div>
                 <div class="decision-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                     <div class="decision-column" style="background: linear-gradient(135deg, #d4edda, #c3e6cb); border-radius: 10px; padding: 1.2rem;">
                         <div class="decision-title" style="font-weight: 700; color: #155724; margin-bottom: 0.8rem; text-align: center;">
-                            <i class="fas fa-arrow-up me-2"></i>익절 상황 (+3.0% 이상)
+                            <i class="fas fa-arrow-up me-2"></i>익절 상황 (+5.4% 이상)
                         </div>
                         <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0.5rem; font-size: 0.9rem;">
                             <strong>✅ 즉시 익절:</strong> 목표 달성 + 추가 상승 동력 부족
                         </div>
-                        <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0.5rem; font-size: 0.9rem;">
-                            <strong>📈 분할 매도:</strong> 40% 익절 + 60% 스윙 전환 (추가 상승 기대)
-                        </div>
                         <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0; font-size: 0.9rem;">
-                            <strong>🎯 스윙 조건:</strong> 거래량 증가 + 뉴스 호재 + 기술적 돌파
+                            <strong>📈 분할 매도:</strong> AI 추천에 따라 부분 매도 가능
                         </div>
                     </div>
                     <div class="decision-column" style="background: linear-gradient(135deg, #f8d7da, #f1c2c7); border-radius: 10px; padding: 1.2rem;">
                         <div class="decision-title" style="font-weight: 700; color: #721c24; margin-bottom: 0.8rem; text-align: center;">
-                            <i class="fas fa-arrow-down me-2"></i>손절 상황 (-5% 이하)
+                            <i class="fas fa-arrow-down me-2"></i>손절 상황 (AI 예측가)
                         </div>
                         <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0.5rem; font-size: 0.9rem;">
-                            <strong>❌ 즉시 손절:</strong> -8% 이하 + 추가 하락 우려
-                        </div>
-                        <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0.5rem; font-size: 0.9rem;">
-                            <strong>⚖️ 스윙 전환:</strong> -5~8% + 반등 가능성 + AI 기대주 신뢰
+                            <strong>❌ 즉시 손절:</strong> AI 예측 손절가 돌파
                         </div>
                         <div class="decision-item" style="background: rgba(255, 255, 255, 0.8); padding: 0.7rem; border-radius: 6px; margin-bottom: 0; font-size: 0.9rem;">
-                            <strong>🛡️ 재수 조건:</strong> 펀더멘털 변화 없음 + 기술적 지지선 근처
+                            <strong>🎯 손절 원칙:</strong> AI 예측 손절가 준수
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3단계: 스윙 전략 -->
-            <div class="phase-section" style="background: rgba(255, 255, 255, 0.9); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; border-left: 5px solid #6f42c1;">
-                <div class="phase-title" style="font-size: 1.3rem; font-weight: 700; color: #4c2a85; margin-bottom: 1rem;">
-                    <i class="fas fa-chart-line me-2"></i>3단계: 스윙매매 관리 (2-7일)
-                </div>
-                <div class="swing-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
-                    <div class="swing-item" style="background: linear-gradient(135deg, #fff3cd, #ffeaa7); border-radius: 8px; padding: 1rem; text-align: center;">
-                        <div style="font-weight: 700; color: #856404; margin-bottom: 0.5rem;">
-                            <i class="fas fa-eye me-1"></i>관찰 조건
-                        </div>
-                        <div style="font-size: 0.85rem; line-height: 1.4;">
-                            • 일일 뉴스 모니터링<br>
-                            • 기술적 지표 추적<br>
-                            • 시장 전체 분위기
-                        </div>
-                    </div>
-                    <div class="swing-item" style="background: linear-gradient(135deg, #d1ecf1, #b8daff); border-radius: 8px; padding: 1rem; text-align: center;">
-                        <div style="font-weight: 700; color: #0c5460; margin-bottom: 0.5rem;">
-                            <i class="fas fa-plus-circle me-1"></i>추매 조건
-                        </div>
-                        <div style="font-size: 0.85rem; line-height: 1.4;">
-                            • -3~5% 구간 진입<br>
-                            • 호재 뉴스 발생<br>
-                            • 거래량 급증 확인
-                        </div>
-                    </div>
-                    <div class="swing-item" style="background: linear-gradient(135deg, #f8d7da, #f1c2c7); border-radius: 8px; padding: 1rem; text-align: center;">
-                        <div style="font-weight: 700; color: #721c24; margin-bottom: 0.5rem;">
-                            <i class="fas fa-times-circle me-1"></i>포기 조건
-                        </div>
-                        <div style="font-size: 0.85rem; line-height: 1.4;">
-                            • -8.1% 돌파 시<br>
-                            • 펀더멘털 악화<br>
-                            • 7일 경과 시
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <div class="strategy-note" style="background: rgba(255, 248, 220, 0.9); border: 1px solid #ffc107; border-radius: 8px; padding: 1rem; text-align: center;">
+            <div class="strategy-note" style="background: rgba(255, 248, 220, 0.9); border: 1px solid #ffc107; border-radius: 8px; padding: 1rem; text-align: center; width: 100%; box-sizing: border-box;">
                 <i class="fas fa-lightbulb me-2" style="color: #856404;"></i>
-                <strong style="color: #856404;">핵심 철학:</strong> 조건 미달 시 과감히 포기, 조건 충족 시 끝까지 기다리는 선택과 집중 전략
+                <strong style="color: #856404;">핵심 철학:</strong> 최대 3일 단기 매매 원칙 철저, AI 기반 손절가 준수
             </div>
         </div>
+
 
         <!-- 📋 핵심 요약 (2열) -->
         <div class="summary-section">
@@ -603,9 +688,9 @@
                     <div class="summary-column-title">
                         <i class="fas fa-newspaper me-2"></i>뉴스 분석
                     </div>
-                    <div class="summary-item">📈 - **아시아나IDT(267850)**: 최근 7일 이내, 아시아나IDT는 퀀트 재무 순위 5위에 선정되며, 성장성, 안정성, 수익성 모두 우수한 평가를 받았다[2].</div>
-<div class="summary-item">📈 - **현금배당 결정**: 2025년 3월 10일, 아시아나IDT는 보통주 1주당 500원(시가배당율 4.0%)의 현금배당을 결정했으며, 배당금 총액은 55.50억원이다[5].</div>
-<div class="summary-item">📈 - **업계 동향**: 아시아나IDT는 항공/공항IT 전문기업으로서 항공 3사 및 국내 양대 공항공사의 시스템 구축 및 운영 노하우를 기반으로 대외 사업을 영위하고 있다[5].</div>
+                    <div class="summary-item">📈 - 파인엠텍(441270)은 최근 소폭 상승세를 보이며, 5.81% 상승한 것으로 나타났다[1].</div>
+<div class="summary-item">📈 - 외국계 매수 유입이 주가 상승의 주요 원인으로 지목되고 있다[1].</div>
+<div class="summary-item">📈 - 폴더블 디스플레이 모듈부품의 성공과 전기차 연료전지 케이스 부품 개발이 주목받고 있다[5].</div>
 <div class="summary-score"><span class="badge bg-success">뉴스 신뢰도: 80점</span></div>
 
                 </div>
@@ -613,10 +698,10 @@
                     <div class="summary-column-title">
                         <i class="fas fa-chart-line me-2"></i>지표 분석
                     </div>
-                    <div class="summary-item">📊 - MACD 히스토그램 상승 전환 임박, RSI 40선 지지 형성</div>
-<div class="summary-item">📊 - 20일선(12,100원) 근처에서 지지력 확인</div>
-<div class="summary-item">📊 - 볼린저밴드 하단 접근 후 반등 시도 중</div>
-<div class="summary-score"><span class="badge bg-warning">기술적 신뢰도: 75점</span></div>
+                    <div class="summary-item">📊 - MACD 히스토그램 상승 전환 임박, RSI 40선 하회 후 반등 조짐</div>
+<div class="summary-item">📊 - 20일선(7,100원대) 하회 중이나 하락 모멘텀 둔화 양상</div>
+<div class="summary-item">📊 - 최근 5일 평균거래량 대비 거래량 증가 추세</div>
+<div class="summary-score"><span class="badge bg-warning">기술적 신뢰도: 65점</span></div>
 
                 </div>
             </div>
@@ -641,45 +726,46 @@
                 <i class="fas fa-external-link-alt me-2"></i>관련 정보 사이트
             </div>
             <div class="links-grid">
-                <a href="https://finance.naver.com/item/main.nhn?code=267850" target="_blank" class="link-item">
+                <a href="https://finance.naver.com/item/main.nhn?code=441270" target="_blank" class="link-item">
                     <i class="fas fa-chart-line link-icon naver"></i>
                     <div class="link-title">네이버증권</div>
                 </a>
-                <a href="https://finance.daum.net/quotes/A267850" target="_blank" class="link-item">
+                <a href="https://finance.daum.net/quotes/A441270" target="_blank" class="link-item">
                     <i class="fas fa-chart-bar link-icon daum"></i>
                     <div class="link-title">다음증권</div>
                 </a>
-                <a href="https://www.tradingview.com/chart/?symbol=KRX:267850" target="_blank" class="link-item">
+                <a href="https://www.tradingview.com/chart/?symbol=KRX:441270" target="_blank" class="link-item">
                     <i class="fas fa-chart-candlestick link-icon tradingview"></i>
                     <div class="link-title">TradingView</div>
                 </a>
-                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A267850" target="_blank" class="link-item">
+                <a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A441270" target="_blank" class="link-item">
                     <i class="fas fa-calculator link-icon fnguide"></i>
                     <div class="link-title">FnGuide</div>
                 </a>
-                <a href="https://dart.fss.or.kr/dsac001/search.ax?selectKey=corp_cls&searchValue=267850" target="_blank" class="link-item">
+                <a href="https://dart.fss.or.kr/dsac001/search.ax?selectKey=corp_cls&searchValue=441270" target="_blank" class="link-item">
                     <i class="fas fa-file-alt link-icon dart"></i>
                     <div class="link-title">공시정보</div>
                 </a>
-                <a href="https://www.google.com/search?q=아시아나IDT+주식+뉴스&tbm=nws" target="_blank" class="link-item">
+                <a href="https://www.google.com/search?q=파인엠텍+주식+뉴스&tbm=nws" target="_blank" class="link-item">
                     <i class="fas fa-newspaper link-icon news"></i>
                     <div class="link-title">뉴스검색</div>
                 </a>
             </div>
         </div>
-    </div>
+
+    </div> <!-- 🔧 container 닫기 위치 수정 -->
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         
-        console.log('✅ 267850 차트 데이터 로드 완료:', '21일');
+        console.log('✅ 441270 차트 데이터 로드 완료:', '21일');
         
-        // 267850 종가매매 차트 시스템
+        // 441270 종가매매 차트 시스템
         let candlestickChart;
         let volumeChart;
-        let fullData = [{"x":"25/05/26","y":[11480,11550,11400,11400]},{"x":"25/05/27","y":[11470,11540,11370,11420]},{"x":"25/05/28","y":[11400,11770,11400,11700]},{"x":"25/05/29","y":[11700,11790,11550,11700]},{"x":"25/05/30","y":[11750,11850,11430,11480]},{"x":"25/06/02","y":[11490,11680,11490,11580]},{"x":"25/06/04","y":[11590,11810,11590,11810]},{"x":"25/06/05","y":[11790,11850,11640,11770]},{"x":"25/06/09","y":[11780,11820,11660,11780]},{"x":"25/06/10","y":[11820,11840,11730,11820]},{"x":"25/06/11","y":[11770,11960,11750,11880]},{"x":"25/06/12","y":[11860,11990,11750,11900]},{"x":"25/06/13","y":[11920,11990,11520,11560]},{"x":"25/06/16","y":[11600,11700,11490,11690]},{"x":"25/06/17","y":[11640,11850,11460,11690]},{"x":"25/06/18","y":[11700,11990,11680,11820]},{"x":"25/06/19","y":[11890,12480,11720,12460]},{"x":"25/06/20","y":[12350,12730,12300,12570]},{"x":"25/06/23","y":[12450,12560,12140,12450]},{"x":"25/06/24","y":[12460,12580,12290,12370]},{"x":"25/06/25","y":[12360,12500,12080,12190]}];
-        let fullVolumeData = [{"x":"25/05/26","y":3235,"fillColor":"#3498db"},{"x":"25/05/27","y":1600,"fillColor":"#3498db"},{"x":"25/05/28","y":11566,"fillColor":"#e74c3c"},{"x":"25/05/29","y":6445,"fillColor":"#e74c3c"},{"x":"25/05/30","y":14807,"fillColor":"#3498db"},{"x":"25/06/02","y":4087,"fillColor":"#e74c3c"},{"x":"25/06/04","y":2746,"fillColor":"#e74c3c"},{"x":"25/06/05","y":11939,"fillColor":"#3498db"},{"x":"25/06/09","y":7659,"fillColor":"#e74c3c"},{"x":"25/06/10","y":4547,"fillColor":"#e74c3c"},{"x":"25/06/11","y":5997,"fillColor":"#e74c3c"},{"x":"25/06/12","y":9874,"fillColor":"#e74c3c"},{"x":"25/06/13","y":11069,"fillColor":"#3498db"},{"x":"25/06/16","y":3025,"fillColor":"#e74c3c"},{"x":"25/06/17","y":12370,"fillColor":"#e74c3c"},{"x":"25/06/18","y":7698,"fillColor":"#e74c3c"},{"x":"25/06/19","y":56270,"fillColor":"#e74c3c"},{"x":"25/06/20","y":27166,"fillColor":"#e74c3c"},{"x":"25/06/23","y":15728,"fillColor":"#e74c3c"},{"x":"25/06/24","y":12154,"fillColor":"#3498db"},{"x":"25/06/25","y":27181,"fillColor":"#3498db"}];
+        let fullData = [{"x":"25/05/27","y":[5440,5460,5240,5290]},{"x":"25/05/28","y":[5290,5390,5220,5330]},{"x":"25/05/29","y":[5330,5370,5080,5250]},{"x":"25/05/30","y":[5290,5350,5130,5190]},{"x":"25/06/02","y":[5140,5290,5090,5210]},{"x":"25/06/04","y":[5190,5320,5160,5250]},{"x":"25/06/05","y":[5250,5370,5210,5310]},{"x":"25/06/09","y":[5350,5380,5270,5350]},{"x":"25/06/10","y":[5410,5460,5340,5400]},{"x":"25/06/11","y":[5390,5480,5350,5390]},{"x":"25/06/12","y":[5390,5440,5330,5400]},{"x":"25/06/13","y":[5440,5440,5120,5190]},{"x":"25/06/16","y":[5190,5220,5030,5220]},{"x":"25/06/17","y":[5170,5390,5100,5310]},{"x":"25/06/18","y":[5330,5440,5230,5430]},{"x":"25/06/19","y":[5480,5580,5330,5440]},{"x":"25/06/20","y":[5440,5720,5260,5700]},{"x":"25/06/23","y":[5520,5560,5310,5500]},{"x":"25/06/24","y":[5640,5910,5590,5900]},{"x":"25/06/25","y":[5970,6830,5650,6700]},{"x":"25/06/26","y":[6700,6960,6460,6810]}];
+        let fullVolumeData = [{"x":"25/05/27","y":101599,"fillColor":"#3498db"},{"x":"25/05/28","y":40412,"fillColor":"#e74c3c"},{"x":"25/05/29","y":275137,"fillColor":"#3498db"},{"x":"25/05/30","y":126029,"fillColor":"#3498db"},{"x":"25/06/02","y":110152,"fillColor":"#e74c3c"},{"x":"25/06/04","y":135777,"fillColor":"#e74c3c"},{"x":"25/06/05","y":123969,"fillColor":"#e74c3c"},{"x":"25/06/09","y":95512,"fillColor":"#e74c3c"},{"x":"25/06/10","y":95982,"fillColor":"#3498db"},{"x":"25/06/11","y":66970,"fillColor":"#e74c3c"},{"x":"25/06/12","y":229517,"fillColor":"#e74c3c"},{"x":"25/06/13","y":167498,"fillColor":"#3498db"},{"x":"25/06/16","y":133586,"fillColor":"#e74c3c"},{"x":"25/06/17","y":110472,"fillColor":"#e74c3c"},{"x":"25/06/18","y":76981,"fillColor":"#e74c3c"},{"x":"25/06/19","y":140870,"fillColor":"#3498db"},{"x":"25/06/20","y":311795,"fillColor":"#e74c3c"},{"x":"25/06/23","y":181894,"fillColor":"#3498db"},{"x":"25/06/24","y":313938,"fillColor":"#e74c3c"},{"x":"25/06/25","y":1288727,"fillColor":"#e74c3c"},{"x":"25/06/26","y":499599,"fillColor":"#e74c3c"}];
         
         // ApexCharts 로딩 확인 후 차트 초기화
         function initializeCharts() {
@@ -692,7 +778,7 @@
             try {
                 // 캔들스틱 차트
                 const candlestickOptions = {
-                    series: [{ name: '아시아나IDT', data: fullData }],
+                    series: [{ name: '파인엠텍', data: fullData }],
                     chart: {
                         type: 'candlestick',
                         height: 400,
@@ -708,7 +794,7 @@
                         parentHeightOffset: 0
                     },
                     title: {
-                        text: '아시아나IDT (267850) 차트', 
+                        text: '파인엠텍 (441270) 차트', 
                         align: 'left',
                         style: { fontSize: '16px', fontWeight: 'bold' }
                     },
