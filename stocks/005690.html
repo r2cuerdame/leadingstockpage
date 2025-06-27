@@ -1,17 +1,325 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>파미셀 - 모멘텀 돌파매매</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파미셀 (005690) - 모멘텀 돌파 분석</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
     <style>
-        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
-        .container { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-radius: 20px; padding: 2rem; margin-top: 2rem; }
-        .hero-card { background: linear-gradient(45deg, #007bff, #0056b3); color: white; border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; }
-        .price-section { background: #f8f9fa; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; }
-        .chart-section { margin: 1rem 0; }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            border-radius: 15px 15px 0 0 !important;
+            border-bottom: none;
+            font-weight: 600;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .momentum-summary {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border: 2px solid #2196f3;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .breakout-pattern {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border: 2px solid #9c27b0;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sector-analysis {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border: 2px solid #4caf50;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .trading-signals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .signal-card {
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .signal-entry {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border-color: #66b3ff;
+        }
+
+        .signal-target {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            border-color: #66d966;
+        }
+
+        .signal-stop {
+            background: linear-gradient(135deg, #dc3545, #bd2130);
+            border-color: #ff6b7d;
+        }
+
+        .signal-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .signal-label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .signal-return {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .ai-section {
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .claude-section {
+            border-left: 5px solid #007bff;
+        }
+
+        .perplexity-section {
+            border-left: 5px solid #17a2b8;
+        }
+
+        .pattern-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .pattern-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .badge-breakout {
+            background: #007bff;
+        }
+
+        .badge-momentum {
+            background: #6f42c1;
+        }
+
+        .badge-sector {
+            background: #28a745;
+        }
+
+        .badge-theme {
+            background: #17a2b8;
+        }
+
+        .entry-timing {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .timing-immediate {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .timing-pullback {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .timing-wait {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .news-list {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .news-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .related-stocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .related-stock {
+            background: #17a2b8;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #5a6268, #495057);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 반응형 디자인 */
+        @media screen and (max-width: 768px) {
+            .main-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            
+            .trading-signals {
+                grid-template-columns: 1fr;
+            }
+        }
     
 /* 🔧 종목 상세 페이지 폭 완전 통일 */
 .container {
@@ -64,54 +372,112 @@
 </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero-card text-center">
-            <h1>🚀 파미셀 (005690)</h1>
-            <p class="mb-0">모멘텀 돌파매매 분석</p>
-        </div>
-        
-        
-                    <div class="alert alert-info">
-                        <h5>🚀 파미셀 모멘텀 분석</h5>
-                        <div class="summary-item">🚀 파미셀 모멘텀 돌파매매 신호 포착</div>
-<div class="summary-item">💰 거래대금 1000억+ 터진 강력한 매수세 확인</div>
-<div class="summary-item">📈 5일선 회복 및 전고점 20% 내 위치로 추세 전환 기대</div>
-<div class="summary-score"><span class="badge bg-success">뉴스 신뢰도: 85점</span></div>
+    <div class="main-container">
+        <!-- 🔙 뒤로가기 버튼 -->
+        <button class="back-btn" onclick="history.back()">
+            <i class="fas fa-arrow-left me-2"></i>목록으로 돌아가기
+        </button>
 
-                        <div class="summary-item">📊 5일 이동평균선 회복으로 단기 상승 추세 전환</div>
-<div class="summary-item">🛡️ 매물 소화 후 주가 지지로 추가 상승 여력 확보</div>
-<div class="summary-item">🎯 전고점 20% 내 위치로 돌파 임박 단계</div>
-<div class="summary-score"><span class="badge bg-success">기술적 신뢰도: 88점</span></div>
-
-                    </div>
-                    
-        
-        <div class="price-section">
-            <h5>💰 매매 정보</h5>
-            <div class="row">
-                <div class="col-md-4">
-                    <strong>현재가:</strong> 13,950원
-                </div>
-                <div class="col-md-4">
-                    <strong>목표가:</strong> 14,700원 (+5.4%)
-                </div>
-                <div class="col-md-4">
-                    <strong>손절가:</strong> 13,500원 (-3.2%)
+        <!-- 🏆 종목 헤더 -->
+        <div class="hero-card">
+            <div class="hero-header">
+                <h1 class="hero-title">파미셀</h1>
+                <p class="hero-subtitle">005690 | 모멘텀 섹터</p>
+                <div class="pattern-badges justify-content-center">
+                    <span class="pattern-badge badge-breakout">모멘텀 돌파</span>
+                    <span class="pattern-badge badge-momentum">강력신호</span>
                 </div>
             </div>
         </div>
+
+        <!-- 📊 3줄 요약 -->
         
-        <div class="chart-section">
-            <h5>📊 차트 분석</h5>
-            <div id="stockChart" style="height: 400px; margin-bottom: 1rem;"></div>
-            <div id="volumeChart" style="height: 150px;"></div>
+                    <div class="alert alert-info">
+                        <h5>🚀 파미셀 모멘텀 분석</h5>
+                        <div class="summary-item">🚀 파미셀 모멘텀 점수 100점 (상위권)</div>
+<div class="summary-item">💰 거래량 9.2배 급증으로 강력한 매수세</div>
+<div class="summary-item">📈 돌파 점수 110점으로 상승 모멘텀 확인</div>
+<div class="summary-score"><span class="badge bg-success">뉴스 신뢰도: 100점</span></div>
+
+                        <div class="summary-item">📊 종합 신뢰도 95%로 높은 확실성</div>
+<div class="summary-item">🛡️ 캔들 강도 매우강함으로 지지 확보</div>
+<div class="summary-item">🎯 섹터 모멘텀 매우상승 상태</div>
+<div class="summary-score"><span class="badge bg-success">기술적 신뢰도: 110점</span></div>
+
+                    </div>
+                    
+
+
+        <!-- 🎯 매매 신호 -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">🎯 매매 신호</h5>
+            </div>
+            <div class="card-body">
+                <div class="trading-signals">
+                    <div class="signal-card signal-entry">
+                        <div class="signal-label">📍 현재가</div>
+                        <div class="signal-price">13,950원</div>
+                    </div>
+                    <div class="signal-card signal-target">
+                        <div class="signal-label">🎯 목표가</div>
+                        <div class="signal-price">14,700원</div>
+                        <div class="signal-return">+5.4%</div>
+                    </div>
+                    <div class="signal-card signal-stop">
+                        <div class="signal-label">🛡️ 손절가</div>
+                        <div class="signal-price">13,500원</div>
+                        <div class="signal-return">-3.2%</div>
+                    </div>
+                </div>
+
+                <!-- 진입 타이밍 -->
+                <div class="entry-timing timing-immediate">
+                    🚀 진입 타이밍: 모멘텀 돌파시 즉시 진입 권장
+                    <div class="mt-2">전략: 3일 이내 목표 달성 후 익절</div>
+                </div>
+            </div>
         </div>
-        
-        <div class="text-center mt-3">
-            <a href="../index.html" class="btn btn-primary">← 목록으로 돌아가기</a>
+
+
+        <!-- 📊 차트 영역 -->
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">📊 모멘텀 차트 분석</h5>
+            </div>
+            <div class="card-body">
+                <div id="stockChart" style="height: 400px; margin-bottom: 1rem;"></div>
+                <div id="volumeChart" style="height: 150px;"></div>
+                
+                <div class="text-center mt-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <a href="https://finance.naver.com/item/main.naver?code=005690" 
+                               target="_blank" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-chart-line me-2"></i>네이버 금융 차트
+                            </a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a href="https://finance.daum.net/quotes/A005690" 
+                               target="_blank" class="btn btn-success btn-lg w-100">
+                                <i class="fas fa-chart-bar me-2"></i>다음 금융 차트
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📅 업데이트 정보 -->
+        <div class="text-center mt-4">
+            <small class="text-muted">
+                마지막 업데이트: 2025-06-27 05:57 | 
+                🧠 Claude: 100점 | 📰 Perplexity: 100점
+            </small>
         </div>
     </div>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         console.log('✅ 005690 차트 데이터 로드 완료:', '30일');
         
@@ -294,4 +660,3 @@
         </script>
 </body>
 </html>
-        
