@@ -168,6 +168,231 @@
                     </table>
                 </div>
             </div>
+        
+        <!-- 📊 추천종목 추적 대시보드 -->
+        <div class="mt-5">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>
+                        📊 추천종목 추적 대시보드
+                        <small class="text-light">분봉 기반 실시간 추적</small>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- 성과 통계 -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 mb-3">
+                            <div class="text-center p-3 bg-primary bg-opacity-10 rounded">
+                                <div class="h5 text-primary mb-1">15</div>
+                                <div class="text-muted small">총 추천</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="text-center p-3 bg-success bg-opacity-10 rounded">
+                                <div class="h5 text-success mb-1">5</div>
+                                <div class="text-muted small">익절 성공</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="text-center p-3 bg-danger bg-opacity-10 rounded">
+                                <div class="h5 text-danger mb-1">3</div>
+                                <div class="text-muted small">손절 처리</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="text-center p-3 bg-warning bg-opacity-10 rounded">
+                                <div class="h5 text-warning mb-1">62.5%</div>
+                                <div class="text-muted small">승률</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 현재 추적 중인 종목들 -->
+                    <div class="mb-4">
+                        <h6 class="text-info mb-3">🔄 현재 추적 중인 종목 (3개)</h6>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="card border-info">
+                                    <div class="card-body p-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h6 class="mb-0">한국전력</h6>
+                                            <span class="badge bg-info">015760</span>
+                                        </div>
+                                        <div class="row g-2 mb-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">추천가</small>
+                                                <div class="fw-bold">35,850원</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">현재가</small>
+                                                <div class="fw-bold">35,350원</div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-2 mb-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">수익률</small>
+                                                <div class="fw-bold text-danger">-1.4%</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">보유일</small>
+                                                <div class="fw-bold">1일</div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="col-6">
+                                                <small class="text-success">목표: +5%</small>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-danger">손절: -3%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card border-info">
+                                    <div class="card-body p-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h6 class="mb-0">미래에셋증권</h6>
+                                            <span class="badge bg-info">006800</span>
+                                        </div>
+                                        <div class="row g-2 mb-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">추천가</small>
+                                                <div class="fw-bold">21,100원</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">현재가</small>
+                                                <div class="fw-bold">20,980원</div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-2 mb-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">수익률</small>
+                                                <div class="fw-bold text-danger">-0.6%</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">보유일</small>
+                                                <div class="fw-bold">1일</div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="col-6">
+                                                <small class="text-success">목표: +5%</small>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-danger">손절: -3%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card border-info">
+                                    <div class="card-body p-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h6 class="mb-0">제닉스</h6>
+                                            <span class="badge bg-info">381620</span>
+                                        </div>
+                                        <div class="row g-2 mb-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">추천가</small>
+                                                <div class="fw-bold">7,770원</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">현재가</small>
+                                                <div class="fw-bold">7,650원</div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-2 mb-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">수익률</small>
+                                                <div class="fw-bold text-danger">-1.5%</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">보유일</small>
+                                                <div class="fw-bold">8일</div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="col-6">
+                                                <small class="text-success">목표: +5%</small>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-danger">손절: -3%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 최근 청산된 종목들 -->
+                    <div class="mb-4">
+                        <h6 class="text-secondary mb-3">📈 최근 청산 종목 (3일 이내)</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>종목명</th>
+                                        <th>추천가</th>
+                                        <th>청산가</th>
+                                        <th>수익률</th>
+                                        <th>보유일</th>
+                                        <th>결과</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>이엔에프테크놀로지 <small class="text-muted">(102710)</small></td>
+                                        <td>38,150원</td>
+                                        <td>39,940원</td>
+                                        <td class="text-success">+4.7%</td>
+                                        <td>1일</td>
+                                        <td><span class="badge bg-success">💰 익절</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>파미셀 <small class="text-muted">(005690)</small></td>
+                                        <td>13,950원</td>
+                                        <td>14,720원</td>
+                                        <td class="text-success">+5.5%</td>
+                                        <td>6일</td>
+                                        <td><span class="badge bg-success">💰 익절</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>아시아나IDT <small class="text-muted">(267850)</small></td>
+                                        <td>12,190원</td>
+                                        <td>11,700원</td>
+                                        <td class="text-danger">-4.0%</td>
+                                        <td>8일</td>
+                                        <td><span class="badge bg-danger">📉 손절</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- 시스템 정보 -->
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-info-circle me-2"></i>시스템 정보</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <small>📈 데이터 소스:</small><br>
+                                <small>• 키움 API 분봉 (실시간)</small><br>
+                                <small>• 자동매매 기반 정확한 청산</small>
+                            </div>
+                            <div class="col-md-6">
+                                <small>🎯 매매 기준:</small><br>
+                                <small>• 추천가: 종가 기준</small><br>
+                                <small>• 목표: +5% / 손절: -3%</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
