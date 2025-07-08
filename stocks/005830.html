@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB손해보험 (005830) - 모멘텀 돌파 분석</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            border-radius: 15px 15px 0 0 !important;
+            border-bottom: none;
+            font-weight: 600;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .momentum-summary {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border: 2px solid #2196f3;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .breakout-pattern {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border: 2px solid #9c27b0;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sector-analysis {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border: 2px solid #4caf50;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .trading-signals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .signal-card {
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .signal-entry {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            border-color: #66BB6A;
+        }
+
+        .signal-target {
+            background: linear-gradient(135deg, #f44336, #c62828);
+            border-color: #ef5350;
+        }
+
+        .signal-stop {
+            background: linear-gradient(135deg, #2196F3, #1565C0);
+            border-color: #42A5F5;
+        }
+
+        .signal-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .signal-label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .signal-return {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .ai-section {
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .claude-section {
+            border-left: 5px solid #007bff;
+        }
+
+        .perplexity-section {
+            border-left: 5px solid #17a2b8;
+        }
+
+        .pattern-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .pattern-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .badge-breakout {
+            background: #007bff;
+        }
+
+        .badge-momentum {
+            background: #6f42c1;
+        }
+
+        .badge-sector {
+            background: #28a745;
+        }
+
+        .badge-theme {
+            background: #17a2b8;
+        }
+
+        .entry-timing {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .timing-immediate {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .timing-pullback {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .timing-wait {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .news-list {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .news-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .related-stocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .related-stock {
+            background: #17a2b8;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #5a6268, #495057);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 반응형 디자인 */
+        @media screen and (max-width: 768px) {
+            .main-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            
+            .trading-signals {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+/* 🔧 종목 상세 페이지 폭 완전 통일 */
+.container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+.hero-card,
+.price-section,
+.timing-section,
+.chart-section,
+.links-section,
+.summary-section,
+.strategy-section,
+.risk-assessment {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 모바일에서도 폭 통일 */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100% !important;
+        padding: 0 10px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .hero-card,
+    .price-section,
+    .timing-section,
+    .chart-section,
+    .links-section,
+    .summary-section,
+    .strategy-section,
+    .risk-assessment {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- 🔙 뒤로가기 버튼 -->
+        <button class="back-btn" onclick="history.back()">
+            <i class="fas fa-arrow-left me-2"></i>목록으로 돌아가기
+        </button>
+
+        <!-- 🏆 종목 헤더 -->
+        <div class="hero-card">
+            <div class="hero-header">
+                <h1 class="hero-title">DB손해보험</h1>
+                <p class="hero-subtitle">005830 | 모멘텀 섹터</p>
+                <div class="pattern-badges justify-content-center">
+                    <span class="pattern-badge badge-breakout">모멘텀 돌파</span>
+                    <span class="pattern-badge badge-momentum">강력신호</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📊 3줄 요약 -->
+        
+                    <div class="alert alert-info">
+                        <h5>🚀 DB손해보험 모멘텀 분석</h5>
+                        <div class="summary-item">🚀 DB손해보험 AI 종합점수 66점 (상위권)</div>
+<div class="summary-item">💰 거래량 1.5배 급증으로 강력한 매수세</div>
+<div class="summary-item">🧠 Claude 82점 + Perplexity 50점 균등분석</div>
+<div class="summary-score"><span class="badge bg-danger">뉴스 신뢰도: 50점</span></div>
+
+                        <div class="summary-item">📊 종합 신뢰도 80%로 높은 확실성</div>
+<div class="summary-item">🛡️ 캔들 강도 강함으로 지지 확보</div>
+<div class="summary-item">🎯 섹터 모멘텀 상승 상태</div>
+<div class="summary-score"><span class="badge bg-success">기술적 신뢰도: 82점</span></div>
+
+                    </div>
+                    
+
+
+        <!-- 🎯 매매 신호 -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">🎯 매매 신호</h5>
+            </div>
+            <div class="card-body">
+                <div class="trading-signals">
+                    <div class="signal-card signal-entry">
+                        <div class="signal-label">📍 현재가</div>
+                        <div class="signal-price">128,500원</div>
+                    </div>
+                    <div class="signal-card signal-target">
+                        <div class="signal-label">🎯 목표가</div>
+                        <div class="signal-price">138,497원</div>
+                        <div class="signal-return">+7.8%</div>
+                    </div>
+                    <div class="signal-card signal-stop">
+                        <div class="signal-label">🛡️ 손절가</div>
+                        <div class="signal-price">121,997원</div>
+                        <div class="signal-return">-5.1%</div>
+                    </div>
+                </div>
+
+                <!-- 진입 타이밍 -->
+                <div class="entry-timing timing-immediate">
+                    🚀 진입 타이밍: 즉시 진입 권장
+                    <div class="mt-2">전략: 3일단타 전략</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 📊 차트 영역 -->
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">📊 모멘텀 차트 분석</h5>
+            </div>
+            <div class="card-body">
+                <div id="stockChart" style="height: 400px; margin-bottom: 1rem;"></div>
+                <div id="volumeChart" style="height: 150px;"></div>
+                
+                <div class="text-center mt-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <a href="https://finance.naver.com/item/main.naver?code=005830" 
+                               target="_blank" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-chart-line me-2"></i>네이버 금융 차트
+                            </a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a href="https://finance.daum.net/quotes/A005830" 
+                               target="_blank" class="btn btn-success btn-lg w-100">
+                                <i class="fas fa-chart-bar me-2"></i>다음 금융 차트
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📅 업데이트 정보 -->
+        <div class="text-center mt-4">
+            <small class="text-muted">
+                마지막 업데이트: 2025-07-08 23:29 | 
+                🧠 Claude: 82점 | 📰 Perplexity: 50점
+            </small>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        console.log('✅ 005830 차트 데이터 로드 완료:', '60일');
+        
+        // 005830 종가매매 차트 시스템
+        let candlestickChart;
+        let volumeChart;
+        let fullData = [{"x":"2025-04-09 (Wed)","y":[78100,79600,77500,78900]},{"x":"2025-04-10 (Thu)","y":[82000,83500,81200,83300]},{"x":"2025-04-11 (Fri)","y":[82400,83600,81500,83500]},{"x":"2025-04-14 (Mon)","y":[82900,84800,82700,84200]},{"x":"2025-04-15 (Tue)","y":[84300,87000,84000,87000]},{"x":"2025-04-16 (Wed)","y":[87000,87000,84600,85100]},{"x":"2025-04-17 (Thu)","y":[85000,86300,84100,84500]},{"x":"2025-04-18 (Fri)","y":[84500,86000,84300,85200]},{"x":"2025-04-21 (Mon)","y":[84700,85900,84700,85900]},{"x":"2025-04-22 (Tue)","y":[85900,86900,85600,86200]},{"x":"2025-04-23 (Wed)","y":[87600,88700,87000,88300]},{"x":"2025-04-24 (Thu)","y":[88000,88300,86900,87800]},{"x":"2025-04-25 (Fri)","y":[87600,89000,87100,87400]},{"x":"2025-04-28 (Mon)","y":[86600,87900,86500,87500]},{"x":"2025-04-29 (Tue)","y":[87800,90000,87200,89400]},{"x":"2025-04-30 (Wed)","y":[88900,91300,88800,91200]},{"x":"2025-05-02 (Fri)","y":[91200,93100,91200,92900]},{"x":"2025-05-07 (Wed)","y":[94200,94200,90900,91300]},{"x":"2025-05-08 (Thu)","y":[90300,91700,90300,90800]},{"x":"2025-05-09 (Fri)","y":[91600,91600,90000,90200]},{"x":"2025-05-12 (Mon)","y":[91000,92900,91000,92300]},{"x":"2025-05-13 (Tue)","y":[92400,93100,91400,92500]},{"x":"2025-05-14 (Wed)","y":[92900,93000,91500,92600]},{"x":"2025-05-15 (Thu)","y":[92200,97500,91900,97300]},{"x":"2025-05-16 (Fri)","y":[97000,97400,95700,97100]},{"x":"2025-05-19 (Mon)","y":[94500,97900,94500,96100]},{"x":"2025-05-20 (Tue)","y":[96700,96900,95600,96000]},{"x":"2025-05-21 (Wed)","y":[96000,97400,95800,97200]},{"x":"2025-05-22 (Thu)","y":[96100,97300,94600,95100]},{"x":"2025-05-23 (Fri)","y":[94200,97200,94200,96600]},{"x":"2025-05-26 (Mon)","y":[97400,98800,97200,98700]},{"x":"2025-05-27 (Tue)","y":[97800,99000,97100,98200]},{"x":"2025-05-28 (Wed)","y":[97300,99500,97200,99300]},{"x":"2025-05-29 (Thu)","y":[99100,102200,98400,101600]},{"x":"2025-05-30 (Fri)","y":[101700,102800,99500,100500]},{"x":"2025-06-02 (Mon)","y":[99000,100500,97000,98300]},{"x":"2025-06-04 (Wed)","y":[99300,104500,98500,103700]},{"x":"2025-06-05 (Thu)","y":[101700,106900,101400,105900]},{"x":"2025-06-09 (Mon)","y":[110000,113400,107500,108300]},{"x":"2025-06-10 (Tue)","y":[107900,109900,106600,107900]},{"x":"2025-06-11 (Wed)","y":[107600,111700,107600,111700]},{"x":"2025-06-12 (Thu)","y":[110600,118800,110600,118800]},{"x":"2025-06-13 (Fri)","y":[117100,117400,110500,112900]},{"x":"2025-06-16 (Mon)","y":[114400,117400,113300,117400]},{"x":"2025-06-17 (Tue)","y":[115400,119900,114000,118200]},{"x":"2025-06-18 (Wed)","y":[116600,118100,115200,116200]},{"x":"2025-06-19 (Thu)","y":[116200,119000,115400,116600]},{"x":"2025-06-20 (Fri)","y":[117700,121000,116000,120200]},{"x":"2025-06-23 (Mon)","y":[118400,120700,118300,119100]},{"x":"2025-06-24 (Tue)","y":[120900,123000,119500,122100]},{"x":"2025-06-25 (Wed)","y":[122500,125000,121500,122200]},{"x":"2025-06-26 (Thu)","y":[121300,125100,121300,124600]},{"x":"2025-06-27 (Fri)","y":[124900,126400,121000,122300]},{"x":"2025-06-30 (Mon)","y":[122200,124300,120400,123300]},{"x":"2025-07-01 (Tue)","y":[124400,129800,124200,125800]},{"x":"2025-07-02 (Wed)","y":[125200,126300,121700,123700]},{"x":"2025-07-03 (Thu)","y":[123600,124400,121900,123400]},{"x":"2025-07-04 (Fri)","y":[122800,126000,122800,123400]},{"x":"2025-07-07 (Mon)","y":[122500,125400,121400,124700]},{"x":"2025-07-08 (Tue)","y":[126800,129800,124800,128500]}];
+        let fullVolumeData = [{"x":"2025-04-09 (Wed)","y":280514,"fillColor":"#2196F3"},{"x":"2025-04-10 (Thu)","y":218493,"fillColor":"#2196F3"},{"x":"2025-04-11 (Fri)","y":123796,"fillColor":"#2196F3"},{"x":"2025-04-14 (Mon)","y":109252,"fillColor":"#2196F3"},{"x":"2025-04-15 (Tue)","y":137040,"fillColor":"#2196F3"},{"x":"2025-04-16 (Wed)","y":241370,"fillColor":"#EF5350"},{"x":"2025-04-17 (Thu)","y":147362,"fillColor":"#EF5350"},{"x":"2025-04-18 (Fri)","y":71386,"fillColor":"#2196F3"},{"x":"2025-04-21 (Mon)","y":49745,"fillColor":"#2196F3"},{"x":"2025-04-22 (Tue)","y":92323,"fillColor":"#2196F3"},{"x":"2025-04-23 (Wed)","y":160388,"fillColor":"#2196F3"},{"x":"2025-04-24 (Thu)","y":146674,"fillColor":"#EF5350"},{"x":"2025-04-25 (Fri)","y":158783,"fillColor":"#EF5350"},{"x":"2025-04-28 (Mon)","y":103064,"fillColor":"#2196F3"},{"x":"2025-04-29 (Tue)","y":148239,"fillColor":"#2196F3"},{"x":"2025-04-30 (Wed)","y":150707,"fillColor":"#2196F3"},{"x":"2025-05-02 (Fri)","y":269409,"fillColor":"#2196F3"},{"x":"2025-05-07 (Wed)","y":256027,"fillColor":"#EF5350"},{"x":"2025-05-08 (Thu)","y":221193,"fillColor":"#2196F3"},{"x":"2025-05-09 (Fri)","y":187932,"fillColor":"#EF5350"},{"x":"2025-05-12 (Mon)","y":195618,"fillColor":"#2196F3"},{"x":"2025-05-13 (Tue)","y":109375,"fillColor":"#2196F3"},{"x":"2025-05-14 (Wed)","y":163165,"fillColor":"#EF5350"},{"x":"2025-05-15 (Thu)","y":337253,"fillColor":"#2196F3"},{"x":"2025-05-16 (Fri)","y":129558,"fillColor":"#2196F3"},{"x":"2025-05-19 (Mon)","y":103264,"fillColor":"#2196F3"},{"x":"2025-05-20 (Tue)","y":139958,"fillColor":"#EF5350"},{"x":"2025-05-21 (Wed)","y":146029,"fillColor":"#2196F3"},{"x":"2025-05-22 (Thu)","y":128908,"fillColor":"#EF5350"},{"x":"2025-05-23 (Fri)","y":189171,"fillColor":"#2196F3"},{"x":"2025-05-26 (Mon)","y":221580,"fillColor":"#2196F3"},{"x":"2025-05-27 (Tue)","y":102818,"fillColor":"#2196F3"},{"x":"2025-05-28 (Wed)","y":163072,"fillColor":"#2196F3"},{"x":"2025-05-29 (Thu)","y":205625,"fillColor":"#2196F3"},{"x":"2025-05-30 (Fri)","y":377897,"fillColor":"#EF5350"},{"x":"2025-06-02 (Mon)","y":202807,"fillColor":"#EF5350"},{"x":"2025-06-04 (Wed)","y":231222,"fillColor":"#2196F3"},{"x":"2025-06-05 (Thu)","y":213994,"fillColor":"#2196F3"},{"x":"2025-06-09 (Mon)","y":305265,"fillColor":"#EF5350"},{"x":"2025-06-10 (Tue)","y":176170,"fillColor":"#2196F3"},{"x":"2025-06-11 (Wed)","y":221437,"fillColor":"#2196F3"},{"x":"2025-06-12 (Thu)","y":514057,"fillColor":"#2196F3"},{"x":"2025-06-13 (Fri)","y":415905,"fillColor":"#EF5350"},{"x":"2025-06-16 (Mon)","y":183074,"fillColor":"#2196F3"},{"x":"2025-06-17 (Tue)","y":273511,"fillColor":"#2196F3"},{"x":"2025-06-18 (Wed)","y":195957,"fillColor":"#EF5350"},{"x":"2025-06-19 (Thu)","y":125662,"fillColor":"#2196F3"},{"x":"2025-06-20 (Fri)","y":233918,"fillColor":"#2196F3"},{"x":"2025-06-23 (Mon)","y":144094,"fillColor":"#2196F3"},{"x":"2025-06-24 (Tue)","y":138477,"fillColor":"#2196F3"},{"x":"2025-06-25 (Wed)","y":262693,"fillColor":"#EF5350"},{"x":"2025-06-26 (Thu)","y":328353,"fillColor":"#2196F3"},{"x":"2025-06-27 (Fri)","y":286680,"fillColor":"#EF5350"},{"x":"2025-06-30 (Mon)","y":229286,"fillColor":"#2196F3"},{"x":"2025-07-01 (Tue)","y":198848,"fillColor":"#2196F3"},{"x":"2025-07-02 (Wed)","y":217211,"fillColor":"#EF5350"},{"x":"2025-07-03 (Thu)","y":224568,"fillColor":"#EF5350"},{"x":"2025-07-04 (Fri)","y":158487,"fillColor":"#2196F3"},{"x":"2025-07-07 (Mon)","y":130572,"fillColor":"#2196F3"},{"x":"2025-07-08 (Tue)","y":275385,"fillColor":"#2196F3"}];
+        
+        // 거래량 데이터 색상 추출
+        const volumeColors = fullVolumeData.map(item => item.fillColor || '#607D8B');
+        
+        // ApexCharts 로딩 확인 후 차트 초기화
+        function initializeCharts() {
+            if (typeof ApexCharts === 'undefined') {
+                console.error('❌ ApexCharts 라이브러리가 로드되지 않았습니다');
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 라이브러리 로딩 실패</h5><p>페이지를 새로고침해주세요</p></div>';
+                return;
+            }
+            
+            try {
+                // 캔들스틱 차트
+                const candlestickOptions = {
+                    series: [{ name: 'DB손해보험', data: fullData }],
+                    chart: {
+                        type: 'candlestick',
+                        height: 400,
+                        toolbar: { show: false },
+                        background: 'transparent',
+                        zoom: { enabled: false },
+                        selection: { enabled: false },
+                        pan: { enabled: false },
+                        // 차트 정렬을 위한 마진 설정
+                        offsetX: 0,
+                        offsetY: 0,
+                        // 정확한 정렬을 위한 설정
+                        parentHeightOffset: 0
+                    },
+                    title: {
+                        text: 'DB손해보험 (005830) 차트', 
+                        align: 'left',
+                        style: { fontSize: '16px', fontWeight: 'bold' }
+                    },
+                    xaxis: { 
+                        type: 'category',
+                        labels: {
+                            show: true,
+                            rotate: -45,
+                            maxHeight: 120,
+                            hideOverlappingLabels: true,
+                            showDuplicates: false,
+                            formatter: function(val) {
+                                // 이미 MM/dd 형식이므로 그대로 반환
+                                return val;
+                            }
+                        },
+                        tickAmount: 8,
+                        // x축 정렬을 위한 설정
+                        axisBorder: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 1,
+                            offsetX: 0,
+                            offsetY: 0
+                        },
+                        axisTicks: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 6,
+                            offsetX: 0,
+                            offsetY: 0
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            formatter: function(value) {
+                                return value.toLocaleString() + '원';
+                            }
+                        }
+                    },
+                    plotOptions: {
+                        candlestick: {
+                            colors: { upward: '#e74c3c', downward: '#3498db' }
+                        }
+                    },
+                    grid: { 
+                        show: true, 
+                        borderColor: '#e0e6ed',
+                        // 그리드 정렬
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    annotations: {
+                        yaxis: [
+                            {
+                                y: 128500,
+                                borderColor: '#4CAF50',
+                                strokeDashArray: 0,
+                                borderWidth: 2,
+                                label: {
+                                    show: false
+                                }
+                            },
+                            {
+                                y: 138497,
+                                borderColor: '#f44336',
+                                strokeDashArray: 5,
+                                borderWidth: 2,
+                                label: {
+                                    show: false
+                                }
+                            },
+                            {
+                                y: 121997,
+                                borderColor: '#2196F3',
+                                strokeDashArray: 5,
+                                borderWidth: 2,
+                                label: {
+                                    show: false
+                                }
+                            }
+                        ]
+                    }
+                };
+                
+                // 거래량 차트
+                const volumeOptions = {
+                    series: [{ name: '거래량', data: fullVolumeData }],
+                    chart: {
+                        type: 'bar',
+                        height: 150,
+                        toolbar: { show: false },
+                        background: 'transparent',
+                        zoom: { enabled: false },
+                        selection: { enabled: false },
+                        pan: { enabled: false },
+                        // 캔들스틱 차트와 동일한 마진 설정
+                        offsetX: 0,
+                        offsetY: 0,
+                        parentHeightOffset: 0
+                    },
+                    plotOptions: {
+                        bar: {
+                            columnWidth: '80%',
+                            distributed: true,
+                            dataLabels: {
+                                position: 'top'
+                            }
+                        }
+                    },
+                    colors: volumeColors,
+                    xaxis: {
+                        type: 'category', 
+                        labels: { show: false },
+                        // 캔들스틱 차트와 동일한 x축 설정
+                        axisBorder: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 1,
+                            offsetX: 0,
+                            offsetY: 0
+                        },
+                        axisTicks: {
+                            show: false
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            formatter: function(value) {
+                                if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                                if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
+                                return value.toString();
+                            }
+                        }
+                    },
+                    dataLabels: { enabled: false },
+                    legend: { show: false },
+                    grid: { 
+                        show: true, 
+                        borderColor: '#e0e6ed',
+                        // 캔들스틱 차트와 동일한 그리드 설정
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }
+                };
+                
+                // 차트 렌더링
+                candlestickChart = new ApexCharts(document.querySelector("#stockChart"), candlestickOptions);
+                volumeChart = new ApexCharts(document.querySelector("#volumeChart"), volumeOptions);
+                
+                candlestickChart.render().then(() => {
+                    console.log('📊 캔들스틱 차트 렌더링 완료');
+                });
+                volumeChart.render().then(() => {
+                    console.log('📊 거래량 차트 렌더링 완료');
+                });
+                
+            } catch (error) {
+                console.error('❌ 차트 렌더링 실패:', error);
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 렌더링 실패</h5><p>' + error.message + '</p></div>';
+            }
+        }
+        
+        // DOM 로딩 완료 후 차트 초기화
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeCharts);
+        } else {
+            // 이미 로딩 완료된 경우 즉시 실행
+            setTimeout(initializeCharts, 100);
+        }
+
+
+        </script>
+</body>
+</html>
