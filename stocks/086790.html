@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하나금융지주 (086790) - 모멘텀 돌파 분석</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            border-radius: 15px 15px 0 0 !important;
+            border-bottom: none;
+            font-weight: 600;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .momentum-summary {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border: 2px solid #2196f3;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .breakout-pattern {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border: 2px solid #9c27b0;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sector-analysis {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border: 2px solid #4caf50;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .trading-signals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .signal-card {
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .signal-entry {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            border-color: #66BB6A;
+        }
+
+        .signal-target {
+            background: linear-gradient(135deg, #f44336, #c62828);
+            border-color: #ef5350;
+        }
+
+        .signal-stop {
+            background: linear-gradient(135deg, #2196F3, #1565C0);
+            border-color: #42A5F5;
+        }
+
+        .signal-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .signal-label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .signal-return {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .ai-section {
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .claude-section {
+            border-left: 5px solid #007bff;
+        }
+
+        .perplexity-section {
+            border-left: 5px solid #17a2b8;
+        }
+
+        .pattern-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .pattern-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .badge-breakout {
+            background: #007bff;
+        }
+
+        .badge-momentum {
+            background: #6f42c1;
+        }
+
+        .badge-sector {
+            background: #28a745;
+        }
+
+        .badge-theme {
+            background: #17a2b8;
+        }
+
+        .entry-timing {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .timing-immediate {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .timing-pullback {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .timing-wait {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .news-list {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .news-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .related-stocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .related-stock {
+            background: #17a2b8;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #5a6268, #495057);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 반응형 디자인 */
+        @media screen and (max-width: 768px) {
+            .main-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            
+            .trading-signals {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+/* 🔧 종목 상세 페이지 폭 완전 통일 */
+.container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+.hero-card,
+.price-section,
+.timing-section,
+.chart-section,
+.links-section,
+.summary-section,
+.strategy-section,
+.risk-assessment {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 모바일에서도 폭 통일 */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100% !important;
+        padding: 0 10px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .hero-card,
+    .price-section,
+    .timing-section,
+    .chart-section,
+    .links-section,
+    .summary-section,
+    .strategy-section,
+    .risk-assessment {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- 🔙 뒤로가기 버튼 -->
+        <button class="back-btn" onclick="history.back()">
+            <i class="fas fa-arrow-left me-2"></i>목록으로 돌아가기
+        </button>
+
+        <!-- 🏆 종목 헤더 -->
+        <div class="hero-card">
+            <div class="hero-header">
+                <h1 class="hero-title">하나금융지주</h1>
+                <p class="hero-subtitle">086790 | 모멘텀 섹터</p>
+                <div class="pattern-badges justify-content-center">
+                    <span class="pattern-badge badge-breakout">모멘텀 돌파</span>
+                    <span class="pattern-badge badge-momentum">강력신호</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📊 3줄 요약 -->
+        
+                    <div class="alert alert-info">
+                        <h5>🚀 하나금융지주 모멘텀 분석</h5>
+                        <div class="summary-item">🚀 하나금융지주 AI 종합점수 91점 (상위권)</div>
+<div class="summary-item">💰 거래량 1.5배 급증으로 강력한 매수세</div>
+<div class="summary-item">🧠 Claude 92점 + Perplexity 90점 균등분석</div>
+<div class="summary-score"><span class="badge bg-success">뉴스 신뢰도: 90점</span></div>
+
+                        <div class="summary-item">📊 종합 신뢰도 80%로 높은 확실성</div>
+<div class="summary-item">🛡️ 캔들 강도 강함으로 지지 확보</div>
+<div class="summary-item">🎯 섹터 모멘텀 상승 상태</div>
+<div class="summary-score"><span class="badge bg-success">기술적 신뢰도: 92점</span></div>
+
+                    </div>
+                    
+
+
+        <!-- 🎯 매매 신호 -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">🎯 매매 신호</h5>
+            </div>
+            <div class="card-body">
+                <div class="trading-signals">
+                    <div class="signal-card signal-entry">
+                        <div class="signal-label">📍 현재가</div>
+                        <div class="signal-price">94,500원</div>
+                    </div>
+                    <div class="signal-card signal-target">
+                        <div class="signal-label">🎯 목표가</div>
+                        <div class="signal-price">102,995원</div>
+                        <div class="signal-return">+9.0%</div>
+                    </div>
+                    <div class="signal-card signal-stop">
+                        <div class="signal-label">🛡️ 손절가</div>
+                        <div class="signal-price">89,500원</div>
+                        <div class="signal-return">-5.3%</div>
+                    </div>
+                </div>
+
+                <!-- 진입 타이밍 -->
+                <div class="entry-timing timing-immediate">
+                    🚀 진입 타이밍: 즉시 진입 권장
+                    <div class="mt-2">전략: 3일단타 전략</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 📊 차트 영역 -->
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">📊 모멘텀 차트 분석</h5>
+            </div>
+            <div class="card-body">
+                <div id="stockChart" style="height: 400px; margin-bottom: 1rem;"></div>
+                <div id="volumeChart" style="height: 150px;"></div>
+                
+                <div class="text-center mt-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <a href="https://finance.naver.com/item/main.naver?code=086790" 
+                               target="_blank" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-chart-line me-2"></i>네이버 금융 차트
+                            </a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a href="https://finance.daum.net/quotes/A086790" 
+                               target="_blank" class="btn btn-success btn-lg w-100">
+                                <i class="fas fa-chart-bar me-2"></i>다음 금융 차트
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📅 업데이트 정보 -->
+        <div class="text-center mt-4">
+            <small class="text-muted">
+                마지막 업데이트: 2025-07-08 22:28 | 
+                🧠 Claude: 92점 | 📰 Perplexity: 90점
+            </small>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        console.log('✅ 086790 차트 데이터 로드 완료:', '60일');
+        
+        // 086790 종가매매 차트 시스템
+        let candlestickChart;
+        let volumeChart;
+        let fullData = [{"x":"2025-04-09 (Wed)","y":[53000,53300,51500,52200]},{"x":"2025-04-10 (Thu)","y":[55000,56200,53500,55300]},{"x":"2025-04-11 (Fri)","y":[54000,55600,53700,55400]},{"x":"2025-04-14 (Mon)","y":[55800,56500,55500,55600]},{"x":"2025-04-15 (Tue)","y":[56100,57700,55900,57300]},{"x":"2025-04-16 (Wed)","y":[57500,58000,57100,57700]},{"x":"2025-04-17 (Thu)","y":[58600,58600,57000,57700]},{"x":"2025-04-18 (Fri)","y":[57700,59000,57600,58800]},{"x":"2025-04-21 (Mon)","y":[59100,59700,58900,59700]},{"x":"2025-04-22 (Tue)","y":[59300,60300,58900,59800]},{"x":"2025-04-23 (Wed)","y":[60500,60700,60000,60200]},{"x":"2025-04-24 (Thu)","y":[60200,60800,59800,60800]},{"x":"2025-04-25 (Fri)","y":[61000,62200,61000,61200]},{"x":"2025-04-28 (Mon)","y":[61600,62200,61500,62000]},{"x":"2025-04-29 (Tue)","y":[62200,63200,61800,62900]},{"x":"2025-04-30 (Wed)","y":[62700,64500,62700,64500]},{"x":"2025-05-02 (Fri)","y":[63800,64400,63100,64100]},{"x":"2025-05-07 (Wed)","y":[65900,66000,65000,65300]},{"x":"2025-05-08 (Thu)","y":[64500,65500,64400,64700]},{"x":"2025-05-09 (Fri)","y":[63600,64100,63100,63800]},{"x":"2025-05-12 (Mon)","y":[64300,65000,63800,64900]},{"x":"2025-05-13 (Tue)","y":[64300,64900,64000,64900]},{"x":"2025-05-14 (Wed)","y":[64500,65700,64400,65500]},{"x":"2025-05-15 (Thu)","y":[64400,65800,64100,65700]},{"x":"2025-05-16 (Fri)","y":[65100,66200,65100,66000]},{"x":"2025-05-19 (Mon)","y":[65800,67100,65700,66400]},{"x":"2025-05-20 (Tue)","y":[67200,67900,66800,67600]},{"x":"2025-05-21 (Wed)","y":[67200,68200,67200,67400]},{"x":"2025-05-22 (Thu)","y":[66600,68150,66600,67400]},{"x":"2025-05-23 (Fri)","y":[67300,69200,67300,68700]},{"x":"2025-05-26 (Mon)","y":[69300,70500,69200,70500]},{"x":"2025-05-27 (Tue)","y":[69900,70700,69600,70100]},{"x":"2025-05-28 (Wed)","y":[69600,70500,68700,69900]},{"x":"2025-05-29 (Thu)","y":[70400,72200,69900,72200]},{"x":"2025-05-30 (Fri)","y":[72600,73500,71600,72700]},{"x":"2025-06-02 (Mon)","y":[71300,72600,69100,70000]},{"x":"2025-06-04 (Wed)","y":[71200,74500,70700,74500]},{"x":"2025-06-05 (Thu)","y":[73200,74700,73200,73500]},{"x":"2025-06-09 (Mon)","y":[74500,77600,74000,77600]},{"x":"2025-06-10 (Tue)","y":[78100,80800,77000,78300]},{"x":"2025-06-11 (Wed)","y":[77400,78300,75800,77800]},{"x":"2025-06-12 (Thu)","y":[76400,77750,76100,77200]},{"x":"2025-06-13 (Fri)","y":[77900,79000,77000,78500]},{"x":"2025-06-16 (Mon)","y":[79100,80300,77100,79700]},{"x":"2025-06-17 (Tue)","y":[78400,82100,78300,79500]},{"x":"2025-06-18 (Wed)","y":[78700,80400,78200,78900]},{"x":"2025-06-19 (Thu)","y":[78900,79800,78100,78700]},{"x":"2025-06-20 (Fri)","y":[79400,80500,79000,80000]},{"x":"2025-06-23 (Mon)","y":[79400,80600,78600,79800]},{"x":"2025-06-24 (Tue)","y":[81000,83000,80300,82300]},{"x":"2025-06-25 (Wed)","y":[82300,83500,81100,83200]},{"x":"2025-06-26 (Thu)","y":[82800,84200,82000,83500]},{"x":"2025-06-27 (Fri)","y":[83600,85800,83500,84200]},{"x":"2025-06-30 (Mon)","y":[84600,86500,83200,86300]},{"x":"2025-07-01 (Tue)","y":[87400,90700,87300,88900]},{"x":"2025-07-02 (Wed)","y":[87300,88700,85200,85800]},{"x":"2025-07-03 (Thu)","y":[87600,87600,86000,87500]},{"x":"2025-07-04 (Fri)","y":[87700,88100,85200,85400]},{"x":"2025-07-07 (Mon)","y":[85400,86900,84000,85700]},{"x":"2025-07-08 (Tue)","y":[87000,95000,86500,94500]}];
+        let fullVolumeData = [{"x":"2025-04-09 (Wed)","y":1896889,"fillColor":"#EF5350"},{"x":"2025-04-10 (Thu)","y":2331960,"fillColor":"#2196F3"},{"x":"2025-04-11 (Fri)","y":1197036,"fillColor":"#2196F3"},{"x":"2025-04-14 (Mon)","y":614529,"fillColor":"#EF5350"},{"x":"2025-04-15 (Tue)","y":636307,"fillColor":"#2196F3"},{"x":"2025-04-16 (Wed)","y":485325,"fillColor":"#2196F3"},{"x":"2025-04-17 (Thu)","y":462599,"fillColor":"#EF5350"},{"x":"2025-04-18 (Fri)","y":301918,"fillColor":"#2196F3"},{"x":"2025-04-21 (Mon)","y":293001,"fillColor":"#2196F3"},{"x":"2025-04-22 (Tue)","y":555059,"fillColor":"#2196F3"},{"x":"2025-04-23 (Wed)","y":660183,"fillColor":"#EF5350"},{"x":"2025-04-24 (Thu)","y":739153,"fillColor":"#2196F3"},{"x":"2025-04-25 (Fri)","y":829472,"fillColor":"#2196F3"},{"x":"2025-04-28 (Mon)","y":623880,"fillColor":"#2196F3"},{"x":"2025-04-29 (Tue)","y":764536,"fillColor":"#2196F3"},{"x":"2025-04-30 (Wed)","y":946487,"fillColor":"#2196F3"},{"x":"2025-05-02 (Fri)","y":561953,"fillColor":"#2196F3"},{"x":"2025-05-07 (Wed)","y":1018156,"fillColor":"#EF5350"},{"x":"2025-05-08 (Thu)","y":861049,"fillColor":"#2196F3"},{"x":"2025-05-09 (Fri)","y":862740,"fillColor":"#2196F3"},{"x":"2025-05-12 (Mon)","y":439014,"fillColor":"#2196F3"},{"x":"2025-05-13 (Tue)","y":1238281,"fillColor":"#2196F3"},{"x":"2025-05-14 (Wed)","y":553546,"fillColor":"#2196F3"},{"x":"2025-05-15 (Thu)","y":479026,"fillColor":"#2196F3"},{"x":"2025-05-16 (Fri)","y":514164,"fillColor":"#2196F3"},{"x":"2025-05-19 (Mon)","y":538450,"fillColor":"#2196F3"},{"x":"2025-05-20 (Tue)","y":574616,"fillColor":"#2196F3"},{"x":"2025-05-21 (Wed)","y":549649,"fillColor":"#2196F3"},{"x":"2025-05-22 (Thu)","y":559041,"fillColor":"#2196F3"},{"x":"2025-05-23 (Fri)","y":741221,"fillColor":"#2196F3"},{"x":"2025-05-26 (Mon)","y":770042,"fillColor":"#2196F3"},{"x":"2025-05-27 (Tue)","y":511966,"fillColor":"#2196F3"},{"x":"2025-05-28 (Wed)","y":758122,"fillColor":"#2196F3"},{"x":"2025-05-29 (Thu)","y":1116134,"fillColor":"#2196F3"},{"x":"2025-05-30 (Fri)","y":1639475,"fillColor":"#2196F3"},{"x":"2025-06-02 (Mon)","y":1318834,"fillColor":"#EF5350"},{"x":"2025-06-04 (Wed)","y":1734080,"fillColor":"#2196F3"},{"x":"2025-06-05 (Thu)","y":1151217,"fillColor":"#2196F3"},{"x":"2025-06-09 (Mon)","y":1670019,"fillColor":"#2196F3"},{"x":"2025-06-10 (Tue)","y":1680784,"fillColor":"#2196F3"},{"x":"2025-06-11 (Wed)","y":1167594,"fillColor":"#2196F3"},{"x":"2025-06-12 (Thu)","y":2180729,"fillColor":"#2196F3"},{"x":"2025-06-13 (Fri)","y":1644675,"fillColor":"#2196F3"},{"x":"2025-06-16 (Mon)","y":801826,"fillColor":"#2196F3"},{"x":"2025-06-17 (Tue)","y":1017758,"fillColor":"#2196F3"},{"x":"2025-06-18 (Wed)","y":930170,"fillColor":"#2196F3"},{"x":"2025-06-19 (Thu)","y":648347,"fillColor":"#EF5350"},{"x":"2025-06-20 (Fri)","y":2087425,"fillColor":"#2196F3"},{"x":"2025-06-23 (Mon)","y":821798,"fillColor":"#2196F3"},{"x":"2025-06-24 (Tue)","y":860605,"fillColor":"#2196F3"},{"x":"2025-06-25 (Wed)","y":1020020,"fillColor":"#2196F3"},{"x":"2025-06-26 (Thu)","y":935704,"fillColor":"#2196F3"},{"x":"2025-06-27 (Fri)","y":837186,"fillColor":"#2196F3"},{"x":"2025-06-30 (Mon)","y":1132168,"fillColor":"#2196F3"},{"x":"2025-07-01 (Tue)","y":1687688,"fillColor":"#2196F3"},{"x":"2025-07-02 (Wed)","y":1293126,"fillColor":"#EF5350"},{"x":"2025-07-03 (Thu)","y":1447263,"fillColor":"#EF5350"},{"x":"2025-07-04 (Fri)","y":934182,"fillColor":"#EF5350"},{"x":"2025-07-07 (Mon)","y":1005663,"fillColor":"#2196F3"},{"x":"2025-07-08 (Tue)","y":2306745,"fillColor":"#2196F3"}];
+        
+        // 거래량 데이터 색상 추출
+        const volumeColors = fullVolumeData.map(item => item.fillColor || '#607D8B');
+        
+        // ApexCharts 로딩 확인 후 차트 초기화
+        function initializeCharts() {
+            if (typeof ApexCharts === 'undefined') {
+                console.error('❌ ApexCharts 라이브러리가 로드되지 않았습니다');
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 라이브러리 로딩 실패</h5><p>페이지를 새로고침해주세요</p></div>';
+                return;
+            }
+            
+            try {
+                // 캔들스틱 차트
+                const candlestickOptions = {
+                    series: [{ name: '하나금융지주', data: fullData }],
+                    chart: {
+                        type: 'candlestick',
+                        height: 400,
+                        toolbar: { show: false },
+                        background: 'transparent',
+                        zoom: { enabled: false },
+                        selection: { enabled: false },
+                        pan: { enabled: false },
+                        // 차트 정렬을 위한 마진 설정
+                        offsetX: 0,
+                        offsetY: 0,
+                        // 정확한 정렬을 위한 설정
+                        parentHeightOffset: 0
+                    },
+                    title: {
+                        text: '하나금융지주 (086790) 차트', 
+                        align: 'left',
+                        style: { fontSize: '16px', fontWeight: 'bold' }
+                    },
+                    xaxis: { 
+                        type: 'category',
+                        labels: {
+                            show: true,
+                            rotate: -45,
+                            maxHeight: 120,
+                            hideOverlappingLabels: true,
+                            showDuplicates: false,
+                            formatter: function(val) {
+                                // 이미 MM/dd 형식이므로 그대로 반환
+                                return val;
+                            }
+                        },
+                        tickAmount: 8,
+                        // x축 정렬을 위한 설정
+                        axisBorder: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 1,
+                            offsetX: 0,
+                            offsetY: 0
+                        },
+                        axisTicks: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 6,
+                            offsetX: 0,
+                            offsetY: 0
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            formatter: function(value) {
+                                return value.toLocaleString() + '원';
+                            }
+                        }
+                    },
+                    plotOptions: {
+                        candlestick: {
+                            colors: { upward: '#e74c3c', downward: '#3498db' }
+                        }
+                    },
+                    grid: { 
+                        show: true, 
+                        borderColor: '#e0e6ed',
+                        // 그리드 정렬
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    annotations: {
+                        yaxis: [
+                            {
+                                y: 94500,
+                                borderColor: '#4CAF50',
+                                strokeDashArray: 0,
+                                borderWidth: 2,
+                                label: {
+                                    show: false
+                                }
+                            },
+                            {
+                                y: 102995,
+                                borderColor: '#f44336',
+                                strokeDashArray: 5,
+                                borderWidth: 2,
+                                label: {
+                                    show: false
+                                }
+                            },
+                            {
+                                y: 89500,
+                                borderColor: '#2196F3',
+                                strokeDashArray: 5,
+                                borderWidth: 2,
+                                label: {
+                                    show: false
+                                }
+                            }
+                        ]
+                    }
+                };
+                
+                // 거래량 차트
+                const volumeOptions = {
+                    series: [{ name: '거래량', data: fullVolumeData }],
+                    chart: {
+                        type: 'bar',
+                        height: 150,
+                        toolbar: { show: false },
+                        background: 'transparent',
+                        zoom: { enabled: false },
+                        selection: { enabled: false },
+                        pan: { enabled: false },
+                        // 캔들스틱 차트와 동일한 마진 설정
+                        offsetX: 0,
+                        offsetY: 0,
+                        parentHeightOffset: 0
+                    },
+                    plotOptions: {
+                        bar: {
+                            columnWidth: '80%',
+                            distributed: true,
+                            dataLabels: {
+                                position: 'top'
+                            }
+                        }
+                    },
+                    colors: volumeColors,
+                    xaxis: {
+                        type: 'category', 
+                        labels: { show: false },
+                        // 캔들스틱 차트와 동일한 x축 설정
+                        axisBorder: {
+                            show: true,
+                            color: '#e0e6ed',
+                            height: 1,
+                            offsetX: 0,
+                            offsetY: 0
+                        },
+                        axisTicks: {
+                            show: false
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            formatter: function(value) {
+                                if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                                if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
+                                return value.toString();
+                            }
+                        }
+                    },
+                    dataLabels: { enabled: false },
+                    legend: { show: false },
+                    grid: { 
+                        show: true, 
+                        borderColor: '#e0e6ed',
+                        // 캔들스틱 차트와 동일한 그리드 설정
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }
+                };
+                
+                // 차트 렌더링
+                candlestickChart = new ApexCharts(document.querySelector("#stockChart"), candlestickOptions);
+                volumeChart = new ApexCharts(document.querySelector("#volumeChart"), volumeOptions);
+                
+                candlestickChart.render().then(() => {
+                    console.log('📊 캔들스틱 차트 렌더링 완료');
+                });
+                volumeChart.render().then(() => {
+                    console.log('📊 거래량 차트 렌더링 완료');
+                });
+                
+            } catch (error) {
+                console.error('❌ 차트 렌더링 실패:', error);
+                document.querySelector("#stockChart").innerHTML = '<div class="text-center p-4"><h5 class="text-danger">차트 렌더링 실패</h5><p>' + error.message + '</p></div>';
+            }
+        }
+        
+        // DOM 로딩 완료 후 차트 초기화
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeCharts);
+        } else {
+            // 이미 로딩 완료된 경우 즉시 실행
+            setTimeout(initializeCharts, 100);
+        }
+
+
+        </script>
+</body>
+</html>
